@@ -1,0 +1,152 @@
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid @input-border-color;
+  font-weight: normal;
+  color: #555555;
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: #555555;
+  text-decoration: none;
+}
+
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  -moz-box-shadow: 0 0 5px @box-shadow-color;
+  -webkit-box-shadow: 0 0 5px @box-shadow-color;
+  box-shadow: 0 0 5px @box-shadow-color;
+  border-color: lighten(@box-shadow-color, 30%);
+}
+
+.ui-state-focus.ui-state-error,
+.ui-widget-content .ui-state-focus.ui-state-error,
+.ui-widget-header .ui-state-focus.ui-state-error, .form-control .ui-state-focus.ui-state-error {
+  -moz-box-shadow: 0 0 5px @box-shadow-color-error;
+  -webkit-box-shadow: 0 0 5px @box-shadow-color-error;
+  box-shadow: 0 0 5px @box-shadow-color-error;
+  border-color: darken(@box-shadow-color-error, 7%);
+}
+
+.ui-inputfield.ui-state-focus, .ui-widget-content .ui-inputfield.ui-state-focus, .ui-widget-header .ui-inputfield.ui-state-focus {
+  -moz-box-shadow: 0 0 5px @box-shadow-color;
+  -webkit-box-shadow: 0 0 5px @box-shadow-color;
+  box-shadow: 0 0 5px @box-shadow-color;
+  border-color: lighten(@box-shadow-color, 30%);
+}
+
+.ui-widget-content .ui-inputfield.ui-state-focus.ui-state-error, .ui-inputfield.ui-state-focus.ui-state-error {
+  -moz-box-shadow: 0 0 5px @box-shadow-color-error;
+  -webkit-box-shadow: 0 0 5px @box-shadow-color-error;
+  box-shadow: 0 0 5px @box-shadow-color-error;
+  border-color: darken(@box-shadow-color-error, 7%);
+}
+
+.ui-inputfield.ui-state-focus.ui-state-error, .ui-widget-content .ui-inputfield.ui-state-focus.ui-state-error, .ui-widget-header .ui-inputfield.ui-state-focus.ui-state-error {
+  border-color: @box-shadow-color-error;
+}
+
+.form-control {
+  &.ui-inputfield.ui-state-focus.ui-state-error {
+    -moz-box-shadow: 0 0 5px @box-shadow-color-error;
+    -webkit-box-shadow: 0 0 5px @box-shadow-color-error;
+    border-color: darken(@box-shadow-color-error, 7%);
+    box-shadow: 0 0 5px @box-shadow-color-error;
+  }
+  &.ui-inputfield.ui-state-focus {
+    -moz-box-shadow: 0 0 5px @box-shadow-color;
+    -webkit-box-shadow: 0 0 5px @box-shadow-color;
+    border-color: lighten(@box-shadow-color, 30%);
+    box-shadow: 0 0 5px @box-shadow-color
+  }
+
+}
+
+.ui-inputfield, .ui-selectonemenu {
+  box-shadow: none;
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover {
+  color: #212121;
+  text-decoration: none;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #212121;
+  text-decoration: none;
+}
+
+.ui-widget :active {
+  outline: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight, .form-control .ui-state-highlight {
+  color: #ffffff;
+  text-decoration: none;
+  border-color: lighten(@box-shadow-color, 30%);
+  background-color: @brand-primary;
+  background-position: 0px;
+  background-image: -moz-linear-gradient(top, @highlight-color-begin, @highlight-color-end);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@highlight-color-begin), to(@highlight-color-end));
+  background-image: -webkit-linear-gradient(top, @highlight-color-begin, @highlight-color-end);
+  background-image: -o-linear-gradient(top, @highlight-color-begin, @highlight-color-end);
+  background-image: linear-gradient(to bottom, @highlight-color-begin, @highlight-color-end);
+  background-repeat: repeat-x;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a, .ui-widget-header .ui-state-highlight a {
+  color: #ffffff;
+  /*color: #363636;*/
+}
+
+body {
+  .ui-state-error,
+  .ui-widget-content .ui-state-error,
+  .ui-widget-content ui-state-default.ui-state-error,
+  .ui-widget-header .ui-state-error, div.ui-selectonemenu.ui-state-error,
+  div.ui-fluid div.ui-selectonemenu.ui-state-error, .ui-selectcheckboxmenu-multiple-container.ui-state-error,
+  div.ui-fluid div.ui-selectonemenu.ui-state-error.ui-state-focus, .form-control .ui-state-error {
+    border: 1px solid @box-shadow-color-error;
+    color: @error-color;
+  }
+}
+
+div.ui-selectonemenu.ui-state-focus, div.ui-fluid div.ui-selectonemenu.ui-state-focus {
+  border-color: lighten(@box-shadow-color, 30%);
+}
+
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary {
+  font-weight: bold;
+}
+
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
+  opacity: .7;
+  filter: Alpha(Opacity=70);
+  font-weight: normal;
+}
+
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+  opacity: @opacity-disabled;
+  filter: Alpha(Opacity=35);
+  background-image: none;
+}
+
+/* exception label highlight */
+label.ui-state-error {
+  background: none !important;
+}
+
+body .ui-state-default .ui-icon {
+  background-image: url("#{resource['primefaces-admin:images/ui-icons_222222_256x240.png']}");
+}

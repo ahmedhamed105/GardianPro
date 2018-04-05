@@ -1,0 +1,130 @@
+body .ui-orderlist-caption {
+  border-color: @picklist-border-color;
+}
+
+body .ui-orderlist, body .ui-orderlist.ui-grid-responsive {
+
+  border-color: @picklist-border-color;
+
+  .ui-orderlist-controls {
+    margin-right: 10px;
+    width: 30px;
+
+    button.ui-button {
+      padding: 0 10px;
+      background-color: @light-blue;
+      border-radius: 50%;
+      border: none;
+      width: 30px;
+      height: 30px;
+      .btn-interactions(@light-blue);
+      .box-shadow(none);
+
+      @-moz-document url-prefix() {
+        > span:before {
+          bottom: 15px;
+        }
+
+        &.ui-orderlist-button-move-bottom, &.ui-orderlist-button-move-down {
+          > span:before {
+            bottom: 16px;
+          }
+        }
+      }
+    }
+
+    button.ui-orderlist-button-move-up {
+      .rotate(270deg);
+      > span {
+        background-image: none;
+        display: inline;
+        position: relative;
+
+        &:before {
+          font-family: FontAwesome;
+          color: #fff;
+          position: relative;
+          font-size: @font-awesome-icon-size;
+          overflow: hidden;
+          content: "\f04b" !important;
+        }
+      }
+
+      span.ui-button-text {
+        display: none;
+      }
+    }
+
+    button.ui-orderlist-button-move-top {
+      .rotate(270deg);
+      > span {
+        background-image: none;
+        display: inline;
+        position: relative;
+
+        &:before {
+          font-family: FontAwesome;
+          color: #fff;
+          position: relative;
+          font-size: @font-awesome-icon-size;
+          overflow: hidden;
+          content: "\f051" !important;
+        }
+      }
+
+      span.ui-button-text {
+        display: none;
+      }
+    }
+
+    button.ui-orderlist-button-move-bottom {
+      .rotate(90deg);
+      > span {
+        background-image: none;
+        display: inline;
+        position: relative;
+
+        &:before {
+          font-family: FontAwesome;
+          color: #fff;
+          position: relative;
+          font-size: @font-awesome-icon-size;
+          overflow: hidden;
+          content: "\f051" !important;
+        }
+      }
+
+      span.ui-button-text {
+        display: none;
+      }
+    }
+
+    button.ui-orderlist-button-move-down {
+      .rotate(90deg);
+      > span {
+        background-image: none;
+        display: inline;
+        position: relative;
+
+        &:before {
+          font-family: FontAwesome;
+          color: #fff;
+          position: relative;
+          font-size: @font-awesome-icon-size;
+          overflow: hidden;
+          content: "\f04b" !important;
+        }
+      }
+
+      span.ui-button-text {
+        display: none;
+      }
+    }
+
+  }
+}
+
+body .ui-orderlist, body .ui-orderlist.ui-grid-responsive .ui-orderlist-controls {
+  margin-top: 20px;
+}
+
