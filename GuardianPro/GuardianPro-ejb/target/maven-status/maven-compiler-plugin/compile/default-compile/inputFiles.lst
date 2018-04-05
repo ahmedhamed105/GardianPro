@@ -1,5 +1,8 @@
-<<<<<<< HEAD
-/Users/ahmedhamed/Documents/GitHub/GardianPro/GuardianPro/GuardianPro-ejb/src/main/java/com/guardianpro/NewSessionBean.java
-=======
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\NewSessionBean.java
->>>>>>> cd18847fc0be3f1b817e58322962103e59b0ad91
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\PurchaseOrder.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\Product.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\MicroMarket.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\Customer.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\DiscountCode.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\NewSessionBean.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\Manufacturer.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\guardianpro\Entity\ProductCode.java
