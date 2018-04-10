@@ -1,1 +1,15 @@
+com\guardianpro\Entity\PurchaseOrder.class
+com\guardianpro\Entity\Product.class
 com\guardianpro\NewSessionBean.class
+com\guardianpro\Entity\Customer_.class
+com\guardianpro\Entity\ProductCode.class
+com\guardianpro\Entity\Manufacturer.class
+com\guardianpro\Entity\DiscountCode_.class
+com\guardianpro\Entity\DiscountCode.class
+com\guardianpro\Entity\MicroMarket_.class
+com\guardianpro\Entity\Customer.class
+com\guardianpro\Entity\Product_.class
+com\guardianpro\Entity\ProductCode_.class
+com\guardianpro\Entity\Manufacturer_.class
+com\guardianpro\Entity\MicroMarket.class
+com\guardianpro\Entity\PurchaseOrder_.class
