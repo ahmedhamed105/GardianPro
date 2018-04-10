@@ -5,7 +5,9 @@
  */
 package Facades;
 
+import Entities.PasswordHistory;
 import Entities.User;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -49,6 +51,22 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         try {
                 User  users = (User) password_username.getSingleResult();     
                 return users.getUserPasswordID().getPassword();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    /**
+     *
+     * @param Username
+     * @return
+     */
+    public  Collection<PasswordHistory> passwordHistory_username(String Username){      
+       Query passwordHistory_username = em.createNamedQuery("User.findByUsername");
+        passwordHistory_username.setParameter("username", Username);
+        try {
+                User  users = (User) passwordHistory_username.getSingleResult();     
+                return users.getPasswordHistoryCollection();
         } catch (Exception e) {
             return null;
         }

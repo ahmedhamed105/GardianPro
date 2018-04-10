@@ -29,4 +29,5 @@ public class PasswordHistoryFacade extends AbstractFacade<PasswordHistory> imple
         super(PasswordHistory.class);
     }
     
+    
 }
