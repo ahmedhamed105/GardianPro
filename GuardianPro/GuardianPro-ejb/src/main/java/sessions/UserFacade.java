@@ -6,9 +6,12 @@
 package sessions;
 
 import Entity.User;
+import java.util.Collection;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,20 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     public UserFacade() {
         super(User.class);
+    }
+    
+    
+    public  List<User> search_username(String Username){
+    
+            
+       Query user_username = em.createNamedQuery("User.findByUsername");
+        user_username.setParameter("username", Username);
+        try {
+                List<User>  users = user_username.getResultList();     
+                return users;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

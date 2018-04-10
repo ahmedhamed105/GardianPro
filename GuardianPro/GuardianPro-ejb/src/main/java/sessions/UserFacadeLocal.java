@@ -30,4 +30,6 @@ public interface UserFacadeLocal {
 
     int count();
     
+    List<User> search_username(String Username);
+    
 }
