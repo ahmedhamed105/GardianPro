@@ -32,6 +32,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
     public UserFacade() {
         super(User.class);
     }
+    @Override
         public  List<User> search_username(String Username){
     
             
@@ -45,6 +46,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         }
     }
         
+    @Override
     public  String password_username(String Username){      
        Query password_username = em.createNamedQuery("User.findByUsername");
         password_username.setParameter("username", Username);

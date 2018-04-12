@@ -5,6 +5,8 @@
  */
 package com.guardian.Login;
 
+import Facades.UserFacadeLocal;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -16,6 +18,11 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 public class Login {
+
+    @EJB
+    private UserFacadeLocal userFacade;
+    
+    
     
     boolean remeber;
     String username;
@@ -54,13 +61,17 @@ public class Login {
     
     public String Login_submit(ActionEvent actionEvent){
         
-        if("admin".equals(username) && "admin".equals(password)){
+        try{
+       if(userFacade.password_username(username).equals(password)){
         addInfoMessage("Login ok!!");
-        }else{
+       }else{
+       addInfoMessage("Login Error!!");
+       }
+        }catch(Exception e){
+            e.printStackTrace();
          addInfoMessage("Login Error!!");
         }
-        
-     
+
     return null;
     }
     
