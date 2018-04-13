@@ -7,6 +7,7 @@ package Facades;
 
 import Entities.PasswordHistory;
 import Entities.User;
+import Entities.UserStatus;
 import java.util.Collection;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -46,13 +47,26 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         }
     }
         
+        
     @Override
-    public  String password_username(String Username){      
+    public  int user_status(User User1){      
+       Query user_status = em.createNamedQuery("UserStatus.findByuser");
+        user_status.setParameter("id", User1);
+        try {
+                UserStatus  status = (UserStatus) user_status.getSingleResult();     
+                return status.getStatusID().getId();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+        
+    @Override
+    public  User password_username(String Username){      
        Query password_username = em.createNamedQuery("User.findByUsername");
         password_username.setParameter("username", Username);
         try {
                 User  users = (User) password_username.getSingleResult();     
-                return users.getUserPasswordID().getPassword();
+                return users;
         } catch (Exception e) {
             return null;
         }

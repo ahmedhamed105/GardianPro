@@ -5,6 +5,7 @@
  */
 package com.guardian.Login;
 
+import Entities.User;
 import Facades.UserFacadeLocal;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -60,19 +61,39 @@ public class Login {
     
     
     public String Login_submit(ActionEvent actionEvent){
-        
+         
         try{
-       if(userFacade.password_username(username).equals(password)){
-        addInfoMessage("Login ok!!");
+            User u1=userFacade.password_username(username);
+       if(u1.getUserPasswordID().getPassword().equals(password)){
+                switch (userFacade.user_status(u1)) {
+                    case 1:
+                        addInfoMessage("Login ok!!");
+                       return "Login";
+                    case 2:
+                        addInfoMessage("Login Error User Closed !!");
+                       return "Error";
+                    case 3:
+                        addInfoMessage("Login Error User Locked !!");
+                       return "Error";
+                    case 4:
+                        addInfoMessage("Login Error User not Have Email Activation !!");
+                        return "Error";
+                    default:
+                        addInfoMessage("Login Error Check status !!");
+                        return "Error";
+                }
+       
        }else{
-       addInfoMessage("Login Error!!");
+       addInfoMessage("Login Error Wrong password!!");
+       return "Error";
        }
         }catch(Exception e){
             e.printStackTrace();
          addInfoMessage("Login Error!!");
+         return "Error";
         }
 
-    return null;
+   
     }
     
     

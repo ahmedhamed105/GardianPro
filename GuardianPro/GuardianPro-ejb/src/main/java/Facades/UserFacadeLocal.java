@@ -31,5 +31,8 @@ public interface UserFacadeLocal {
     int count();
     
     List<User> search_username(String Username);
-    String password_username(String Username);
+    
+    User password_username(String Username);
+    
+    int user_status(User User1);
 }

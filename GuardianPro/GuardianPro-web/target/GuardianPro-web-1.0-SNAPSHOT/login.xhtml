@@ -35,7 +35,7 @@
                                                             <p:selectBooleanCheckbox  value="#{login.remeber}"/>
 								<span> Remember me ?</span> 
 							</div>   
-                                                        <p:commandButton class="submit_bt" value="Login" type="submit" update="growl" actionListener="#{login.Login_submit(actionEvent)}"/> 
+                                                        <p:commandButton class="submit_bt" value="Login" type="submit" ajax="false" action="#{login.Login_submit(actionEvent)}"/>  
 						</h:form> 	
 					</div> 
 					<div class="login-agileits-bottom"> 
