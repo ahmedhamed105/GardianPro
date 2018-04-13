@@ -5,7 +5,9 @@
  */
 package Facades;
 
+import Entities.PasswordHistory;
 import Entities.User;
+import java.util.Collection;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -32,4 +34,5 @@ public interface UserFacadeLocal {
     
     List<User> search_username(String Username);
     String password_username(String Username);
+    Collection<PasswordHistory> passwordHistory_username(String Username);
 }
