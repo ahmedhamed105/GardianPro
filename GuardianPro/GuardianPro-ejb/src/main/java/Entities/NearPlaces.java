@@ -28,18 +28,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "near_places", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NearPlaces.findAll", query = "SELECT n FROM NearPlaces n")
-    , @NamedQuery(name = "NearPlaces.findById", query = "SELECT n FROM NearPlaces n WHERE n.id = :id")
-    , @NamedQuery(name = "NearPlaces.findByPlaces", query = "SELECT n FROM NearPlaces n WHERE n.places = :places")
-    , @NamedQuery(name = "NearPlaces.findByDescription", query = "SELECT n FROM NearPlaces n WHERE n.description = :description")
-    , @NamedQuery(name = "NearPlaces.findByCreateDate", query = "SELECT n FROM NearPlaces n WHERE n.createDate = :createDate")
-    , @NamedQuery(name = "NearPlaces.findByUpdateDate", query = "SELECT n FROM NearPlaces n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NearPlaces.findAll", query = "SELECT n FROM NearPlaces n"),
+    @NamedQuery(name = "NearPlaces.findById", query = "SELECT n FROM NearPlaces n WHERE n.id = :id"),
+    @NamedQuery(name = "NearPlaces.findByPlaces", query = "SELECT n FROM NearPlaces n WHERE n.places = :places"),
+    @NamedQuery(name = "NearPlaces.findByDescription", query = "SELECT n FROM NearPlaces n WHERE n.description = :description"),
+    @NamedQuery(name = "NearPlaces.findByCreateDate", query = "SELECT n FROM NearPlaces n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "NearPlaces.findByUpdateDate", query = "SELECT n FROM NearPlaces n WHERE n.updateDate = :updateDate")})
 public class NearPlaces implements Serializable {
 
     private static final long serialVersionUID = 1L;

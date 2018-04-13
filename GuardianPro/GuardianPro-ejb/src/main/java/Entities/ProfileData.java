@@ -6,41 +6,39 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "profile_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProfileData.findAll", query = "SELECT p FROM ProfileData p")
-    , @NamedQuery(name = "ProfileData.findById", query = "SELECT p FROM ProfileData p WHERE p.id = :id")
-    , @NamedQuery(name = "ProfileData.findByPicturepath", query = "SELECT p FROM ProfileData p WHERE p.picturepath = :picturepath")
-    , @NamedQuery(name = "ProfileData.findByCoverimage", query = "SELECT p FROM ProfileData p WHERE p.coverimage = :coverimage")
-    , @NamedQuery(name = "ProfileData.findByNickname", query = "SELECT p FROM ProfileData p WHERE p.nickname = :nickname")
-    , @NamedQuery(name = "ProfileData.findByCreateDate", query = "SELECT p FROM ProfileData p WHERE p.createDate = :createDate")
-    , @NamedQuery(name = "ProfileData.findByUpdateDate", query = "SELECT p FROM ProfileData p WHERE p.updateDate = :updateDate")})
+    @NamedQuery(name = "ProfileData.findAll", query = "SELECT p FROM ProfileData p"),
+    @NamedQuery(name = "ProfileData.findById", query = "SELECT p FROM ProfileData p WHERE p.id = :id"),
+    @NamedQuery(name = "ProfileData.findByPicturepath", query = "SELECT p FROM ProfileData p WHERE p.picturepath = :picturepath"),
+    @NamedQuery(name = "ProfileData.findByCoverimage", query = "SELECT p FROM ProfileData p WHERE p.coverimage = :coverimage"),
+    @NamedQuery(name = "ProfileData.findByNickname", query = "SELECT p FROM ProfileData p WHERE p.nickname = :nickname"),
+    @NamedQuery(name = "ProfileData.findByCreateDate", query = "SELECT p FROM ProfileData p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "ProfileData.findByUpdateDate", query = "SELECT p FROM ProfileData p WHERE p.updateDate = :updateDate")})
 public class ProfileData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,8 +66,9 @@ public class ProfileData implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profileDataID")
-    private Collection<User> userCollection;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
 
     public ProfileData() {
     }
@@ -132,13 +131,12 @@ public class ProfileData implements Serializable {
         this.updateDate = updateDate;
     }
 
-    @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override

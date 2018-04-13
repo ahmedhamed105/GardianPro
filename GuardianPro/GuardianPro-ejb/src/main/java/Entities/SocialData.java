@@ -24,18 +24,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "social_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "SocialData.findAll", query = "SELECT s FROM SocialData s")
-    , @NamedQuery(name = "SocialData.findById", query = "SELECT s FROM SocialData s WHERE s.socialDataPK.id = :id")
-    , @NamedQuery(name = "SocialData.findByFacebookURL", query = "SELECT s FROM SocialData s WHERE s.facebookURL = :facebookURL")
-    , @NamedQuery(name = "SocialData.findByUserID", query = "SELECT s FROM SocialData s WHERE s.socialDataPK.userID = :userID")
-    , @NamedQuery(name = "SocialData.findByCreateDate", query = "SELECT s FROM SocialData s WHERE s.createDate = :createDate")
-    , @NamedQuery(name = "SocialData.findByUpdateDate", query = "SELECT s FROM SocialData s WHERE s.updateDate = :updateDate")})
+    @NamedQuery(name = "SocialData.findAll", query = "SELECT s FROM SocialData s"),
+    @NamedQuery(name = "SocialData.findById", query = "SELECT s FROM SocialData s WHERE s.socialDataPK.id = :id"),
+    @NamedQuery(name = "SocialData.findByFacebookURL", query = "SELECT s FROM SocialData s WHERE s.facebookURL = :facebookURL"),
+    @NamedQuery(name = "SocialData.findByUserID", query = "SELECT s FROM SocialData s WHERE s.socialDataPK.userID = :userID"),
+    @NamedQuery(name = "SocialData.findByCreateDate", query = "SELECT s FROM SocialData s WHERE s.createDate = :createDate"),
+    @NamedQuery(name = "SocialData.findByUpdateDate", query = "SELECT s FROM SocialData s WHERE s.updateDate = :updateDate")})
 public class SocialData implements Serializable {
 
     private static final long serialVersionUID = 1L;

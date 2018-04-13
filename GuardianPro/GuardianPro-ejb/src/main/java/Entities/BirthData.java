@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,30 +17,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "birth_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "BirthData.findAll", query = "SELECT b FROM BirthData b")
-    , @NamedQuery(name = "BirthData.findById", query = "SELECT b FROM BirthData b WHERE b.id = :id")
-    , @NamedQuery(name = "BirthData.findByBirthDate", query = "SELECT b FROM BirthData b WHERE b.birthDate = :birthDate")
-    , @NamedQuery(name = "BirthData.findByBirthCert", query = "SELECT b FROM BirthData b WHERE b.birthCert = :birthCert")
-    , @NamedQuery(name = "BirthData.findByBirthplace", query = "SELECT b FROM BirthData b WHERE b.birthplace = :birthplace")
-    , @NamedQuery(name = "BirthData.findByCreateDate", query = "SELECT b FROM BirthData b WHERE b.createDate = :createDate")
-    , @NamedQuery(name = "BirthData.findByUpdateDate", query = "SELECT b FROM BirthData b WHERE b.updateDate = :updateDate")})
+    @NamedQuery(name = "BirthData.findAll", query = "SELECT b FROM BirthData b"),
+    @NamedQuery(name = "BirthData.findById", query = "SELECT b FROM BirthData b WHERE b.id = :id"),
+    @NamedQuery(name = "BirthData.findByBirthDate", query = "SELECT b FROM BirthData b WHERE b.birthDate = :birthDate"),
+    @NamedQuery(name = "BirthData.findByBirthCert", query = "SELECT b FROM BirthData b WHERE b.birthCert = :birthCert"),
+    @NamedQuery(name = "BirthData.findByBirthplace", query = "SELECT b FROM BirthData b WHERE b.birthplace = :birthplace"),
+    @NamedQuery(name = "BirthData.findByCreateDate", query = "SELECT b FROM BirthData b WHERE b.createDate = :createDate"),
+    @NamedQuery(name = "BirthData.findByUpdateDate", query = "SELECT b FROM BirthData b WHERE b.updateDate = :updateDate")})
 public class BirthData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -78,8 +74,9 @@ public class BirthData implements Serializable {
     @JoinColumn(name = "Country_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private Country countryID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "birthDataID")
-    private Collection<User> userCollection;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
 
     public BirthData() {
     }
@@ -159,13 +156,12 @@ public class BirthData implements Serializable {
         this.countryID = countryID;
     }
 
-    @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override

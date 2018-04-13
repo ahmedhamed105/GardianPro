@@ -8,4 +8,15 @@
         <managed-bean-class>com.guardian.Login.Login</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Login</from-outcome>
+            <to-view-id>/Main.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Error</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
