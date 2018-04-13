@@ -26,17 +26,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "trx_type", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TrxType.findAll", query = "SELECT t FROM TrxType t")
-    , @NamedQuery(name = "TrxType.findById", query = "SELECT t FROM TrxType t WHERE t.id = :id")
-    , @NamedQuery(name = "TrxType.findByTType", query = "SELECT t FROM TrxType t WHERE t.tType = :tType")
-    , @NamedQuery(name = "TrxType.findByCreateDate", query = "SELECT t FROM TrxType t WHERE t.createDate = :createDate")
-    , @NamedQuery(name = "TrxType.findByUpdateDate", query = "SELECT t FROM TrxType t WHERE t.updateDate = :updateDate")})
+    @NamedQuery(name = "TrxType.findAll", query = "SELECT t FROM TrxType t"),
+    @NamedQuery(name = "TrxType.findById", query = "SELECT t FROM TrxType t WHERE t.id = :id"),
+    @NamedQuery(name = "TrxType.findByTType", query = "SELECT t FROM TrxType t WHERE t.tType = :tType"),
+    @NamedQuery(name = "TrxType.findByCreateDate", query = "SELECT t FROM TrxType t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "TrxType.findByUpdateDate", query = "SELECT t FROM TrxType t WHERE t.updateDate = :updateDate")})
 public class TrxType implements Serializable {
 
     private static final long serialVersionUID = 1L;

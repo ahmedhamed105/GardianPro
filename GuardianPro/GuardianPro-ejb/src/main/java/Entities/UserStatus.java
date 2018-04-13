@@ -6,75 +6,49 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "user_status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserStatus.findAll", query = "SELECT u FROM UserStatus u")
-    , @NamedQuery(name = "UserStatus.findById", query = "SELECT u FROM UserStatus u WHERE u.id = :id")
-    , @NamedQuery(name = "UserStatus.findByStatus", query = "SELECT u FROM UserStatus u WHERE u.status = :status")
-    , @NamedQuery(name = "UserStatus.findByCreateDate", query = "SELECT u FROM UserStatus u WHERE u.createDate = :createDate")
-    , @NamedQuery(name = "UserStatus.findByUpdateDate", query = "SELECT u FROM UserStatus u WHERE u.updateDate = :updateDate")})
+    @NamedQuery(name = "UserStatus.findAll", query = "SELECT u FROM UserStatus u"),
+    @NamedQuery(name = "UserStatus.findById", query = "SELECT u FROM UserStatus u WHERE u.id = :id")})
 public class UserStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "Status", nullable = false, length = 45)
-    private String status;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "create_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "update_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userstatusID")
-    private Collection<User> userCollection;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
+    @JoinColumn(name = "status_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private Status statusID;
 
     public UserStatus() {
     }
 
     public UserStatus(Integer id) {
         this.id = id;
-    }
-
-    public UserStatus(Integer id, String status, Date createDate, Date updateDate) {
-        this.id = id;
-        this.status = status;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
     }
 
     public Integer getId() {
@@ -85,37 +59,20 @@ public class UserStatus implements Serializable {
         this.id = id;
     }
 
-    public String getStatus() {
-        return status;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Status getStatusID() {
+        return statusID;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
-    }
-
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
+    public void setStatusID(Status statusID) {
+        this.statusID = statusID;
     }
 
     @Override

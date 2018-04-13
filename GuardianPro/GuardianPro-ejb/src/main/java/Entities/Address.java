@@ -29,17 +29,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "address", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
-    , @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id")
-    , @NamedQuery(name = "Address.findByStreetno", query = "SELECT a FROM Address a WHERE a.streetno = :streetno")
-    , @NamedQuery(name = "Address.findByCreateDate", query = "SELECT a FROM Address a WHERE a.createDate = :createDate")
-    , @NamedQuery(name = "Address.findByUpdateDate", query = "SELECT a FROM Address a WHERE a.updateDate = :updateDate")})
+    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
+    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
+    @NamedQuery(name = "Address.findByStreetno", query = "SELECT a FROM Address a WHERE a.streetno = :streetno"),
+    @NamedQuery(name = "Address.findByCreateDate", query = "SELECT a FROM Address a WHERE a.createDate = :createDate"),
+    @NamedQuery(name = "Address.findByUpdateDate", query = "SELECT a FROM Address a WHERE a.updateDate = :updateDate")})
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;

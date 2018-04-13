@@ -6,48 +6,50 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ahmed.elemam
  */
 @Entity
-@Table(name = "login_way", catalog = "guardianpro", schema = "")
+@Table(name = "status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LoginWay.findAll", query = "SELECT l FROM LoginWay l"),
-    @NamedQuery(name = "LoginWay.findById", query = "SELECT l FROM LoginWay l WHERE l.id = :id"),
-    @NamedQuery(name = "LoginWay.findByLgway", query = "SELECT l FROM LoginWay l WHERE l.lgway = :lgway"),
-    @NamedQuery(name = "LoginWay.findByCreateDate", query = "SELECT l FROM LoginWay l WHERE l.createDate = :createDate"),
-    @NamedQuery(name = "LoginWay.findByUpdateDate", query = "SELECT l FROM LoginWay l WHERE l.updateDate = :updateDate")})
-public class LoginWay implements Serializable {
+    @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s"),
+    @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id"),
+    @NamedQuery(name = "Status.findByStatus", query = "SELECT s FROM Status s WHERE s.status = :status"),
+    @NamedQuery(name = "Status.findByCreateDate", query = "SELECT s FROM Status s WHERE s.createDate = :createDate"),
+    @NamedQuery(name = "Status.findByUpdateDate", query = "SELECT s FROM Status s WHERE s.updateDate = :updateDate")})
+public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID", nullable = false)
     private Integer id;
-    @Size(max = 45)
-    @Column(name = "Lg_way", length = 45)
-    private String lgway;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Status", nullable = false, length = 45)
+    private String status;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -58,22 +60,19 @@ public class LoginWay implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Login_type_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private LoginType logintypeID;
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private User userID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusID")
+    private Collection<UserStatus> userStatusCollection;
 
-    public LoginWay() {
+    public Status() {
     }
 
-    public LoginWay(Integer id) {
+    public Status(Integer id) {
         this.id = id;
     }
 
-    public LoginWay(Integer id, Date createDate, Date updateDate) {
+    public Status(Integer id, String status, Date createDate, Date updateDate) {
         this.id = id;
+        this.status = status;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -86,12 +85,12 @@ public class LoginWay implements Serializable {
         this.id = id;
     }
 
-    public String getLgway() {
-        return lgway;
+    public String getStatus() {
+        return status;
     }
 
-    public void setLgway(String lgway) {
-        this.lgway = lgway;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getCreateDate() {
@@ -110,20 +109,13 @@ public class LoginWay implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public LoginType getLogintypeID() {
-        return logintypeID;
+    @XmlTransient
+    public Collection<UserStatus> getUserStatusCollection() {
+        return userStatusCollection;
     }
 
-    public void setLogintypeID(LoginType logintypeID) {
-        this.logintypeID = logintypeID;
-    }
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setUserStatusCollection(Collection<UserStatus> userStatusCollection) {
+        this.userStatusCollection = userStatusCollection;
     }
 
     @Override
@@ -136,10 +128,10 @@ public class LoginWay implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LoginWay)) {
+        if (!(object instanceof Status)) {
             return false;
         }
-        LoginWay other = (LoginWay) object;
+        Status other = (Status) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +140,7 @@ public class LoginWay implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.LoginWay[ id=" + id + " ]";
+        return "Entities.Status[ id=" + id + " ]";
     }
     
 }
