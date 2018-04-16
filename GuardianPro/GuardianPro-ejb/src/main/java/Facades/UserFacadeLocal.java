@@ -33,13 +33,11 @@ public interface UserFacadeLocal {
     int count();
     
     List<User> search_username(String Username);
-<<<<<<< HEAD
-    String password_username(String Username);
-    Collection<PasswordHistory> passwordHistory_username(String Username);
-=======
-    
+
     User password_username(String Username);
     
+    Collection<PasswordHistory> passwordHistory_username(String Username); 
+ 
     int user_status(User User1);
->>>>>>> 7b65abc5e2d720a09de775c71c2f3e8ac0200a6d
+
 }
