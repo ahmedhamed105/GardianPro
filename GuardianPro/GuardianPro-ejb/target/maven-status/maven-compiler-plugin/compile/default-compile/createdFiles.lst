@@ -51,6 +51,7 @@ Facades\AddressFacade.class
 Entities\LoginType.class
 Entities\PasswordHistory_.class
 Entities\BirthData_.class
+Entities\Status_.class
 Facades\EmailSmsSendFacade.class
 Entities\TrxType_.class
 Facades\StreetFacade.class
@@ -106,6 +107,7 @@ Entities\NationalIdHasMaritalStatusHasAddress_.class
 Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.class
 Entities\Distinct1.class
 Facades\CountryFacade.class
+Entities\Status.class
 Entities\WebsiteData_.class
 Entities\Address.class
 Facades\NationalIdFacadeLocal.class
