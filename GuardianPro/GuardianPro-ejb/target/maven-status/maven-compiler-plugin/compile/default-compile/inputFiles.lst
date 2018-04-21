@@ -32,6 +32,8 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ComponentFacadeLocal.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupsFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Address.java
@@ -51,10 +53,12 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ArmyAreaFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataHasUserFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ProfileData.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatusHasAddressPK.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacadeLocal.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ComponentPK.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PasswordHistoryFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteData.java
@@ -73,6 +77,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusHasAddressFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteDataHasUser.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupsFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginTypeFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatusPK.java
@@ -86,6 +91,8 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ComponentFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Groups.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginWay.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialDataFacade.java

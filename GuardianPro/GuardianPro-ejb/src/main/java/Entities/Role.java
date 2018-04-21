@@ -8,16 +8,16 @@ package Entities;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -52,10 +52,13 @@ public class Role implements Serializable {
     @Size(max = 45)
     @Column(name = "Description", length = 45)
     private String description;
+    @JoinTable(name = "role_has_component", joinColumns = {
+        @JoinColumn(name = "Role_previlege_ID", referencedColumnName = "previlege_ID", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "component_component_ID", referencedColumnName = "component_ID", nullable = false)})
+    @ManyToMany
+    private Collection<Component> componentCollection;
     @ManyToMany(mappedBy = "roleCollection")
     private Collection<Groups> groupsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "previlegeprevilegeID")
-    private Collection<Component> componentCollection;
 
     public Role() {
     }
@@ -94,21 +97,21 @@ public class Role implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Groups> getGroupsCollection() {
-        return groupsCollection;
-    }
-
-    public void setGroupsCollection(Collection<Groups> groupsCollection) {
-        this.groupsCollection = groupsCollection;
-    }
-
-    @XmlTransient
     public Collection<Component> getComponentCollection() {
         return componentCollection;
     }
 
     public void setComponentCollection(Collection<Component> componentCollection) {
         this.componentCollection = componentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Groups> getGroupsCollection() {
+        return groupsCollection;
+    }
+
+    public void setGroupsCollection(Collection<Groups> groupsCollection) {
+        this.groupsCollection = groupsCollection;
     }
 
     @Override

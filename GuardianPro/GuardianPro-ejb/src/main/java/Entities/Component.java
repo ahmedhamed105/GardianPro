@@ -6,19 +6,19 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,48 +29,51 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c")
-    , @NamedQuery(name = "Component.findByComponentID", query = "SELECT c FROM Component c WHERE c.componentID = :componentID")
-    , @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.name = :name")
-    , @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description")})
+    , @NamedQuery(name = "Component.findByComponentID", query = "SELECT c FROM Component c WHERE c.componentPK.componentID = :componentID")
+    , @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.componentPK.name = :name")
+    , @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description")
+    , @NamedQuery(name = "Component.findByParentID", query = "SELECT c FROM Component c WHERE c.parentID = :parentID")
+    , @NamedQuery(name = "Component.findByType", query = "SELECT c FROM Component c WHERE c.type = :type")})
 public class Component implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "component_ID", nullable = false)
-    private Integer componentID;
-    @Size(max = 45)
-    @Column(name = "name", length = 45)
-    private String name;
+    @EmbeddedId
+    protected ComponentPK componentPK;
     @Size(max = 45)
     @Column(name = "Description", length = 45)
     private String description;
-    @JoinColumn(name = "previlege_previlege_ID", referencedColumnName = "previlege_ID", nullable = false)
-    @ManyToOne(optional = false)
-    private Role previlegeprevilegeID;
+    @Column(name = "Parent_ID")
+    private Integer parentID;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Type", nullable = false, length = 45)
+    private String type;
+    @ManyToMany(mappedBy = "componentCollection")
+    private Collection<Role> roleCollection;
 
     public Component() {
     }
 
-    public Component(Integer componentID) {
-        this.componentID = componentID;
+    public Component(ComponentPK componentPK) {
+        this.componentPK = componentPK;
     }
 
-    public Integer getComponentID() {
-        return componentID;
+    public Component(ComponentPK componentPK, String type) {
+        this.componentPK = componentPK;
+        this.type = type;
     }
 
-    public void setComponentID(Integer componentID) {
-        this.componentID = componentID;
+    public Component(int componentID, String name) {
+        this.componentPK = new ComponentPK(componentID, name);
     }
 
-    public String getName() {
-        return name;
+    public ComponentPK getComponentPK() {
+        return componentPK;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setComponentPK(ComponentPK componentPK) {
+        this.componentPK = componentPK;
     }
 
     public String getDescription() {
@@ -81,18 +84,35 @@ public class Component implements Serializable {
         this.description = description;
     }
 
-    public Role getPrevilegeprevilegeID() {
-        return previlegeprevilegeID;
+    public Integer getParentID() {
+        return parentID;
     }
 
-    public void setPrevilegeprevilegeID(Role previlegeprevilegeID) {
-        this.previlegeprevilegeID = previlegeprevilegeID;
+    public void setParentID(Integer parentID) {
+        this.parentID = parentID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @XmlTransient
+    public Collection<Role> getRoleCollection() {
+        return roleCollection;
+    }
+
+    public void setRoleCollection(Collection<Role> roleCollection) {
+        this.roleCollection = roleCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (componentID != null ? componentID.hashCode() : 0);
+        hash += (componentPK != null ? componentPK.hashCode() : 0);
         return hash;
     }
 
@@ -103,7 +123,7 @@ public class Component implements Serializable {
             return false;
         }
         Component other = (Component) object;
-        if ((this.componentID == null && other.componentID != null) || (this.componentID != null && !this.componentID.equals(other.componentID))) {
+        if ((this.componentPK == null && other.componentPK != null) || (this.componentPK != null && !this.componentPK.equals(other.componentPK))) {
             return false;
         }
         return true;
@@ -111,7 +131,7 @@ public class Component implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Component[ componentID=" + componentID + " ]";
+        return "Entities.Component[ componentPK=" + componentPK + " ]";
     }
     
 }

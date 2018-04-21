@@ -5,8 +5,10 @@
  */
 package Facades;
 
+import Entities.Groups;
 import Entities.PasswordHistory;
 import Entities.ProfileData;
+import Entities.Role;
 import Entities.User;
 import java.util.Collection;
 import java.util.List;
@@ -49,5 +51,6 @@ public interface UserFacadeLocal {
 //    Collection<PasswordHistory> passwordHistory_username(String Username); 
  
     int user_status(User User1);
-
+    Collection<Groups> groupsByUser(String Username);
+    Collection<Role> rolesOfUser(String Username);
 }

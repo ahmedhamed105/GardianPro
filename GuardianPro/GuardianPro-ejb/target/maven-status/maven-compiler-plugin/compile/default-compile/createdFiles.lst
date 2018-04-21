@@ -26,6 +26,7 @@ Facades\ProfileDataFacade.class
 Facades\Distinct1FacadeLocal.class
 Entities\UserStatus_.class
 Entities\City_.class
+Facades\UserFacade$1.class
 Entities\EmailSmsSend_.class
 Entities\SocialData.class
 Entities\Groups.class
@@ -51,6 +52,7 @@ Facades\WebsiteDataHasUserFacadeLocal.class
 Entities\ProfileDataPK_.class
 Entities\PhoneData.class
 Facades\AddressFacade.class
+Facades\GroupsFacade.class
 Entities\LoginType.class
 Entities\PasswordHistory_.class
 Entities\Role.class
@@ -66,6 +68,7 @@ Facades\LoginWayFacadeLocal.class
 Entities\ArmyArea_.class
 Facades\UserFacade.class
 Facades\AbstractFacade.class
+Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
 Entities\Country.class
 Entities\NationalIdHasMaritalStatusPK.class
@@ -88,6 +91,7 @@ Entities\Component_.class
 Entities\MaritalStatus.class
 Entities\PasswordHistory.class
 Facades\SocialTypeFacadeLocal.class
+Facades\ComponentFacadeLocal.class
 Entities\NationalIdHasMaritalStatusHasAddress.class
 Facades\MaritalStatusFacadeLocal.class
 Facades\BirthDataFacadeLocal.class
@@ -103,6 +107,7 @@ Facades\UserStatusFacade.class
 Facades\PasswordHistoryFacadeLocal.class
 Facades\TrxTypeFacade.class
 Facades\Distinct1Facade.class
+Facades\ComponentFacade.class
 Entities\User_.class
 Entities\NearPlaces.class
 Entities\MilitaryStatus_.class
@@ -115,6 +120,7 @@ Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.class
 Entities\Distinct1.class
 Facades\CountryFacade.class
 Entities\WebsiteData_.class
+Facades\RoleFacade.class
 Entities\Address.class
 Facades\NationalIdFacadeLocal.class
 Entities\EmailSmsSend.class
@@ -122,6 +128,7 @@ Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
 Entities\SocialType.class
 Facades\BirthDataFacade.class
+Facades\GroupsFacadeLocal.class
 Entities\NationalId.class
 Facades\NationalIdHasMaritalStatusFacadeLocal.class
 Entities\PhoneData_.class
