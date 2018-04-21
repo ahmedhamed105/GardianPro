@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 Entities\SocialDataPK_.class
 Entities\WebsiteDataHasUser_.class
 Facades\ArmyAreaFacade.class
@@ -131,4 +129,3 @@ Facades\SocialDataFacadeLocal.class
 Facades\NationalIdFacade.class
 Entities\PhoneTypes_.class
 Entities\MilitaryStatus.class
->>>>>>> c5a3aec9de58765935c07ecd939fe48dbfd9eb9f

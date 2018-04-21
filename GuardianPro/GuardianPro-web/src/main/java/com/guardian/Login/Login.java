@@ -76,7 +76,7 @@ public class Login {
     public String Login_submit(ActionEvent actionEvent){
          
         try{
-            User u1=userFacade.password_username(username);
+            User u1=userFacade.search_username(username).get(0);
        if(u1.getUserPasswordID().getPassword().equals(password)){
                 switch (userFacade.user_status(u1)) {
                     case 1:
