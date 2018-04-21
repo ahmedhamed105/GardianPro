@@ -55,7 +55,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         user_status.setParameter("id", User1);
         try {
                 UserStatus  status = (UserStatus) user_status.getSingleResult();     
-                return status.getStatusID().getId();
+                return status.getId();
         } catch (Exception e) {
             return 0;
         }
@@ -94,8 +94,10 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
        Query userProfile_username = em.createNamedQuery("User.findByUsername");
         userProfile_username.setParameter("username", Username);
         try {
-                User users = (User) userProfile_username.getSingleResult();     
-                return users.getProfileDataCollection();
+                User user = (User) userProfile_username.getSingleResult();    
+                Query userProfiles = em.createNamedQuery("ProfileData.findByUserID");
+                userProfiles.setParameter("userID", user.getId());
+                return userProfiles.getResultList();
         } catch (Exception e) {
             return null;
         }

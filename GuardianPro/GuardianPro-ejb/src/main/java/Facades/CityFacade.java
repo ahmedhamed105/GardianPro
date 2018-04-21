@@ -33,6 +33,7 @@ public class CityFacade extends AbstractFacade<City> implements CityFacadeLocal 
         super(City.class);
     }
     
+    @Override
     public List<City> CountryCity(String country)
     {
         Query cities = em.createNamedQuery("Country.findByCountryname");

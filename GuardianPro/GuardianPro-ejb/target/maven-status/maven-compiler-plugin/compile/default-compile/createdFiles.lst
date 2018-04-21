@@ -9,6 +9,7 @@ Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Entities\UserPassword.class
 Facades\StreetFacadeLocal.class
+Entities\Role_.class
 Facades\ProfileDataFacadeLocal.class
 Entities\Address_.class
 Facades\LoginTypeFacade.class
@@ -27,6 +28,7 @@ Entities\UserStatus_.class
 Entities\City_.class
 Entities\EmailSmsSend_.class
 Entities\SocialData.class
+Entities\Groups.class
 Facades\ReligionFacadeLocal.class
 Entities\NationalIdHasMaritalStatusPK_.class
 Facades\MaritalStatusFacade.class
@@ -46,12 +48,13 @@ Facades\MilitaryStatusFacade.class
 Entities\NationalIdHasMaritalStatusHasAddressPK.class
 Facades\CountryFacadeLocal.class
 Facades\WebsiteDataHasUserFacadeLocal.class
+Entities\ProfileDataPK_.class
 Entities\PhoneData.class
 Facades\AddressFacade.class
 Entities\LoginType.class
 Entities\PasswordHistory_.class
+Entities\Role.class
 Entities\BirthData_.class
-Entities\Status_.class
 Facades\EmailSmsSendFacade.class
 Entities\TrxType_.class
 Facades\StreetFacade.class
@@ -67,6 +70,7 @@ Facades\UserPasswordFacade.class
 Entities\Country.class
 Entities\NationalIdHasMaritalStatusPK.class
 Entities\SocialDataPK.class
+Entities\ProfileDataPK.class
 Entities\ArmyArea.class
 Facades\CityFacadeLocal.class
 Entities\LogScreen.class
@@ -77,8 +81,10 @@ Entities\User.class
 Facades\PhoneDataFacade.class
 Entities\TrxType.class
 Entities\LogScreen_.class
+Entities\Groups_.class
 Facades\LogScreenFacadeLocal.class
 Facades\WebsiteDataFacade.class
+Entities\Component_.class
 Entities\MaritalStatus.class
 Entities\PasswordHistory.class
 Facades\SocialTypeFacadeLocal.class
@@ -88,6 +94,7 @@ Facades\BirthDataFacadeLocal.class
 Facades\WebsiteDataFacadeLocal.class
 Facades\WebsiteDataHasUserFacade.class
 Entities\ProfileData.class
+Entities\Component.class
 Facades\LoginTypeFacadeLocal.class
 Facades\PasswordHistoryFacade.class
 Facades\SocialDataFacade.class
@@ -107,7 +114,6 @@ Entities\NationalIdHasMaritalStatusHasAddress_.class
 Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.class
 Entities\Distinct1.class
 Facades\CountryFacade.class
-Entities\Status.class
 Entities\WebsiteData_.class
 Entities\Address.class
 Facades\NationalIdFacadeLocal.class

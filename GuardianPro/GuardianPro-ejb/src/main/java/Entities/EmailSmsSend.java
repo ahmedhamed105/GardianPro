@@ -26,18 +26,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "email_sms_send", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EmailSmsSend.findAll", query = "SELECT e FROM EmailSmsSend e"),
-    @NamedQuery(name = "EmailSmsSend.findById", query = "SELECT e FROM EmailSmsSend e WHERE e.id = :id"),
-    @NamedQuery(name = "EmailSmsSend.findByEmailDate", query = "SELECT e FROM EmailSmsSend e WHERE e.emailDate = :emailDate"),
-    @NamedQuery(name = "EmailSmsSend.findByEmailactivationcode", query = "SELECT e FROM EmailSmsSend e WHERE e.emailactivationcode = :emailactivationcode"),
-    @NamedQuery(name = "EmailSmsSend.findByCreateDate", query = "SELECT e FROM EmailSmsSend e WHERE e.createDate = :createDate"),
-    @NamedQuery(name = "EmailSmsSend.findByUpdateDate", query = "SELECT e FROM EmailSmsSend e WHERE e.updateDate = :updateDate")})
+    @NamedQuery(name = "EmailSmsSend.findAll", query = "SELECT e FROM EmailSmsSend e")
+    , @NamedQuery(name = "EmailSmsSend.findById", query = "SELECT e FROM EmailSmsSend e WHERE e.id = :id")
+    , @NamedQuery(name = "EmailSmsSend.findByEmailDate", query = "SELECT e FROM EmailSmsSend e WHERE e.emailDate = :emailDate")
+    , @NamedQuery(name = "EmailSmsSend.findByEmailactivationcode", query = "SELECT e FROM EmailSmsSend e WHERE e.emailactivationcode = :emailactivationcode")
+    , @NamedQuery(name = "EmailSmsSend.findByCreateDate", query = "SELECT e FROM EmailSmsSend e WHERE e.createDate = :createDate")
+    , @NamedQuery(name = "EmailSmsSend.findByUpdateDate", query = "SELECT e FROM EmailSmsSend e WHERE e.updateDate = :updateDate")})
 public class EmailSmsSend implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "phone_types", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PhoneTypes.findAll", query = "SELECT p FROM PhoneTypes p"),
-    @NamedQuery(name = "PhoneTypes.findById", query = "SELECT p FROM PhoneTypes p WHERE p.id = :id"),
-    @NamedQuery(name = "PhoneTypes.findByTeleType", query = "SELECT p FROM PhoneTypes p WHERE p.teleType = :teleType"),
-    @NamedQuery(name = "PhoneTypes.findByCreateDate", query = "SELECT p FROM PhoneTypes p WHERE p.createDate = :createDate"),
-    @NamedQuery(name = "PhoneTypes.findByUpdateDate", query = "SELECT p FROM PhoneTypes p WHERE p.updateDate = :updateDate")})
+    @NamedQuery(name = "PhoneTypes.findAll", query = "SELECT p FROM PhoneTypes p")
+    , @NamedQuery(name = "PhoneTypes.findById", query = "SELECT p FROM PhoneTypes p WHERE p.id = :id")
+    , @NamedQuery(name = "PhoneTypes.findByTeleType", query = "SELECT p FROM PhoneTypes p WHERE p.teleType = :teleType")
+    , @NamedQuery(name = "PhoneTypes.findByCreateDate", query = "SELECT p FROM PhoneTypes p WHERE p.createDate = :createDate")
+    , @NamedQuery(name = "PhoneTypes.findByUpdateDate", query = "SELECT p FROM PhoneTypes p WHERE p.updateDate = :updateDate")})
 public class PhoneTypes implements Serializable {
 
     private static final long serialVersionUID = 1L;

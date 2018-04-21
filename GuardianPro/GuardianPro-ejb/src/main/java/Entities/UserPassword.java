@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "user_password", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserPassword.findAll", query = "SELECT u FROM UserPassword u"),
-    @NamedQuery(name = "UserPassword.findById", query = "SELECT u FROM UserPassword u WHERE u.id = :id"),
-    @NamedQuery(name = "UserPassword.findByPassword", query = "SELECT u FROM UserPassword u WHERE u.password = :password"),
-    @NamedQuery(name = "UserPassword.findByCreateDate", query = "SELECT u FROM UserPassword u WHERE u.createDate = :createDate"),
-    @NamedQuery(name = "UserPassword.findByUpdateDate", query = "SELECT u FROM UserPassword u WHERE u.updateDate = :updateDate")})
+    @NamedQuery(name = "UserPassword.findAll", query = "SELECT u FROM UserPassword u")
+    , @NamedQuery(name = "UserPassword.findById", query = "SELECT u FROM UserPassword u WHERE u.id = :id")
+    , @NamedQuery(name = "UserPassword.findByPassword", query = "SELECT u FROM UserPassword u WHERE u.password = :password")
+    , @NamedQuery(name = "UserPassword.findByCreateDate", query = "SELECT u FROM UserPassword u WHERE u.createDate = :createDate")
+    , @NamedQuery(name = "UserPassword.findByUpdateDate", query = "SELECT u FROM UserPassword u WHERE u.updateDate = :updateDate")})
 public class UserPassword implements Serializable {
 
     private static final long serialVersionUID = 1L;

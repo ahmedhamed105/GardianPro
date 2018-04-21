@@ -16,31 +16,30 @@ import javax.validation.constraints.NotNull;
  * @author ahmed.ibraheem
  */
 @Embeddable
-public class WebsiteDataHasUserPK implements Serializable {
+public class ProfileDataPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "Website_Data_ID", nullable = false)
-    private int websiteDataID;
+    @Column(name = "ID", nullable = false)
+    private int id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "User_ID", nullable = false)
     private int userID;
 
-    public WebsiteDataHasUserPK() {
+    public ProfileDataPK() {
     }
 
-    public WebsiteDataHasUserPK(int websiteDataID, int userID) {
-        this.websiteDataID = websiteDataID;
+    public ProfileDataPK(int id, int userID) {
+        this.id = id;
         this.userID = userID;
     }
 
-    public int getWebsiteDataID() {
-        return websiteDataID;
+    public int getId() {
+        return id;
     }
 
-    public void setWebsiteDataID(int websiteDataID) {
-        this.websiteDataID = websiteDataID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserID() {
@@ -54,7 +53,7 @@ public class WebsiteDataHasUserPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) websiteDataID;
+        hash += (int) id;
         hash += (int) userID;
         return hash;
     }
@@ -62,11 +61,11 @@ public class WebsiteDataHasUserPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WebsiteDataHasUserPK)) {
+        if (!(object instanceof ProfileDataPK)) {
             return false;
         }
-        WebsiteDataHasUserPK other = (WebsiteDataHasUserPK) object;
-        if (this.websiteDataID != other.websiteDataID) {
+        ProfileDataPK other = (ProfileDataPK) object;
+        if (this.id != other.id) {
             return false;
         }
         if (this.userID != other.userID) {
@@ -77,7 +76,7 @@ public class WebsiteDataHasUserPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.WebsiteDataHasUserPK[ websiteDataID=" + websiteDataID + ", userID=" + userID + " ]";
+        return "Entities.ProfileDataPK[ id=" + id + ", userID=" + userID + " ]";
     }
     
 }

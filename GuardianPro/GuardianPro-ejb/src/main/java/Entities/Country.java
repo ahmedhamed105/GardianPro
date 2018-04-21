@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "country", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-    @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
-    @NamedQuery(name = "Country.findByCountryname", query = "SELECT c FROM Country c WHERE c.countryname = :countryname"),
-    @NamedQuery(name = "Country.findByCreateDate", query = "SELECT c FROM Country c WHERE c.createDate = :createDate"),
-    @NamedQuery(name = "Country.findByUpdateDate", query = "SELECT c FROM Country c WHERE c.updateDate = :updateDate")})
+    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c")
+    , @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id")
+    , @NamedQuery(name = "Country.findByCountryname", query = "SELECT c FROM Country c WHERE c.countryname = :countryname")
+    , @NamedQuery(name = "Country.findByCreateDate", query = "SELECT c FROM Country c WHERE c.createDate = :createDate")
+    , @NamedQuery(name = "Country.findByUpdateDate", query = "SELECT c FROM Country c WHERE c.updateDate = :updateDate")})
 public class Country implements Serializable {
 
     private static final long serialVersionUID = 1L;

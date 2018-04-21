@@ -30,17 +30,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "city", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c"),
-    @NamedQuery(name = "City.findById", query = "SELECT c FROM City c WHERE c.id = :id"),
-    @NamedQuery(name = "City.findByCityname", query = "SELECT c FROM City c WHERE c.cityname = :cityname"),
-    @NamedQuery(name = "City.findByCreateDate", query = "SELECT c FROM City c WHERE c.createDate = :createDate"),
-    @NamedQuery(name = "City.findByUpdateDate", query = "SELECT c FROM City c WHERE c.updateDate = :updateDate")})
+    @NamedQuery(name = "City.findAll", query = "SELECT c FROM City c")
+    , @NamedQuery(name = "City.findById", query = "SELECT c FROM City c WHERE c.id = :id")
+    , @NamedQuery(name = "City.findByCityname", query = "SELECT c FROM City c WHERE c.cityname = :cityname")
+    , @NamedQuery(name = "City.findByCreateDate", query = "SELECT c FROM City c WHERE c.createDate = :createDate")
+    , @NamedQuery(name = "City.findByUpdateDate", query = "SELECT c FROM City c WHERE c.updateDate = :updateDate")})
 public class City implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -28,19 +28,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "national_id_has_marital_status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findAll", query = "SELECT n FROM NationalIdHasMaritalStatus n"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByNationalIDID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.nationalIDID = :nationalIDID"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByMaritalstatusID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.maritalstatusID = :maritalstatusID"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByNoChildern", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.noChildern = :noChildern"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByWifename", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.wifename = :wifename"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.createDate = :createDate"),
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findAll", query = "SELECT n FROM NationalIdHasMaritalStatus n")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByNationalIDID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.nationalIDID = :nationalIDID")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByMaritalstatusID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.maritalstatusID = :maritalstatusID")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByNoChildern", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.noChildern = :noChildern")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByWifename", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.wifename = :wifename")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.createDate = :createDate")
+    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.updateDate = :updateDate")})
 public class NationalIdHasMaritalStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;

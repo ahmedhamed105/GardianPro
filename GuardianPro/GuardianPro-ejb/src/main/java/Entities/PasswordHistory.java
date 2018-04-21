@@ -26,17 +26,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "password_history", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PasswordHistory.findAll", query = "SELECT p FROM PasswordHistory p"),
-    @NamedQuery(name = "PasswordHistory.findById", query = "SELECT p FROM PasswordHistory p WHERE p.id = :id"),
-    @NamedQuery(name = "PasswordHistory.findByPassword", query = "SELECT p FROM PasswordHistory p WHERE p.password = :password"),
-    @NamedQuery(name = "PasswordHistory.findByCreateDate", query = "SELECT p FROM PasswordHistory p WHERE p.createDate = :createDate"),
-    @NamedQuery(name = "PasswordHistory.findByUpdateDate", query = "SELECT p FROM PasswordHistory p WHERE p.updateDate = :updateDate")})
+    @NamedQuery(name = "PasswordHistory.findAll", query = "SELECT p FROM PasswordHistory p")
+    , @NamedQuery(name = "PasswordHistory.findById", query = "SELECT p FROM PasswordHistory p WHERE p.id = :id")
+    , @NamedQuery(name = "PasswordHistory.findByPassword", query = "SELECT p FROM PasswordHistory p WHERE p.password = :password")
+    , @NamedQuery(name = "PasswordHistory.findByCreateDate", query = "SELECT p FROM PasswordHistory p WHERE p.createDate = :createDate")
+    , @NamedQuery(name = "PasswordHistory.findByUpdateDate", query = "SELECT p FROM PasswordHistory p WHERE p.updateDate = :updateDate")})
 public class PasswordHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;

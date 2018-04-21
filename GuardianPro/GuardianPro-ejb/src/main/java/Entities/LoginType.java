@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "login_type", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LoginType.findAll", query = "SELECT l FROM LoginType l"),
-    @NamedQuery(name = "LoginType.findById", query = "SELECT l FROM LoginType l WHERE l.id = :id"),
-    @NamedQuery(name = "LoginType.findByLgtype", query = "SELECT l FROM LoginType l WHERE l.lgtype = :lgtype"),
-    @NamedQuery(name = "LoginType.findByCreateDate", query = "SELECT l FROM LoginType l WHERE l.createDate = :createDate"),
-    @NamedQuery(name = "LoginType.findByUpdateDate", query = "SELECT l FROM LoginType l WHERE l.updateDate = :updateDate")})
+    @NamedQuery(name = "LoginType.findAll", query = "SELECT l FROM LoginType l")
+    , @NamedQuery(name = "LoginType.findById", query = "SELECT l FROM LoginType l WHERE l.id = :id")
+    , @NamedQuery(name = "LoginType.findByLgtype", query = "SELECT l FROM LoginType l WHERE l.lgtype = :lgtype")
+    , @NamedQuery(name = "LoginType.findByCreateDate", query = "SELECT l FROM LoginType l WHERE l.createDate = :createDate")
+    , @NamedQuery(name = "LoginType.findByUpdateDate", query = "SELECT l FROM LoginType l WHERE l.updateDate = :updateDate")})
 public class LoginType implements Serializable {
 
     private static final long serialVersionUID = 1L;

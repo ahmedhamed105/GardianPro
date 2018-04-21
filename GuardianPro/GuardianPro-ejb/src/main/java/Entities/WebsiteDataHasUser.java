@@ -23,17 +23,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "website_data_has_user", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "WebsiteDataHasUser.findAll", query = "SELECT w FROM WebsiteDataHasUser w"),
-    @NamedQuery(name = "WebsiteDataHasUser.findByWebsiteDataID", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.websiteDataHasUserPK.websiteDataID = :websiteDataID"),
-    @NamedQuery(name = "WebsiteDataHasUser.findByUserID", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.websiteDataHasUserPK.userID = :userID"),
-    @NamedQuery(name = "WebsiteDataHasUser.findByCreateDate", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.createDate = :createDate"),
-    @NamedQuery(name = "WebsiteDataHasUser.findByUpdateDate", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.updateDate = :updateDate")})
+    @NamedQuery(name = "WebsiteDataHasUser.findAll", query = "SELECT w FROM WebsiteDataHasUser w")
+    , @NamedQuery(name = "WebsiteDataHasUser.findByWebsiteDataID", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.websiteDataHasUserPK.websiteDataID = :websiteDataID")
+    , @NamedQuery(name = "WebsiteDataHasUser.findByUserID", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.websiteDataHasUserPK.userID = :userID")
+    , @NamedQuery(name = "WebsiteDataHasUser.findByCreateDate", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.createDate = :createDate")
+    , @NamedQuery(name = "WebsiteDataHasUser.findByUpdateDate", query = "SELECT w FROM WebsiteDataHasUser w WHERE w.updateDate = :updateDate")})
 public class WebsiteDataHasUser implements Serializable {
 
     private static final long serialVersionUID = 1L;

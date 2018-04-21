@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "marital_status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "MaritalStatus.findAll", query = "SELECT m FROM MaritalStatus m"),
-    @NamedQuery(name = "MaritalStatus.findById", query = "SELECT m FROM MaritalStatus m WHERE m.id = :id"),
-    @NamedQuery(name = "MaritalStatus.findByMaritaltype", query = "SELECT m FROM MaritalStatus m WHERE m.maritaltype = :maritaltype"),
-    @NamedQuery(name = "MaritalStatus.findByCreateDate", query = "SELECT m FROM MaritalStatus m WHERE m.createDate = :createDate"),
-    @NamedQuery(name = "MaritalStatus.findByUpdateDate", query = "SELECT m FROM MaritalStatus m WHERE m.updateDate = :updateDate")})
+    @NamedQuery(name = "MaritalStatus.findAll", query = "SELECT m FROM MaritalStatus m")
+    , @NamedQuery(name = "MaritalStatus.findById", query = "SELECT m FROM MaritalStatus m WHERE m.id = :id")
+    , @NamedQuery(name = "MaritalStatus.findByMaritaltype", query = "SELECT m FROM MaritalStatus m WHERE m.maritaltype = :maritaltype")
+    , @NamedQuery(name = "MaritalStatus.findByCreateDate", query = "SELECT m FROM MaritalStatus m WHERE m.createDate = :createDate")
+    , @NamedQuery(name = "MaritalStatus.findByUpdateDate", query = "SELECT m FROM MaritalStatus m WHERE m.updateDate = :updateDate")})
 public class MaritalStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -28,18 +28,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "website_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "WebsiteData.findAll", query = "SELECT w FROM WebsiteData w"),
-    @NamedQuery(name = "WebsiteData.findById", query = "SELECT w FROM WebsiteData w WHERE w.id = :id"),
-    @NamedQuery(name = "WebsiteData.findByWebSite", query = "SELECT w FROM WebsiteData w WHERE w.webSite = :webSite"),
-    @NamedQuery(name = "WebsiteData.findByWebDesc", query = "SELECT w FROM WebsiteData w WHERE w.webDesc = :webDesc"),
-    @NamedQuery(name = "WebsiteData.findByCreateDate", query = "SELECT w FROM WebsiteData w WHERE w.createDate = :createDate"),
-    @NamedQuery(name = "WebsiteData.findByUpdateDate", query = "SELECT w FROM WebsiteData w WHERE w.updateDate = :updateDate")})
+    @NamedQuery(name = "WebsiteData.findAll", query = "SELECT w FROM WebsiteData w")
+    , @NamedQuery(name = "WebsiteData.findById", query = "SELECT w FROM WebsiteData w WHERE w.id = :id")
+    , @NamedQuery(name = "WebsiteData.findByWebSite", query = "SELECT w FROM WebsiteData w WHERE w.webSite = :webSite")
+    , @NamedQuery(name = "WebsiteData.findByWebDesc", query = "SELECT w FROM WebsiteData w WHERE w.webDesc = :webDesc")
+    , @NamedQuery(name = "WebsiteData.findByCreateDate", query = "SELECT w FROM WebsiteData w WHERE w.createDate = :createDate")
+    , @NamedQuery(name = "WebsiteData.findByUpdateDate", query = "SELECT w FROM WebsiteData w WHERE w.updateDate = :updateDate")})
 public class WebsiteData implements Serializable {
 
     private static final long serialVersionUID = 1L;

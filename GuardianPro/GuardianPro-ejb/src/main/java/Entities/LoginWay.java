@@ -26,17 +26,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "login_way", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LoginWay.findAll", query = "SELECT l FROM LoginWay l"),
-    @NamedQuery(name = "LoginWay.findById", query = "SELECT l FROM LoginWay l WHERE l.id = :id"),
-    @NamedQuery(name = "LoginWay.findByLgway", query = "SELECT l FROM LoginWay l WHERE l.lgway = :lgway"),
-    @NamedQuery(name = "LoginWay.findByCreateDate", query = "SELECT l FROM LoginWay l WHERE l.createDate = :createDate"),
-    @NamedQuery(name = "LoginWay.findByUpdateDate", query = "SELECT l FROM LoginWay l WHERE l.updateDate = :updateDate")})
+    @NamedQuery(name = "LoginWay.findAll", query = "SELECT l FROM LoginWay l")
+    , @NamedQuery(name = "LoginWay.findById", query = "SELECT l FROM LoginWay l WHERE l.id = :id")
+    , @NamedQuery(name = "LoginWay.findByLgway", query = "SELECT l FROM LoginWay l WHERE l.lgway = :lgway")
+    , @NamedQuery(name = "LoginWay.findByCreateDate", query = "SELECT l FROM LoginWay l WHERE l.createDate = :createDate")
+    , @NamedQuery(name = "LoginWay.findByUpdateDate", query = "SELECT l FROM LoginWay l WHERE l.updateDate = :updateDate")})
 public class LoginWay implements Serializable {
 
     private static final long serialVersionUID = 1L;

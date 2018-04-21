@@ -28,17 +28,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "army_area", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ArmyArea.findAll", query = "SELECT a FROM ArmyArea a"),
-    @NamedQuery(name = "ArmyArea.findById", query = "SELECT a FROM ArmyArea a WHERE a.id = :id"),
-    @NamedQuery(name = "ArmyArea.findByAreaname", query = "SELECT a FROM ArmyArea a WHERE a.areaname = :areaname"),
-    @NamedQuery(name = "ArmyArea.findByCreateDate", query = "SELECT a FROM ArmyArea a WHERE a.createDate = :createDate"),
-    @NamedQuery(name = "ArmyArea.findByUpdateDate", query = "SELECT a FROM ArmyArea a WHERE a.updateDate = :updateDate")})
+    @NamedQuery(name = "ArmyArea.findAll", query = "SELECT a FROM ArmyArea a")
+    , @NamedQuery(name = "ArmyArea.findById", query = "SELECT a FROM ArmyArea a WHERE a.id = :id")
+    , @NamedQuery(name = "ArmyArea.findByAreaname", query = "SELECT a FROM ArmyArea a WHERE a.areaname = :areaname")
+    , @NamedQuery(name = "ArmyArea.findByCreateDate", query = "SELECT a FROM ArmyArea a WHERE a.createDate = :createDate")
+    , @NamedQuery(name = "ArmyArea.findByUpdateDate", query = "SELECT a FROM ArmyArea a WHERE a.updateDate = :updateDate")})
 public class ArmyArea implements Serializable {
 
     private static final long serialVersionUID = 1L;
