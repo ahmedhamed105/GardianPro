@@ -30,12 +30,23 @@ public class Login {
     boolean remeber;
     String username;
     String password;
+    User login=new User();
 
     /**
      * Creates a new instance of Login
      */
     public Login() {
     }
+
+    public User getLogin() {
+        return login;
+    }
+
+    public void setLogin(User login) {
+        this.login = login;
+    }
+    
+    
 
     public boolean isRemeber() {
         return remeber;
@@ -70,6 +81,7 @@ public class Login {
                 switch (userFacade.user_status(u1)) {
                     case 1:
                         addInfoMessage("Login ok!!");
+                        login=u1;
                        return "Login";
                     case 2:
                         addInfoMessage("Login Error User Closed !!");
