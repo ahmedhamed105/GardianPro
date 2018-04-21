@@ -6,9 +6,13 @@
 package Facades;
 
 import Entities.City;
+import Entities.Country;
+import Entities.UserStatus;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +33,16 @@ public class CityFacade extends AbstractFacade<City> implements CityFacadeLocal 
         super(City.class);
     }
     
+    public List<City> CountryCity(String country)
+    {
+        Query cities = em.createNamedQuery("Country.findByCountryname");
+        cities.setParameter("countryname", country);
+        try {
+                List<City>  cityList =  cities.getResultList();     
+                return cityList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
+

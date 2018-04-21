@@ -5,10 +5,13 @@
  */
 package Facades;
 
+import Entities.User;
 import Entities.WebsiteDataHasUser;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,21 @@ public class WebsiteDataHasUserFacade extends AbstractFacade<WebsiteDataHasUser>
 
     public WebsiteDataHasUserFacade() {
         super(WebsiteDataHasUser.class);
+    }
+    
+    @Override
+    public  List<WebsiteDataHasUser> websiteData_username(String Username){      
+       Query idByUser = em.createNamedQuery("User.findByUsername");
+       idByUser.setParameter("username", Username);
+        try {
+                User users = (User) idByUser.getSingleResult();     
+                Query websiteData = em.createNamedQuery("WebsiteDataHasUser.findByUserID");
+                idByUser.setParameter("userID", users.getId());
+                List<WebsiteDataHasUser> websiteUserdata = websiteData.getResultList();
+                return websiteUserdata;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

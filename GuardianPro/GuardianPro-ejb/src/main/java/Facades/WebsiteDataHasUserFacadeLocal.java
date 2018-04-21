@@ -29,5 +29,5 @@ public interface WebsiteDataHasUserFacadeLocal {
     List<WebsiteDataHasUser> findRange(int[] range);
 
     int count();
-    
+    List<WebsiteDataHasUser> websiteData_username(String Username);
 }

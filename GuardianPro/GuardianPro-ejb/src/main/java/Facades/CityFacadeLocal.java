@@ -30,4 +30,6 @@ public interface CityFacadeLocal {
 
     int count();
     
+    List<City> CountryCity(String country);
+    
 }
