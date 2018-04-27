@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -24,25 +26,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "profile_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProfileData.findAll", query = "SELECT p FROM ProfileData p")
-    , @NamedQuery(name = "ProfileData.findById", query = "SELECT p FROM ProfileData p WHERE p.profileDataPK.id = :id")
-    , @NamedQuery(name = "ProfileData.findByPicturepath", query = "SELECT p FROM ProfileData p WHERE p.picturepath = :picturepath")
-    , @NamedQuery(name = "ProfileData.findByCoverimage", query = "SELECT p FROM ProfileData p WHERE p.coverimage = :coverimage")
-    , @NamedQuery(name = "ProfileData.findByNickname", query = "SELECT p FROM ProfileData p WHERE p.nickname = :nickname")
-    , @NamedQuery(name = "ProfileData.findByCreateDate", query = "SELECT p FROM ProfileData p WHERE p.createDate = :createDate")
-    , @NamedQuery(name = "ProfileData.findByUpdateDate", query = "SELECT p FROM ProfileData p WHERE p.updateDate = :updateDate")
-    , @NamedQuery(name = "ProfileData.findByUserID", query = "SELECT p FROM ProfileData p WHERE p.profileDataPK.userID = :userID")})
+    @NamedQuery(name = "ProfileData.findAll", query = "SELECT p FROM ProfileData p"),
+    @NamedQuery(name = "ProfileData.findById", query = "SELECT p FROM ProfileData p WHERE p.id = :id"),
+    @NamedQuery(name = "ProfileData.findByPicturepath", query = "SELECT p FROM ProfileData p WHERE p.picturepath = :picturepath"),
+    @NamedQuery(name = "ProfileData.findByCoverimage", query = "SELECT p FROM ProfileData p WHERE p.coverimage = :coverimage"),
+    @NamedQuery(name = "ProfileData.findByNickname", query = "SELECT p FROM ProfileData p WHERE p.nickname = :nickname"),
+    @NamedQuery(name = "ProfileData.findByCreateDate", query = "SELECT p FROM ProfileData p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "ProfileData.findByUpdateDate", query = "SELECT p FROM ProfileData p WHERE p.updateDate = :updateDate")})
 public class ProfileData implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ProfileDataPK profileDataPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Size(max = 300)
     @Column(name = "Picture_path", length = 300)
     private String picturepath;
@@ -62,33 +66,29 @@ public class ProfileData implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private User user;
+    private User userID;
 
     public ProfileData() {
     }
 
-    public ProfileData(ProfileDataPK profileDataPK) {
-        this.profileDataPK = profileDataPK;
+    public ProfileData(Integer id) {
+        this.id = id;
     }
 
-    public ProfileData(ProfileDataPK profileDataPK, Date createDate, Date updateDate) {
-        this.profileDataPK = profileDataPK;
+    public ProfileData(Integer id, Date createDate, Date updateDate) {
+        this.id = id;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public ProfileData(int id, int userID) {
-        this.profileDataPK = new ProfileDataPK(id, userID);
+    public Integer getId() {
+        return id;
     }
 
-    public ProfileDataPK getProfileDataPK() {
-        return profileDataPK;
-    }
-
-    public void setProfileDataPK(ProfileDataPK profileDataPK) {
-        this.profileDataPK = profileDataPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPicturepath() {
@@ -131,18 +131,18 @@ public class ProfileData implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserID() {
+        return userID;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (profileDataPK != null ? profileDataPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -153,7 +153,7 @@ public class ProfileData implements Serializable {
             return false;
         }
         ProfileData other = (ProfileData) object;
-        if ((this.profileDataPK == null && other.profileDataPK != null) || (this.profileDataPK != null && !this.profileDataPK.equals(other.profileDataPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -161,7 +161,7 @@ public class ProfileData implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ProfileData[ profileDataPK=" + profileDataPK + " ]";
+        return "Entities.ProfileData[ id=" + id + " ]";
     }
     
 }

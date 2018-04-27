@@ -31,20 +31,20 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "user", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-    , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
-    , @NamedQuery(name = "User.findByMiddlename", query = "SELECT u FROM User u WHERE u.middlename = :middlename")
-    , @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname")
-    , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByCreateDate", query = "SELECT u FROM User u WHERE u.createDate = :createDate")
-    , @NamedQuery(name = "User.findByUpdateDate", query = "SELECT u FROM User u WHERE u.updateDate = :updateDate")})
+    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
+    @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName"),
+    @NamedQuery(name = "User.findByMiddlename", query = "SELECT u FROM User u WHERE u.middlename = :middlename"),
+    @NamedQuery(name = "User.findByLastname", query = "SELECT u FROM User u WHERE u.lastname = :lastname"),
+    @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
+    @NamedQuery(name = "User.findByCreateDate", query = "SELECT u FROM User u WHERE u.createDate = :createDate"),
+    @NamedQuery(name = "User.findByUpdateDate", query = "SELECT u FROM User u WHERE u.updateDate = :updateDate")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -81,8 +81,12 @@ public class User implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @ManyToMany(mappedBy = "userCollection")
-    private Collection<Groups> groupsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<NationalId> nationalIdCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<BirthData> birthDataCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<ParameterGroup> parameterGroupCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<LogScreen> logScreenCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
@@ -93,24 +97,17 @@ public class User implements Serializable {
     private Collection<PhoneData> phoneDataCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<PasswordHistory> passwordHistoryCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<UserStatus> userStatusCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<SocialData> socialDataCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ProfileData> profileDataCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<WebsiteDataHasUser> websiteDataHasUserCollection;
-    @JoinColumn(name = "Birth_Data_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private BirthData birthDataID;
-    @JoinColumn(name = "National_ID_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private NationalId nationalIDID;
     @JoinColumn(name = "User_Password_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private UserPassword userPasswordID;
-    @JoinColumn(name = "user_status_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private UserStatus userstatusID;
 
     public User() {
     }
@@ -184,13 +181,33 @@ public class User implements Serializable {
         this.updateDate = updateDate;
     }
 
+
+
     @XmlTransient
-    public Collection<Groups> getGroupsCollection() {
-        return groupsCollection;
+    public Collection<NationalId> getNationalIdCollection() {
+        return nationalIdCollection;
     }
 
-    public void setGroupsCollection(Collection<Groups> groupsCollection) {
-        this.groupsCollection = groupsCollection;
+    public void setNationalIdCollection(Collection<NationalId> nationalIdCollection) {
+        this.nationalIdCollection = nationalIdCollection;
+    }
+
+    @XmlTransient
+    public Collection<BirthData> getBirthDataCollection() {
+        return birthDataCollection;
+    }
+
+    public void setBirthDataCollection(Collection<BirthData> birthDataCollection) {
+        this.birthDataCollection = birthDataCollection;
+    }
+
+    @XmlTransient
+    public Collection<ParameterGroup> getParameterGroupCollection() {
+        return parameterGroupCollection;
+    }
+
+    public void setParameterGroupCollection(Collection<ParameterGroup> parameterGroupCollection) {
+        this.parameterGroupCollection = parameterGroupCollection;
     }
 
     @XmlTransient
@@ -239,6 +256,15 @@ public class User implements Serializable {
     }
 
     @XmlTransient
+    public Collection<UserStatus> getUserStatusCollection() {
+        return userStatusCollection;
+    }
+
+    public void setUserStatusCollection(Collection<UserStatus> userStatusCollection) {
+        this.userStatusCollection = userStatusCollection;
+    }
+
+    @XmlTransient
     public Collection<SocialData> getSocialDataCollection() {
         return socialDataCollection;
     }
@@ -265,36 +291,12 @@ public class User implements Serializable {
         this.websiteDataHasUserCollection = websiteDataHasUserCollection;
     }
 
-    public BirthData getBirthDataID() {
-        return birthDataID;
-    }
-
-    public void setBirthDataID(BirthData birthDataID) {
-        this.birthDataID = birthDataID;
-    }
-
-    public NationalId getNationalIDID() {
-        return nationalIDID;
-    }
-
-    public void setNationalIDID(NationalId nationalIDID) {
-        this.nationalIDID = nationalIDID;
-    }
-
     public UserPassword getUserPasswordID() {
         return userPasswordID;
     }
 
     public void setUserPasswordID(UserPassword userPasswordID) {
         this.userPasswordID = userPasswordID;
-    }
-
-    public UserStatus getUserstatusID() {
-        return userstatusID;
-    }
-
-    public void setUserstatusID(UserStatus userstatusID) {
-        this.userstatusID = userstatusID;
     }
 
     @Override

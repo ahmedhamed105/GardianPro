@@ -24,17 +24,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "phone_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PhoneData.findAll", query = "SELECT p FROM PhoneData p")
-    , @NamedQuery(name = "PhoneData.findById", query = "SELECT p FROM PhoneData p WHERE p.id = :id")
-    , @NamedQuery(name = "PhoneData.findByTelephone", query = "SELECT p FROM PhoneData p WHERE p.telephone = :telephone")
-    , @NamedQuery(name = "PhoneData.findByCreateDate", query = "SELECT p FROM PhoneData p WHERE p.createDate = :createDate")
-    , @NamedQuery(name = "PhoneData.findByUpdateDate", query = "SELECT p FROM PhoneData p WHERE p.updateDate = :updateDate")})
+    @NamedQuery(name = "PhoneData.findAll", query = "SELECT p FROM PhoneData p"),
+    @NamedQuery(name = "PhoneData.findById", query = "SELECT p FROM PhoneData p WHERE p.id = :id"),
+    @NamedQuery(name = "PhoneData.findByTelephone", query = "SELECT p FROM PhoneData p WHERE p.telephone = :telephone"),
+    @NamedQuery(name = "PhoneData.findByCreateDate", query = "SELECT p FROM PhoneData p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "PhoneData.findByUpdateDate", query = "SELECT p FROM PhoneData p WHERE p.updateDate = :updateDate")})
 public class PhoneData implements Serializable {
 
     private static final long serialVersionUID = 1L;

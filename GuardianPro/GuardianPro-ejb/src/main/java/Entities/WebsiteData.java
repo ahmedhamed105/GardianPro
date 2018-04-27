@@ -28,18 +28,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "website_data", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "WebsiteData.findAll", query = "SELECT w FROM WebsiteData w")
-    , @NamedQuery(name = "WebsiteData.findById", query = "SELECT w FROM WebsiteData w WHERE w.id = :id")
-    , @NamedQuery(name = "WebsiteData.findByWebSite", query = "SELECT w FROM WebsiteData w WHERE w.webSite = :webSite")
-    , @NamedQuery(name = "WebsiteData.findByWebDesc", query = "SELECT w FROM WebsiteData w WHERE w.webDesc = :webDesc")
-    , @NamedQuery(name = "WebsiteData.findByCreateDate", query = "SELECT w FROM WebsiteData w WHERE w.createDate = :createDate")
-    , @NamedQuery(name = "WebsiteData.findByUpdateDate", query = "SELECT w FROM WebsiteData w WHERE w.updateDate = :updateDate")})
+    @NamedQuery(name = "WebsiteData.findAll", query = "SELECT w FROM WebsiteData w"),
+    @NamedQuery(name = "WebsiteData.findById", query = "SELECT w FROM WebsiteData w WHERE w.id = :id"),
+    @NamedQuery(name = "WebsiteData.findByWebSite", query = "SELECT w FROM WebsiteData w WHERE w.webSite = :webSite"),
+    @NamedQuery(name = "WebsiteData.findByWebDesc", query = "SELECT w FROM WebsiteData w WHERE w.webDesc = :webDesc"),
+    @NamedQuery(name = "WebsiteData.findByCreateDate", query = "SELECT w FROM WebsiteData w WHERE w.createDate = :createDate"),
+    @NamedQuery(name = "WebsiteData.findByUpdateDate", query = "SELECT w FROM WebsiteData w WHERE w.updateDate = :updateDate")})
 public class WebsiteData implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,7 +66,7 @@ public class WebsiteData implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "websiteData")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "websiteDataID")
     private Collection<WebsiteDataHasUser> websiteDataHasUserCollection;
 
     public WebsiteData() {

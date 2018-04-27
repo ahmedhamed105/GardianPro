@@ -13,10 +13,10 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Embeddable
-public class NationalIdHasMaritalStatusPK implements Serializable {
+public class NationalIdHasMaritalStatus1PK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
@@ -27,10 +27,10 @@ public class NationalIdHasMaritalStatusPK implements Serializable {
     @Column(name = "Marital_status_ID", nullable = false)
     private int maritalstatusID;
 
-    public NationalIdHasMaritalStatusPK() {
+    public NationalIdHasMaritalStatus1PK() {
     }
 
-    public NationalIdHasMaritalStatusPK(int nationalIDID, int maritalstatusID) {
+    public NationalIdHasMaritalStatus1PK(int nationalIDID, int maritalstatusID) {
         this.nationalIDID = nationalIDID;
         this.maritalstatusID = maritalstatusID;
     }
@@ -62,10 +62,10 @@ public class NationalIdHasMaritalStatusPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof NationalIdHasMaritalStatusPK)) {
+        if (!(object instanceof NationalIdHasMaritalStatus1PK)) {
             return false;
         }
-        NationalIdHasMaritalStatusPK other = (NationalIdHasMaritalStatusPK) object;
+        NationalIdHasMaritalStatus1PK other = (NationalIdHasMaritalStatus1PK) object;
         if (this.nationalIDID != other.nationalIDID) {
             return false;
         }
@@ -77,7 +77,7 @@ public class NationalIdHasMaritalStatusPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.NationalIdHasMaritalStatusPK[ nationalIDID=" + nationalIDID + ", maritalstatusID=" + maritalstatusID + " ]";
+        return "Entities.NationalIdHasMaritalStatus1PK[ nationalIDID=" + nationalIDID + ", maritalstatusID=" + maritalstatusID + " ]";
     }
     
 }

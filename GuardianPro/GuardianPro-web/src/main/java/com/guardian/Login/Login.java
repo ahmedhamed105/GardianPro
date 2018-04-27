@@ -30,12 +30,13 @@ public class Login {
     boolean remeber;
     String username;
     String password;
-    User login=new User();
+    static User login = new User();
 
     /**
      * Creates a new instance of Login
      */
     public Login() {
+        
     }
 
     public User getLogin() {
@@ -43,7 +44,7 @@ public class Login {
     }
 
     public void setLogin(User login) {
-        this.login = login;
+        Login.login = login;
     }
     
     
@@ -80,30 +81,30 @@ public class Login {
        if(u1.getUserPasswordID().getPassword().equals(password)){
                 switch (userFacade.user_status(u1)) {
                     case 1:
-                        addInfoMessage("Login ok!!");
+                        Messages.addInfoMessage("Login ok!!",1);
                         login=u1;
                        return "Login";
                     case 2:
-                        addInfoMessage("Login Error User Closed !!");
+                        Messages.addInfoMessage("Login Error User Closed !!",2);
                        return "Error";
                     case 3:
-                        addInfoMessage("Login Error User Locked !!");
+                        Messages.addInfoMessage("Login Error User Locked !!",2);
                        return "Error";
                     case 4:
-                        addInfoMessage("Login Error User not Have Email Activation !!");
+                        Messages.addInfoMessage("Login Error User not Have Email Activation !!",2);
                         return "Error";
                     default:
-                        addInfoMessage("Login Error Check status !!");
+                        Messages.addInfoMessage("Login Error Check status !!",2);
                         return "Error";
                 }
        
        }else{
-       addInfoMessage("Login Error Wrong password!!");
+           Messages.addInfoMessage("Login Error Wrong password!!",2);
        return "Error";
        }
         }catch(Exception e){
             e.printStackTrace();
-         addInfoMessage("Login Error!!");
+         Messages.addInfoMessage("Login Error!!",2);
          return "Error";
         }
 
@@ -112,9 +113,5 @@ public class Login {
     
     
     
-     public void addInfoMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    
+
 }

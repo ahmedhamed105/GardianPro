@@ -30,17 +30,17 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "street", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Street.findAll", query = "SELECT s FROM Street s")
-    , @NamedQuery(name = "Street.findById", query = "SELECT s FROM Street s WHERE s.id = :id")
-    , @NamedQuery(name = "Street.findByStreetname", query = "SELECT s FROM Street s WHERE s.streetname = :streetname")
-    , @NamedQuery(name = "Street.findByCreateDate", query = "SELECT s FROM Street s WHERE s.createDate = :createDate")
-    , @NamedQuery(name = "Street.findByUpdateDate", query = "SELECT s FROM Street s WHERE s.updateDate = :updateDate")})
+    @NamedQuery(name = "Street.findAll", query = "SELECT s FROM Street s"),
+    @NamedQuery(name = "Street.findById", query = "SELECT s FROM Street s WHERE s.id = :id"),
+    @NamedQuery(name = "Street.findByStreetname", query = "SELECT s FROM Street s WHERE s.streetname = :streetname"),
+    @NamedQuery(name = "Street.findByCreateDate", query = "SELECT s FROM Street s WHERE s.createDate = :createDate"),
+    @NamedQuery(name = "Street.findByUpdateDate", query = "SELECT s FROM Street s WHERE s.updateDate = :updateDate")})
 public class Street implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,17 +5,17 @@
  */
 package Facades;
 
-import Entities.Component;
+import Entities.ParameterGroup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Stateless
-public class ComponentFacade extends AbstractFacade<Component> implements ComponentFacadeLocal {
+public class ParameterGroupFacade extends AbstractFacade<ParameterGroup> implements ParameterGroupFacadeLocal {
 
     @PersistenceContext(unitName = "com.guardianpro_GuardianPro-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class ComponentFacade extends AbstractFacade<Component> implements Compon
         return em;
     }
 
-    public ComponentFacade() {
-        super(Component.class);
+    public ParameterGroupFacade() {
+        super(ParameterGroup.class);
     }
     
 }

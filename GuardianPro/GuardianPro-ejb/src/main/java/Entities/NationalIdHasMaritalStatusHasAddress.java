@@ -24,18 +24,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "national_id_has_marital_status_has_address", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findAll", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n")
-    , @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByNationalIDhasMaritalstatusNationalIDID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.nationalIDhasMaritalstatusNationalIDID = :nationalIDhasMaritalstatusNationalIDID")
-    , @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByNationalIDhasMaritalstatusMaritalstatusID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.nationalIDhasMaritalstatusMaritalstatusID = :nationalIDhasMaritalstatusMaritalstatusID")
-    , @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByAddressID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.addressID = :addressID")
-    , @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.createDate = :createDate")
-    , @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findAll", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n"),
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByNationalIDhasMaritalstatusNationalIDID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.nationalIDhasMaritalstatusNationalIDID = :nationalIDhasMaritalstatusNationalIDID"),
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByNationalIDhasMaritalstatusMaritalstatusID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.nationalIDhasMaritalstatusMaritalstatusID = :nationalIDhasMaritalstatusMaritalstatusID"),
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByAddressID", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.nationalIdHasMaritalStatusHasAddressPK.addressID = :addressID"),
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "NationalIdHasMaritalStatusHasAddress.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatusHasAddress n WHERE n.updateDate = :updateDate")})
 public class NationalIdHasMaritalStatusHasAddress implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,14 +51,11 @@ public class NationalIdHasMaritalStatusHasAddress implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Address_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Address address;
     @JoinColumns({
-        @JoinColumn(name = "National_ID_has_Marital_status_National_ID_ID", referencedColumnName = "National_ID_ID", nullable = false, insertable = false, updatable = false)
-        , @JoinColumn(name = "National_ID_has_Marital_status_Marital_status_ID", referencedColumnName = "Marital_status_ID", nullable = false, insertable = false, updatable = false)})
+        @JoinColumn(name = "National_ID_has_Marital_status_National_ID_ID", referencedColumnName = "National_ID_ID", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "National_ID_has_Marital_status_Marital_status_ID", referencedColumnName = "Marital_status_ID", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
-    private NationalIdHasMaritalStatus nationalIdHasMaritalStatus;
+    private NationalIdHasMaritalStatus1 nationalIdHasMaritalStatus1;
 
     public NationalIdHasMaritalStatusHasAddress() {
     }
@@ -101,20 +98,12 @@ public class NationalIdHasMaritalStatusHasAddress implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Address getAddress() {
-        return address;
+    public NationalIdHasMaritalStatus1 getNationalIdHasMaritalStatus1() {
+        return nationalIdHasMaritalStatus1;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public NationalIdHasMaritalStatus getNationalIdHasMaritalStatus() {
-        return nationalIdHasMaritalStatus;
-    }
-
-    public void setNationalIdHasMaritalStatus(NationalIdHasMaritalStatus nationalIdHasMaritalStatus) {
-        this.nationalIdHasMaritalStatus = nationalIdHasMaritalStatus;
+    public void setNationalIdHasMaritalStatus1(NationalIdHasMaritalStatus1 nationalIdHasMaritalStatus1) {
+        this.nationalIdHasMaritalStatus1 = nationalIdHasMaritalStatus1;
     }
 
     @Override

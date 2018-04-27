@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,27 +17,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "address", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a")
-    , @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id")
-    , @NamedQuery(name = "Address.findByStreetno", query = "SELECT a FROM Address a WHERE a.streetno = :streetno")
-    , @NamedQuery(name = "Address.findByCreateDate", query = "SELECT a FROM Address a WHERE a.createDate = :createDate")
-    , @NamedQuery(name = "Address.findByUpdateDate", query = "SELECT a FROM Address a WHERE a.updateDate = :updateDate")})
+    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
+    @NamedQuery(name = "Address.findById", query = "SELECT a FROM Address a WHERE a.id = :id"),
+    @NamedQuery(name = "Address.findByStreetno", query = "SELECT a FROM Address a WHERE a.streetno = :streetno"),
+    @NamedQuery(name = "Address.findByCreateDate", query = "SELECT a FROM Address a WHERE a.createDate = :createDate"),
+    @NamedQuery(name = "Address.findByUpdateDate", query = "SELECT a FROM Address a WHERE a.updateDate = :updateDate")})
 public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,8 +56,6 @@ public class Address implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
-    private Collection<NationalIdHasMaritalStatusHasAddress> nationalIdHasMaritalStatusHasAddressCollection;
     @JoinColumn(name = "Near_places_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private NearPlaces nearplacesID;
@@ -112,15 +106,6 @@ public class Address implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    @XmlTransient
-    public Collection<NationalIdHasMaritalStatusHasAddress> getNationalIdHasMaritalStatusHasAddressCollection() {
-        return nationalIdHasMaritalStatusHasAddressCollection;
-    }
-
-    public void setNationalIdHasMaritalStatusHasAddressCollection(Collection<NationalIdHasMaritalStatusHasAddress> nationalIdHasMaritalStatusHasAddressCollection) {
-        this.nationalIdHasMaritalStatusHasAddressCollection = nationalIdHasMaritalStatusHasAddressCollection;
     }
 
     public NearPlaces getNearplacesID() {

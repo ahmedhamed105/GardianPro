@@ -6,52 +6,44 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "national_id_has_marital_status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NationalIdHasMaritalStatus.findAll", query = "SELECT n FROM NationalIdHasMaritalStatus n")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByNationalIDID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.nationalIDID = :nationalIDID")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByMaritalstatusID", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.nationalIdHasMaritalStatusPK.maritalstatusID = :maritalstatusID")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByNoChildern", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.noChildern = :noChildern")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByWifename", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.wifename = :wifename")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.createDate = :createDate")
-    , @NamedQuery(name = "NationalIdHasMaritalStatus.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findAll", query = "SELECT n FROM NationalIdHasMaritalStatus n"),
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findById", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.id = :id"),
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findByCreateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findByUpdateDate", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.updateDate = :updateDate"),
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findByNoChildern", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.noChildern = :noChildern"),
+    @NamedQuery(name = "NationalIdHasMaritalStatus.findByWifename", query = "SELECT n FROM NationalIdHasMaritalStatus n WHERE n.wifename = :wifename")})
 public class NationalIdHasMaritalStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected NationalIdHasMaritalStatusPK nationalIdHasMaritalStatusPK;
-    @Size(max = 45)
-    @Column(name = "no_Childern", length = 45)
-    private String noChildern;
-    @Size(max = 45)
-    @Column(name = "Wife_name", length = 45)
-    private String wifename;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -62,54 +54,38 @@ public class NationalIdHasMaritalStatus implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nationalIdHasMaritalStatus")
-    private Collection<NationalIdHasMaritalStatusHasAddress> nationalIdHasMaritalStatusHasAddressCollection;
-    @JoinColumn(name = "Marital_status_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    @Size(max = 45)
+    @Column(name = "no_Childern", length = 45)
+    private String noChildern;
+    @Size(max = 45)
+    @Column(name = "Wife_name", length = 45)
+    private String wifename;
+    @JoinColumn(name = "Marital_status_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private MaritalStatus maritalStatus;
-    @JoinColumn(name = "National_ID_ID", referencedColumnName = "ID", nullable = false, insertable = false, updatable = false)
+    private MaritalStatus maritalstatusID;
+    @JoinColumn(name = "National_ID_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private NationalId nationalId;
+    private NationalId nationalIDID;
 
     public NationalIdHasMaritalStatus() {
     }
 
-    public NationalIdHasMaritalStatus(NationalIdHasMaritalStatusPK nationalIdHasMaritalStatusPK) {
-        this.nationalIdHasMaritalStatusPK = nationalIdHasMaritalStatusPK;
+    public NationalIdHasMaritalStatus(Integer id) {
+        this.id = id;
     }
 
-    public NationalIdHasMaritalStatus(NationalIdHasMaritalStatusPK nationalIdHasMaritalStatusPK, Date createDate, Date updateDate) {
-        this.nationalIdHasMaritalStatusPK = nationalIdHasMaritalStatusPK;
+    public NationalIdHasMaritalStatus(Integer id, Date createDate, Date updateDate) {
+        this.id = id;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public NationalIdHasMaritalStatus(int nationalIDID, int maritalstatusID) {
-        this.nationalIdHasMaritalStatusPK = new NationalIdHasMaritalStatusPK(nationalIDID, maritalstatusID);
+    public Integer getId() {
+        return id;
     }
 
-    public NationalIdHasMaritalStatusPK getNationalIdHasMaritalStatusPK() {
-        return nationalIdHasMaritalStatusPK;
-    }
-
-    public void setNationalIdHasMaritalStatusPK(NationalIdHasMaritalStatusPK nationalIdHasMaritalStatusPK) {
-        this.nationalIdHasMaritalStatusPK = nationalIdHasMaritalStatusPK;
-    }
-
-    public String getNoChildern() {
-        return noChildern;
-    }
-
-    public void setNoChildern(String noChildern) {
-        this.noChildern = noChildern;
-    }
-
-    public String getWifename() {
-        return wifename;
-    }
-
-    public void setWifename(String wifename) {
-        this.wifename = wifename;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getCreateDate() {
@@ -128,35 +104,42 @@ public class NationalIdHasMaritalStatus implements Serializable {
         this.updateDate = updateDate;
     }
 
-    @XmlTransient
-    public Collection<NationalIdHasMaritalStatusHasAddress> getNationalIdHasMaritalStatusHasAddressCollection() {
-        return nationalIdHasMaritalStatusHasAddressCollection;
+    public String getNoChildern() {
+        return noChildern;
     }
 
-    public void setNationalIdHasMaritalStatusHasAddressCollection(Collection<NationalIdHasMaritalStatusHasAddress> nationalIdHasMaritalStatusHasAddressCollection) {
-        this.nationalIdHasMaritalStatusHasAddressCollection = nationalIdHasMaritalStatusHasAddressCollection;
+    public void setNoChildern(String noChildern) {
+        this.noChildern = noChildern;
     }
 
-    public MaritalStatus getMaritalStatus() {
-        return maritalStatus;
+    public String getWifename() {
+        return wifename;
     }
 
-    public void setMaritalStatus(MaritalStatus maritalStatus) {
-        this.maritalStatus = maritalStatus;
+    public void setWifename(String wifename) {
+        this.wifename = wifename;
     }
 
-    public NationalId getNationalId() {
-        return nationalId;
+    public MaritalStatus getMaritalstatusID() {
+        return maritalstatusID;
     }
 
-    public void setNationalId(NationalId nationalId) {
-        this.nationalId = nationalId;
+    public void setMaritalstatusID(MaritalStatus maritalstatusID) {
+        this.maritalstatusID = maritalstatusID;
+    }
+
+    public NationalId getNationalIDID() {
+        return nationalIDID;
+    }
+
+    public void setNationalIDID(NationalId nationalIDID) {
+        this.nationalIDID = nationalIDID;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (nationalIdHasMaritalStatusPK != null ? nationalIdHasMaritalStatusPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -167,7 +150,7 @@ public class NationalIdHasMaritalStatus implements Serializable {
             return false;
         }
         NationalIdHasMaritalStatus other = (NationalIdHasMaritalStatus) object;
-        if ((this.nationalIdHasMaritalStatusPK == null && other.nationalIdHasMaritalStatusPK != null) || (this.nationalIdHasMaritalStatusPK != null && !this.nationalIdHasMaritalStatusPK.equals(other.nationalIdHasMaritalStatusPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -175,7 +158,7 @@ public class NationalIdHasMaritalStatus implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.NationalIdHasMaritalStatus[ nationalIdHasMaritalStatusPK=" + nationalIdHasMaritalStatusPK + " ]";
+        return "Entities.NationalIdHasMaritalStatus[ id=" + id + " ]";
     }
     
 }

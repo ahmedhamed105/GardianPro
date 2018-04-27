@@ -30,21 +30,21 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "national_id", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "NationalId.findAll", query = "SELECT n FROM NationalId n")
-    , @NamedQuery(name = "NationalId.findById", query = "SELECT n FROM NationalId n WHERE n.id = :id")
-    , @NamedQuery(name = "NationalId.findByNamtionalID", query = "SELECT n FROM NationalId n WHERE n.namtionalID = :namtionalID")
-    , @NamedQuery(name = "NationalId.findByFrontimage", query = "SELECT n FROM NationalId n WHERE n.frontimage = :frontimage")
-    , @NamedQuery(name = "NationalId.findByBackImage", query = "SELECT n FROM NationalId n WHERE n.backImage = :backImage")
-    , @NamedQuery(name = "NationalId.findByDateIssue", query = "SELECT n FROM NationalId n WHERE n.dateIssue = :dateIssue")
-    , @NamedQuery(name = "NationalId.findByPlaceIssue", query = "SELECT n FROM NationalId n WHERE n.placeIssue = :placeIssue")
-    , @NamedQuery(name = "NationalId.findByCreateDate", query = "SELECT n FROM NationalId n WHERE n.createDate = :createDate")
-    , @NamedQuery(name = "NationalId.findByUpdateDate", query = "SELECT n FROM NationalId n WHERE n.updateDate = :updateDate")})
+    @NamedQuery(name = "NationalId.findAll", query = "SELECT n FROM NationalId n"),
+    @NamedQuery(name = "NationalId.findById", query = "SELECT n FROM NationalId n WHERE n.id = :id"),
+    @NamedQuery(name = "NationalId.findByNamtionalID", query = "SELECT n FROM NationalId n WHERE n.namtionalID = :namtionalID"),
+    @NamedQuery(name = "NationalId.findByFrontimage", query = "SELECT n FROM NationalId n WHERE n.frontimage = :frontimage"),
+    @NamedQuery(name = "NationalId.findByBackImage", query = "SELECT n FROM NationalId n WHERE n.backImage = :backImage"),
+    @NamedQuery(name = "NationalId.findByDateIssue", query = "SELECT n FROM NationalId n WHERE n.dateIssue = :dateIssue"),
+    @NamedQuery(name = "NationalId.findByPlaceIssue", query = "SELECT n FROM NationalId n WHERE n.placeIssue = :placeIssue"),
+    @NamedQuery(name = "NationalId.findByCreateDate", query = "SELECT n FROM NationalId n WHERE n.createDate = :createDate"),
+    @NamedQuery(name = "NationalId.findByUpdateDate", query = "SELECT n FROM NationalId n WHERE n.updateDate = :updateDate")})
 public class NationalId implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -86,13 +86,14 @@ public class NationalId implements Serializable {
     @JoinColumn(name = "Military_status_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private MilitaryStatus militarystatusID;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
     @JoinColumn(name = "religion_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private Religion religionID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nationalId")
-    private Collection<NationalIdHasMaritalStatus> nationalIdHasMaritalStatusCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nationalIDID")
-    private Collection<User> userCollection;
+    private Collection<NationalIdHasMaritalStatus> nationalIdHasMaritalStatusCollection;
 
     public NationalId() {
     }
@@ -188,6 +189,14 @@ public class NationalId implements Serializable {
         this.militarystatusID = militarystatusID;
     }
 
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
+    }
+
     public Religion getReligionID() {
         return religionID;
     }
@@ -203,15 +212,6 @@ public class NationalId implements Serializable {
 
     public void setNationalIdHasMaritalStatusCollection(Collection<NationalIdHasMaritalStatus> nationalIdHasMaritalStatusCollection) {
         this.nationalIdHasMaritalStatusCollection = nationalIdHasMaritalStatusCollection;
-    }
-
-    @XmlTransient
-    public Collection<User> getUserCollection() {
-        return userCollection;
-    }
-
-    public void setUserCollection(Collection<User> userCollection) {
-        this.userCollection = userCollection;
     }
 
     @Override

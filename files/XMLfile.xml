@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TerminalXML>
+    <terminalId>26</terminalId>
+    <tid>40000001</tid>
+    <detailAddress/>
+    <merchantName/>
+    <officeContact>Bank MISR (Mostafa)</officeContact>
+    <officeTelNo>null</officeTelNo>
+    <ownerName>Bank MISR (Mostafa)</ownerName>
+    <posSerialNo>2K624319</posSerialNo>
+    <recordNo>null</recordNo>
+    <shopContact/>
+    <shopName/>
+    <shopTelNo>null</shopTelNo>
+    <status>Active</status>
+    <ParameterGroup>
+        <Terminal ID="2" Level="1">
+            <ID>0</ID>
+            <CurrName>EGP</CurrName>
+            <CurrSym> </CurrSym>
+            <DecPoint>2</DecPoint>
+            <NameLoc>  EDC DEMO APPLICATION   SPECTRA TECHNOLOGIES </NameLoc>
+            <MerchantName> HAPPY DEPARTMENT STORE</MerchantName>
+            <TransAmntLen>8</TransAmntLen>
+            <SettAmntLen>12</SettAmntLen>
+            <Option-TermCfg>32000000</Option-TermCfg>
+            <Reserved-TermCfg>000000000000000000000000000000000000000000000000000000000000</Reserved-TermCfg>
+            <PswRefund>1111111111111111</PswRefund>
+            <PswVoid>2222222222222222</PswVoid>
+            <apn_username/>
+            <apn_password/>
+            <apn2_username/>
+            <apn2_password/>
+            <apnconfig>internet</apnconfig>
+            <apnconfig2>pccw</apnconfig2>
+        </Terminal>
+        <Acquirer ID="4" Level="2">
+            <ID>0</ID>
+            <TerminalID>0</TerminalID>
+            <AcqName>EGP</AcqName>
+            <MerchantID>001700000002</MerchantID>
+            <TermID>00041205</TermID>
+            <CurrBatchNo>000001</CurrBatchNo>
+            <NextBatchNo>000002</NextBatchNo>
+            <HostRspTO>30</HostRspTO>
+            <NII>001</NII>
+            <ModemMode>02</ModemMode>
+            <PrimTelNo>340</PrimTelNo>
+            <PrimTelConnectTO>60</PrimTelConnectTO>
+            <PrimTelDialAttempt>3</PrimTelDialAttempt>
+            <SecTelNo>341</SecTelNo>
+            <SecTelConnectTO>60</SecTelConnectTO>
+            <SecTelDialAttempt>3</SecTelDialAttempt>
+            <Option-Acquirer>12000000</Option-Acquirer>
+            <Reserved-Acquirer>0100000000000000000000000000000000000000000080800AFE1016139C</Reserved-Acquirer>
+            <ProgName>EGP</ProgName>
+        </Acquirer>
+        <Issuer ID="43" Level="3">
+            <ID>0</ID>
+            <AcquirerID>0</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <IssName>Visa EGP</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0000</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="45" Level="4">
+            <ID>0</ID>
+            <IssuerID>0</IssuerID>
+            <AcquirerID>0</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>4000000000</CardRangeLow>
+            <CardRangeHigh>4999999999</CardRangeHigh>
+        </CardRange>
+        <Issuer ID="47" Level="3">
+            <ID>1</ID>
+            <AcquirerID>0</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <IssName>Mastercard</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0010</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="49" Level="4">
+            <ID>1</ID>
+            <IssuerID>1</IssuerID>
+            <AcquirerID>0</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>5000000000</CardRangeLow>
+            <CardRangeHigh>5999999999</CardRangeHigh>
+        </CardRange>
+        <Acquirer ID="39" Level="2">
+            <ID>1</ID>
+            <TerminalID>0</TerminalID>
+            <AcqName>USD</AcqName>
+            <MerchantID>001700000002</MerchantID>
+            <TermID>00041204</TermID>
+            <CurrBatchNo>000001</CurrBatchNo>
+            <NextBatchNo>000002</NextBatchNo>
+            <HostRspTO>30</HostRspTO>
+            <NII>001</NII>
+            <ModemMode>02</ModemMode>
+            <PrimTelNo>340</PrimTelNo>
+            <PrimTelConnectTO>60</PrimTelConnectTO>
+            <PrimTelDialAttempt>3</PrimTelDialAttempt>
+            <SecTelNo>341</SecTelNo>
+            <SecTelConnectTO>60</SecTelConnectTO>
+            <SecTelDialAttempt>3</SecTelDialAttempt>
+            <Option-Acquirer>12000000</Option-Acquirer>
+            <Reserved-Acquirer>0100000000000000000000000000000000000000000080800AFE1016139C</Reserved-Acquirer>
+            <ProgName>USD</ProgName>
+        </Acquirer>
+        <Issuer ID="51" Level="3">
+            <ID>2</ID>
+            <AcquirerID>1</AcquirerID>
+            <CardRangeID>0</CardRangeID>
+            <TerminalID>0</TerminalID>
+            <IssName>Visa</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0000</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="53" Level="4">
+            <ID>2</ID>
+            <IssuerID>2</IssuerID>
+            <AcquirerID>1</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>4000000000</CardRangeLow>
+            <CardRangeHigh>4999999999</CardRangeHigh>
+        </CardRange>
+        <Issuer ID="55" Level="3">
+            <ID>3</ID>
+            <AcquirerID>2</AcquirerID>
+            <CardRangeID>0</CardRangeID>
+            <TerminalID>0</TerminalID>
+            <IssName>Visa</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0000</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="59" Level="4">
+            <ID>3</ID>
+            <IssuerID>3</IssuerID>
+            <AcquirerID>2</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>4000000000</CardRangeLow>
+            <CardRangeHigh>4999999999</CardRangeHigh>
+        </CardRange>
+        <Acquirer ID="41" Level="2">
+            <ID>2</ID>
+            <TerminalID>0</TerminalID>
+            <AcqName>EURO</AcqName>
+            <MerchantID>001700000002</MerchantID>
+            <TermID>00041208</TermID>
+            <CurrBatchNo>000001</CurrBatchNo>
+            <NextBatchNo>000002</NextBatchNo>
+            <HostRspTO>30</HostRspTO>
+            <NII>001</NII>
+            <ModemMode>02</ModemMode>
+            <PrimTelNo>340</PrimTelNo>
+            <PrimTelConnectTO>60</PrimTelConnectTO>
+            <PrimTelDialAttempt>3</PrimTelDialAttempt>
+            <SecTelNo>341</SecTelNo>
+            <SecTelConnectTO>60</SecTelConnectTO>
+            <SecTelDialAttempt>3</SecTelDialAttempt>
+            <Option-Acquirer>12000000</Option-Acquirer>
+            <Reserved-Acquirer>0100000000000000000000000000000000000000000080800AFE1016139C</Reserved-Acquirer>
+            <ProgName>EUR</ProgName>
+        </Acquirer>
+        <Issuer ID="57" Level="3">
+            <ID>4</ID>
+            <AcquirerID>2</AcquirerID>
+            <CardRangeID>0</CardRangeID>
+            <TerminalID>0</TerminalID>
+            <IssName>Mastercard</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0010</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="61" Level="4">
+            <ID>4</ID>
+            <IssuerID>4</IssuerID>
+            <AcquirerID>2</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>5000000000</CardRangeLow>
+            <CardRangeHigh>5999999999</CardRangeHigh>
+        </CardRange>
+        <Issuer ID="63" Level="3">
+            <ID>5</ID>
+            <CardRangeID>2</CardRangeID>
+            <AcquirerID>1</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <IssName>Mastercard</IssName>
+            <DefaultAcc>00</DefaultAcc>
+            <FlrLimit>0010</FlrLimit>
+            <Option-Issuer>000C0000</Option-Issuer>
+            <Reserved-Issuer>000000000000000000000000000000000000000000000000000000000000</Reserved-Issuer>
+        </Issuer>
+        <CardRange ID="66" Level="4">
+            <ID>5</ID>
+            <IssuerID>5</IssuerID>
+            <AcquirerID>1</AcquirerID>
+            <TerminalID>0</TerminalID>
+            <CardRangeLow>5000000000</CardRangeLow>
+            <CardRangeHigh>5999999999</CardRangeHigh>
+        </CardRange>
+        <EMVLevel2App ID="16" Level="1">
+            <ID>0</ID>
+            <eType>02</eType>
+            <eBitField>0C</eBitField>
+            <eRSBThresh>5000</eRSBThresh>
+            <eRSTarget>0</eRSTarget>
+            <eRSBMax>99</eRSBMax>
+            <eTACDenial>0000000000</eTACDenial>
+            <eTACOnline>1000000000</eTACOnline>
+            <eTACDefault>2000000000</eTACDefault>
+            <eACFG>9F0607A00000000310109F3303E0F0C89F4005F000F0F0019F3501229F0902008C9F1A0208405F2A0208405F3601029F1B04000027109F01060000000000019F150201239F160F4D45524348414E54204944202020209F1C0833303030303030309F1D080123456789ABCDEF9F49039F370497069F02069F030600</eACFG>
+        </EMVLevel2App>
+        <EMVLevel2App ID="17" Level="1">
+            <ID>1</ID>
+            <eType>01</eType>
+            <eBitField>0C</eBitField>
+            <eRSBThresh>5000</eRSBThresh>
+            <eRSTarget>0</eRSTarget>
+            <eRSBMax>99</eRSBMax>
+            <eTACDenial>0000000000</eTACDenial>
+            <eTACOnline>FC50BCF800</eTACOnline>
+            <eTACDefault>FC50BCA000</eTACDefault>
+            <eACFG>9F0607A00000000410109F3303E0F0C89F4005F000F0F0019F3501229F090200029F1A0208405F2A0208405F3601029F1B04000000009F01060000000000019F150201239F160F4D45524348414E54204944202020209F1C0833303030303030309F1D080123456789ABCDEF9F49039F370497069F02069F030600</eACFG>
+        </EMVLevel2App>
+        <EMVCtlApp ID="34" Level="1">
+            <ID>0</ID>
+            <bEType>82</bEType>
+            <bBitField>0C</bBitField>
+            <dRSBThresh>5000</dRSBThresh>
+            <bRSTarget>0</bRSTarget>
+            <bRSBMax>99</bRSBMax>
+            <abTACDenial>0000000000</abTACDenial>
+            <abTACOnline>0000000000</abTACOnline>
+            <abTACDefault>0000000000</abTACDefault>
+            <abTLV>9F0605A0000000039F33030000C89F40056000F020019F3501229F090200029F1A0208405F2A0208405F3601029F01060000000000019F150201239F160F4D45524348414E54204944202020209F1C0833303030303030309F49039F370497069F02069F0306DFA706000000050001DFA806000000050001DFA6060000000000009F6604200040009C0100DF030100DF040100DF050101DFBF0108DFBE0100DFA501400000</abTLV>
+        </EMVCtlApp>
+        <EMVCtlApp ID="35" Level="1">
+            <ID>1</ID>
+            <bEType>83</bEType>
+            <bBitField>02</bBitField>
+            <dRSBThresh>5000</dRSBThresh>
+            <bRSTarget>0</bRSTarget>
+            <bRSBMax>99</bRSBMax>
+            <abTACDenial>0000000000</abTACDenial>
+            <abTACOnline>0000000000</abTACOnline>
+            <abTACDefault>0000000000</abTACDefault>
+            <abTLV>9F0605A0000000045F57009F01009F400500000000009F090200021F9701001F9801601F9901081F9A039F6A041F9B01201F8C01029F6D0200011F9E01101FAC01001F9C0200001F9D01009F150201239F16009F4E009F7E001FA3060000000100001FA4060000000300001FA5060000000500001FA6060000000010001F9F01081FA00500000000001FA10500000000001FA20500000000009F33009F1A0208409F1C009F3501229F7C1411223344556677889900112233445566778899009F530201235F2A0208405F3601021F8800DF60001F8900DF62001F8A00DF63001F8D00DFD4000000</abTLV>
+        </EMVCtlApp>
+        <EMVLevel2Key ID="24" Level="1">
+            <ID>0</ID>
+            <eKeyIdx>92</eKeyIdx>
+            <eRID>A000000003</eRID>
+            <eExponent>00000003</eExponent>
+            <eKeySize>176</eKeySize>
+            <eKey>996AF56F569187D09293C14810450ED8EE3357397B18A2458EFAA92DA3B6DF6514EC060195318FD43BE9B8F0CC669E3F844057CBDDF8BDA191BB64473BC8DC9A730DB8F6B4EDE3924186FFD9B8C7735789C23A36BA0B8AF65372EB57EA5D89E7D14E9C7B6B557460F10885DA16AC923F15AF3758F0F03EBD3C5C2C949CBA306DB44E6A2C076C5F67E281D7EF56785DC4D75945E491F01918800A9E2DC66F60080566CE0DAF8D17EAD46AD8E30A247C9F0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</eKey>
+            <eExpiryDate>4912</eExpiryDate>
+            <eEffectiveDate>0001</eEffectiveDate>
+            <eKeyType>03</eKeyType>
+        </EMVLevel2Key>
+        <EMVLevel2Key ID="26" Level="1">
+            <ID>1</ID>
+            <eKeyIdx>94</eKeyIdx>
+            <eRID>A000000003</eRID>
+            <eExponent>00000003</eExponent>
+            <eKeySize>248</eKeySize>
+            <eKey>ACD2B12302EE644F3F835ABD1FC7A6F62CCE48FFEC622AA8EF062BEF6FB8BA8BC68BBF6AB5870EED579BC3973E121303D34841A796D6DCBC41DBF9E52C4609795C0CCF7EE86FA1D5CB041071ED2C51D2202F63F1156C58A92D38BC60BDF424E1776E2BC9648078A03B36FB554375FC53D57C73F5160EA59F3AFC5398EC7B67758D65C9BFF7828B6B82D4BE124A416AB7301914311EA462C19F771F31B3B57336000DFF732D3B83DE07052D730354D297BEC72871DCCF0E193F171ABA27EE464C6A97690943D59BDABB2A27EB71CEEBDAFA1176046478FD62FEC452D5CA393296530AA3F41927ADFE434A2DF2AE3054F8840657A26E0FC6170000000000000000</eKey>
+            <eExpiryDate>4912</eExpiryDate>
+            <eEffectiveDate>0001</eEffectiveDate>
+            <eKeyType>03</eKeyType>
+        </EMVLevel2Key>
+        <EMVLevel2Key ID="27" Level="1">
+            <ID>2</ID>
+            <eKeyIdx>95</eKeyIdx>
+            <eRID>A000000003</eRID>
+            <eExponent>00000003</eExponent>
+            <eKeySize>144</eKeySize>
+            <eKey>BE9E1FA5E9A803852999C4AB432DB28600DCD9DAB76DFAAA47355A0FE37B1508AC6BF38860D3C6C2E5B12A3CAAF2A7005A7241EBAA7771112C74CF9A0634652FBCA0E5980C54A64761EA101A114E0F0B5572ADD57D010B7C9C887E104CA4EE1272DA66D997B9A90B5A6D624AB6C57E73C8F919000EB5F684898EF8C3DBEFB330C62660BED88EA78E909AFF05F6DA627B00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</eKey>
+            <eExpiryDate>4912</eExpiryDate>
+            <eEffectiveDate>0001</eEffectiveDate>
+            <eKeyType>03</eKeyType>
+        </EMVLevel2Key>
+        <EMVLevel2Key ID="28" Level="1">
+            <ID>3</ID>
+            <eKeyIdx>99</eKeyIdx>
+            <eRID>A000000003</eRID>
+            <eExponent>00000003</eExponent>
+            <eKeySize>128</eKeySize>
+            <eKey>AB79FCC9520896967E776E64444E5DCDD6E13611874F3985722520425295EEA4BD0C2781DE7F31CD3D041F565F747306EED62954B17EDABA3A6C5B85A1DE1BEB9A34141AF38FCF8279C9DEA0D5A6710D08DB4124F041945587E20359BAB47B7575AD94262D4B25F264AF33DEDCF28E09615E937DE32EDC03C54445FE7E3827770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</eKey>
+            <eExpiryDate>4912</eExpiryDate>
+            <eEffectiveDate>0001</eEffectiveDate>
+            <eKeyType>03</eKeyType>
+        </EMVLevel2Key>
+        <EMVLevel2Key ID="29" Level="1">
+            <ID>4</ID>
+            <eKeyIdx>EF</eKeyIdx>
+            <eRID>A000000004</eRID>
+            <eExponent>00000003</eExponent>
+            <eKeySize>248</eKeySize>
+            <eKey>A191CB87473F29349B5D60A88B3EAEE0973AA6F1A082F358D849FDDFF9C091F899EDA9792CAF09EF28F5D22404B88A2293EEBBC1949C43BEA4D60CFD879A1539544E09E0F09F60F065B2BF2A13ECC705F3D468B9D33AE77AD9D3F19CA40F23DCF5EB7C04DC8F69EBA565B1EBCB4686CD274785530FF6F6E9EE43AA43FDB02CE00DAEC15C7B8FD6A9B394BABA419D3F6DC85E16569BE8E76989688EFEA2DF22FF7D35C043338DEAA982A02B866DE5328519EBBCD6F03CDD686673847F84DB651AB86C28CF1462562C577B853564A290C8556D818531268D25CC98A4CC6A0BDFFFDA2DCCA3A94C998559E307FDDF915006D9A987B07DDAEB3B0000000000000000</eKey>
+            <eExpiryDate>4912</eExpiryDate>
+            <eEffectiveDate>0001</eEffectiveDate>
+            <eKeyType>03</eKeyType>
+        </EMVLevel2Key>
+    </ParameterGroup>
+</TerminalXML>

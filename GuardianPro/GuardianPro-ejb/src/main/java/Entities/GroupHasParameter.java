@@ -21,7 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,15 +28,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ahmed.elemam
  */
 @Entity
-@Table(name = "login_way", catalog = "guardianpro", schema = "")
+@Table(name = "group_has_parameter", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LoginWay.findAll", query = "SELECT l FROM LoginWay l"),
-    @NamedQuery(name = "LoginWay.findById", query = "SELECT l FROM LoginWay l WHERE l.id = :id"),
-    @NamedQuery(name = "LoginWay.findByLgway", query = "SELECT l FROM LoginWay l WHERE l.lgway = :lgway"),
-    @NamedQuery(name = "LoginWay.findByCreateDate", query = "SELECT l FROM LoginWay l WHERE l.createDate = :createDate"),
-    @NamedQuery(name = "LoginWay.findByUpdateDate", query = "SELECT l FROM LoginWay l WHERE l.updateDate = :updateDate")})
-public class LoginWay implements Serializable {
+    @NamedQuery(name = "GroupHasParameter.findAll", query = "SELECT g FROM GroupHasParameter g"),
+    @NamedQuery(name = "GroupHasParameter.findById", query = "SELECT g FROM GroupHasParameter g WHERE g.id = :id"),
+    @NamedQuery(name = "GroupHasParameter.findByCreateDate", query = "SELECT g FROM GroupHasParameter g WHERE g.createDate = :createDate"),
+    @NamedQuery(name = "GroupHasParameter.findByUpdateDate", query = "SELECT g FROM GroupHasParameter g WHERE g.updateDate = :updateDate")})
+public class GroupHasParameter implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,9 +43,6 @@ public class LoginWay implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     private Integer id;
-    @Size(max = 45)
-    @Column(name = "Lg_way", length = 45)
-    private String lgway;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -58,21 +53,21 @@ public class LoginWay implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Login_type_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "Parameter_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private LoginType logintypeID;
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    private Parameter parameterID;
+    @JoinColumn(name = "Parameter_Group_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private User userID;
+    private ParameterGroup parameterGroupID;
 
-    public LoginWay() {
+    public GroupHasParameter() {
     }
 
-    public LoginWay(Integer id) {
+    public GroupHasParameter(Integer id) {
         this.id = id;
     }
 
-    public LoginWay(Integer id, Date createDate, Date updateDate) {
+    public GroupHasParameter(Integer id, Date createDate, Date updateDate) {
         this.id = id;
         this.createDate = createDate;
         this.updateDate = updateDate;
@@ -84,14 +79,6 @@ public class LoginWay implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getLgway() {
-        return lgway;
-    }
-
-    public void setLgway(String lgway) {
-        this.lgway = lgway;
     }
 
     public Date getCreateDate() {
@@ -110,20 +97,20 @@ public class LoginWay implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public LoginType getLogintypeID() {
-        return logintypeID;
+    public Parameter getParameterID() {
+        return parameterID;
     }
 
-    public void setLogintypeID(LoginType logintypeID) {
-        this.logintypeID = logintypeID;
+    public void setParameterID(Parameter parameterID) {
+        this.parameterID = parameterID;
     }
 
-    public User getUserID() {
-        return userID;
+    public ParameterGroup getParameterGroupID() {
+        return parameterGroupID;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setParameterGroupID(ParameterGroup parameterGroupID) {
+        this.parameterGroupID = parameterGroupID;
     }
 
     @Override
@@ -136,10 +123,10 @@ public class LoginWay implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LoginWay)) {
+        if (!(object instanceof GroupHasParameter)) {
             return false;
         }
-        LoginWay other = (LoginWay) object;
+        GroupHasParameter other = (GroupHasParameter) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,7 +135,7 @@ public class LoginWay implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.LoginWay[ id=" + id + " ]";
+        return "Entities.GroupHasParameter[ id=" + id + " ]";
     }
     
 }

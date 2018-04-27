@@ -26,24 +26,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "log_screen", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "LogScreen.findAll", query = "SELECT l FROM LogScreen l")
-    , @NamedQuery(name = "LogScreen.findById", query = "SELECT l FROM LogScreen l WHERE l.id = :id")
-    , @NamedQuery(name = "LogScreen.findByTable1", query = "SELECT l FROM LogScreen l WHERE l.table1 = :table1")
-    , @NamedQuery(name = "LogScreen.findByTRXdesc", query = "SELECT l FROM LogScreen l WHERE l.tRXdesc = :tRXdesc")
-    , @NamedQuery(name = "LogScreen.findByT2val", query = "SELECT l FROM LogScreen l WHERE l.t2val = :t2val")
-    , @NamedQuery(name = "LogScreen.findByT1val", query = "SELECT l FROM LogScreen l WHERE l.t1val = :t1val")
-    , @NamedQuery(name = "LogScreen.findByT2Col", query = "SELECT l FROM LogScreen l WHERE l.t2Col = :t2Col")
-    , @NamedQuery(name = "LogScreen.findByT1Col", query = "SELECT l FROM LogScreen l WHERE l.t1Col = :t1Col")
-    , @NamedQuery(name = "LogScreen.findByTable2", query = "SELECT l FROM LogScreen l WHERE l.table2 = :table2")
-    , @NamedQuery(name = "LogScreen.findByCreateDate", query = "SELECT l FROM LogScreen l WHERE l.createDate = :createDate")
-    , @NamedQuery(name = "LogScreen.findByUpdateDate", query = "SELECT l FROM LogScreen l WHERE l.updateDate = :updateDate")
-    , @NamedQuery(name = "LogScreen.findBySeqno", query = "SELECT l FROM LogScreen l WHERE l.seqno = :seqno")})
+    @NamedQuery(name = "LogScreen.findAll", query = "SELECT l FROM LogScreen l"),
+    @NamedQuery(name = "LogScreen.findById", query = "SELECT l FROM LogScreen l WHERE l.id = :id"),
+    @NamedQuery(name = "LogScreen.findByTable1", query = "SELECT l FROM LogScreen l WHERE l.table1 = :table1"),
+    @NamedQuery(name = "LogScreen.findByTRXdesc", query = "SELECT l FROM LogScreen l WHERE l.tRXdesc = :tRXdesc"),
+    @NamedQuery(name = "LogScreen.findByT2val", query = "SELECT l FROM LogScreen l WHERE l.t2val = :t2val"),
+    @NamedQuery(name = "LogScreen.findByT1val", query = "SELECT l FROM LogScreen l WHERE l.t1val = :t1val"),
+    @NamedQuery(name = "LogScreen.findByT2Col", query = "SELECT l FROM LogScreen l WHERE l.t2Col = :t2Col"),
+    @NamedQuery(name = "LogScreen.findByT1Col", query = "SELECT l FROM LogScreen l WHERE l.t1Col = :t1Col"),
+    @NamedQuery(name = "LogScreen.findByTable2", query = "SELECT l FROM LogScreen l WHERE l.table2 = :table2"),
+    @NamedQuery(name = "LogScreen.findByCreateDate", query = "SELECT l FROM LogScreen l WHERE l.createDate = :createDate"),
+    @NamedQuery(name = "LogScreen.findByUpdateDate", query = "SELECT l FROM LogScreen l WHERE l.updateDate = :updateDate"),
+    @NamedQuery(name = "LogScreen.findBySeqno", query = "SELECT l FROM LogScreen l WHERE l.seqno = :seqno")})
 public class LogScreen implements Serializable {
 
     private static final long serialVersionUID = 1L;
