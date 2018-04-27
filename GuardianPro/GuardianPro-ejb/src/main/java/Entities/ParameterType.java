@@ -41,6 +41,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ParameterType.findByUpdateDate", query = "SELECT p FROM ParameterType p WHERE p.updateDate = :updateDate")})
 public class ParameterType implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "XML_header", nullable = false, length = 150)
+    private String xMLheader;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -143,6 +149,14 @@ public class ParameterType implements Serializable {
     @Override
     public String toString() {
         return "Entities.ParameterType[ id=" + id + " ]";
+    }
+
+    public String getXMLheader() {
+        return xMLheader;
+    }
+
+    public void setXMLheader(String xMLheader) {
+        this.xMLheader = xMLheader;
     }
     
 }

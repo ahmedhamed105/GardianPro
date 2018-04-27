@@ -327,6 +327,13 @@
                <f:facet name="input"><p:inputText id="modelInput" value="#{para.type}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
+       
+            <p:column headerText="XML Header">
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.XMLheader}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.XMLheader}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
 
        <p:column style="width:32px">
            <p:rowEditor />
@@ -350,7 +357,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter Update</h3>
+              <h3 class="box-title">Parmeter</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -382,6 +389,10 @@
                   <label for="Para_type">Parmeter Type</label>
                   <p:inputText class="form-control" id="Para_type"  value="#{parmeter.para.type}" required="true" requiredMessage="please Enter Parmeter Type"/>						
                   <p:message for="Para_type" display="text"/>
+                  <label for="XML_head">XML Header</label>
+                  <p:inputText class="form-control" id="XML_head"  value="#{parmeter.para.XMLheader}" required="true" requiredMessage="please Enter XML Header"/>						
+                  <p:message for="XML_head" display="text"/>
+               
                   <br/>
                   <br/>
                   <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1" action="#{parmeter.ADD(actionEvent)}"/>  
