@@ -29,4 +29,9 @@
         <managed-bean-class>com.guardian.Login.Messages</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>inputtype</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.Inputtype</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
