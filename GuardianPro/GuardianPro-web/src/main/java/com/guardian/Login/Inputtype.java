@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -81,6 +82,15 @@ public class Inputtype {
         this.input_types = input_types;
     }
 
+    public InputType getType() {
+        return type;
+    }
+
+    public void setType(InputType type) {
+        this.type = type;
+    }
+
+    
 
 
     public void onRowEdit(RowEditEvent event) {
@@ -95,6 +105,23 @@ public class Inputtype {
     public void onRowCancel(RowEditEvent event) {
           Messages.addInfoMessage("Cancelled "+((InputType) event.getObject()).getType(),1);
     }
+    
+    
+    
+     public String ADD(ActionEvent actionEvent){
+         
+        if(inputTypeFacade.input_find(type.getType())){
+               Messages.addInfoMessage("Duplicated",2);
+        }else{
+             Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            type.setCreateDate(date);
+            type.setUpdateDate(date);
+          inputTypeFacade.create(type);
+        }
+         
+      return "Login";
+     }
        
     
     

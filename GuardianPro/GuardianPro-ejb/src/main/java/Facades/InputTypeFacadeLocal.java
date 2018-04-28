@@ -30,4 +30,6 @@ public interface InputTypeFacadeLocal {
 
     int count();
     
+    boolean input_find(String input);
+    
 }

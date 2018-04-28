@@ -9,6 +9,7 @@ import Entities.InputType;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,25 @@ public class InputTypeFacade extends AbstractFacade<InputType> implements InputT
 
     public InputTypeFacade() {
         super(InputType.class);
+    }
+
+    @Override
+    public boolean input_find(String input) {
+  
+       Query para_find = em.createNamedQuery("InputType.findByType");
+        para_find.setParameter("type", input);
+        try {
+         Entities.InputType  inputtype = (Entities.InputType) para_find.getSingleResult(); 
+         //   System.out.println("ahmed hamed  "+inputtype.getType());
+         if(inputtype==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }
