@@ -63,7 +63,7 @@ public class Parameter implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "Display_Name", nullable = false, length = 100)
     private String displayName;
-    @Column(name = "Input Length")
+    @Column(name = "Input_Length")
     private Integer inputLength;
     @Size(max = 500)
     @Column(name = "Note", length = 500)

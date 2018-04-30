@@ -35,6 +35,8 @@ public class parmeter {
     
       List<ParameterType> parmeter_types = new ArrayList<ParameterType>();
       
+      private ParameterType selectparmeter= new ParameterType();
+      
      ParameterType para= new ParameterType();
      
       java.sql.Date date ;
@@ -90,6 +92,30 @@ public class parmeter {
     public void setPara(ParameterType para) {
         this.para = para;
     }
+
+    
+
+    public ParameterType getSelectparmeter() {
+        return selectparmeter;
+    }
+
+    public void setSelectparmeter(ParameterType selectparmeter) {
+        this.selectparmeter = selectparmeter;
+    }
+    
+    
+     public void remove(ActionEvent actionEvent){
+         try {
+                   parameterTypeFacade.remove(selectparmeter);
+             Messages.addInfoMessage("removed "+selectparmeter.getType(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selectparmeter.getType()+" return to Admin",2);
+         }
+         
+     
+     }
+   
+    
     
      public String ADD(ActionEvent actionEvent){
          
