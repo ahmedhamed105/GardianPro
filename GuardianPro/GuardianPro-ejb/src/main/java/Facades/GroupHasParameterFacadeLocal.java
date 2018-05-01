@@ -6,6 +6,8 @@
 package Facades;
 
 import Entities.GroupHasParameter;
+import Entities.Parameter;
+import Entities.ParameterGroup;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,7 @@ public interface GroupHasParameterFacadeLocal {
     List<GroupHasParameter> findRange(int[] range);
 
     int count();
+    
+     List<GroupHasParameter> get_para_group(ParameterGroup gp);
     
 }

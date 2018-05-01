@@ -5,6 +5,7 @@
  */
 package com.guardian.Login;
 
+import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
 import Facades.GroupHasParameterFacadeLocal;
@@ -51,7 +52,18 @@ public class ParameterGroups {
      
      List<ParameterGroup> Gpara= new ArrayList<ParameterGroup>();
      
+      List<GroupHasParameter> para= new ArrayList<GroupHasParameter>();
+      
+      
+       List<Parameter> parameter= new ArrayList<Parameter>();
+       
+        List<Parameter> selparameter= new ArrayList<Parameter>();
+        
+        ParameterGroup selectgroup=new ParameterGroup();
+     
       java.sql.Date date ;
+      
+      PGroup_tree selectdelte=new PGroup_tree();
 
     /**
      * Creates a new instance of ParameterGroup
@@ -69,12 +81,31 @@ public class ParameterGroups {
             + "/faces/login.xhtml");
 
         }else{
-            
+            selectgroup=new ParameterGroup();
+            selparameter= new ArrayList<Parameter>();
              Gpara=parameterGroupFacade.findAll();
-      //   parmeters  = parameterFacade.findAll();
-       root = new DefaultTreeNode(new PGroup_tree("Groups",Gpara.size(),0), null);
+             parameter=parameterFacade.findAll();
+     
+       root = new DefaultTreeNode(new PGroup_tree("Groups",Gpara.size(),0,"root"), null);
       for(int i=0;i<Gpara.size();i++){
-         DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),Gpara.size(),Gpara.get(i).getId()), root);
+          try {
+              para  = groupHasParameterFacade.get_para_group(Gpara.get(i));
+              
+              System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
+              DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),para.size(),Gpara.get(i).getId(),"GROUP"), root);
+         
+              for(int j=0;j<para.size();j++){
+                   System.out.println("para "+para.get(j).getParameterID().getDisplayName());
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),"Parameter"), documents);
+        
+              }
+          } catch (Exception e) {
+              e.printStackTrace();
+               System.out.println("error");
+                 DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),0,Gpara.get(i).getId(),"GROUP"), root);
+          }
+         
+      
       }
       
     
@@ -109,7 +140,65 @@ public class ParameterGroups {
     public void setRoot(TreeNode root) {
         this.root = root;
     }
+
+    public List<Parameter> getParameter() {
+        return parameter;
+    }
+
+    public void setParameter(List<Parameter> parameter) {
+        this.parameter = parameter;
+    }
+
+    public List<Parameter> getSelparameter() {
+        return selparameter;
+    }
+
+    public void setSelparameter(List<Parameter> selparameter) {
+        this.selparameter = selparameter;
+    }
+
+    public ParameterGroup getSelectgroup() {
+        return selectgroup;
+    }
+
+    public void setSelectgroup(ParameterGroup selectgroup) {
+        this.selectgroup = selectgroup;
+    }
+
+    public List<ParameterGroup> getGpara() {
+        return Gpara;
+    }
+
+    public void setGpara(List<ParameterGroup> Gpara) {
+        this.Gpara = Gpara;
+    }
+
+    public PGroup_tree getSelectdelte() {
+        return selectdelte;
+    }
+
+    public void setSelectdelte(PGroup_tree selectdelte) {
+        this.selectdelte = selectdelte;
+    }
+
     
+   
+       
+       public String joingroup(ActionEvent actionEvent){
+         for(int i=0;i<selparameter.size();i++){
+  GroupHasParameter a=new GroupHasParameter();
+  a.setParameterGroupID(selectgroup);
+             Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            a.setCreateDate(date);
+            a.setUpdateDate(date);
+            a.setParameterID(selparameter.get(i));
+          groupHasParameterFacade.create(a);
+         }
+       
+         
+      return "Login";
+     }
     
     
     
@@ -125,8 +214,32 @@ public class ParameterGroups {
             paraGroup.setUpdateDate(date);
           parameterGroupFacade.create(paraGroup);
        }
+      
+       Gpara=parameterGroupFacade.findAll();
+             parameter=parameterFacade.findAll();
          
       return "Login";
+     }
+       
+       
+                public void remove(ActionEvent actionEvent){
+                    
+                    if(selectdelte.getType().toUpperCase().equals("GROUP")){
+                    Messages.addInfoMessage("all para tp group  removed",1);
+                    }else{
+                           try {
+                  
+                 GroupHasParameter a=groupHasParameterFacade.find(selectdelte.getId());
+                               
+                   groupHasParameterFacade.remove(a);
+             Messages.addInfoMessage("removed "+a.getParameterID().getDisplayName()+" from "+a.getParameterGroupID().getGroupname(),1);
+         } catch (Exception e) {
+                 Messages.addInfoMessage("not removed",1);
+    }
+                    }
+  
+         
+     
      }
     
     

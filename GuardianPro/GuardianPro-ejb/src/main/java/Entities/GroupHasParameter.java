@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "GroupHasParameter.findAll", query = "SELECT g FROM GroupHasParameter g"),
     @NamedQuery(name = "GroupHasParameter.findById", query = "SELECT g FROM GroupHasParameter g WHERE g.id = :id"),
+    @NamedQuery(name = "GroupHasParameter.findByGroup", query = "SELECT g FROM GroupHasParameter g WHERE g.parameterGroupID = :id"),
     @NamedQuery(name = "GroupHasParameter.findByCreateDate", query = "SELECT g FROM GroupHasParameter g WHERE g.createDate = :createDate"),
     @NamedQuery(name = "GroupHasParameter.findByUpdateDate", query = "SELECT g FROM GroupHasParameter g WHERE g.updateDate = :updateDate")})
 public class GroupHasParameter implements Serializable {

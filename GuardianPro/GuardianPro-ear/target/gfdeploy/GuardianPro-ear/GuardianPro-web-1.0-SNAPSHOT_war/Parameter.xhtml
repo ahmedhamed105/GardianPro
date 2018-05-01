@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Parmeter type</title>
+        <title>Parmeter</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{parameterGroup.init()}"/>
+            <f:event type="preRenderView" listener="#{parameter.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -281,7 +281,7 @@
  
         
         <div class="row">
-          <div class="col-md-6 col-sm-3 col-xs-6">
+          <div class="col-md-8 col-sm-4 col-xs-8">
                    <!-- general form elements -->
           <div class="box">
             
@@ -315,26 +315,101 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:treeTable id="cars1" value="#{parameterGroup.root}" var="group" selectionMode="single" selection="#{parameterGroup.selectdelte}">
-        <f:facet name="header">
-            Group Parmeter
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.parameterGroup}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
+                  <p:dataTable id="cars1" widgetVar="carsTable"
+                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{parameter.parmeters}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{parameter.selectparmeter}" rowKey="#{para.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{parameter.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{parameter.onRowCancel}" update=":form:messages :form:cars1"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+    <p:column headerText="field Name" sortBy="#{para.parametertypeID.type}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.parametertypeID.type}" /></f:facet>
+               <f:facet name="input">
+                <h:selectOneMenu converter="#{cparmetertype}" class="form-control select2" id="parametertype" value="#{para.parametertypeID}" required="true" requiredMessage="please Enter parameter type">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameter.parmeter_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
+                 </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+     
+       <p:column headerText="field Name" sortBy="#{para.fieldName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.fieldName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.fieldName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="display Name" sortBy="#{para.displayName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.displayName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.displayName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+        <p:column headerText="input Length" sortBy="#{para.inputLength}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.inputLength}" /></f:facet>
+               <f:facet name="input">
+                   <p:inputText class="form-control" converterMessage="please enter Number "  value="#{para.inputLength}" required="true" requiredMessage="please Enter input Length">
+                   <f:convertNumber integerOnly="true" type="number" />
+                  </p:inputText>	
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="input type" sortBy="#{para.inputtypeID.type}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.inputtypeID.type}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu converter="#{Cinputtype}" class="form-control select2"  value="#{para.inputtypeID}" required="true" requiredMessage="please Enter input type">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameter.input_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
+                 </h:selectOneMenu> 
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+    <p:column headerText="allowNull" sortBy="#{para.allowNull}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.allowNull}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectBooleanCheckbox  value="#{para.allowNull}" />
+               </f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+    <p:column headerText="Note" sortBy="#{para.note}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.note}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput2" value="#{para.note}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
 
        
-      
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.remove(actionEvent)}"/>  
-             
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+      <f:facet name="footer">
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"/>  
+    </f:facet>
+    
+   </p:dataTable>
+                  
                   
                 </div>
                    </h:form>     
@@ -347,7 +422,7 @@
             </div>
         </div>
        
-        <div class="col-md-6 col-sm-3 col-xs-6">
+        <div class="col-md-4 col-sm-2 col-xs-4">
                    <!-- general form elements -->
           <div class="box">
             
@@ -380,14 +455,53 @@
                   <h:form id="form1">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
+                    
+                    
+                    <label for="parametertypeID">Parameter Type</label>  
+                    <h:selectOneMenu converter="#{cparmetertype}" class="form-control select2" id="parametertypeID" value="#{parameter.parmeter.parametertypeID}" required="true" requiredMessage="please Enter parameter type">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameter.parmeter_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
+                 </h:selectOneMenu>
+                 <p:message for="parametertypeID" display="text"/>
                    
-                  <label for="groupname">Parmeter Group name</label>
-                  <p:inputText class="form-control" id="groupname"  value="#{parameterGroup.paraGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                  <p:message for="groupname" display="text"/>
+                  <label for="fieldName">field Name</label>
+                  <p:inputText class="form-control" id="fieldName"  value="#{parameter.parmeter.fieldName}" required="true" requiredMessage="please Enter field Name"/>						
+                  <p:message for="fieldName" display="text"/>
+                  
+                  <label for="displayName">display Name</label>
+                  <p:inputText class="form-control" id="displayName"  value="#{parameter.parmeter.displayName}" required="true" requiredMessage="please Enter display Name"/>						
+                  <p:message for="displayName" display="text"/>
+                  
+                  <label for="inputLength">input Length</label>
+                  <p:inputText class="form-control" id="inputLength" converterMessage="please enter Number "  value="#{parameter.parmeter.inputLength}" required="true" requiredMessage="please Enter input Length">
+                   <f:convertNumber integerOnly="true" type="number" />
+                  </p:inputText>						
+                  <p:message for="inputLength" display="text"/>
+                  
+                 <label for="inputtypeID">Input Type</label>  
+                 <h:selectOneMenu converter="#{Cinputtype}" class="form-control select2" id="inputtypeID" value="#{parameter.parmeter.inputtypeID}" required="true" requiredMessage="please Enter input type">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameter.input_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
+                 </h:selectOneMenu>
+                 <p:message for="inputtypeID" display="text"/>
+                 
+                  <div class="checkbox">
+                    <label>
+                        <h:selectBooleanCheckbox id="allowNull" value="#{parameter.parmeter.allowNull}" />
+                      <label for="allowNull">allowNull</label>
+                    </label>
+                  </div>
+                 
+                 
+                 <label for="note">note</label>
+                 <p:inputText class="form-control" id="note"  value="#{parameter.parmeter.note}" >
+                  </p:inputText>						
+                 
+                 
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parameter.ADD(actionEvent)}"/>  
    
                   
                   
@@ -402,77 +516,6 @@
             </div>
         </div>
         </div>
-        
-         <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Group and Parameters</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                  <h:form id="form3">
-                  <p:messages id="messages3" showDetail="true" closable="true"/>
-                <div class="form-group">
-                    
-                       
-                        <h:selectOneMenu converter="#{cgroupparameter}" class="form-control select2" id="parameterGroup" value="#{parameterGroup.selectgroup}" required="true" requiredMessage="please Enter parameter Group">
-                 <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{parameterGroup.gpara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
-                 </h:selectOneMenu>
-                 <p:message for="parameterGroup" display="text"/>
-                            
-                             <label for="advanced">Parmeter Choose</label>  
-                             <p:selectManyMenu  id="advanced" value="#{parameterGroup.selparameter}" converter="#{CParameter}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter parameters">
-                        <f:selectItems value="#{parameterGroup.parameter}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.displayName}" />
-            </p:column>
-             </p:selectManyMenu>
-                    <p:message for="advanced" display="text"/>
-               
-                  <br/>
-                  <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{parameterGroup.joingroup(actionEvent)}"/>  
-   
-                  
-                  
-                </div>
-                   </h:form>        
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-         </div>
         
         
         <div class="row">

@@ -15,6 +15,7 @@ public class PGroup_tree {
     private String parameterGroup;
     private int  count;
     private int  id;
+    private String  type;
    
 
     /**
@@ -23,10 +24,11 @@ public class PGroup_tree {
     public PGroup_tree() {
     }
     
-        public PGroup_tree(String parameterGroup,int  count,int  id) {
+        public PGroup_tree(String parameterGroup,int  count,int  id,String  type) {
             this.parameterGroup = parameterGroup;
             this.count = count;
             this.id = id;
+            this.type= type;
     }
 
     public String getParameterGroup() {
@@ -52,6 +54,16 @@ public class PGroup_tree {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
     
     
     

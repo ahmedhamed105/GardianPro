@@ -315,7 +315,7 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:treeTable id="cars1" value="#{parameterGroup.root}" var="group">
+                    <p:treeTable id="cars1" value="#{parameterGroup.root}" var="group" selectionMode="single" selection="#{parameterGroup.selectdelte}">
         <f:facet name="header">
             Group Parmeter
         </f:facet>
@@ -325,10 +325,16 @@
          <p:column headerText="Count">
             <h:outputText value="#{group.count}" />
         </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
+
        
       
     </p:treeTable>
-                  
+                    
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.remove(actionEvent)}"/>  
+             
                   
                 </div>
                    </h:form>     
@@ -381,7 +387,7 @@
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parameterGroup.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.ADD(actionEvent)}"/>  
    
                   
                   
@@ -396,6 +402,77 @@
             </div>
         </div>
         </div>
+        
+         <div class="row">
+          <div class="col-md-12 col-sm-6 col-xs-12">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Group and Parameters</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                  <h:form id="form3">
+                  <p:messages id="messages3" showDetail="true" closable="true"/>
+                <div class="form-group">
+                    
+                       
+                        <h:selectOneMenu converter="#{cgroupparameter}" class="form-control select2" id="parameterGroup" value="#{parameterGroup.selectgroup}" required="true" requiredMessage="please Enter parameter Group">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameterGroup.gpara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
+                 </h:selectOneMenu>
+                 <p:message for="parameterGroup" display="text"/>
+                            
+                             <label for="advanced">Parmeter Choose</label>  
+                             <p:selectManyMenu  id="advanced" value="#{parameterGroup.selparameter}" converter="#{CParameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter parameters">
+                        <f:selectItems value="#{parameterGroup.parameter}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.displayName}" />
+            </p:column>
+             </p:selectManyMenu>
+                    <p:message for="advanced" display="text"/>
+               
+                  <br/>
+                  <br/>
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{parameterGroup.joingroup(actionEvent)}"/>  
+   
+                  
+                  
+                </div>
+                   </h:form>        
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+         </div>
         
         
         <div class="row">

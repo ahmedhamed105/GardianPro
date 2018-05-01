@@ -50,6 +50,11 @@
         <managed-bean-class>com.guardian.converter.Cparmetertype</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+      <managed-bean>
+        <managed-bean-name>CParameter</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CParameter</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>parameterGroup</managed-bean-name>
         <managed-bean-class>com.guardian.Login.ParameterGroups</managed-bean-class>
@@ -60,4 +65,9 @@
         <managed-bean-class>com.guardian.Login.PGroup_tree</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>cgroupparameter</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cgroupparameter</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
