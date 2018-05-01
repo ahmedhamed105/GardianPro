@@ -30,4 +30,6 @@ public interface ParameterFacadeLocal {
 
     int count();
     
+    boolean para_find(String displayname);
+    
 }

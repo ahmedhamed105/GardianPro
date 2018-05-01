@@ -166,15 +166,15 @@ public class parameter {
     
      public String ADD(ActionEvent actionEvent){
          
-     //   if(parameterFacade.input_find(parmeter.getType())){
-    //           Messages.addInfoMessage("Duplicated",2);
-    //    }else{
+      if(parameterFacade.para_find(parmeter.getDisplayName())){
+             Messages.addInfoMessage("Duplicated",2);
+        }else{
              Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             parmeter.setCreateDate(date);
             parmeter.setUpdateDate(date);
           parameterFacade.create(parmeter);
-     //   }
+        }
          
       return "Login";
      }
