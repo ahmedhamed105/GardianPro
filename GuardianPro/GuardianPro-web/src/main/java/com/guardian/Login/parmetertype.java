@@ -24,7 +24,7 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author ahmed.elemam
  */
-public class parmeter {
+public class parmetertype {
 
     @EJB
     private UserFacadeLocal userFacade;
@@ -45,7 +45,7 @@ public class parmeter {
     /**
      * Creates a new instance of parmeter
      */
-    public parmeter() {
+    public parmetertype() {
    
     }
     
@@ -69,7 +69,7 @@ public class parmeter {
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
-                Logger.getLogger(parmeter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
    

@@ -69,7 +69,7 @@ public class Inputtype {
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
-                Logger.getLogger(parmeter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
    

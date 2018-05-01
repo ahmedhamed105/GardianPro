@@ -71,7 +71,7 @@ public class Parameter implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "Allow_Null", nullable = false)
-    private int allowNull;
+    private boolean allowNull;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -98,7 +98,7 @@ public class Parameter implements Serializable {
         this.id = id;
     }
 
-    public Parameter(Integer id, String fieldName, String displayName, int allowNull, Date createDate, Date updateDate) {
+    public Parameter(Integer id, String fieldName, String displayName, boolean allowNull, Date createDate, Date updateDate) {
         this.id = id;
         this.fieldName = fieldName;
         this.displayName = displayName;
@@ -147,11 +147,11 @@ public class Parameter implements Serializable {
         this.note = note;
     }
 
-    public int getAllowNull() {
+    public boolean getAllowNull() {
         return allowNull;
     }
 
-    public void setAllowNull(int allowNull) {
+    public void setAllowNull(boolean allowNull) {
         this.allowNull = allowNull;
     }
 
