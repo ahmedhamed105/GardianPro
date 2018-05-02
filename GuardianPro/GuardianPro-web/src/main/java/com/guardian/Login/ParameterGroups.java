@@ -63,7 +63,7 @@ public class ParameterGroups {
      
       java.sql.Date date ;
       
-      PGroup_tree selectdelte=new PGroup_tree();
+      private TreeNode selectdelte;
 
     /**
      * Creates a new instance of ParameterGroup
@@ -173,17 +173,15 @@ public class ParameterGroups {
         this.Gpara = Gpara;
     }
 
-    public PGroup_tree getSelectdelte() {
+    public TreeNode getSelectdelte() {
         return selectdelte;
     }
 
-    public void setSelectdelte(PGroup_tree selectdelte) {
+    public void setSelectdelte(TreeNode selectdelte) {
         this.selectdelte = selectdelte;
     }
 
-    
-   
-       
+ 
        public String joingroup(ActionEvent actionEvent){
          for(int i=0;i<selparameter.size();i++){
   GroupHasParameter a=new GroupHasParameter();
@@ -221,15 +219,59 @@ public class ParameterGroups {
       return "Login";
      }
        
+public void removeGroup(ActionEvent actionEvent){
+      if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
+          try {
+              ParameterGroup a=   parameterGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<GroupHasParameter> b=  groupHasParameterFacade.get_para_group(a);
+                        for (GroupHasParameter groupHasParameter : b) {
+                            try {
+                            groupHasParameterFacade.remove(groupHasParameter);
+                            Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1);
        
-                public void remove(ActionEvent actionEvent){
+                            } catch (Exception e) {
+                                  Messages.addInfoMessage("NO parmeter Linked ",1);
+                            }
+                
+                        //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
+                        } 
+                        
+                        parameterGroupFacade.remove(a);
+                          Messages.addInfoMessage("removed "+a.getGroupname(),1);
+       
+                           
+                        
+          } catch (Exception e) {
+               Messages.addInfoMessage("Problem in system  ",2);
+          }
                     
-                    if(selectdelte.getType().toUpperCase().equals("GROUP")){
-                    Messages.addInfoMessage("all para tp group  removed",1);
+                   
+                    }
+    
+}
+       
+       
+public void remove(ActionEvent actionEvent){
+                    
+                    if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
+                        try{
+                     ParameterGroup a=   parameterGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<GroupHasParameter> b=  groupHasParameterFacade.get_para_group(a);
+                        for (GroupHasParameter groupHasParameter : b) {
+                            
+                       groupHasParameterFacade.remove(groupHasParameter);
+                     Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1);
+    
+                        //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
+                        }
+                           } catch (Exception e) {
+               Messages.addInfoMessage("Problem in system  ",2);
+          }
+                   
                     }else{
                            try {
                   
-                 GroupHasParameter a=groupHasParameterFacade.find(selectdelte.getId());
+                 GroupHasParameter a=groupHasParameterFacade.find(((PGroup_tree)selectdelte.getData()).getId());
                                
                    groupHasParameterFacade.remove(a);
              Messages.addInfoMessage("removed "+a.getParameterID().getDisplayName()+" from "+a.getParameterGroupID().getGroupname(),1);

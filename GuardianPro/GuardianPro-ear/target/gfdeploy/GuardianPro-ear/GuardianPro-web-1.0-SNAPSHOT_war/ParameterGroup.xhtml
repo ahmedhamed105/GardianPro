@@ -333,7 +333,8 @@
       
     </p:treeTable>
                     
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.remove(actionEvent)}"/>  
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.removeGroup(actionEvent)}"/>  
              
                   
                 </div>
