@@ -20,10 +20,10 @@
         </navigation-case>
     </navigation-rule>
     <managed-bean>
-        <managed-bean-name>parmeter</managed-bean-name>
-        <managed-bean-class>com.guardian.Login.parmeter</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+        <managed-bean-name>parmetertype</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.parmetertype</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>messages</managed-bean-name>
         <managed-bean-class>com.guardian.Login.Messages</managed-bean-class>
@@ -32,6 +32,42 @@
     <managed-bean>
         <managed-bean-name>inputtype</managed-bean-name>
         <managed-bean-class>com.guardian.Login.Inputtype</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>parameter</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.parameter</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+       <managed-bean>
+        <managed-bean-name>Cinputtype</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cinputtype</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cparmetertype</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cparmetertype</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+      <managed-bean>
+        <managed-bean-name>CParameter</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CParameter</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>parameterGroup</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.ParameterGroups</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>pGroup_tree</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.PGroup_tree</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>cgroupparameter</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cgroupparameter</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 </faces-config>

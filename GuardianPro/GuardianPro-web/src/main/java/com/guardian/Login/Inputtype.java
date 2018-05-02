@@ -38,8 +38,9 @@ public class Inputtype {
     
      List<InputType> input_types = new ArrayList<InputType>();
     java.sql.Date date ;
-     
-     InputType type=new InputType();;
+     List<InputType> filteredtype = new ArrayList<InputType>();
+     InputType type=new InputType();
+     InputType selecttype=new InputType();
     
     /**
      * Creates a new instance of Inputtype
@@ -68,11 +69,21 @@ public class Inputtype {
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
-                Logger.getLogger(parmeter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
             }
 }
    
     }
+
+    public InputType getSelecttype() {
+        return selecttype;
+    }
+
+    public void setSelecttype(InputType selecttype) {
+        this.selecttype = selecttype;
+    }
+     
+     
 
     public List<InputType> getInput_types() {
         return input_types;
@@ -90,6 +101,25 @@ public class Inputtype {
         this.type = type;
     }
 
+    public List<InputType> getFilteredtype() {
+        return filteredtype;
+    }
+
+    public void setFilteredtype(List<InputType> filteredtype) {
+        this.filteredtype = filteredtype;
+    }
+
+    
+     public void remove(ActionEvent actionEvent){
+         try {
+                   inputTypeFacade.remove(selecttype);
+             Messages.addInfoMessage("removed "+selecttype.getType(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selecttype.getType()+" return to Admin",2);
+         }
+         
+     
+     }
     
 
 

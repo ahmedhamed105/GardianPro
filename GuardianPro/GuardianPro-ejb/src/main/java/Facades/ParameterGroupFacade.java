@@ -9,6 +9,7 @@ import Entities.ParameterGroup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,25 @@ public class ParameterGroupFacade extends AbstractFacade<ParameterGroup> impleme
 
     public ParameterGroupFacade() {
         super(ParameterGroup.class);
+    }
+
+    @Override
+    public boolean Pgroup_find(String groupname) {
+ 
+         Query para_find = em.createNamedQuery("ParameterGroup.findByGroupname");
+        para_find.setParameter("groupname", groupname);
+        try {
+         Entities.ParameterGroup  parah = (Entities.ParameterGroup) para_find.getSingleResult(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

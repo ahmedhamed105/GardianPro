@@ -10,11 +10,11 @@
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_enddate.html" x="650" y="2100" zoom="true"/>
         <Node id="bower_components/morris.js/examples/weeks.html" x="400" y="1500" zoom="true"/>
         <Node id="bower_components/morris.js/examples/updating.html" x="2400" y="1200" zoom="true"/>
-        <Node id="bower_components/bootstrap-datepicker/tests/tests.html" x="900" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/sharedspace/sharedspace.html" x="1400" y="1350" zoom="true"/>
+        <Node id="bower_components/bootstrap-datepicker/tests/tests.html" x="900" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/tableresize/tableresize.html" x="150" y="2550" zoom="true"/>
-        <Node id="bower_components/jquery-slimscroll/examples/multiple-elements.html" x="2150" y="1050" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/codesnippet/codesnippet.html" x="900" y="450" zoom="true"/>
+        <Node id="bower_components/jquery-slimscroll/examples/multiple-elements.html" x="2150" y="1050" zoom="true"/>
         <Node id="bower_components/Flot/examples/series-pie/index.html" x="2400" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/api.html" x="3150" y="450" zoom="true"/>
         <Node id="bower_components/select2/tests/unit.html" x="650" y="300" zoom="true"/>
@@ -27,16 +27,19 @@
         <Node id="bower_components/jquery-slimscroll/examples/chaining.html" x="150" y="1500" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_weekstart.html" x="2650" y="750" zoom="true"/>
         <Node id="bower_components/morris.js/examples/_template.html" x="150" y="600" zoom="true"/>
+<<<<<<< HEAD
         <Node id="bower_components/ckeditor/samples/old/jquery.html" x="2900" y="750" zoom="true"/>
+=======
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/Flot/examples/axes-interacting/index.html" x="2900" y="450" zoom="true"/>
         <Node id="bower_components/jquery-slimscroll/examples/height-width.html" x="150" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/htmlwriter/outputforflash.html" x="2150" y="150" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_startdate.html" x="1150" y="750" zoom="true"/>
-        <Node id="login.xhtml" x="150" y="150" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/uilanguages.html" x="1650" y="300" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="150" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_todayhighlight.html" x="400" y="1800" zoom="true"/>
-        <Node id="bower_components/morris.js/examples/non-continuous.html" x="650" y="2250" zoom="true"/>
         <Node id="bower_components/select2/docs/options.html" x="2150" y="300" zoom="true"/>
+        <Node id="bower_components/morris.js/examples/non-continuous.html" x="650" y="2250" zoom="true"/>
         <Node id="bower_components/morris.js/examples/donut-formatter.html" x="2400" y="900" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_todaybtn.html" x="400" y="2250" zoom="true"/>
         <Node id="bower_components/Flot/examples/selection/index.html" x="1650" y="1800" zoom="true"/>
@@ -45,11 +48,10 @@
         <Node id="bower_components/morris.js/examples/negative.html" x="1650" y="750" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/inlinetextarea.html" x="900" y="900" zoom="true"/>
         <Node id="bower_components/Ionicons/cheatsheet.html" x="650" y="600" zoom="true"/>
-        <Node id="bower_components/morris.js/examples/resize.html" x="1650" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/inlineall.html" x="1900" y="300" zoom="true"/>
+        <Node id="bower_components/morris.js/examples/resize.html" x="1650" y="1350" zoom="true"/>
         <Node id="bower_components/Flot/examples/ajax/index.html" x="2650" y="450" zoom="true"/>
         <Node id="bower_components/select2/docs/community.html" x="1400" y="1800" zoom="true"/>
-        <Node id="Parmeter.xhtml" x="1150" y="1200" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/markup_inline.html" x="3150" y="300" zoom="true"/>
         <Node id="bower_components/morris.js/examples/no-grid.html" x="1400" y="900" zoom="true"/>
         <Node id="bower_components/Flot/examples/image/index.html" x="1400" y="1950" zoom="true"/>
@@ -69,11 +71,11 @@
         <Node id="bower_components/morris.js/examples/non-date.html" x="1900" y="1650" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/stylesheetparser/stylesheetparser.html" x="2900" y="150" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/htmlwriter/outputhtml.html" x="3400" y="150" zoom="true"/>
-        <Node id="bower_components/ckeditor/samples/old/ajax.html" x="400" y="1350" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_calendarweeks.html" x="1650" y="1200" zoom="true"/>
+        <Node id="bower_components/ckeditor/samples/old/ajax.html" x="400" y="1350" zoom="true"/>
         <Node id="bower_components/bootstrap-daterangepicker/demo.html" x="650" y="1950" zoom="true"/>
-        <Node id="bower_components/Flot/examples/annotating/index.html" x="3650" y="600" zoom="true"/>
         <Node id="bower_components/Flot/examples/canvas/index.html" x="400" y="750" zoom="true"/>
+        <Node id="bower_components/Flot/examples/annotating/index.html" x="3650" y="600" zoom="true"/>
         <Node id="bower_components/jvectormap/tests/drill-down.html" x="3400" y="300" zoom="true"/>
         <Node id="bower_components/chart.js/samples/pie-customTooltips.html" x="1400" y="1050" zoom="true"/>
         <Node id="bower_components/Flot/examples/series-toggle/index.html" x="400" y="1050" zoom="true"/>
@@ -88,6 +90,10 @@
         <Node id="bower_components/Flot/examples/index.html" x="2150" y="750" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_language.html" x="1400" y="600" zoom="true"/>
         <Node id="bower_components/morris.js/examples/days.html" x="2150" y="900" zoom="true"/>
+<<<<<<< HEAD
+=======
+        <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_language.html" x="1400" y="600" zoom="true"/>
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_multidate.html" x="400" y="2400" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/uicolor.html" x="150" y="1050" zoom="true"/>
         <Node id="bower_components/chart.js/samples/line-customTooltips.html" x="3900" y="450" zoom="true"/>
@@ -95,8 +101,13 @@
         <Node id="bower_components/ckeditor/samples/old/readonly.html" x="1400" y="450" zoom="true"/>
         <Node id="profile.xhtml" x="650" y="1200" zoom="true"/>
         <Node id="bower_components/jvectormap/tests/basic.html" x="650" y="1500" zoom="true"/>
+<<<<<<< HEAD
         <Node id="bower_components/morris.js/examples/diagonal-xlabels-bar.html" x="1900" y="1050" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/devtools/devtools.html" x="150" y="1950" zoom="true"/>
+=======
+        <Node id="bower_components/ckeditor/samples/old/devtools/devtools.html" x="150" y="1950" zoom="true"/>
+        <Node id="bower_components/morris.js/examples/diagonal-xlabels-bar.html" x="1900" y="1050" zoom="true"/>
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/option_daysofweekdisabled.html" x="1400" y="150" zoom="true"/>
         <Node id="bower_components/morris.js/examples/area.html" x="2400" y="1050" zoom="true"/>
         <Node id="bower_components/jvectormap/tests/reverse-projection.html" x="3900" y="300" zoom="true"/>
@@ -115,12 +126,16 @@
         <Node id="bower_components/ckeditor/samples/old/sourcedialog/sourcedialog.html" x="1150" y="1500" zoom="true"/>
         <Node id="bower_components/jquery-slimscroll/examples/nested.html" x="3400" y="450" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/bbcode/bbcode.html" x="1400" y="1500" zoom="true"/>
-        <Node id="bower_components/Flot/examples/basic-usage/index.html" x="650" y="1350" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/enterkey/enterkey.html" x="650" y="900" zoom="true"/>
+        <Node id="bower_components/Flot/examples/basic-usage/index.html" x="650" y="1350" zoom="true"/>
         <Node id="bower_components/select2/docs/options-old.html" x="3650" y="300" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/markup_daterange.html" x="900" y="300" zoom="true"/>
         <Node id="bower_components/morris.js/examples/goals.html" x="150" y="900" zoom="true"/>
         <Node id="bower_components/bootstrap-datepicker/docs/_screenshots/demo_head.html" x="3150" y="900" zoom="true"/>
+<<<<<<< HEAD
+=======
+        <Node id="bower_components/jvectormap/tests/custom.html" x="1650" y="900" zoom="true"/>
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/jquery-slimscroll/examples/start-position.html" x="1150" y="450" zoom="true"/>
         <Node id="bower_components/jvectormap/tests/custom.html" x="1650" y="900" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/divreplace.html" x="1900" y="900" zoom="true"/>
@@ -150,6 +165,10 @@
         <Node id="bower_components/ckeditor/samples/old/inlinebycode.html" x="1900" y="150" zoom="true"/>
         <Node id="bower_components/morris.js/examples/dst.html" x="650" y="1800" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/index.html" x="1650" y="600" zoom="true"/>
+<<<<<<< HEAD
+=======
+        <Node id="bower_components/Flot/examples/navigate/index.html" x="150" y="450" zoom="true"/>
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/morris.js/examples/stacked_bars.html" x="1150" y="1350" zoom="true"/>
         <Node id="bower_components/jquery-slimscroll/examples/dynamic-content.html" x="150" y="2100" zoom="true"/>
         <Node id="bower_components/Flot/examples/navigate/index.html" x="150" y="450" zoom="true"/>
@@ -158,9 +177,15 @@
         <Node id="bower_components/ckeditor/samples/old/autogrow/autogrow.html" x="2900" y="300" zoom="true"/>
         <Node id="bower_components/Flot/examples/axes-multiple/index.html" x="2650" y="150" zoom="true"/>
         <Node id="bower_components/Flot/examples/axes-time-zones/index.html" x="650" y="1650" zoom="true"/>
+<<<<<<< HEAD
         <Node id="bower_components/Flot/examples/realtime/index.html" x="1150" y="1800" zoom="true"/>
         <Node id="bower_components/Flot/examples/tracking/index.html" x="1650" y="150" zoom="true"/>
         <Node id="bower_components/jquery-slimscroll/examples/disable-fade-out.html" x="400" y="600" zoom="true"/>
+=======
+        <Node id="bower_components/jquery-slimscroll/examples/disable-fade-out.html" x="400" y="600" zoom="true"/>
+        <Node id="bower_components/Flot/examples/realtime/index.html" x="1150" y="1800" zoom="true"/>
+        <Node id="bower_components/Flot/examples/tracking/index.html" x="1650" y="150" zoom="true"/>
+>>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5
         <Node id="bower_components/jquery-slimscroll/examples/programmatic-scrolling.html" x="3650" y="450" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/toolbarconfigurator/index.html" x="900" y="2100" zoom="true"/>
         <Node id="bower_components/ckeditor/samples/old/toolbar/toolbar.html" x="1900" y="1500" zoom="true"/>

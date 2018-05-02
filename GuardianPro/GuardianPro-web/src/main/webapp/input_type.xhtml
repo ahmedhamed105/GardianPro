@@ -312,16 +312,20 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:dataTable id="cars1" var="input" value="#{inputtype.input_types}" editable="true" style="margin-bottom:20px" rows="5"
+                    <p:dataTable id="cars1"  var="input" value="#{inputtype.input_types}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15"  selection="#{inputtype.selecttype}" rowKey="#{input.id}">
   
  
-       <p:ajax event="rowEdit" listener="#{inputtype.onRowEdit}" update=":form:messages" />
-       <p:ajax event="rowEditCancel" listener="#{inputtype.onRowCancel}" update=":form:messages" />
+       <p:ajax event="rowEdit" listener="#{inputtype.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{inputtype.onRowCancel}" update=":form:messages :form:cars1" />
  
-       <p:column headerText="Input Type">
+          
+       
+           <p:column selectionMode="single" style="width:32px;text-align:center"/>
+       
+       <p:column headerText="Input Type" sortBy="#{input.type}" >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{input.type}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInput" value="#{input.type}" style="width:100%"/></f:facet>
@@ -333,6 +337,10 @@
        <p:column style="width:32px">
            <p:rowEditor />
        </p:column>
+                 <f:facet name="footer">
+                     <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{inputtype.remove(actionEvent)}"/>  
+    </f:facet>
+           
    </p:dataTable>
                   
                   
@@ -387,7 +395,7 @@
                 
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1" action="#{inputtype.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{inputtype.ADD(actionEvent)}"/>  
    
                   
                   
@@ -403,6 +411,78 @@
         </div>
         </div>
 
+        
+          <div class="row">
+          <div class="col-md-12 col-sm-6 col-xs-12">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Parmeter</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+              <ul class="timeline">
+
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-red">
+            10 Feb. 2014
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+    <!-- timeline item -->
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-envelope bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+            <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
+
+            <div class="timeline-body">
+                ...
+                Content goes here
+            </div>
+
+            <div class="timeline-footer">
+                <a class="btn btn-primary btn-xs">log</a>
+            </div>
+        </div>
+    </li>
+    <!-- END timeline item -->
+</ul>
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+      </div>
       <!-- /.row -->
     </section>
     <!-- /.content -->

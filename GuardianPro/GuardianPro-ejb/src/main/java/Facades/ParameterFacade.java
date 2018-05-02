@@ -31,6 +31,24 @@ public class ParameterFacade extends AbstractFacade<Parameter> implements Parame
     public ParameterFacade() {
         super(Parameter.class);
     }
+
+    @Override
+    public boolean para_find(String displayname) {
+          Query para_find = em.createNamedQuery("Parameter.findByDisplayName");
+        para_find.setParameter("displayName", displayname);
+        try {
+         Entities.Parameter  parah = (Entities.Parameter) para_find.getSingleResult(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
+    }
     
     
     

@@ -30,4 +30,7 @@ public interface ParameterGroupFacadeLocal {
 
     int count();
     
+    
+    boolean Pgroup_find(String groupname);
+    
 }

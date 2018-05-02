@@ -58,6 +58,7 @@ Entities\PasswordHistory_.class
 Entities\BirthData_.class
 Entities\Status_.class
 Facades\EmailSmsSendFacade.class
+Facades\GroupHasParameterFacadeLocal.class
 Entities\TrxType_.class
 Entities\ParameterType_.class
 Facades\StreetFacade.class
@@ -74,6 +75,7 @@ Facades\UserPasswordFacade.class
 Entities\ParameterGroup.class
 Entities\Country.class
 Entities\SocialDataPK.class
+Facades\GroupHasParameterFacade.class
 Entities\ArmyArea.class
 Facades\CityFacadeLocal.class
 Entities\LogScreen.class
