@@ -404,15 +404,17 @@
                 <div class="form-group">
                    
                   <label for="Groups">Groups</label>
-                  <p:inputText class="form-control" id="GroupName"  value="#{groups.group.name}" required="true" requiredMessage="please Enter Group Name"/>						
+                  <p:inputText class="form-control" id="Groups"  value="#{groups.group.name}" required="true" requiredMessage="please Enter Group Name"/>						
                   <p:message for="Groups" display="text"/>
+                 
+                  <label for="GroupADName">Groups</label>
+                  <p:inputText class="form-control" id="GroupADName"  value="#{groups.group.ADname}" required="true" requiredMessage="please Enter Group AD Name"/>						
+                  <p:message for="GroupADName" display="text"/>
                  
                   
-                  <p:inputText class="form-control" id="GroupADName"  value="#{groups.group.ADname}" required="true" requiredMessage="please Enter Group AD Name"/>						
-                  <p:message for="Groups" display="text"/>
-                 
+                   <label for="Groupdescription">Groups</label>
                   <p:inputText class="form-control" id="Groupdescription"  value="#{groups.group.description}" required="true" requiredMessage="please Enter Group description"/>						
-                  <p:message for="Groups" display="text"/>
+                  <p:message for="Groupdescription" display="text"/>
                
                   <br/>
                   <br/>
