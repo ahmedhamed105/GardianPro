@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\EmailSmsSend.java
@@ -51,12 +51,14 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\StreetFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneTypes.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Country.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\GroupsHasUser.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\InputTypeFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataHasUserFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\UserStatus.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatus1.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\RoleHasComponent.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatus1PK.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MilitaryStatusFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ArmyAreaFacade.java
@@ -74,6 +76,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ArmyAreaFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserStatusFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TrxType.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\RoleHasGroups.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\BirthData.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacadeLocal.java
@@ -87,8 +90,10 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteDataHasUser.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginTypeFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Role.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MilitaryStatusFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneData.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Component.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PasswordHistoryFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\StreetFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Status.java
@@ -97,127 +102,16 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Groups.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginWay.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialDataFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatusHasAddress.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ParameterGroup.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\User.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginWayFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\MilitaryStatus.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LogScreen.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\UserPassword.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\BirthDataFacadeLocal.java
-=======
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\SocialData.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ParameterGroup.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\BirthData.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneData.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterTypeFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginWay.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TrxTypeFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginTypeFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataHasUserFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\User.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\Distinct1Facade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\MaritalStatus.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\StreetFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TrxTypeFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatus1PK.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\EmailSmsSend.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginWayFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PasswordHistory.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ArmyAreaFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ProfileDataFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\InputType.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatusHasAddress.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalId.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\InputTypeFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PasswordHistoryFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteData.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginWayFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataHasUserFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Status.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialDataFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterGroupFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ProfileDataFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ProfileData.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Distinct1.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\City.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Street.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ArmyAreaFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\StreetFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\BirthDataFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatus.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NearPlaces.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\UserPassword.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PasswordHistoryFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Country.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatus1.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\NationalIdHasMaritalStatusHasAddressPK.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\Distinct1FacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneTypes.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ParameterType.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginType.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\UserStatus.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterGroupFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserStatusFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CountryFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\InputTypeFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\GroupHasParameter.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MilitaryStatusFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Address.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AbstractFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Parameter.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterTypeFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusHasAddressFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\SocialDataPK.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginTypeFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialDataFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MilitaryStatusFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ArmyArea.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserStatusFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\SocialType.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Religion.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CountryFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TrxType.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteDataHasUser.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LogScreen.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\MilitaryStatus.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\BirthDataFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacadeLocal.java
->>>>>>> 29695b4f97416c937f9359e7e64f78c116f6b9a5

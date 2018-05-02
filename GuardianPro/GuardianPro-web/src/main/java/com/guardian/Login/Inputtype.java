@@ -49,31 +49,31 @@ public class Inputtype {
     }
     
     
-     public void init(){
-             Login.login = userFacade.find(1);
-        try {
-        if(Login.login==null || Login.login.getId() == 0){
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        public void init(){
+                Login.login = userFacade.find(1);
+           try {
+           if(Login.login==null || Login.login.getId() == 0){
+           ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
-    ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+       ec.redirect(ec.getRequestContextPath()
+               + "/faces/login.xhtml");
 
-        }else{
-         input_types  = inputTypeFacade.findAll();
+           }else{
+            input_types  = inputTypeFacade.findAll();
 
-        }
-        
-        } catch (Exception e) {
-            try {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
-            } catch (IOException ex) {
-                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
-            }
-}
-   
-    }
+           }
+
+           } catch (Exception e) {
+               try {
+                   ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+
+                   ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+               } catch (IOException ex) {
+                   Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+               }
+   }
+
+       }
 
     public InputType getSelecttype() {
         return selecttype;
