@@ -325,10 +325,24 @@
        
            <p:column selectionMode="single" style="width:32px;text-align:center"/>
        
-           <p:column headerText="Groups" sortBy="#{input.description}" >
+           <p:column headerText="Name" sortBy="#{input.name}" >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{input.name}" /></f:facet>
+                <f:facet name="input"><p:inputText id="modelInput" value="#{input.name}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+           </p:column>
+           
+           <p:column headerText="AD Name" sortBy="#{input.description}" >
+            <p:cellEditor>
+                <f:facet name="output"><h:outputText value="#{input.ADname}" /></f:facet>
+                <f:facet name="input"><p:inputText id="modelInput1" value="#{input.ADname}" style="width:100%"/></f:facet>
+            </p:cellEditor>
+           </p:column>
+           
+           <p:column headerText="description" sortBy="#{input.description}" >
             <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{input.description}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{input.description}" style="width:100%"/></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput2" value="#{input.description}" style="width:100%"/></f:facet>
             </p:cellEditor>
            </p:column>
        
