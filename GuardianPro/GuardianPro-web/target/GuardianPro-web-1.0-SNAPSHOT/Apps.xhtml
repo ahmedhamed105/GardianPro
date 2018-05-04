@@ -7,7 +7,7 @@
     <h:head>
         <title>Application</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{parmetertype.init()}"/>
+            <f:event type="preRenderView" listener="#{app.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -396,28 +396,31 @@
               
             <!-- /.box-header -->
             <!-- form start -->
-        
+       
              
               <div class="box-body">
-                  <h:form id="form1">
+                  <h:form id="form1" enctype="multipart/form-data">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="Para_type">Parmeter Type</label>
-                  <p:inputText class="form-control" id="Para_type"  value="#{parmetertype.para.type}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                  <p:message for="Para_type" display="text"/>
-                  <label for="XML_head">XML Header</label>
-                  <p:inputText class="form-control" id="XML_head"  value="#{parmetertype.para.XMLheader}" required="true" requiredMessage="please Enter XML Header"/>						
-                  <p:message for="XML_head" display="text"/>
+                  <label for="appName">application</label>
+                  <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
+                  <p:message for="appName" display="text"/>
+                  <label for="appDir">Application File </label>
+                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple"/>
+                  <p:message for="appDir" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parmetertype.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{app.ADD()}"/>  
    
                   
                   
                 </div>
-                   </h:form>     
+                   </h:form>  
+                  
+     
+                  
               </div>
               <!-- /.box-body -->
                  <div class="box-footer">
