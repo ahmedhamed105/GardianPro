@@ -9,6 +9,7 @@ import Entities.ConfigParmeter;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,18 @@ public class ConfigParmeterFacade extends AbstractFacade<ConfigParmeter> impleme
 
     public ConfigParmeterFacade() {
         super(ConfigParmeter.class);
+    }
+    
+       @Override
+    public  ConfigParmeter getparameter(String para){      
+       Query user_status = em.createNamedQuery("ConfigParmeter.findByParameter");
+        user_status.setParameter("parameter", para);
+        try {
+                ConfigParmeter pa = (ConfigParmeter) user_status.getSingleResult();     
+                return pa;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

@@ -30,4 +30,6 @@ public interface ConfigParmeterFacadeLocal {
 
     int count();
     
+    ConfigParmeter getparameter(String para);
+    
 }
