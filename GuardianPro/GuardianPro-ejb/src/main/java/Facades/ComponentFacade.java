@@ -9,6 +9,7 @@ import Entities.Component;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,24 @@ public class ComponentFacade extends AbstractFacade<Component> implements Compon
 
     public ComponentFacade() {
         super(Component.class);
+    }
+    
+    public  boolean Component_find(String description){
+    
+        Query para_find = em.createNamedQuery("Component.findByDescription");
+        para_find.setParameter("description", description);
+        try {
+         Entities.Component  compo = (Entities.Component) para_find.getSingleResult(); 
+            System.out.println("ahmed Mahmoud  "+compo.getDescription());
+         if(compo==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }
