@@ -5,10 +5,15 @@
  */
 package Facades;
 
+import Entities.ApplicationGroup;
 import Entities.ApplicationHasGroup;
+import Entities.GroupHasParameter;
+import Entities.ParameterGroup;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +32,20 @@ public class ApplicationHasGroupFacade extends AbstractFacade<ApplicationHasGrou
 
     public ApplicationHasGroupFacade() {
         super(ApplicationHasGroup.class);
+    }
+    
+    
+    
+     @Override
+    public List<ApplicationHasGroup> get_app_group(ApplicationGroup gp) {
+  
+      Query para = em.createNamedQuery("ApplicationHasGroup.findByGroup");
+        para.setParameter("id", gp);
+        try {
+              return  para.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

@@ -9,6 +9,7 @@ import Entities.Application;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,26 @@ public class ApplicationFacade extends AbstractFacade<Application> implements Ap
 
     public ApplicationFacade() {
         super(Application.class);
+    }
+    
+    
+      @Override
+        public  boolean app_find(String appname){
+    
+        Query para_find = em.createNamedQuery("Application.findByAppName");
+        para_find.setParameter("appName", appname);
+        try {
+         Entities.Application  parah = (Entities.Application) para_find.getSingleResult(); 
+           System.out.println("ahmed hamed  "+parah.getAppDir());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

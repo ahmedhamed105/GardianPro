@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Application</title>
+        <title>Application Group</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{app.init()}"/>
+            <f:event type="preRenderView" listener="#{appgroup.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -286,7 +286,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter</h3>
+              <h3 class="box-title">applications</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -315,33 +315,27 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                  <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{app.applicatios}" editable="true" style="margin-bottom:20px" rows="5"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{app.seletapp}" rowKey="#{para.id}"> 
-                      
- 
+                    <p:treeTable id="cars1" value="#{appgroup.root}" var="group" selectionMode="single" selection="#{appgroup.selectdelte}">
+        <f:facet name="header">
+            Group Parmeter
+        </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{group.parameterGroup}" />
+        </p:column>
+         <p:column headerText="Count">
+            <h:outputText value="#{group.count}" />
+        </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
 
-    <p:column selectionMode="single" style="width:32px;text-align:center"/>
-  
-     
-    <p:column headerText="APP name" sortBy="#{para.appName}"  >  
-      <h:outputText value="#{para.appName}" />
-       </p:column>
-        
-    <p:column headerText="File name" sortBy="#{para.filename}"  >  
-        <h:outputText value="#{para.filename}" />
-       </p:column>
        
-
-    
-      <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{app.remove(actionEvent)}"/>  
-    </f:facet>
-    
-   </p:dataTable>
-                  
+      
+    </p:treeTable>
+                    
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{appgroup.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{appgroup.removeGroup(actionEvent)}"/>  
+             
                   
                 </div>
                    </h:form>     
@@ -359,7 +353,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter</h3>
+              <h3 class="box-title">application</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -381,31 +375,25 @@
               
             <!-- /.box-header -->
             <!-- form start -->
-       
+        
              
               <div class="box-body">
-                  <h:form id="form1" enctype="multipart/form-data">
+                  <h:form id="form1">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="appName">application</label>
-                  <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
-                  <p:message for="appName" display="text"/>
-                  <label for="appDir">Application File </label>
-                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" />
-                  <p:message for="appDir" display="text"/>
+                  <label for="groupname">application Group name</label>
+                  <p:inputText class="form-control" id="groupname"  value="#{appgroup.appGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
+                  <p:message for="groupname" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{app.ADD()}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{appgroup.ADD(actionEvent)}"/>  
    
                   
                   
                 </div>
-                   </h:form>  
-                  
-     
-                  
+                   </h:form>     
               </div>
               <!-- /.box-body -->
                  <div class="box-footer">
@@ -415,6 +403,77 @@
             </div>
         </div>
         </div>
+        
+         <div class="row">
+          <div class="col-md-12 col-sm-6 col-xs-12">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Group and Parameters</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                  <h:form id="form3">
+                  <p:messages id="messages3" showDetail="true" closable="true"/>
+                <div class="form-group">
+                    
+                       
+                        <h:selectOneMenu converter="#{cgroupparameter}" class="form-control select2" id="parameterGroup" value="#{parameterGroup.selectgroup}" required="true" requiredMessage="please Enter parameter Group">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameterGroup.gpara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
+                 </h:selectOneMenu>
+                 <p:message for="parameterGroup" display="text"/>
+                            
+                             <label for="advanced">Parmeter Choose</label>  
+                             <p:selectManyMenu  id="advanced" value="#{parameterGroup.selparameter}" converter="#{CParameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter parameters">
+                        <f:selectItems value="#{parameterGroup.parameter}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.displayName}" />
+            </p:column>
+             </p:selectManyMenu>
+                    <p:message for="advanced" display="text"/>
+               
+                  <br/>
+                  <br/>
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{parameterGroup.joingroup(actionEvent)}"/>  
+   
+                  
+                  
+                </div>
+                   </h:form>        
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+         </div>
         
         
         <div class="row">
