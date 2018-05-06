@@ -17,12 +17,14 @@ import Facades.ApplicationHasGroupFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -198,5 +200,26 @@ public class appgroup {
      */
     public appgroup() {
     }
+    
+    
+    
+       public String ADD(ActionEvent actionEvent){
+         
+      if(applicationGroupFacade.Pgroup_find(appGroup.getGroupname())){
+              Messages.addInfoMessage("Duplicated",2);
+     }else{
+             Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            appGroup.setUserID(Login.login);
+            appGroup.setCreateDate(date);
+            appGroup.setUpdateDate(date);
+          applicationGroupFacade.create(appGroup);
+       }
+      
+             Apara=applicationGroupFacade.findAll();
+             app=applicationFacade.findAll();
+         
+      return "Login";
+     }
     
 }
