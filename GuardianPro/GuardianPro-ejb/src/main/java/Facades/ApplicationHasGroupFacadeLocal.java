@@ -5,7 +5,9 @@
  */
 package Facades;
 
+import Entities.ApplicationGroup;
 import Entities.ApplicationHasGroup;
+import Entities.GroupHasParameter;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,7 @@ public interface ApplicationHasGroupFacadeLocal {
     List<ApplicationHasGroup> findRange(int[] range);
 
     int count();
+    
+    List<ApplicationHasGroup> get_app_group(ApplicationGroup gp);
     
 }
