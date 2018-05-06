@@ -56,11 +56,6 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>Component</managed-bean-name>
-        <managed-bean-class>com.guardian.Login.ComponentBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>parameterGroup</managed-bean-name>
         <managed-bean-class>com.guardian.Login.ParameterGroups</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
