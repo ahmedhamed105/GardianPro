@@ -30,6 +30,4 @@ public interface ApplicationGroupFacadeLocal {
 
     int count();
     
-    public boolean Pgroup_find(String groupname);
-    
 }

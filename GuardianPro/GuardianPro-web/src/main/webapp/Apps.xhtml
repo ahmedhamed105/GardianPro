@@ -316,28 +316,43 @@
                 <div class="form-group">
                     
                   <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{app.applicatios}" editable="true" style="margin-bottom:20px" rows="5"
+                 emptyMessage="No Parmeter found with given criteria" var="para" value="#{parmetertype.parmeter_types}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{app.seletapp}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{parmetertype.selectparmeter}" rowKey="#{para.id}"> 
                       
  
-
+        <p:ajax event="rowEdit" listener="#{parmetertype.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{parmetertype.onRowCancel}" update=":form:messages :form:cars1"  />
+       
+       
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
      
-    <p:column headerText="APP name" sortBy="#{para.appName}"  >  
-      <h:outputText value="#{para.appName}" />
+       <p:column headerText="Type" sortBy="#{para.type}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.type}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.type}" style="width:100%"/></f:facet>
+           </p:cellEditor>
        </p:column>
         
-    <p:column headerText="File name" sortBy="#{para.filename}"  >  
-        <h:outputText value="#{para.filename}" />
+            <p:column headerText="XML Header" sortBy="#{para.XMLheader}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.XMLheader}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.XMLheader}" style="width:100%"/></f:facet>
+           </p:cellEditor>
        </p:column>
        
 
+       
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{app.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parmetertype.remove(actionEvent)}"/>  
     </f:facet>
     
    </p:dataTable>
@@ -392,7 +407,7 @@
                   <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
                   <p:message for="appName" display="text"/>
                   <label for="appDir">Application File </label>
-                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" />
+                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple"/>
                   <p:message for="appDir" display="text"/>
                
                   <br/>

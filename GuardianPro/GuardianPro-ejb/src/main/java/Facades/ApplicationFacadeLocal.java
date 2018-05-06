@@ -30,6 +30,4 @@ public interface ApplicationFacadeLocal {
 
     int count();
     
-    boolean app_find(String appname);
-    
 }
