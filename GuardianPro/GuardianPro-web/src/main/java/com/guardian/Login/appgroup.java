@@ -211,6 +211,7 @@ public class appgroup {
              Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             appGroup.setUserID(Login.login);
+            appGroup.setUserID(Login.login);
             appGroup.setCreateDate(date);
             appGroup.setUpdateDate(date);
           applicationGroupFacade.create(appGroup);
