@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 com\guardian\Login\Login.class
 com\guardian\Login\PGroup_tree.class
 com\guardian\Login\ParameterGroups.class
@@ -13,4 +11,3 @@ com\guardian\converter\CParameter.class
 com\guardian\Login\application.class
 com\guardian\Login\parameter.class
 com\guardian\converter\Cparmetertype.class
->>>>>>> fc2df08b42de3535aa576e2d9111beb37b9583d2

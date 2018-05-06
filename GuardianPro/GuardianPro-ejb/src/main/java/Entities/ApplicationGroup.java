@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -42,10 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ApplicationGroup.findByCreateDate", query = "SELECT a FROM ApplicationGroup a WHERE a.createDate = :createDate"),
     @NamedQuery(name = "ApplicationGroup.findByUpdateDate", query = "SELECT a FROM ApplicationGroup a WHERE a.updateDate = :updateDate")})
 public class ApplicationGroup implements Serializable {
-
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private User userID;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -149,14 +143,6 @@ public class ApplicationGroup implements Serializable {
     @Override
     public String toString() {
         return "Entities.ApplicationGroup[ id=" + id + " ]";
-    }
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
     }
     
 }

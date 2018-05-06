@@ -30,5 +30,4 @@ public interface ComponentFacadeLocal {
 
     int count();
     
-    boolean Component_find(String description);
 }

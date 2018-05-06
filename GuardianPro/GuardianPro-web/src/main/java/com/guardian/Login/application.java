@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -147,35 +148,62 @@ public class application {
                 }
     }
      
-    
+     
+     public static long generateRandom(int length) {
+    Random random = new Random();
+    char[] digits = new char[length];
+    digits[0] = (char) (random.nextInt(9) + '1');
+    for (int i = 1; i < length; i++) {
+        digits[i] = (char) (random.nextInt(10) + '0');
+    }
+    return Long.parseLong(new String(digits));
+}
+   
 
          public String ADD(){
               
               try {
-                    String filename = file.getFileName(); 
+             String filename = file.getFileName(); 
             String extension = filename.substring(filename.lastIndexOf('.'), filename.length());
                   System.out.println(extension);
-            copyFile(path.getPValue(),file.getFileName(), file.getInputstream());
+                  if(extension.toUpperCase().trim().equals(".TMS")){
+                      System.out.println("ahmed "+app.getAppName());
+                      if(applicationFacade.app_find(app.getAppName())){
+                           Messages.addInfoMessage("Please Check Application Name",2);
+                      }else{
+                    String filename_ext = String.valueOf(generateRandom(16));
+                   copyFile(path.getPValue(),filename_ext, file.getInputstream());
+                      Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            app.setAppDir(path.getPValue()+'/'+filename_ext);
+            app.setFilename(filename_ext);
+            app.setCreateDate(date);
+            app.setUpdateDate(date);
+          applicationFacade.create(app);
+                      }
+                  }else{
+                  Messages.addInfoMessage("Please Check File Type",2);
+                  }
+           
         } catch (IOException e) {
             e.printStackTrace();
         }
            
-         
 
-System.out.println("Uploaded file successfully saved in " + file);
-         
-       // if(parameterTypeFacade.Paremter_find(para.getType())){
-               Messages.addInfoMessage("Duplicated",2);
-        //}else{
-             Messages.addInfoMessage("ADDED",1);
-            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            app.setAppDir(path.getPValue());
-            app.setCreateDate(date);
-            app.setUpdateDate(date);
-          applicationFacade.create(app);
-       // }
-         
       return "Login";
+     }
+         
+         
+         
+          public void remove(ActionEvent actionEvent){
+         try {
+                   applicationFacade.remove(seletapp);
+             Messages.addInfoMessage("removed "+seletapp.getAppName(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+seletapp.getAppName()+" return to Admin",2);
+         }
+         
+     
      }
     
 }
