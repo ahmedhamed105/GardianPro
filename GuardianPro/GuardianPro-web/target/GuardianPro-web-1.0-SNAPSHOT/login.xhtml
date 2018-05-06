@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="dist/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="dist/css/font-awesome.css" rel="stylesheet"/> <!-- Font-Awesome-Icons-CSS -->
+
+<!-- //Custom Theme files -->
+<!-- web font --> 
+<link href="//fonts.googleapis.com/css?family=Vollkorn+SC:400,600,700,900&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet"/>
+<link href="//fonts.googleapis.com/css?family=Acme" rel="stylesheet"/> 
+    </h:head>
+    <h:body>
+        <!-- main -->
+	<div class="main">
+		<h1>Login Form</h1>
+		<div class="main-w3lsrow">
+			<!-- login form -->
+			<div class="login-form login-form-left"> 
+				<div class="agile-row">
+				
+					<div class="login-agileits-top"> 	
+                                            <h:form id="form_login"> 
+                                                <p:growl id="growl" life="2000" />
+							<p>User Name </p>
+                                                        <p:inputText class="name" id="user_name" value="#{login.username}" required="true" requiredMessage="please Enter Username"/>
+							<p>Password</p>
+                                                        <p:password class="password" id="Password" value="#{login.password}" required="true" requiredMessage="please Enter Password"/>  
+							<div class="anim">
+                                                            <p:selectBooleanCheckbox  value="#{login.remeber}"/>
+								<span> Remember me ?</span> 
+							</div>   
+                                                        <p:commandButton class="submit_bt" value="Login" type="submit" ajax="false" action="#{login.Login_submit(actionEvent)}"/>  
+						</h:form> 	
+					</div> 
+					<div class="login-agileits-bottom"> 
+						<h6><a href="#">Forgot password?</a></h6>
+					</div> 
+					<div class="login-agileits-bottom1"> 
+						<h3>(or)</h3>
+
+					</div> 
+					<div class="social_icons agileinfo">
+						<ul class="top-links">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+					</div>
+
+				</div>  
+			</div>  
+		</div>	
+		<!-- copyright -->
+		<div class="copyright">
+			<p> © 2018  All rights reserved | Design by <a href="http://www.GuardianPro.com/" target="_blank">GuardianPro</a></p>
+		</div>
+		<!-- //copyright --> 
+	</div>	
+	<!-- //main --> 
+    </h:body>
+</html>
+
