@@ -90,4 +90,9 @@
         <managed-bean-class>com.guardian.converter.CappGroup</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>accessory</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.accessory</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
