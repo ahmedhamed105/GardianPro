@@ -95,7 +95,7 @@ public class appgroup {
          
               for(int j=0;j<app_group.size();j++){
                    System.out.println("para "+app_group.get(j).getApplicationID().getAppName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getApplicationID().getAppName(),1,app_group.get(j).getId(),"Parameter"), documents);
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getApplicationID().getAppName(),1,app_group.get(j).getId(),"APP"), documents);
         
               }
           } catch (Exception e) {
@@ -221,5 +221,95 @@ public class appgroup {
          
       return "Login";
      }
+      
+      
+      
+         public String joingroup(ActionEvent actionEvent){
+         for(int i=0;i<selapp.size();i++){
+             ApplicationHasGroup a=new ApplicationHasGroup();
+            a.setApplicationGroupID(selectgroup);
+             Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            a.setCreateDate(date);
+            a.setUpdateDate(date);
+            a.setApplicationID(selapp.get(i));
+          applicationHasGroupFacade.create(a);
+         }
+               Apara=applicationGroupFacade.findAll();
+             app=applicationFacade.findAll();
+         
+      return "Login";
+     }
+         
+         
+         
+         
+         
+         public void removeGroup(ActionEvent actionEvent){
+      if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
+          try {
+              ApplicationGroup a=   applicationGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<ApplicationHasGroup> b=  applicationHasGroupFacade.get_app_group(a);
+                        for (ApplicationHasGroup applicationHasGroup : b) {
+                            try {
+                            applicationHasGroupFacade.remove(applicationHasGroup);
+                            Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+       
+                            } catch (Exception e) {
+                                  Messages.addInfoMessage("NO app Linked ",1);
+                            }
+                
+                        //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
+                        } 
+                        
+                        applicationGroupFacade.remove(a);
+                          Messages.addInfoMessage("removed "+a.getGroupname(),1);
+       
+                           
+                        
+          } catch (Exception e) {
+               Messages.addInfoMessage("Problem in system  ",2);
+          }
+                    
+                   
+                    }
+    
+}
+       
+       
+public void remove(ActionEvent actionEvent){
+                    
+                    if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
+                        try{
+                     ApplicationGroup a=   applicationGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<ApplicationHasGroup> b=  applicationHasGroupFacade.get_app_group(a);
+                        for (ApplicationHasGroup applicationHasGroup : b) {
+                            
+                       applicationHasGroupFacade.remove(applicationHasGroup);
+                     Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+    
+                        //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
+                        }
+                           } catch (Exception e) {
+               Messages.addInfoMessage("Problem in system  ",2);
+          }
+                   
+                    }else{
+                           try {
+                  
+                 ApplicationHasGroup a=applicationHasGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                               
+                   applicationHasGroupFacade.remove(a);
+             Messages.addInfoMessage("removed "+a.getApplicationID().getAppName()+" from "+a.getApplicationGroupID().getGroupname(),1);
+         } catch (Exception e) {
+                 Messages.addInfoMessage("not removed",1);
+    }
+                    }
+  
+         
+     
+     }
+    
+    
     
 }

@@ -80,4 +80,14 @@
         <managed-bean-class>com.guardian.Login.appgroup</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>capp</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Capp</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cappGroup</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CappGroup</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -439,7 +439,7 @@
                   <p:messages id="messages3" showDetail="true" closable="true"/>
                 <div class="form-group">
                     
-                       
+                         <label for="parameterGroup">Group Choose</label>   
                         <h:selectOneMenu converter="#{cgroupparameter}" class="form-control select2" id="parameterGroup" value="#{parameterGroup.selectgroup}" required="true" requiredMessage="please Enter parameter Group">
                  <f:selectItem itemLabel="Select One" itemValue="" />
                  <f:selectItems value="#{parameterGroup.gpara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
