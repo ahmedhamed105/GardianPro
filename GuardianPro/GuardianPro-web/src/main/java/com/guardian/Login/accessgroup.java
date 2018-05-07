@@ -97,7 +97,7 @@ public class accessgroup {
          
               for(int j=0;j<app_group.size();j++){
                    System.out.println("para "+app_group.get(j).getAccessoryID().getAccName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getAccessoryID().getAccName(),1,app_group.get(j).getId(),"APP"), documents);
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getAccessoryID().getAccName(),1,app_group.get(j).getId(),"Accessory"), documents);
         
               }
           } catch (Exception e) {

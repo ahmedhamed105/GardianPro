@@ -266,12 +266,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        application Group Page 
+        accessory Group Page 
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">application</li>
+        <li class="active">accessory Group</li>
       </ol>
     </section>
 
@@ -286,7 +286,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">applications</h3>
+              <h3 class="box-title">accessory Group</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -317,7 +317,7 @@
                     
                     <p:treeTable id="cars1" value="#{accessgroup.root}" var="group" selectionMode="single" selection="#{accessgroup.selectdelte}">
         <f:facet name="header">
-            Group Parmeter
+            accessory Group
         </f:facet>
         <p:column headerText="Name">
             <h:outputText value="#{group.parameterGroup}" />
@@ -353,7 +353,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">application</h3>
+              <h3 class="box-title">accessory Group</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -382,7 +382,7 @@
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="groupname">application Group name</label>
+                  <label for="groupname">accessory Group name</label>
                   <p:inputText class="form-control" id="groupname"  value="#{accessgroup.appGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
                   <p:message for="groupname" display="text"/>
                
@@ -440,19 +440,19 @@
                 <div class="form-group">
                     
                       <label for="appGroup">Group Choose</label>   
-                    <h:selectOneMenu converter="#{cappGroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
+                      <h:selectOneMenu converter="#{caccessorygroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
                  <f:selectItem itemLabel="Select One" itemValue="" />
                  <f:selectItems value="#{accessgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
                  </h:selectOneMenu>
                  <p:message for="appGroup" display="text"/>
                             
-                             <label for="advanced">application Choose</label>  
-                             <p:selectManyMenu  id="advanced" value="#{accessgroup.selapp}" converter="#{capp}"
+                             <label for="advanced">accessory Choose</label>  
+                             <p:selectManyMenu  id="advanced" value="#{accessgroup.selapp}" converter="#{caccessory}"
                                        var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application">
-                                 <f:selectItems value="#{accessgroup.app}" var="f" itemLabel="#{f.appName}" itemValue="#{f}" />
+                                 <f:selectItems value="#{accessgroup.app}" var="f" itemLabel="#{f.accName}" itemValue="#{f}" />
  
             <p:column>
-                <h:outputText value="#{t.appName}" />
+                <h:outputText value="#{t.accName}" />
             </p:column>
              </p:selectManyMenu>
                     <p:message for="advanced" display="text"/>
