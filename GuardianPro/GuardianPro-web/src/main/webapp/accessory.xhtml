@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Application</title>
+        <title>accessory</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{app.init()}"/>
+            <f:event type="preRenderView" listener="#{accessory.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -271,7 +271,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Parmeter</li>
+        <li class="active">accessory</li>
       </ol>
     </section>
 
@@ -286,7 +286,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter</h3>
+              <h3 class="box-title">accessory</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -316,28 +316,49 @@
                 <div class="form-group">
                     
                   <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{app.applicatios}" editable="true" style="margin-bottom:20px" rows="5"
+                               emptyMessage="No accessory found with given criteria" var="para" value="#{accessory.accessories}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{app.seletapp}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{accessory.selectacc}" rowKey="#{para.id}"> 
                       
- 
+    <p:ajax event="rowEdit" listener="#{accessory.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{accessory.onRowCancel}" update=":form:messages :form:cars1"  />
+       
+       
 
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
-     
-    <p:column headerText="APP name" sortBy="#{para.appName}"  >  
-      <h:outputText value="#{para.appName}" />
+          <p:column headerText="accessory name" sortBy="#{para.accName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.accName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.accName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
        </p:column>
-        
-    <p:column headerText="File name" sortBy="#{para.filename}"  >  
-        <h:outputText value="#{para.filename}" />
+    
+         <p:column headerText="accessory catalog" sortBy="#{para.accCatalog}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.accCatalog}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.accCatalog}" style="width:100%"/></f:facet>
+           </p:cellEditor>
        </p:column>
+    
+         <p:column headerText="accessory Description" sortBy="#{para.accDescr}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.accDescr}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput2" value="#{para.accDescr}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+  
+
+         <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
        
 
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{app.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{accessory.remove(actionEvent)}"/>  
     </f:facet>
     
    </p:dataTable>
@@ -359,7 +380,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter</h3>
+              <h3 class="box-title">accessory</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -388,16 +409,19 @@
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="appName">application</label>
-                  <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
-                  <p:message for="appName" display="text"/>
-                  <label for="appDir">Application File </label>
-                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" />
-                  <p:message for="appDir" display="text"/>
+                  <label for="accName">accessory name</label>
+                  <p:inputText class="form-control" id="accName"  value="#{accessory.accessory.accName}" required="true" requiredMessage="please Enter application name"/>						
+                  <p:message for="accName" display="text"/>
+                  <label for="accCatalog">accessory catalog</label>
+                  <p:inputText class="form-control" id="accCatalog"  value="#{accessory.accessory.accCatalog}" required="true" requiredMessage="please Enter application name"/>						
+                  <p:message for="accCatalog" display="text"/>
+                  <label for="accDescr">accessory Description </label>
+                  <p:inputText class="form-control" id="accDescr"  value="#{accessory.accessory.accDescr}" required="true" requiredMessage="please Enter application name"/>						
+                  <p:message for="accDescr" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{app.ADD()}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{accessory.ADD(actionEvent)}"/>  
    
                   
                   

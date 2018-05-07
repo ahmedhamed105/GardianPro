@@ -30,6 +30,7 @@ Facades\ApplicationFacadeLocal.class
 Entities\UserStatus.class
 Facades\LoginWayFacade.class
 Entities\Country_.class
+Facades\AccessoryGroupFacade.class
 Facades\CountryFacadeLocal.class
 Facades\ParameterGroupFacade.class
 Entities\ConfigParmeter.class
@@ -48,6 +49,7 @@ Entities\ParameterType_.class
 Entities\WebsiteData.class
 Entities\NationalIdHasMaritalStatus1PK_.class
 Entities\MaritalStatus_.class
+Entities\AccessoryHasGroup_.class
 Facades\UserFacade.class
 Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
@@ -70,6 +72,7 @@ Facades\RoleHasComponentFacadeLocal.class
 Facades\WebsiteDataFacade.class
 Entities\Component_.class
 Entities\MaritalStatus.class
+Facades\AccessoryHasGroupFacade.class
 Facades\SocialTypeFacadeLocal.class
 Entities\InputType_.class
 Entities\NationalIdHasMaritalStatusHasAddress.class
@@ -84,6 +87,7 @@ Facades\PasswordHistoryFacadeLocal.class
 Entities\ApplicationGroup_.class
 Entities\ConfigParmeter_.class
 Entities\RoleHasComponent_.class
+Entities\AccessoryGroup_.class
 Entities\GroupsHasUser_.class
 Entities\User_.class
 Entities\NearPlaces_.class
@@ -99,9 +103,11 @@ Entities\EmailSmsSend.class
 Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
 Entities\ParameterGroup_.class
+Facades\AccessoryFacadeLocal.class
 Entities\NationalId.class
 Entities\UserPassword_.class
 Entities\PhoneTypes.class
+Entities\Accessory.class
 Entities\Distinct1_.class
 Entities\MilitaryStatus.class
 Entities\SocialDataPK_.class
@@ -110,6 +116,7 @@ Entities\NationalIdHasMaritalStatus.class
 Facades\UserFacadeLocal.class
 Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
+Facades\AccessoryFacade.class
 Entities\Role_.class
 Facades\LoginTypeFacade.class
 Entities\GroupsHasUser.class
@@ -125,6 +132,7 @@ Entities\ApplicationHasGroup.class
 Entities\UserStatus_.class
 Entities\EmailSmsSend_.class
 Entities\SocialData.class
+Entities\Accessory_.class
 Entities\Groups.class
 Facades\InputTypeFacadeLocal.class
 Facades\ApplicationHasGroupFacade.class
@@ -147,6 +155,7 @@ Facades\RoleHasGroupsFacadeLocal.class
 Entities\ParameterGroup.class
 Entities\SocialDataPK.class
 Entities\SocialData_.class
+Facades\AccessoryHasGroupFacadeLocal.class
 Facades\AddressFacadeLocal.class
 Entities\User.class
 Entities\LogScreen_.class
@@ -171,6 +180,7 @@ Facades\ComponentFacade.class
 Entities\NearPlaces.class
 Entities\MilitaryStatus_.class
 Facades\ParameterFacade.class
+Facades\AccessoryGroupFacadeLocal.class
 Facades\EmailSmsSendFacadeLocal.class
 Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.class
 Entities\Distinct1.class
@@ -188,4 +198,6 @@ Entities\City.class
 Entities\SocialType_.class
 Facades\SocialDataFacadeLocal.class
 Facades\NationalIdFacade.class
+Entities\AccessoryHasGroup.class
 Entities\PhoneTypes_.class
+Entities\AccessoryGroup.class

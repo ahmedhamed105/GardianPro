@@ -48,6 +48,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<AccessoryGroup> accessoryGroupCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ApplicationGroup> applicationGroupCollection;
 
     private static final long serialVersionUID = 1L;
@@ -334,6 +337,15 @@ public class User implements Serializable {
 
     public void setApplicationGroupCollection(Collection<ApplicationGroup> applicationGroupCollection) {
         this.applicationGroupCollection = applicationGroupCollection;
+    }
+
+    @XmlTransient
+    public Collection<AccessoryGroup> getAccessoryGroupCollection() {
+        return accessoryGroupCollection;
+    }
+
+    public void setAccessoryGroupCollection(Collection<AccessoryGroup> accessoryGroupCollection) {
+        this.accessoryGroupCollection = accessoryGroupCollection;
     }
     
 }
