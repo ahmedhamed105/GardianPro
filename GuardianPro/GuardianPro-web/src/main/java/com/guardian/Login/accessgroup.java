@@ -5,12 +5,15 @@
  */
 package com.guardian.Login;
 
+import Entities.Accessory;
+import Entities.AccessoryGroup;
+import Entities.AccessoryHasGroup;
 import Entities.Application;
 import Entities.ApplicationGroup;
 import Entities.ApplicationHasGroup;
-import Facades.ApplicationFacadeLocal;
-import Facades.ApplicationGroupFacadeLocal;
-import Facades.ApplicationHasGroupFacadeLocal;
+import Facades.AccessoryFacadeLocal;
+import Facades.AccessoryGroupFacadeLocal;
+import Facades.AccessoryHasGroupFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,45 +32,47 @@ import org.primefaces.model.TreeNode;
  *
  * @author ahmed.elemam
  */
-public class appgroup {
+public class accessgroup {
 
     @EJB
-    private ApplicationHasGroupFacadeLocal applicationHasGroupFacade;
+    private AccessoryHasGroupFacadeLocal accessoryHasGroupFacade;
 
     @EJB
-    private ApplicationGroupFacadeLocal applicationGroupFacade;
+    private AccessoryGroupFacadeLocal accessoryGroupFacade;
+
+    @EJB
+    private AccessoryFacadeLocal accessoryFacade;
     
-      @EJB
+     @EJB
     private UserFacadeLocal userFacade;
-      
-      @EJB
-    private ApplicationFacadeLocal applicationFacade;
-      
-      
-      
-      
-      
-        private TreeNode root;
+     
+      private TreeNode root;
     
-     Entities.ApplicationGroup appGroup= new ApplicationGroup();
+     Entities.AccessoryGroup appGroup= new AccessoryGroup();
      
-     List<ApplicationGroup> Apara= new ArrayList<ApplicationGroup>();
+     List<AccessoryGroup> Apara= new ArrayList<AccessoryGroup>();
      
-      List<ApplicationHasGroup> app_group= new ArrayList<ApplicationHasGroup>();
+      List<Entities.AccessoryHasGroup> app_group= new ArrayList<AccessoryHasGroup>();
       
       
-       List<Application> app= new ArrayList<Application>();
+       List<Entities.Accessory> app= new ArrayList<Accessory>();
        
-        List<Application> selapp= new ArrayList<Application>();
+        List<Accessory> selapp= new ArrayList<Accessory>();
         
-        ApplicationGroup selectgroup=new ApplicationGroup();
+        AccessoryGroup selectgroup=new AccessoryGroup();
      
       java.sql.Date date ;
       
       private TreeNode selectdelte;
-      
+     
 
-       public void init(){
+    /**
+     * Creates a new instance of accessgroup
+     */
+    public accessgroup() {
+    }
+    
+     public void init(){
              Login.login = userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){
@@ -77,22 +82,22 @@ public class appgroup {
             + "/faces/login.xhtml");
 
         }else{
-            selectgroup=new ApplicationGroup();
-            selapp= new ArrayList<Application>();
-             Apara=applicationGroupFacade.findAll();
-             app=applicationFacade.findAll();
+            selectgroup=new AccessoryGroup();
+            selapp= new ArrayList<Accessory>();
+             Apara=accessoryGroupFacade.findAll();
+             app=accessoryFacade.findAll();
      
        root = new DefaultTreeNode(new PGroup_tree("Groups",Apara.size(),0,"root"), null);
       for(int i=0;i<Apara.size();i++){
           try {
-              app_group  = applicationHasGroupFacade.get_app_group(Apara.get(i));
+              app_group  = accessoryHasGroupFacade.get_app_group(Apara.get(i));
               
               System.out.println("group "+Apara.get(i).getGroupname()+app_group.size());
               DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Apara.get(i).getGroupname(),app_group.size(),Apara.get(i).getId(),"GROUP"), root);
          
               for(int j=0;j<app_group.size();j++){
-                   System.out.println("para "+app_group.get(j).getApplicationID().getAppName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getApplicationID().getAppName(),1,app_group.get(j).getId(),"APP"), documents);
+                   System.out.println("para "+app_group.get(j).getAccessoryID().getAccName());
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(app_group.get(j).getAccessoryID().getAccName(),1,app_group.get(j).getId(),"APP"), documents);
         
               }
           } catch (Exception e) {
@@ -121,17 +126,6 @@ public class appgroup {
    
     }
 
-    public List<ApplicationHasGroup> getApp_group() {
-        return app_group;
-    }
-
-    public void setApp_group(List<ApplicationHasGroup> app_group) {
-        this.app_group = app_group;
-    }
-       
-       
-       
-
     public TreeNode getRoot() {
         return root;
     }
@@ -140,43 +134,53 @@ public class appgroup {
         this.root = root;
     }
 
-    public ApplicationGroup getAppGroup() {
+     
+     
+    public AccessoryGroup getAppGroup() {
         return appGroup;
     }
 
-    public void setAppGroup(ApplicationGroup appGroup) {
+    public void setAppGroup(AccessoryGroup appGroup) {
         this.appGroup = appGroup;
     }
 
-    public List<ApplicationGroup> getApara() {
+    public List<AccessoryGroup> getApara() {
         return Apara;
     }
 
-    public void setApara(List<ApplicationGroup> Apara) {
+    public void setApara(List<AccessoryGroup> Apara) {
         this.Apara = Apara;
     }
 
-    public List<Application> getApp() {
+    public List<AccessoryHasGroup> getApp_group() {
+        return app_group;
+    }
+
+    public void setApp_group(List<AccessoryHasGroup> app_group) {
+        this.app_group = app_group;
+    }
+
+    public List<Accessory> getApp() {
         return app;
     }
 
-    public void setApp(List<Application> app) {
+    public void setApp(List<Accessory> app) {
         this.app = app;
     }
 
-    public List<Application> getSelapp() {
+    public List<Accessory> getSelapp() {
         return selapp;
     }
 
-    public void setSelapp(List<Application> selapp) {
+    public void setSelapp(List<Accessory> selapp) {
         this.selapp = selapp;
     }
 
-    public ApplicationGroup getSelectgroup() {
+    public AccessoryGroup getSelectgroup() {
         return selectgroup;
     }
 
-    public void setSelectgroup(ApplicationGroup selectgroup) {
+    public void setSelectgroup(AccessoryGroup selectgroup) {
         this.selectgroup = selectgroup;
     }
 
@@ -187,22 +191,12 @@ public class appgroup {
     public void setSelectdelte(TreeNode selectdelte) {
         this.selectdelte = selectdelte;
     }
-      
-       
-       
-      
-
-    /**
-     * Creates a new instance of appgroup
-     */
-    public appgroup() {
-    }
-    
-    
-    
-      public String ADD(ActionEvent actionEvent){
+     
+     
+     
+        public String ADD(ActionEvent actionEvent){
          
-      if(applicationGroupFacade.Pgroup_find(appGroup.getGroupname())){
+      if(accessoryGroupFacade.Pgroup_find(appGroup.getGroupname())){
               Messages.addInfoMessage("Duplicated",2);
      }else{
              Messages.addInfoMessage("ADDED",1);
@@ -210,11 +204,11 @@ public class appgroup {
             appGroup.setUserID(Login.login);
             appGroup.setCreateDate(date);
             appGroup.setUpdateDate(date);
-          applicationGroupFacade.create(appGroup);
+          accessoryGroupFacade.create(appGroup);
        }
       
-        Apara=applicationGroupFacade.findAll();
-             app=applicationFacade.findAll();
+        Apara=accessoryGroupFacade.findAll();
+             app=accessoryFacade.findAll();
          
       return "Login";
      }
@@ -223,17 +217,17 @@ public class appgroup {
       
          public String joingroup(ActionEvent actionEvent){
          for(int i=0;i<selapp.size();i++){
-             ApplicationHasGroup a=new ApplicationHasGroup();
-            a.setApplicationGroupID(selectgroup);
+             AccessoryHasGroup a=new AccessoryHasGroup();
+            a.setAccessoryGroupID(selectgroup);
              Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             a.setCreateDate(date);
             a.setUpdateDate(date);
-            a.setApplicationID(selapp.get(i));
-          applicationHasGroupFacade.create(a);
+            a.setAccessoryID(selapp.get(i));
+          accessoryHasGroupFacade.create(a);
          }
-               Apara=applicationGroupFacade.findAll();
-             app=applicationFacade.findAll();
+               Apara=accessoryGroupFacade.findAll();
+             app=accessoryFacade.findAll();
          
       return "Login";
      }
@@ -245,12 +239,12 @@ public class appgroup {
          public void removeGroup(ActionEvent actionEvent){
       if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
           try {
-              ApplicationGroup a=   applicationGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
-                    List<ApplicationHasGroup> b=  applicationHasGroupFacade.get_app_group(a);
-                        for (ApplicationHasGroup applicationHasGroup : b) {
+              AccessoryGroup a=   accessoryGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<AccessoryHasGroup> b=  accessoryHasGroupFacade.get_app_group(a);
+                        for (AccessoryHasGroup accessoryHasGroup : b) {
                             try {
-                            applicationHasGroupFacade.remove(applicationHasGroup);
-                            Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+                            accessoryHasGroupFacade.remove(accessoryHasGroup);
+                            Messages.addInfoMessage("removed "+accessoryHasGroup.getAccessoryID().getAccName()+" from "+accessoryHasGroup.getAccessoryGroupID().getGroupname(),1);
        
                             } catch (Exception e) {
                                   Messages.addInfoMessage("NO app Linked ",1);
@@ -259,7 +253,7 @@ public class appgroup {
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         } 
                         
-                        applicationGroupFacade.remove(a);
+                        accessoryGroupFacade.remove(a);
                           Messages.addInfoMessage("removed "+a.getGroupname(),1);
        
                            
@@ -278,12 +272,12 @@ public void remove(ActionEvent actionEvent){
                     
                     if(((PGroup_tree)selectdelte.getData()).getType().toUpperCase().equals("GROUP")){
                         try{
-                     ApplicationGroup a=   applicationGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
-                    List<ApplicationHasGroup> b=  applicationHasGroupFacade.get_app_group(a);
-                        for (ApplicationHasGroup applicationHasGroup : b) {
+                     AccessoryGroup a=   accessoryGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                    List<AccessoryHasGroup> b=  accessoryHasGroupFacade.get_app_group(a);
+                        for (AccessoryHasGroup accessoryHasGroup : b) {
                             
-                       applicationHasGroupFacade.remove(applicationHasGroup);
-                     Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+                       accessoryHasGroupFacade.remove(accessoryHasGroup);
+                     Messages.addInfoMessage("removed "+accessoryHasGroup.getAccessoryID().getAccName()+" from "+accessoryHasGroup.getAccessoryGroupID().getGroupname(),1);
     
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         }
@@ -294,10 +288,10 @@ public void remove(ActionEvent actionEvent){
                     }else{
                            try {
                   
-                 ApplicationHasGroup a=applicationHasGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
+                 AccessoryHasGroup a=accessoryHasGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
                                
-                   applicationHasGroupFacade.remove(a);
-             Messages.addInfoMessage("removed "+a.getApplicationID().getAppName()+" from "+a.getApplicationGroupID().getGroupname(),1);
+                   accessoryHasGroupFacade.remove(a);
+             Messages.addInfoMessage("removed "+a.getAccessoryID().getAccName()+" from "+a.getAccessoryGroupID().getGroupname(),1);
          } catch (Exception e) {
                  Messages.addInfoMessage("not removed",1);
     }
@@ -306,7 +300,6 @@ public void remove(ActionEvent actionEvent){
          
      
      }
-    
     
     
 }

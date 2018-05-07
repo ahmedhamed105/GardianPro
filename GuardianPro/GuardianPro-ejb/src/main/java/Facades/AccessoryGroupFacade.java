@@ -9,6 +9,7 @@ import Entities.AccessoryGroup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,26 @@ public class AccessoryGroupFacade extends AbstractFacade<AccessoryGroup> impleme
 
     public AccessoryGroupFacade() {
         super(AccessoryGroup.class);
+    }
+    
+    
+      @Override
+    public boolean Pgroup_find(String groupname) {
+ 
+         Query para_find = em.createNamedQuery("AccessoryGroup.findByGroupname");
+        para_find.setParameter("groupname", groupname);
+        try {
+         Entities.ApplicationGroup  parah = (Entities.ApplicationGroup) para_find.getSingleResult(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

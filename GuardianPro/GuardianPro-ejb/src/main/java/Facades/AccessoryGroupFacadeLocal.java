@@ -30,4 +30,6 @@ public interface AccessoryGroupFacadeLocal {
 
     int count();
     
+    boolean Pgroup_find(String groupname);
+    
 }

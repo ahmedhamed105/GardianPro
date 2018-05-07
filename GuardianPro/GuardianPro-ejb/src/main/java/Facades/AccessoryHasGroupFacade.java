@@ -6,9 +6,13 @@
 package Facades;
 
 import Entities.AccessoryHasGroup;
+import Entities.ApplicationGroup;
+import Entities.ApplicationHasGroup;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +31,19 @@ public class AccessoryHasGroupFacade extends AbstractFacade<AccessoryHasGroup> i
 
     public AccessoryHasGroupFacade() {
         super(AccessoryHasGroup.class);
+    }
+    
+    
+      @Override
+    public List<Entities.AccessoryHasGroup> get_app_group(Entities.AccessoryGroup gp) {
+  
+      Query para = em.createNamedQuery("AccessoryHasGroup.findByGroup");
+        para.setParameter("id", gp);
+        try {
+              return  para.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

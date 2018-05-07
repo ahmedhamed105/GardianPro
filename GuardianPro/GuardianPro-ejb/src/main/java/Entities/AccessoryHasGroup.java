@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "AccessoryHasGroup.findAll", query = "SELECT a FROM AccessoryHasGroup a"),
     @NamedQuery(name = "AccessoryHasGroup.findById", query = "SELECT a FROM AccessoryHasGroup a WHERE a.id = :id"),
+    @NamedQuery(name = "AccessoryHasGroup.findByGroup", query = "SELECT a FROM AccessoryHasGroup a WHERE a.accessoryGroupID = :id"),
     @NamedQuery(name = "AccessoryHasGroup.findByCreateDate", query = "SELECT a FROM AccessoryHasGroup a WHERE a.createDate = :createDate"),
     @NamedQuery(name = "AccessoryHasGroup.findByUpdateDate", query = "SELECT a FROM AccessoryHasGroup a WHERE a.updateDate = :updateDate")})
 public class AccessoryHasGroup implements Serializable {

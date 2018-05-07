@@ -95,4 +95,19 @@
         <managed-bean-class>com.guardian.Login.accessory</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>accessgroup</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.accessgroup</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>caccessory</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Caccessory</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>caccessorygroup</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Caccessorygroup</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

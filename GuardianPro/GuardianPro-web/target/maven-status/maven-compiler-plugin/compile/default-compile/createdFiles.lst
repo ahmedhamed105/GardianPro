@@ -1,4 +1,5 @@
 com\guardian\Login\Login.class
+com\guardian\converter\Caccessorygroup.class
 com\guardian\Login\PGroup_tree.class
 com\guardian\Login\ParameterGroups.class
 com\guardian\converter\CappGroup.class
@@ -11,7 +12,9 @@ com\guardian\converter\Capp.class
 com\guardian\Login\Inputtype.class
 com\guardian\Login\accessory.class
 com\guardian\converter\CParameter.class
+com\guardian\Login\accessgroup.class
 com\guardian\Login\appgroup.class
 com\guardian\Login\application.class
 com\guardian\Login\parameter.class
 com\guardian\converter\Cparmetertype.class
+com\guardian\converter\Caccessory.class

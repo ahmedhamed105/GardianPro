@@ -30,4 +30,6 @@ public interface AccessoryHasGroupFacadeLocal {
 
     int count();
     
+    List<Entities.AccessoryHasGroup> get_app_group(Entities.AccessoryGroup gp);
+    
 }
