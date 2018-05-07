@@ -25,3 +25,4 @@
 hs_err_pid*
 *.dircache
 /GuardianPro/GuardianPro-ejb/target/
+GuardianPro/GuardianPro-ear/target/gfdeploy/GuardianPro-ear/gfv3ee6.dpf
