@@ -5,10 +5,15 @@
  */
 package Facades;
 
+import Entities.ApplicationGroup;
+import Entities.ApplicationHasGroup;
 import Entities.TerminalHasParts;
+import Entities.TerminalTemplate;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +32,19 @@ public class TerminalHasPartsFacade extends AbstractFacade<TerminalHasParts> imp
 
     public TerminalHasPartsFacade() {
         super(TerminalHasParts.class);
+    }
+    
+    
+     @Override
+    public List<TerminalHasParts> get_part_group(TerminalTemplate gp) {
+  
+      Query para = em.createNamedQuery("TerminalHasParts.findById");
+        para.setParameter("id", gp);
+        try {
+              return  para.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }

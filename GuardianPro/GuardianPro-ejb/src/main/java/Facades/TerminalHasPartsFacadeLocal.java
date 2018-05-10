@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.TerminalHasParts;
+import Entities.TerminalTemplate;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface TerminalHasPartsFacadeLocal {
     List<TerminalHasParts> findRange(int[] range);
 
     int count();
+    
+    List<TerminalHasParts> get_part_group(TerminalTemplate gp);
     
 }

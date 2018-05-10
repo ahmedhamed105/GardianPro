@@ -115,4 +115,9 @@
         <managed-bean-class>com.guardian.Login.Partsbean</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>terminalTemp</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.TerminalTemp</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
