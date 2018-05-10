@@ -122,11 +122,11 @@ public class Partsbean {
             part.setUpdateDate(date);
           partsFacade.edit(part);
           
-          Messages.addInfoMessage("Edited "+((Parameter) event.getObject()).getDisplayName(),1);
+          Messages.addInfoMessage("Edited "+((Parts) event.getObject()).getPName(),1);
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((Parameter) event.getObject()).getDisplayName(),1);
+          Messages.addInfoMessage("Cancelled "+((Parts) event.getObject()).getPName(),1);
     }
     
     

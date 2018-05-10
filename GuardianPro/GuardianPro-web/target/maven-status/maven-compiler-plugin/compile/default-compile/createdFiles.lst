@@ -17,4 +17,5 @@ com\guardian\Login\appgroup.class
 com\guardian\Login\application.class
 com\guardian\Login\parameter.class
 com\guardian\converter\Cparmetertype.class
+com\guardian\Login\Partsbean.class
 com\guardian\converter\Caccessory.class
