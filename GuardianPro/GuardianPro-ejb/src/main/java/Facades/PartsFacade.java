@@ -9,6 +9,7 @@ import Entities.Parts;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,25 @@ public class PartsFacade extends AbstractFacade<Parts> implements PartsFacadeLoc
 
     public PartsFacade() {
         super(Parts.class);
+    }
+    
+    
+     @Override
+    public boolean par_find(String displayname) {
+          Query para_find = em.createNamedQuery("Parts.findByPName");
+        para_find.setParameter("pName", displayname);
+        try {
+         Entities.Parameter  parah = (Entities.Parameter) para_find.getSingleResult(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

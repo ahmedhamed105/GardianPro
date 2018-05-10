@@ -30,4 +30,6 @@ public interface PartsFacadeLocal {
 
     int count();
     
+    boolean par_find(String displayname);
+    
 }

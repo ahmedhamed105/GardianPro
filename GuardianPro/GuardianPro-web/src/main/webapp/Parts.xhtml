@@ -7,7 +7,7 @@
     <h:head>
         <title>Parts</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{app.init()}"/>
+            <f:event type="preRenderView" listener="#{parts.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -266,12 +266,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Parmeter Page 
+        parts Page 
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Parmeter</li>
+        <li class="active">parts</li>
       </ol>
     </section>
 
@@ -316,22 +316,22 @@
                 <div class="form-group">
                     
                   <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{app.applicatios}" editable="true" style="margin-bottom:20px" rows="5"
+                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{parts.parts}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{app.seletapp}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{parts.selectpart}" rowKey="#{para.id}"> 
                       
  
 
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
      
-    <p:column headerText="APP name" sortBy="#{para.appName}"  >  
-      <h:outputText value="#{para.appName}" />
+    <p:column headerText="part name" sortBy="#{para.PName}"  >  
+        <h:outputText value="#{para.PName}" />
        </p:column>
         
-    <p:column headerText="File name" sortBy="#{para.filename}"  >  
-        <h:outputText value="#{para.filename}" />
+    <p:column headerText="part Description" sortBy="#{para.pdesc}"  >  
+        <h:outputText value="#{para.pdesc}" />
        </p:column>
        
 
@@ -388,16 +388,16 @@
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="appName">application</label>
-                  <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
+                  <label for="appName">part Name</label>
+                  <p:inputText class="form-control" id="appName"  value="#{parts.part.PName}" required="true" requiredMessage="please Enter part name"/>						
                   <p:message for="appName" display="text"/>
-                  <label for="appDir">Application File </label>
-                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" />
-                  <p:message for="appDir" display="text"/>
+                 <label for="pdesc">part Description</label>
+                 <p:inputText class="form-control" id="pdesc"  value="#{parts.part.pdesc}" required="true" requiredMessage="please Enter part name"/>						
+                  <p:message for="pdesc" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{app.ADD()}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{parts.ADD(actionEvent)}"/>  
    
                   
                   
