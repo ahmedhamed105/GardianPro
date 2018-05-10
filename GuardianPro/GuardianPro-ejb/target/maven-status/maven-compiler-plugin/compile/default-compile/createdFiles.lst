@@ -1,7 +1,10 @@
 Entities\WebsiteDataHasUser_.class
 Facades\PhoneTypesFacadeLocal.class
+Entities\Parts_.class
 Entities\NationalId_.class
 Entities\ParameterType.class
+Entities\Parts.class
+Entities\TerminalHasParts_.class
 Entities\ApplicationHasGroup_.class
 Facades\ParameterFacadeLocal.class
 Entities\UserPassword.class
@@ -13,6 +16,7 @@ Entities\NationalIdHasMaritalStatus_.class
 Facades\ApplicationHasGroupFacadeLocal.class
 Facades\ProfileDataFacade.class
 Facades\Distinct1FacadeLocal.class
+Facades\PartsFacadeLocal.class
 Entities\City_.class
 Facades\ReligionFacadeLocal.class
 Facades\MaritalStatusFacade.class
@@ -23,6 +27,7 @@ Entities\RoleHasComponent.class
 Facades\RoleHasComponentFacade.class
 Entities\Religion.class
 Entities\GroupHasParameter_.class
+Entities\DownloadMethod_.class
 Facades\PhoneTypesFacade.class
 Facades\NearPlacesFacade.class
 Entities\WebsiteDataHasUser.class
@@ -54,6 +59,7 @@ Facades\UserFacade.class
 Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
 Entities\Country.class
+Entities\TerminalTemplate_.class
 Facades\GroupHasParameterFacade.class
 Facades\ApplicationGroupFacade.class
 Entities\ArmyArea.class
@@ -66,6 +72,7 @@ Facades\PhoneDataFacade.class
 Entities\InputType.class
 Entities\GroupHasParameter.class
 Entities\TrxType.class
+Facades\TerminalHasPartsFacade.class
 Entities\Groups_.class
 Facades\LogScreenFacadeLocal.class
 Facades\RoleHasComponentFacadeLocal.class
@@ -75,12 +82,14 @@ Entities\MaritalStatus.class
 Facades\AccessoryHasGroupFacade.class
 Facades\SocialTypeFacadeLocal.class
 Entities\InputType_.class
+Facades\DownloadMethodFacade.class
 Entities\NationalIdHasMaritalStatusHasAddress.class
 Facades\ApplicationGroupFacadeLocal.class
 Facades\BirthDataFacadeLocal.class
 Entities\NationalIdHasMaritalStatus1_.class
 Entities\ProfileData.class
 Entities\Component.class
+Facades\PartsFacade.class
 Entities\ProfileData_.class
 Facades\UserStatusFacade.class
 Facades\PasswordHistoryFacadeLocal.class
@@ -92,6 +101,7 @@ Entities\GroupsHasUser_.class
 Entities\User_.class
 Entities\NearPlaces_.class
 Entities\Application.class
+Facades\TerminalHasPartsFacadeLocal.class
 Facades\CityFacade.class
 Facades\LogScreenFacade.class
 Entities\NationalIdHasMaritalStatusHasAddress_.class
@@ -108,9 +118,11 @@ Entities\NationalId.class
 Entities\UserPassword_.class
 Entities\PhoneTypes.class
 Entities\Accessory.class
+Entities\TerminalTemplate.class
 Entities\Distinct1_.class
 Entities\MilitaryStatus.class
 Entities\SocialDataPK_.class
+Entities\TerminalHasParts.class
 Facades\ArmyAreaFacade.class
 Entities\NationalIdHasMaritalStatus.class
 Facades\UserFacadeLocal.class
@@ -142,6 +154,7 @@ Facades\ApplicationFacade.class
 Facades\MilitaryStatusFacade.class
 Entities\NationalIdHasMaritalStatusHasAddressPK.class
 Facades\WebsiteDataHasUserFacadeLocal.class
+Entities\DownloadMethod.class
 Entities\LoginType.class
 Entities\Status_.class
 Facades\StreetFacade.class
@@ -157,6 +170,7 @@ Entities\SocialDataPK.class
 Entities\SocialData_.class
 Facades\AccessoryHasGroupFacadeLocal.class
 Facades\AddressFacadeLocal.class
+Facades\DownloadMethodFacadeLocal.class
 Entities\User.class
 Entities\LogScreen_.class
 Entities\PasswordHistory.class
@@ -191,10 +205,12 @@ Entities\SocialType.class
 Facades\BirthDataFacade.class
 Facades\GroupsFacadeLocal.class
 Facades\ParameterGroupFacadeLocal.class
+Facades\TerminalTemplateFacade.class
 Facades\NationalIdHasMaritalStatusFacadeLocal.class
 Entities\PhoneData_.class
 Facades\UserStatusFacadeLocal.class
 Entities\City.class
+Facades\TerminalTemplateFacadeLocal.class
 Entities\SocialType_.class
 Facades\SocialDataFacadeLocal.class
 Facades\NationalIdFacade.class

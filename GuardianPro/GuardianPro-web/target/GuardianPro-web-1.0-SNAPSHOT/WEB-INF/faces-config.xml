@@ -110,4 +110,9 @@
         <managed-bean-class>com.guardian.converter.Caccessorygroup</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>parts</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.Partsbean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
 </faces-config>

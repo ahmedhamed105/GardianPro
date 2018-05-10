@@ -12,6 +12,7 @@ import Entities.PasswordHistory;
 import Entities.PhoneData;
 import Entities.ProfileData;
 import Entities.SocialData;
+import Entities.TerminalTemplate;
 import Entities.UserPassword;
 import Entities.UserStatus;
 import Entities.WebsiteDataHasUser;
@@ -21,12 +22,13 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-05-07T22:28:20")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-05-10T19:50:20")
 @StaticMetamodel(User.class)
 public class User_ { 
 
     public static volatile CollectionAttribute<User, LoginWay> loginWayCollection;
     public static volatile SingularAttribute<User, Date> updateDate;
+    public static volatile CollectionAttribute<User, TerminalTemplate> terminalTemplateCollection;
     public static volatile CollectionAttribute<User, PhoneData> phoneDataCollection;
     public static volatile CollectionAttribute<User, SocialData> socialDataCollection;
     public static volatile SingularAttribute<User, String> middlename;
