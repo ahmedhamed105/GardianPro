@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ApplicationGroup.findByUpdateDate", query = "SELECT a FROM ApplicationGroup a WHERE a.updateDate = :updateDate")})
 public class ApplicationGroup implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "applicationGroupID")
+    private Collection<TgroupHasSoftware> tgroupHasSoftwareCollection;
+
     @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private User userID;
@@ -157,6 +160,15 @@ public class ApplicationGroup implements Serializable {
 
     public void setUserID(User userID) {
         this.userID = userID;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasSoftware> getTgroupHasSoftwareCollection() {
+        return tgroupHasSoftwareCollection;
+    }
+
+    public void setTgroupHasSoftwareCollection(Collection<TgroupHasSoftware> tgroupHasSoftwareCollection) {
+        this.tgroupHasSoftwareCollection = tgroupHasSoftwareCollection;
     }
     
 }

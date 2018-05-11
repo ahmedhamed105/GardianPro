@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parts.findByPdesc", query = "SELECT p FROM Parts p WHERE p.pdesc = :pdesc")})
 public class Parts implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "partsID")
+    private Collection<TgroupHasParts> tgroupHasPartsCollection;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -152,6 +155,15 @@ public class Parts implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasParts> getTgroupHasPartsCollection() {
+        return tgroupHasPartsCollection;
+    }
+
+    public void setTgroupHasPartsCollection(Collection<TgroupHasParts> tgroupHasPartsCollection) {
+        this.tgroupHasPartsCollection = tgroupHasPartsCollection;
     }
     
 }

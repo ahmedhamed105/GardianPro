@@ -47,6 +47,16 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parameter.findByUpdateDate", query = "SELECT p FROM Parameter p WHERE p.updateDate = :updateDate")})
 public class Parameter implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Allow_Null", nullable = false)
+    private boolean allowNull;
+    @Size(max = 500)
+    @Column(name = "Default_value", length = 500)
+    private String defaultvalue;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
+    private Collection<TgroupHasParameter> tgroupHasParameterCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,10 +78,6 @@ public class Parameter implements Serializable {
     @Size(max = 500)
     @Column(name = "Note", length = 500)
     private String note;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Allow_Null", nullable = false)
-    private boolean allowNull;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -219,6 +225,25 @@ public class Parameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.Parameter[ id=" + id + " ]";
+    }
+
+   
+
+    public String getDefaultvalue() {
+        return defaultvalue;
+    }
+
+    public void setDefaultvalue(String defaultvalue) {
+        this.defaultvalue = defaultvalue;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasParameter> getTgroupHasParameterCollection() {
+        return tgroupHasParameterCollection;
+    }
+
+    public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
+        this.tgroupHasParameterCollection = tgroupHasParameterCollection;
     }
     
 }

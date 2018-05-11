@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,32 +19,35 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
-@Table(name = "groups_has_user", catalog = "guardianpro", schema = "")
+@Table(name = "phone_data_copy1", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "GroupsHasUser.findAll", query = "SELECT g FROM GroupsHasUser g")
-    , @NamedQuery(name = "GroupsHasUser.findById", query = "SELECT g FROM GroupsHasUser g WHERE g.id = :id")
-    , @NamedQuery(name = "GroupsHasUser.findByCreateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.createDate = :createDate")
-    , @NamedQuery(name = "GroupsHasUser.findByUpdateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.updateDate = :updateDate")})
-public class GroupsHasUser implements Serializable {
-
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private User userID;
+    @NamedQuery(name = "PhoneDataCopy1.findAll", query = "SELECT p FROM PhoneDataCopy1 p"),
+    @NamedQuery(name = "PhoneDataCopy1.findById", query = "SELECT p FROM PhoneDataCopy1 p WHERE p.id = :id"),
+    @NamedQuery(name = "PhoneDataCopy1.findByTelephone", query = "SELECT p FROM PhoneDataCopy1 p WHERE p.telephone = :telephone"),
+    @NamedQuery(name = "PhoneDataCopy1.findByCreateDate", query = "SELECT p FROM PhoneDataCopy1 p WHERE p.createDate = :createDate"),
+    @NamedQuery(name = "PhoneDataCopy1.findByUpdateDate", query = "SELECT p FROM PhoneDataCopy1 p WHERE p.updateDate = :updateDate")})
+public class PhoneDataCopy1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID", nullable = false)
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "telephone", nullable = false, length = 45)
+    private String telephone;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -57,19 +58,23 @@ public class GroupsHasUser implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Groups_Group_id", referencedColumnName = "Group_id", nullable = false)
+    @JoinColumn(name = "Phone_types_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Groups groupsGroupid;
+    private PhoneTypes phonetypesID;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
 
-    public GroupsHasUser() {
+    public PhoneDataCopy1() {
     }
 
-    public GroupsHasUser(Integer id) {
+    public PhoneDataCopy1(Integer id) {
         this.id = id;
     }
 
-    public GroupsHasUser(Integer id, Date createDate, Date updateDate) {
+    public PhoneDataCopy1(Integer id, String telephone, Date createDate, Date updateDate) {
         this.id = id;
+        this.telephone = telephone;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -80,6 +85,14 @@ public class GroupsHasUser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public Date getCreateDate() {
@@ -98,12 +111,20 @@ public class GroupsHasUser implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Groups getGroupsGroupid() {
-        return groupsGroupid;
+    public PhoneTypes getPhonetypesID() {
+        return phonetypesID;
     }
 
-    public void setGroupsGroupid(Groups groupsGroupid) {
-        this.groupsGroupid = groupsGroupid;
+    public void setPhonetypesID(PhoneTypes phonetypesID) {
+        this.phonetypesID = phonetypesID;
+    }
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override
@@ -116,10 +137,10 @@ public class GroupsHasUser implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GroupsHasUser)) {
+        if (!(object instanceof PhoneDataCopy1)) {
             return false;
         }
-        GroupsHasUser other = (GroupsHasUser) object;
+        PhoneDataCopy1 other = (PhoneDataCopy1) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -128,15 +149,7 @@ public class GroupsHasUser implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.GroupsHasUser[ id=" + id + " ]";
-    }
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
+        return "Entities.PhoneDataCopy1[ id=" + id + " ]";
     }
     
 }

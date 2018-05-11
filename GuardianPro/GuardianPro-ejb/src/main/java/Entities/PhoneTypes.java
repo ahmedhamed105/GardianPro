@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PhoneTypes.findByUpdateDate", query = "SELECT p FROM PhoneTypes p WHERE p.updateDate = :updateDate")})
 public class PhoneTypes implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "phonetypesID")
+    private Collection<PhoneDataCopy1> phoneDataCopy1Collection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -140,6 +143,15 @@ public class PhoneTypes implements Serializable {
     @Override
     public String toString() {
         return "Entities.PhoneTypes[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<PhoneDataCopy1> getPhoneDataCopy1Collection() {
+        return phoneDataCopy1Collection;
+    }
+
+    public void setPhoneDataCopy1Collection(Collection<PhoneDataCopy1> phoneDataCopy1Collection) {
+        this.phoneDataCopy1Collection = phoneDataCopy1Collection;
     }
     
 }

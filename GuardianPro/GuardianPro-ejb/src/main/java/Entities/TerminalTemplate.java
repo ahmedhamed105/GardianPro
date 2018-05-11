@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TerminalTemplate.findByTdesc", query = "SELECT t FROM TerminalTemplate t WHERE t.tdesc = :tdesc")})
 public class TerminalTemplate implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminaltemplateID")
+    private Collection<Terminal> terminalCollection;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -165,6 +168,15 @@ public class TerminalTemplate implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    @XmlTransient
+    public Collection<Terminal> getTerminalCollection() {
+        return terminalCollection;
+    }
+
+    public void setTerminalCollection(Collection<Terminal> terminalCollection) {
+        this.terminalCollection = terminalCollection;
     }
     
 }

@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "AccessoryGroup.findByUpdateDate", query = "SELECT a FROM AccessoryGroup a WHERE a.updateDate = :updateDate")})
 public class AccessoryGroup implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accessoryGroupID")
+    private Collection<TgroupHasAccesory> tgroupHasAccesoryCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -156,6 +159,15 @@ public class AccessoryGroup implements Serializable {
     @Override
     public String toString() {
         return "Entities.AccessoryGroup[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasAccesory> getTgroupHasAccesoryCollection() {
+        return tgroupHasAccesoryCollection;
+    }
+
+    public void setTgroupHasAccesoryCollection(Collection<TgroupHasAccesory> tgroupHasAccesoryCollection) {
+        this.tgroupHasAccesoryCollection = tgroupHasAccesoryCollection;
     }
     
 }

@@ -48,6 +48,15 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<ConfigParmeter> configParmeterCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<GroupsHasUser> groupsHasUserCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<TerminalGroup> terminalGroupCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<PhoneDataCopy1> phoneDataCopy1Collection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<TerminalTemplate> terminalTemplateCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
@@ -358,6 +367,42 @@ public class User implements Serializable {
 
     public void setTerminalTemplateCollection(Collection<TerminalTemplate> terminalTemplateCollection) {
         this.terminalTemplateCollection = terminalTemplateCollection;
+    }
+
+    @XmlTransient
+    public Collection<ConfigParmeter> getConfigParmeterCollection() {
+        return configParmeterCollection;
+    }
+
+    public void setConfigParmeterCollection(Collection<ConfigParmeter> configParmeterCollection) {
+        this.configParmeterCollection = configParmeterCollection;
+    }
+
+    @XmlTransient
+    public Collection<GroupsHasUser> getGroupsHasUserCollection() {
+        return groupsHasUserCollection;
+    }
+
+    public void setGroupsHasUserCollection(Collection<GroupsHasUser> groupsHasUserCollection) {
+        this.groupsHasUserCollection = groupsHasUserCollection;
+    }
+
+    @XmlTransient
+    public Collection<TerminalGroup> getTerminalGroupCollection() {
+        return terminalGroupCollection;
+    }
+
+    public void setTerminalGroupCollection(Collection<TerminalGroup> terminalGroupCollection) {
+        this.terminalGroupCollection = terminalGroupCollection;
+    }
+
+    @XmlTransient
+    public Collection<PhoneDataCopy1> getPhoneDataCopy1Collection() {
+        return phoneDataCopy1Collection;
+    }
+
+    public void setPhoneDataCopy1Collection(Collection<PhoneDataCopy1> phoneDataCopy1Collection) {
+        this.phoneDataCopy1Collection = phoneDataCopy1Collection;
     }
     
 }

@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ParameterGroup.findByUpdateDate", query = "SELECT p FROM ParameterGroup p WHERE p.updateDate = :updateDate")})
 public class ParameterGroup implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterGroupID")
+    private Collection<TgroupHasGparameter> tgroupHasGparameterCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -156,6 +159,15 @@ public class ParameterGroup implements Serializable {
     @Override
     public String toString() {
         return "Entities.ParameterGroup[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasGparameter> getTgroupHasGparameterCollection() {
+        return tgroupHasGparameterCollection;
+    }
+
+    public void setTgroupHasGparameterCollection(Collection<TgroupHasGparameter> tgroupHasGparameterCollection) {
+        this.tgroupHasGparameterCollection = tgroupHasGparameterCollection;
     }
     
 }
