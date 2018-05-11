@@ -7,6 +7,7 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,6 +38,17 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TgroupHasGparameter.findAll", query = "SELECT t FROM TgroupHasGparameter t"),
     @NamedQuery(name = "TgroupHasGparameter.findById", query = "SELECT t FROM TgroupHasGparameter t WHERE t.id = :id")})
 public class TgroupHasGparameter implements Serializable {
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "create_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -113,6 +128,22 @@ public class TgroupHasGparameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.TgroupHasGparameter[ id=" + id + " ]";
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
     
 }

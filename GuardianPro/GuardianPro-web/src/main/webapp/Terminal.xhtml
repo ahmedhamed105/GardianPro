@@ -327,7 +327,7 @@
  
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{terminalbean.Addgroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1"  action="#{terminalbean.Addgroup(actionEvent)}"/>  
    
                   
                   
@@ -341,15 +341,13 @@
           <!-- /.box -->
             </div>
         </div>
-        </div>
-        
-         <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
+            
+            <div class="col-md-6 col-sm-3 col-xs-6">
                    <!-- general form elements -->
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Group and applications</h3>
+              <h3 class="box-title">Terminal</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -374,36 +372,69 @@
         
              
               <div class="box-body">
-                  <h:form id="form3">
-                  <p:messages id="messages3" showDetail="true" closable="true"/>
+                  <h:form id="form2">
+                  <p:messages id="messages2" showDetail="true" closable="true"/>
                 <div class="form-group">
+                   
+                  <label for="tid">Terminal TID</label>
+                  <p:inputText class="form-control" id="tid"  value="#{terminalbean.term.tid}" required="true" requiredMessage="please Enter TID"/>						
+                  <p:message for="tid" display="text"/>
+                  
+                      <label for="POSSerialNo">Terminal Serial</label>
+                      <p:inputText class="form-control" id="POSSerialNo"  value="#{terminalbean.term.POSSerialNo}" required="true" requiredMessage="please Enter TID"/>						
+                  <p:message for="POSSerialNo" display="text"/>
+                  
+                   <label for="ownerName">Terminal Owner Name</label>
+                   <p:inputText class="form-control" id="ownerName"  value="#{terminalbean.term.ownerName}" />						
+                   <p:message for="ownerName" display="text"/>
+                  
+                  
+                   <label for="merchantName">Terminal Merchant Name</label>
+                   <p:inputText class="form-control" id="merchantName"  value="#{terminalbean.term.merchantName}" />						
+                   <p:message for="merchantName" display="text"/>
+                  
+                  
+                    <label for="shopName">Terminal Shop Name</label>
+                    <p:inputText class="form-control" id="shopName"  value="#{terminalbean.term.shopName}" />						
+                    <p:message for="shopName" display="text"/>
+                  
+                    <label for="address">Terminal Address</label>
+                    <p:inputText class="form-control" id="address"  value="#{terminalbean.term.address}" />						
+                    <p:message for="address" display="text"/>
+                  
+                    <label for="contactperson">Terminal Shop Contact</label>
+                    <p:inputText class="form-control" id="contactperson"  value="#{terminalbean.term.contactperson}" />						
+                    <p:message for="contactperson" display="text"/>
                     
-                      <label for="appGroup">Group Choose</label>   
-                      <h:selectOneMenu converter="#{caccessorygroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
+                    <label for="telNo">Terminal Shop Tel No.</label>
+                    <p:inputText class="form-control" id="telNo"  value="#{terminalbean.term.telNo}" />						
+                    <p:message for="telNo" display="text"/>
+                    
+                    <label for="officeContact">Terminal Office Contact</label>
+                    <p:inputText class="form-control" id="officeContact"  value="#{terminalbean.term.officeContact}" />						
+                    <p:message for="officeContact" display="text"/>
+                    
+                    <label for="officeTelNo">Terminal Office Tel No.</label>
+                    <p:inputText class="form-control" id="officeTelNo"  value="#{terminalbean.term.officeTelNo}" />						
+                    <p:message for="officeTelNo" display="text"/>
+                    
+                    
+                    
+                         <label for="selecttemplate">select terminal template</label>   
+                         <h:selectOneMenu converter="#{cterminalTemplate}" class="form-control select2" id="selecttemplate" value="#{terminalbean.term.terminaltemplateID}" required="true" requiredMessage="please Enter template">
                  <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{accessgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
+                 <f:selectItems value="#{terminalbean.terminaltemplate}" var="c" itemValue="#{c}" itemLabel="#{c.TName}" />
                  </h:selectOneMenu>
-                 <p:message for="appGroup" display="text"/>
-                            
-                             <label for="advanced">accessory Choose</label>  
-                             <p:selectManyMenu  id="advanced" value="#{accessgroup.selapp}" converter="#{caccessory}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application">
-                                 <f:selectItems value="#{accessgroup.app}" var="f" itemLabel="#{f.accName}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.accName}" />
-            </p:column>
-             </p:selectManyMenu>
-                    <p:message for="advanced" display="text"/>
-               
+                 <p:message for="selecttemplate" display="text"/>
+  
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{accessgroup.joingroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
    
                   
                   
                 </div>
-                   </h:form>        
+                   </h:form>     
               </div>
               <!-- /.box-body -->
                  <div class="box-footer">
@@ -412,7 +443,9 @@
           <!-- /.box -->
             </div>
         </div>
-         </div>
+        </div>
+        
+
         
         
         <div class="row">

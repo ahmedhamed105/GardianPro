@@ -7,11 +7,15 @@ package com.guardian.Login;
 
 import Entities.Terminal;
 import Entities.TerminalGroup;
+import Entities.TerminalTemplate;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
+import Facades.TerminalTemplateFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -34,12 +38,19 @@ public class Terminalbean {
       @EJB
     private UserFacadeLocal userFacade;
       
+      @EJB
+    private TerminalTemplateFacadeLocal terminalTemplateFacade;
+      
       
     
     
     private TerminalGroup termgroup=new TerminalGroup();
     
     private Terminal term=new Terminal();
+    
+     List<TerminalTemplate> Terminaltemplate= new ArrayList<TerminalTemplate>();
+     
+     TerminalTemplate selecttemplate=new TerminalTemplate();
     
     java.sql.Date date ;
     
@@ -61,6 +72,7 @@ public class Terminalbean {
 
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
+        Terminaltemplate=terminalTemplateFacade.findAll();
 
         }
         
@@ -91,6 +103,22 @@ public class Terminalbean {
     public void setTerm(Terminal term) {
         this.term = term;
     }
+
+    public List<TerminalTemplate> getTerminaltemplate() {
+        return Terminaltemplate;
+    }
+
+    public void setTerminaltemplate(List<TerminalTemplate> Terminaltemplate) {
+        this.Terminaltemplate = Terminaltemplate;
+    }
+
+    public TerminalTemplate getSelecttemplate() {
+        return selecttemplate;
+    }
+
+    public void setSelecttemplate(TerminalTemplate selecttemplate) {
+        this.selecttemplate = selecttemplate;
+    }
     
     
     
@@ -108,6 +136,26 @@ public class Terminalbean {
          
       return "Login";
      }
+       
+       
+       
+           public String Addterminal(ActionEvent actionEvent){
+         
+        if(terminalFacade.term_find(term.getTid())){
+               Messages.addInfoMessage("Duplicated TID",2);
+        }else{
+             Messages.addInfoMessage("ADDED",1);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            term.setCreateDate(date);
+            term.setUpdateDate(date);
+            
+          terminalFacade.create(term);
+        }
+         
+      return "Login";
+     }
+       
+       
      
     
     

@@ -245,5 +245,9 @@ public class Parameter implements Serializable {
     public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
         this.tgroupHasParameterCollection = tgroupHasParameterCollection;
     }
+
+  
+
+
     
 }

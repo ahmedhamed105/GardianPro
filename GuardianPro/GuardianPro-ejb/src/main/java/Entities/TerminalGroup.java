@@ -7,6 +7,7 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,6 +41,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TerminalGroup.findByGroupname", query = "SELECT t FROM TerminalGroup t WHERE t.groupname = :groupname"),
     @NamedQuery(name = "TerminalGroup.findByGroupdesc", query = "SELECT t FROM TerminalGroup t WHERE t.groupdesc = :groupdesc")})
 public class TerminalGroup implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
+    private Collection<TgroupHasTerminal> tgroupHasTerminalCollection;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "create_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,8 +75,7 @@ public class TerminalGroup implements Serializable {
     @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private User userID;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
-    private Collection<Terminal> terminalCollection;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
     private Collection<TgroupHasSoftware> tgroupHasSoftwareCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
@@ -118,14 +134,7 @@ public class TerminalGroup implements Serializable {
         this.userID = userID;
     }
 
-    @XmlTransient
-    public Collection<Terminal> getTerminalCollection() {
-        return terminalCollection;
-    }
 
-    public void setTerminalCollection(Collection<Terminal> terminalCollection) {
-        this.terminalCollection = terminalCollection;
-    }
 
     @XmlTransient
     public Collection<TgroupHasSoftware> getTgroupHasSoftwareCollection() {
@@ -168,6 +177,31 @@ public class TerminalGroup implements Serializable {
     @Override
     public String toString() {
         return "Entities.TerminalGroup[ id=" + id + " ]";
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasTerminal> getTgroupHasTerminalCollection() {
+        return tgroupHasTerminalCollection;
+    }
+
+    public void setTgroupHasTerminalCollection(Collection<TgroupHasTerminal> tgroupHasTerminalCollection) {
+        this.tgroupHasTerminalCollection = tgroupHasTerminalCollection;
     }
     
 }

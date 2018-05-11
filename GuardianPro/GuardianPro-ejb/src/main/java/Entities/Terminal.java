@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,7 +43,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Terminal.findByTelNo", query = "SELECT t FROM Terminal t WHERE t.telNo = :telNo"),
     @NamedQuery(name = "Terminal.findByOfficeContact", query = "SELECT t FROM Terminal t WHERE t.officeContact = :officeContact"),
     @NamedQuery(name = "Terminal.findByOfficeTelNo", query = "SELECT t FROM Terminal t WHERE t.officeTelNo = :officeTelNo"),
-    @NamedQuery(name = "Terminal.findByPOSSerialNo", query = "SELECT t FROM Terminal t WHERE t.pOSSerialNo = :pOSSerialNo")})
+    @NamedQuery(name = "Terminal.findByPOSSerialNo", query = "SELECT t FROM Terminal t WHERE t.pOSSerialNo = :pOSSerialNo"),
+    @NamedQuery(name = "Terminal.findByCreateDate", query = "SELECT t FROM Terminal t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "Terminal.findByUpdateDate", query = "SELECT t FROM Terminal t WHERE t.updateDate = :updateDate")})
 public class Terminal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -83,9 +88,16 @@ public class Terminal implements Serializable {
     @Size(min = 1, max = 500)
     @Column(name = "POS_SerialNo", nullable = false, length = 500)
     private String pOSSerialNo;
-    @JoinColumn(name = "Terminal_Group_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private TerminalGroup terminalGroupID;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "create_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
     @JoinColumn(name = "Terminal_template_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private TerminalTemplate terminaltemplateID;
@@ -97,10 +109,12 @@ public class Terminal implements Serializable {
         this.id = id;
     }
 
-    public Terminal(Integer id, String tid, String pOSSerialNo) {
+    public Terminal(Integer id, String tid, String pOSSerialNo, Date createDate, Date updateDate) {
         this.id = id;
         this.tid = tid;
         this.pOSSerialNo = pOSSerialNo;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
     public Integer getId() {
@@ -191,12 +205,20 @@ public class Terminal implements Serializable {
         this.pOSSerialNo = pOSSerialNo;
     }
 
-    public TerminalGroup getTerminalGroupID() {
-        return terminalGroupID;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setTerminalGroupID(TerminalGroup terminalGroupID) {
-        this.terminalGroupID = terminalGroupID;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public TerminalTemplate getTerminaltemplateID() {
