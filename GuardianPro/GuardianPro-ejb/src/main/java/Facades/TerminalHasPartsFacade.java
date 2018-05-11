@@ -38,7 +38,7 @@ public class TerminalHasPartsFacade extends AbstractFacade<TerminalHasParts> imp
      @Override
     public List<TerminalHasParts> get_part_group(TerminalTemplate gp) {
   
-      Query para = em.createNamedQuery("TerminalHasParts.findById");
+      Query para = em.createNamedQuery("TerminalHasParts.findByGroup");
         para.setParameter("id", gp);
         try {
               return  para.getResultList();

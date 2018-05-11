@@ -30,4 +30,6 @@ public interface TerminalTemplateFacadeLocal {
 
     int count();
     
+    boolean Pterminal_find(String terminal_name);
+    
 }

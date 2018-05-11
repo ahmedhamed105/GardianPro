@@ -5,9 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Application Group</title>
+        <title>terminal Temp</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{appgroup.init()}"/>
+            <f:event type="preRenderView" listener="#{terminalTemp.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -271,7 +271,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">application</li>
+        <li class="active">terminal Temp</li>
       </ol>
     </section>
 
@@ -286,7 +286,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">applications</h3>
+              <h3 class="box-title">terminal Temp and Parts</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -315,9 +315,9 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:treeTable id="cars1" value="#{appgroup.root}" var="group" selectionMode="single" selection="#{appgroup.selectdelte}">
+                    <p:treeTable id="cars1" value="#{terminalTemp.root}" var="group" selectionMode="single" selection="#{terminalTemp.selectdelte}">
         <f:facet name="header">
-            Group Parmeter
+            terminal Temp
         </f:facet>
         <p:column headerText="Name">
             <h:outputText value="#{group.parameterGroup}" />
@@ -333,8 +333,8 @@
       
     </p:treeTable>
                     
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{appgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{appgroup.removeGroup(actionEvent)}"/>  
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{terminalTemp.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{terminalTemp.removeGroup(actionEvent)}"/>  
              
                   
                 </div>
@@ -353,7 +353,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">application</h3>
+              <h3 class="box-title">terminal Temp</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -382,13 +382,13 @@
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="groupname">application Group name</label>
-                  <p:inputText class="form-control" id="groupname"  value="#{appgroup.appGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
+                  <label for="groupname">terminal Temp name</label>
+                  <p:inputText class="form-control" id="groupname"  value="#{terminalTemp.terminal.TName}" required="true" requiredMessage="please Enter Parmeter Type"/>						
                   <p:message for="groupname" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{appgroup.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{terminalTemp.ADD(actionEvent)}"/>  
    
                   
                   
@@ -410,7 +410,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Group and applications</h3>
+              <h3 class="box-title">terminal Temp and Parts</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -439,27 +439,35 @@
                   <p:messages id="messages3" showDetail="true" closable="true"/>
                 <div class="form-group">
                     
-                      <label for="appGroup">Group Choose</label>   
-                    <h:selectOneMenu converter="#{cappGroup}" class="form-control select2" id="appGroup" value="#{appgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
+                      <label for="appGroup">terminal Temp Choose</label>   
+                      <h:selectOneMenu converter="#{cterminalTemplate}" class="form-control select2" id="appGroup" value="#{terminalTemp.selectgroup}" required="true" requiredMessage="please Enter terminal Temp">
                  <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{appgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
+                 <f:selectItems value="#{terminalTemp.terminals}" var="c" itemValue="#{c}" itemLabel="#{c.TName}" />
                  </h:selectOneMenu>
                  <p:message for="appGroup" display="text"/>
+                 
+                 
+                  <label for="downloads">download Method Choose</label>   
+                  <h:selectOneMenu converter="#{cdownload}" class="form-control select2" id="downloads" value="#{terminalTemp.seledownload}" required="true" requiredMessage="please Enter Download Method">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{terminalTemp.downloads}" var="c" itemValue="#{c}" itemLabel="#{c.DName}" />
+                 </h:selectOneMenu>
+                 <p:message for="downloads" display="text"/>
                             
-                             <label for="advanced">application Choose</label>  
-                             <p:selectManyMenu  id="advanced" value="#{appgroup.selapp}" converter="#{capp}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application">
-                                 <f:selectItems value="#{appgroup.app}" var="f" itemLabel="#{f.appName}" itemValue="#{f}" />
+                             <label for="advanced">Parts Choose</label>  
+                             <p:selectManyMenu  id="advanced" value="#{terminalTemp.selparts}" converter="#{cparts}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter parts">
+                                 <f:selectItems value="#{terminalTemp.parts}" var="f" itemLabel="#{f.PName}" itemValue="#{f}" />
  
             <p:column>
-                <h:outputText value="#{t.appName}" />
+                <h:outputText value="#{t.PName}" />
             </p:column>
              </p:selectManyMenu>
                     <p:message for="advanced" display="text"/>
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{appgroup.joingroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{terminalTemp.joingroup(actionEvent)}"/>  
    
                   
                   

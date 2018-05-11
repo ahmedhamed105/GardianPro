@@ -9,6 +9,7 @@ import Entities.TerminalTemplate;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,26 @@ public class TerminalTemplateFacade extends AbstractFacade<TerminalTemplate> imp
 
     public TerminalTemplateFacade() {
         super(TerminalTemplate.class);
+    }
+    
+    
+      @Override
+    public boolean Pterminal_find(String terminal_name) {
+ 
+         Query para_find = em.createNamedQuery("TerminalTemplate.findByTName");
+        para_find.setParameter("tName", terminal_name);
+        try {
+         Entities.ApplicationGroup  parah = (Entities.ApplicationGroup) para_find.getSingleResult(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
     }
     
 }

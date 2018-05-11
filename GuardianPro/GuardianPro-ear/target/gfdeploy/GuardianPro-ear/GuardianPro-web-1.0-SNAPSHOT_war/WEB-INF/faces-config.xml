@@ -120,4 +120,19 @@
         <managed-bean-class>com.guardian.Login.TerminalTemp</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cdownload</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cdownload</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cparts</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cparts</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cterminalTemplate</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CterminalTemplate</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
