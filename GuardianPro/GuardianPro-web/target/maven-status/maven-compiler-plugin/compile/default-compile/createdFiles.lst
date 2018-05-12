@@ -12,6 +12,7 @@ com\guardian\Login\Partsbean.class
 com\guardian\Login\Terminalbean.class
 com\guardian\converter\Caccessorygroup.class
 com\guardian\Login\PGroup_tree.class
+com\guardian\Login\Terminalgroup.class
 com\guardian\Login\ParameterGroups.class
 com\guardian\Login\Groups1.class
 com\guardian\converter\Cgroupparameter.class

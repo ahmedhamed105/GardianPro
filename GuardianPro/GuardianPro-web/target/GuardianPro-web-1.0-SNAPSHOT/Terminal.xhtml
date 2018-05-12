@@ -283,12 +283,12 @@
         <div class="row">
           
        
-        <div class="col-md-6 col-sm-3 col-xs-6">
+         <div class="col-md-6 col-sm-3 col-xs-6">
                    <!-- general form elements -->
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Terminal</h3>
+              <h3 class="box-title">Parmeter</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -313,22 +313,131 @@
         
              
               <div class="box-body">
-                  <h:form id="form1">
-                  <p:messages id="messages1" showDetail="true" closable="true"/>
+                   <h:form id="form">
+                  <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
-                   
-                  <label for="groupname">Terminal Group name</label>
-                  <p:inputText class="form-control" id="groupname"  value="#{terminalbean.termgroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                  <p:message for="groupname" display="text"/>
-                  
-                   <label for="groupdesc">Terminal Group description</label>
-                   <p:inputText class="form-control" id="groupdesc"  value="#{terminalbean.termgroup.groupdesc}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                  <p:message for="groupdesc" display="text"/>
+                    
+                  <p:dataTable id="cars1" widgetVar="carsTable"
+                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalbean.terminals}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalbean.selectTerminal}" rowKey="#{para.id}"> 
+                      
  
-                  <br/>
-                  <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1"  action="#{terminalbean.Addgroup(actionEvent)}"/>  
+        <p:ajax event="rowEdit" listener="#{terminalbean.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{terminalbean.onRowCancel}" update=":form:messages :form:cars1"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+    <p:column headerText="TID" sortBy="#{para.tid}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.tid}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.tid}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+            <p:column headerText="Serial" sortBy="#{para.POSSerialNo}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.POSSerialNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput19" value="#{para.POSSerialNo}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Owner Name" sortBy="#{para.ownerName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.ownerName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput18" value="#{para.ownerName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
    
+    
+    
+       <p:column headerText="Merchant Name" sortBy="#{para.merchantName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.merchantName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput17" value="#{para.merchantName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Shop Name" sortBy="#{para.shopName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.shopName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput16" value="#{para.shopName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Address" sortBy="#{para.address}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.address}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput15" value="#{para.address}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Shop Contact" sortBy="#{para.contactperson}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.contactperson}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput14" value="#{para.contactperson}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Tel No." sortBy="#{para.telNo}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.telNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput13" value="#{para.telNo}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Office Contact" sortBy="#{para.officeContact}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.officeContact}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput12" value="#{para.officeContact}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Office Tel No" sortBy="#{para.officeTelNo}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.officeTelNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput11" value="#{para.officeTelNo}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="terminal template" sortBy="#{para.terminaltemplateID.TName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.terminaltemplateID.TName}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu converter="#{cterminalTemplate}" class="form-control select2" id="selecttemplate1" value="#{para.terminaltemplateID}" required="true" requiredMessage="please Enter template">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{terminalbean.terminaltemplate}" var="c" itemValue="#{c}" itemLabel="#{c.TName}" />
+                 </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column> 
+    
+    
+       
+
+       
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+      <f:facet name="footer">
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parmetertype.remove(actionEvent)}"/>  
+    </f:facet>
+    
+   </p:dataTable>
                   
                   
                 </div>

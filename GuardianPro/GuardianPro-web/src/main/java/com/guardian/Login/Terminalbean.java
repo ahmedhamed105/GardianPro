@@ -5,6 +5,7 @@
  */
 package com.guardian.Login;
 
+import Entities.ParameterType;
 import Entities.Terminal;
 import Entities.TerminalGroup;
 import Entities.TerminalTemplate;
@@ -22,6 +23,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -32,8 +34,7 @@ public class Terminalbean {
     @EJB
     private TerminalFacadeLocal terminalFacade;
 
-    @EJB
-    private TerminalGroupFacadeLocal terminalGroupFacade;
+  
     
       @EJB
     private UserFacadeLocal userFacade;
@@ -44,13 +45,17 @@ public class Terminalbean {
       
     
     
-    private TerminalGroup termgroup=new TerminalGroup();
+   
     
     private Terminal term=new Terminal();
     
      List<TerminalTemplate> Terminaltemplate= new ArrayList<TerminalTemplate>();
      
      TerminalTemplate selecttemplate=new TerminalTemplate();
+     
+      List<Terminal> Terminals= new ArrayList<Terminal>();
+      
+      Terminal selectTerminal=new Terminal();
     
     java.sql.Date date ;
     
@@ -88,13 +93,15 @@ public class Terminalbean {
    
     }
 
-    public TerminalGroup getTermgroup() {
-        return termgroup;
+    public Terminal getSelectTerminal() {
+        return selectTerminal;
     }
 
-    public void setTermgroup(TerminalGroup termgroup) {
-        this.termgroup = termgroup;
+    public void setSelectTerminal(Terminal selectTerminal) {
+        this.selectTerminal = selectTerminal;
     }
+
+   
 
     public Terminal getTerm() {
         return term;
@@ -119,23 +126,18 @@ public class Terminalbean {
     public void setSelecttemplate(TerminalTemplate selecttemplate) {
         this.selecttemplate = selecttemplate;
     }
+
+    public List<Terminal> getTerminals() {
+        return Terminals;
+    }
+
+    public void setTerminals(List<Terminal> Terminals) {
+        this.Terminals = Terminals;
+    }
     
     
     
-       public String Addgroup(ActionEvent actionEvent){
-         
-        if(terminalGroupFacade.group_find(termgroup.getGroupname())){
-               Messages.addInfoMessage("Duplicated",2);
-        }else{
-             Messages.addInfoMessage("ADDED",1);
-            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            termgroup.setCreateDate(date);
-            termgroup.setUpdateDate(date);
-          terminalGroupFacade.create(termgroup);
-        }
-         
-      return "Login";
-     }
+ 
        
        
        
@@ -156,6 +158,19 @@ public class Terminalbean {
      }
        
        
+           
+            public void onRowEdit(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          term=((Terminal) event.getObject());
+            term.setUpdateDate(date);
+          terminalFacade.edit(term);
+          
+          Messages.addInfoMessage("Edited "+((Terminal) event.getObject()).getTid(),1);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((Terminal) event.getObject()).getTid(),1);
+    }
      
     
     

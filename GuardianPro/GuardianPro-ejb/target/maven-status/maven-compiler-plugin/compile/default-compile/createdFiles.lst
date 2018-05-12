@@ -121,9 +121,11 @@ Entities\EmailSmsSend.class
 Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
 Facades\TgroupHasSoftwareFacade.class
+Entities\TgroupHasTerminal.class
 Entities\ParameterGroup_.class
 Facades\AccessoryFacadeLocal.class
 Entities\NationalId.class
+Entities\TgroupHasTerminal_.class
 Entities\UserPassword_.class
 Entities\PhoneTypes.class
 Entities\Accessory.class
