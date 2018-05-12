@@ -283,7 +283,7 @@
         <div class="row">
           
        
-         <div class="col-md-6 col-sm-3 col-xs-6">
+         <div class="col-md-12 col-sm-6 col-xs-12">
                    <!-- general form elements -->
           <div class="box">
             
@@ -318,7 +318,7 @@
                 <div class="form-group">
                     
                   <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalbean.terminals}" editable="true" style="margin-bottom:20px" rows="5"
+                               emptyMessage="No terminal found with given criteria" var="para" value="#{terminalbean.terminals}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15" selection="#{terminalbean.selectTerminal}" rowKey="#{para.id}"> 
@@ -434,7 +434,7 @@
     
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parmetertype.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"/>  
     </f:facet>
     
    </p:dataTable>
@@ -451,7 +451,15 @@
             </div>
         </div>
             
-            <div class="col-md-6 col-sm-3 col-xs-6">
+       
+        </div>
+        
+
+        
+        
+        <div class="row">
+            
+                 <div class="col-md-6 col-sm-3 col-xs-6">
                    <!-- general form elements -->
           <div class="box">
             
@@ -490,7 +498,7 @@
                   <p:message for="tid" display="text"/>
                   
                       <label for="POSSerialNo">Terminal Serial</label>
-                      <p:inputText class="form-control" id="POSSerialNo"  value="#{terminalbean.term.POSSerialNo}" required="true" requiredMessage="please Enter TID"/>						
+                      <p:inputText class="form-control" id="POSSerialNo"  value="#{terminalbean.term.POSSerialNo}" required="true" requiredMessage="please Enter Serial no"/>						
                   <p:message for="POSSerialNo" display="text"/>
                   
                    <label for="ownerName">Terminal Owner Name</label>
@@ -538,7 +546,7 @@
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
    
                   
                   
@@ -552,13 +560,8 @@
           <!-- /.box -->
             </div>
         </div>
-        </div>
-        
-
-        
-        
-        <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
+            
+          <div class="col-md-6 col-sm-3 col-xs-6">
                    <!-- general form elements -->
           <div class="box">
             

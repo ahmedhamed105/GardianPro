@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Terminal;
 import Entities.TerminalGroup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -49,5 +50,8 @@ public class TerminalGroupFacade extends AbstractFacade<TerminalGroup> implement
             return false;
         }
     }
+        
+       
+        
     
 }

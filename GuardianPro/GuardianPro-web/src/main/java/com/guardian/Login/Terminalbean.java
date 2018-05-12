@@ -12,6 +12,7 @@ import Entities.TerminalTemplate;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
+import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +33,9 @@ import org.primefaces.event.RowEditEvent;
 public class Terminalbean {
 
     @EJB
+    private TgroupHasTerminalFacadeLocal tgroupHasTerminalFacade;
+
+    @EJB
     private TerminalFacadeLocal terminalFacade;
 
   
@@ -42,7 +46,7 @@ public class Terminalbean {
       @EJB
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
       
-      
+    
     
     
    
@@ -78,6 +82,8 @@ public class Terminalbean {
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
         Terminaltemplate=terminalTemplateFacade.findAll();
+        Terminals=terminalFacade.findAll();
+            System.out.println("com.guardian.Login.Terminalbean.init() "+Terminals.size());
 
         }
         
@@ -171,6 +177,24 @@ public class Terminalbean {
     public void onRowCancel(RowEditEvent event) {
           Messages.addInfoMessage("Cancelled "+((Terminal) event.getObject()).getTid(),1);
     }
+    
+    
+    
+         public void remove(ActionEvent actionEvent){
+             
+             if(tgroupHasTerminalFacade.find_term(selectTerminal)){
+             Messages.addInfoMessage("please remove TID from any Terminal Group",2);
+             }else{
+         try {
+                   terminalFacade.remove(selectTerminal);
+             Messages.addInfoMessage("removed "+selectTerminal.getTid(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selectTerminal.getTid()+" return to Admin",2);
+         }
+             }
+         
+     
+     }
      
     
     
