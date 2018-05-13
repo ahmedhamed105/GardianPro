@@ -40,6 +40,7 @@ Facades\LoginWayFacade.class
 Entities\Country_.class
 Entities\TgroupHasParameter_.class
 Facades\AccessoryGroupFacade.class
+Facades\TgroupHasTerminalFacade.class
 Facades\CountryFacadeLocal.class
 Facades\ParameterGroupFacade.class
 Facades\TgroupHasParameterFacade.class
@@ -241,6 +242,7 @@ Entities\City.class
 Facades\TgroupHasAccesoryFacade.class
 Facades\TerminalTemplateFacadeLocal.class
 Facades\TgroupHasGparameterFacade.class
+Facades\TgroupHasTerminalFacadeLocal.class
 Entities\SocialType_.class
 Facades\SocialDataFacadeLocal.class
 Facades\NationalIdFacade.class

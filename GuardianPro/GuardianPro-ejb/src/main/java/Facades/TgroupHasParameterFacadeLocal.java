@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.TgroupHasGparameter;
 import Entities.TgroupHasParameter;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface TgroupHasParameterFacadeLocal {
     List<TgroupHasParameter> findRange(int[] range);
 
     int count();
+    
+    List<Entities.TgroupHasParameter> find_term_groups(TgroupHasGparameter group);
     
 }

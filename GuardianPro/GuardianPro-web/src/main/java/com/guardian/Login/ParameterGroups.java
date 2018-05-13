@@ -8,9 +8,15 @@ package com.guardian.Login;
 import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
+import Entities.TgroupHasGparameter;
+import Entities.TgroupHasParameter;
+import Entities.TgroupHasTerminal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
+import Facades.TgroupHasGparameterFacadeLocal;
+import Facades.TgroupHasParameterFacadeLocal;
+import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +38,16 @@ import org.primefaces.model.DefaultTreeNode;
 public class ParameterGroups {
 
     @EJB
+    private TgroupHasGparameterFacadeLocal tgroupHasGparameterFacade;
+
+    @EJB
+    private TgroupHasParameterFacadeLocal tgroupHasParameterFacade;
+    
+    
+
+   
+
+    @EJB
     private GroupHasParameterFacadeLocal groupHasParameterFacade;
 
     @EJB
@@ -45,8 +61,11 @@ public class ParameterGroups {
         
         
         
+        
+        
+        
 
-    private TreeNode root;
+   
     
      Entities.ParameterGroup paraGroup= new ParameterGroup();
      
@@ -62,6 +81,8 @@ public class ParameterGroups {
         ParameterGroup selectgroup=new ParameterGroup();
      
       java.sql.Date date ;
+      
+       private TreeNode root;
       
       private TreeNode selectdelte;
 
@@ -96,7 +117,7 @@ public class ParameterGroups {
          
               for(int j=0;j<para.size();j++){
                    System.out.println("para "+para.get(j).getParameterID().getDisplayName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),"Parameter"), documents);
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),para.get(j).getParameterID().getParametertypeID().getType()), documents);
         
               }
           } catch (Exception e) {
@@ -192,6 +213,31 @@ public class ParameterGroups {
             a.setUpdateDate(date);
             a.setParameterID(selparameter.get(i));
           groupHasParameterFacade.create(a);
+         try{ 
+         List<Entities.TgroupHasGparameter> go=  tgroupHasGparameterFacade.find_group(selectgroup);
+         
+          for(Entities.TgroupHasGparameter tgroupHasGparameter:go){
+               TgroupHasParameter v=new TgroupHasParameter();
+                v.setParameterID(selparameter.get(i));
+                v.setTgrouphasGparameterID(tgroupHasGparameter);
+                if(selparameter.get(i).getDefaultvalue()==null){
+                 v.setParmetervalue("0");
+                }else{
+                 v.setParmetervalue(selparameter.get(i).getDefaultvalue());
+
+                }
+              
+                 v.setCreateDate(date);
+                 v.setUpdateDate(date);
+                tgroupHasParameterFacade.create(v);
+          
+          }
+         
+         }catch(Exception e){
+         //return "Login";
+         }
+            
+              
          }
        
          

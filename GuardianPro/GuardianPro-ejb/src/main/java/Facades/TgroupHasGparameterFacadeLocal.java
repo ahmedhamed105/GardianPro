@@ -5,6 +5,8 @@
  */
 package Facades;
 
+import Entities.ParameterGroup;
+import Entities.TerminalGroup;
 import Entities.TgroupHasGparameter;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +31,9 @@ public interface TgroupHasGparameterFacadeLocal {
     List<TgroupHasGparameter> findRange(int[] range);
 
     int count();
+    
+    List<Entities.TgroupHasGparameter> find_group(ParameterGroup group);
+    
+    List<Entities.TgroupHasGparameter> find_term_groups(TerminalGroup group);
     
 }

@@ -5,10 +5,13 @@
  */
 package Facades;
 
+import Entities.TerminalGroup;
 import Entities.TgroupHasAccesory;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,22 @@ public class TgroupHasAccesoryFacade extends AbstractFacade<TgroupHasAccesory> i
         super(TgroupHasAccesory.class);
     }
     
+    
+      @Override
+        public   List<Entities.TgroupHasAccesory> find_term_groups(TerminalGroup group){ 
+           Query para_find = em.createNamedQuery("TgroupHasAccesory.findByGroup");
+        para_find.setParameter("id", group);
+        try {
+         List<Entities.TgroupHasAccesory>  parah =  para_find.getResultList();
+          //  System.out.println("ahmed hamed  "+parah.getGroupname());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+        }   
 }

@@ -5,10 +5,14 @@
  */
 package Facades;
 
+import Entities.TerminalGroup;
+import Entities.TgroupHasGparameter;
 import Entities.TgroupHasParameter;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +32,24 @@ public class TgroupHasParameterFacade extends AbstractFacade<TgroupHasParameter>
     public TgroupHasParameterFacade() {
         super(TgroupHasParameter.class);
     }
+    
+    
+      @Override
+        public   List<Entities.TgroupHasParameter> find_term_groups(TgroupHasGparameter group){ 
+           Query para_find = em.createNamedQuery("TgroupHasParameter.findByGroup");
+        para_find.setParameter("id", group);
+        try {
+         List<Entities.TgroupHasParameter>  parah =  para_find.getResultList();
+          //  System.out.println("ahmed hamed  "+parah.getGroupname());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+        }   
     
 }

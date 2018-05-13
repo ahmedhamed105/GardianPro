@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TgroupHasParameter.findAll", query = "SELECT t FROM TgroupHasParameter t"),
     @NamedQuery(name = "TgroupHasParameter.findById", query = "SELECT t FROM TgroupHasParameter t WHERE t.id = :id"),
+    @NamedQuery(name = "TgroupHasParameter.findByGroup", query = "SELECT t FROM TgroupHasParameter t WHERE t.tgrouphasGparameterID = :id"),
     @NamedQuery(name = "TgroupHasParameter.findByParmetervalue", query = "SELECT t FROM TgroupHasParameter t WHERE t.parmetervalue = :parmetervalue"),
     @NamedQuery(name = "TgroupHasParameter.findByParmeterdesc", query = "SELECT t FROM TgroupHasParameter t WHERE t.parmeterdesc = :parmeterdesc")})
 public class TgroupHasParameter implements Serializable {

@@ -313,8 +313,8 @@
         
              
               <div class="box-body">
-                  <h:form id="form2">
-                  <p:messages id="messages2" showDetail="true" closable="true"/>
+                  <h:form id="form">
+                  <p:messages id="messages" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
                   <label for="groupname">Terminal Group name</label>
@@ -322,24 +322,33 @@
                   <p:message for="groupname" display="text"/>
                   
                    <label for="terminals">Terminal Choose</label>  
-                   <p:selectManyMenu  id="terminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
+                   <p:selectManyMenu style="width: 100%"  id="terminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
                                        var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter terminals">
                        <f:selectItems value="#{terminalgroup.terminals}" var="f" itemLabel="#{f.tid}" itemValue="#{f}" />
  
             <p:column>
                 <h:outputText value="#{t.tid}" />
             </p:column>
-                       <p:column>
-                           <h:outputText value="#{t.shopName}" />
+                         <p:column>
+                <h:outputText value="-" />
+            </p:column>
+             <p:column>
+                <h:outputText value="#{t.POSSerialNo}" />
+            </p:column>
+                               <p:column>
+                <h:outputText value="-" />
+            </p:column>
+            <p:column>
+             <h:outputText value="#{t.shopName}" />
             </p:column>
              </p:selectManyMenu>
                     <p:message for="terminals" display="text"/>
                     
                     
                     
-                     <label for="terminals">Applications Choose</label>  
-                     <p:selectManyMenu  id="terminals" value="#{terminalgroup.selectAppgroup}" converter="#{cterminal}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter terminals">
+                     <label for="appgroup">Applications Choose</label>  
+                     <p:selectManyMenu style="width: 100%" id="appgroup" value="#{terminalgroup.selectAppgroup}" converter="#{cappGroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="false" requiredMessage="please Enter application">
                          <f:selectItems value="#{terminalgroup.appgroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
  
             <p:column>
@@ -347,12 +356,39 @@
             </p:column>
              
              </p:selectManyMenu>
-                    <p:message for="terminals" display="text"/>
+                    <p:message for="appgroup" display="text"/>
+                    
+                    
+                         <label for="acessorygroup">accessory Choose</label>  
+                         <p:selectManyMenu style="width: 100%" id="acessorygroup" value="#{terminalgroup.selectAcessorygroup}" converter="#{caccessorygroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.acessorygroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+             
+             </p:selectManyMenu>
+                    <p:message for="acessorygroup" display="text"/>
+                    
+                    
+              <label for="paragroup">parameter Choose</label>  
+              <p:selectManyMenu style="width: 100%" id="paragroup" value="#{terminalgroup.selectparagroup}" converter="#{cgroupparameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter paramter">
+                             <f:selectItems value="#{terminalgroup.paragroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+          
+             
+             </p:selectManyMenu>
+                    <p:message for="paragroup" display="text"/>
                   
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages"  action="#{terminalgroup.Addgroup(actionEvent)}"/>  
    
                   
                   
@@ -372,7 +408,230 @@
         
 
         
+             <div class="row">
+          <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Terminals</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
         
+             
+              <div class="box-body">
+                   <h:form id="form11">
+                  <p:messages id="messages11" showDetail="true" closable="true" />
+                <div class="form-group">
+                   
+                    <p:treeTable id="cars1" value="#{terminalgroup.root}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte}">
+        <f:facet name="header">
+            Group Terminal
+        </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{group.name}" />
+        </p:column>
+        <p:column headerText="serial">
+            <h:outputText value="#{group.serial}" />
+        </p:column>
+        <p:column headerText="Shop name">
+            <h:outputText value="#{group.shopname}" />
+        </p:column>
+         <p:column headerText="Count">
+            <h:outputText value="#{group.count}" />
+        </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
+
+       
+      
+    </p:treeTable>
+                    
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form11:messages11"  action="#{terminalgroup.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form11:messages11"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
+             
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+        </div>
+        
+            <div class="row">
+          <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Parameter</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                   <h:form id="form12">
+                  <p:messages id="messages12" showDetail="true" closable="true" />
+                <div class="form-group">
+                    
+                    <p:treeTable id="cars2" value="#{terminalgroup.root1}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte1}">
+        <f:facet name="header">
+            Group Parameter
+        </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{group.name}" />
+        </p:column>
+        <p:column headerText="serial">
+            <h:outputText value="#{group.serial}" />
+        </p:column>
+        <p:column headerText="Shop name">
+            <h:outputText value="#{group.shopname}" />
+        </p:column>
+         <p:column headerText="Count">
+            <h:outputText value="#{group.count}" />
+        </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
+
+       
+      
+    </p:treeTable>
+                    
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form12:messages12"  action="#{terminalgroup.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form12:messages12"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
+             
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Parameter</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                   <h:form id="form13">
+                  <p:messages id="messages13" showDetail="true" closable="true" />
+                <div class="form-group">
+                    
+                    <p:treeTable id="cars3" value="#{terminalgroup.root2}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte2}">
+        <f:facet name="header">
+            Group Parameter
+        </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{group.name}" />
+        </p:column>
+        <p:column headerText="serial">
+            <h:outputText value="#{group.serial}" />
+        </p:column>
+        <p:column headerText="Shop name">
+            <h:outputText value="#{group.shopname}" />
+        </p:column>
+         <p:column headerText="Count">
+            <h:outputText value="#{group.count}" />
+        </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
+
+       
+      
+    </p:treeTable>
+                    
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form13:messages13"  action="#{terminalgroup.remove(actionEvent)}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form13:messages13"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
+             
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+        </div>
         <div class="row">
             
          

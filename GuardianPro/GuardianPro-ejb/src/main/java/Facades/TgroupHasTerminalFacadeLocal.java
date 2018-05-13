@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.Terminal;
+import Entities.TerminalGroup;
 import Entities.TgroupHasTerminal;
 import java.util.List;
 import javax.ejb.Local;
@@ -32,5 +33,7 @@ public interface TgroupHasTerminalFacadeLocal {
     int count();
     
     boolean find_term(Terminal term);
+    
+    List<Entities.TgroupHasTerminal> find_term_groups(TerminalGroup group);
     
 }

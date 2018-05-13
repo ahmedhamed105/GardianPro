@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.TerminalGroup;
 import Entities.TgroupHasSoftware;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface TgroupHasSoftwareFacadeLocal {
     List<TgroupHasSoftware> findRange(int[] range);
 
     int count();
+    
+    List<Entities.TgroupHasSoftware> find_term_groups(TerminalGroup group);
     
 }
