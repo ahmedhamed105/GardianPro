@@ -123,7 +123,12 @@ public class Terminalgroup {
            List<TgroupHasParameter> groupHasParameter= new ArrayList<TgroupHasParameter>();
         
            List<TgroupHasSoftware> groupHasSoftware= new ArrayList<TgroupHasSoftware>();
+           
+           List<TgroupHasAccesory> groupHasAccesory= new ArrayList<TgroupHasAccesory>();
        // List<Terminal> selectTerminals= new ArrayList<Terminal>();
+           
+           
+          TgroupHasParameter groupHasPara=new TgroupHasParameter();
         
         
 
@@ -140,6 +145,11 @@ public class Terminalgroup {
         private TreeNode root2;
       
     private TreeNode selectdelte2;
+    
+    
+            private TreeNode root3;
+      
+    private TreeNode selectdelte3;
       
         
     /**
@@ -147,6 +157,33 @@ public class Terminalgroup {
      */
     public Terminalgroup() {
     }
+
+    public TgroupHasParameter getGroupHasPara() {
+        return groupHasPara;
+    }
+
+    public void setGroupHasPara(TgroupHasParameter groupHasPara) {
+        this.groupHasPara = groupHasPara;
+    }
+    
+    
+
+    public TreeNode getRoot3() {
+        return root3;
+    }
+
+    public void setRoot3(TreeNode root3) {
+        this.root3 = root3;
+    }
+
+    public TreeNode getSelectdelte3() {
+        return selectdelte3;
+    }
+
+    public void setSelectdelte3(TreeNode selectdelte3) {
+        this.selectdelte3 = selectdelte3;
+    }
+    
 
     public TreeNode getRoot2() {
         return root2;
@@ -294,9 +331,16 @@ public class Terminalgroup {
            for(TgroupHasTerminal tgroupHasTerminal:grouphasterminal){
            Terminals.remove(tgroupHasTerminal.getTerminalID());
            }
+                paragroup=parameterGroupFacade.findAll();
+           List<TgroupHasGparameter> groupHasGparam= new ArrayList<TgroupHasGparameter>();
+              groupHasGparam= tgroupHasGparameterFacade.findAll();
+           for(TgroupHasGparameter tgroupHasTerminal:groupHasGparam){
+           paragroup.remove(tgroupHasTerminal.getParameterGroupID());
+           }
+           
            Appgroup=applicationGroupFacade.findAll();
            Acessorygroup=accessoryGroupFacade.findAll();
-           paragroup=parameterGroupFacade.findAll();
+      
            
              root = new DefaultTreeNode(new PGroup_tree("Groups",Terminalsgroup.size(),0,"root"), null);
               for(int i=0;i<Terminalsgroup.size();i++){
@@ -304,17 +348,17 @@ public class Terminalgroup {
               groupHasTerminal  = tgroupHasTerminalFacade.find_term_groups(Terminalsgroup.get(i));
               
             //  System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
-              DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",groupHasTerminal.size(),Terminalsgroup.get(i).getId(),"GROUP"), root);
+              DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasTerminal.size(),Terminalsgroup.get(i).getId(),"GROUP"), root);
                for(int j=0;j<groupHasTerminal.size();j++){
                    System.out.println("para "+groupHasTerminal.get(j).getTerminalID().getTid());
-             DefaultTreeNode documentss = new DefaultTreeNode(new Pterminal_group(groupHasTerminal.get(j).getTerminalID().getTid(),groupHasTerminal.get(j).getTerminalID().getPOSSerialNo(),groupHasTerminal.get(j).getTerminalID().getShopName(),1,groupHasTerminal.get(j).getId(),"Terminal"), documents);
-        
+             DefaultTreeNode documentss = new DefaultTreeNode(new Pterminal_group(groupHasTerminal.get(j).getTerminalID().getTid(),groupHasTerminal.get(j).getTerminalID().getPOSSerialNo(),groupHasTerminal.get(j).getTerminalID().getShopName(),"",1,groupHasTerminal.get(j).getId(),"Terminal"), documents);
+          
               }
           
           } catch (Exception e) {
               e.printStackTrace();
                System.out.println("error");
-                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",0,Terminalsgroup.get(i).getId(),"GROUP"), root);
+                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",0,Terminalsgroup.get(i).getId(),"GROUP"), root);
           }
          
       
@@ -328,17 +372,21 @@ public class Terminalgroup {
               groupHasGparameter  = tgroupHasGparameterFacade.find_term_groups(Terminalsgroup.get(i));
               
             //  System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
-              DefaultTreeNode documents1 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",groupHasGparameter.size(),Terminalsgroup.get(i).getId(),"GROUP"), root1);
+              DefaultTreeNode documents1 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasGparameter.size(),Terminalsgroup.get(i).getId(),"GROUP"), root1);
                for(int j=0;j<groupHasGparameter.size();j++){
-                   System.out.println("para "+groupHasGparameter.get(j).getParameterGroupID().getGroupname());
-             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),1,groupHasTerminal.get(j).getId(),"Parmeter_Group"), documents1);
-       
+                //   System.out.println("para "+groupHasGparameter.get(j).getParameterGroupID().getGroupname());
+             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),"",1,groupHasTerminal.get(j).getId(),"Parmeter_Group"), documents1);
+                groupHasParameter= tgroupHasParameterFacade.find_term_groups(groupHasGparameter.get(j));
+                 for(int j1=0;j1<groupHasParameter.size();j1++){
+                //   System.out.println("para "+groupHasParameter.get(j).getParameterID().getFieldName());
+             DefaultTreeNode documentss2 = new DefaultTreeNode(new Pterminal_group(groupHasParameter.get(j).getParameterID().getDisplayName(),groupHasParameter.get(j).getParameterID().getInputtypeID().getType(),groupHasParameter.get(j).getParameterID().getParametertypeID().getType(),groupHasParameter.get(j).getParmetervalue(),1,groupHasParameter.get(j).getId(),"Parmeter"), documentss1);
+              }
               }
           
           } catch (Exception e) {
               e.printStackTrace();
                System.out.println("error");
-                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",0,Terminalsgroup.get(i).getId(),"GROUP"), root1);
+                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",0,Terminalsgroup.get(i).getId(),"GROUP"), root1);
           }
          
       
@@ -353,17 +401,41 @@ public class Terminalgroup {
               groupHasSoftware  = tgroupHasSoftwareFacade.find_term_groups(Terminalsgroup.get(i));
               
             //  System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
-              DefaultTreeNode documents2 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",groupHasSoftware.size(),Terminalsgroup.get(i).getId(),"GROUP"), root2);
+              DefaultTreeNode documents2 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasSoftware.size(),Terminalsgroup.get(i).getId(),"GROUP"), root2);
                for(int j=0;j<groupHasSoftware.size();j++){
                    System.out.println("para "+groupHasSoftware.get(j).getApplicationGroupID().getGroupname());
-             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),1,groupHasSoftware.get(j).getId(),"App_Group"), documents2);
+             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),groupHasSoftware.get(j).getApplicationGroupID().getGroupname(),"",1,groupHasSoftware.get(j).getId(),"App_Group"), documents2);
        
               }
           
           } catch (Exception e) {
               e.printStackTrace();
                System.out.println("error");
-                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","",0,Terminalsgroup.get(i).getId(),"GROUP"), root2);
+                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",0,Terminalsgroup.get(i).getId(),"GROUP"), root2);
+          }
+         
+      
+      }
+              
+              
+              
+                 root3 = new DefaultTreeNode(new PGroup_tree("Groups",Terminalsgroup.size(),0,"root"), null);
+              for(int i=0;i<Terminalsgroup.size();i++){
+          try {
+              groupHasAccesory  = tgroupHasAccesoryFacade.find_term_groups(Terminalsgroup.get(i));
+              
+            //  System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
+              DefaultTreeNode documents3 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasAccesory.size(),Terminalsgroup.get(i).getId(),"GROUP"), root3);
+               for(int j=0;j<groupHasAccesory.size();j++){
+                   System.out.println("para "+groupHasAccesory.get(j).getAccessoryGroupID().getGroupname());
+             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasAccesory.get(j).getAccessoryGroupID().getGroupname(),groupHasAccesory.get(j).getAccessoryGroupID().getGroupname(),groupHasAccesory.get(j).getAccessoryGroupID().getGroupname(),"",1,groupHasAccesory.get(j).getId(),"App_Group"), documents3);
+       
+              }
+          
+          } catch (Exception e) {
+              e.printStackTrace();
+               System.out.println("error");
+                 DefaultTreeNode documents = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",0,Terminalsgroup.get(i).getId(),"GROUP"), root3);
           }
          
       
@@ -457,5 +529,31 @@ public class Terminalgroup {
          
       return "Login";
      }
+          
+          
+          
+          
+            public void addparavalue(ActionEvent actionEvent){
+            try{
+                Pterminal_group a=(Pterminal_group)selectdelte1.getData();
+             //   System.out.println("com.guardian.Login.Terminalgroup.addparavalue() "+a.getType());
+              if(a.getType().toUpperCase().equals("PARMETER")){
+                  
+                   date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                  TgroupHasParameter b=tgroupHasParameterFacade.find(a.getId());
+                b.setParmetervalue(groupHasPara.getParmetervalue());
+                b.setParmeterdesc(groupHasPara.getParmeterdesc());
+                 b.setUpdateDate(date);
+                 tgroupHasParameterFacade.edit(b);
+                 }else{
+               Messages.addInfoMessage("please select parmeter 2",2);
+              }
+            }catch(Exception e){
+                e.printStackTrace();
+                Messages.addInfoMessage("please select parmeter",2);
+            }
+               
+            
+            }
     
 }

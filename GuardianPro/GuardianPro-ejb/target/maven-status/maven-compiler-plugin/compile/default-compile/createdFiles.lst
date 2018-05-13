@@ -81,7 +81,6 @@ Entities\GroupHasParameter.class
 Entities\TrxType.class
 Facades\TerminalHasPartsFacade.class
 Entities\Groups_.class
-Facades\TgroupHasPartsFacadeLocal.class
 Facades\LogScreenFacadeLocal.class
 Facades\RoleHasComponentFacadeLocal.class
 Facades\WebsiteDataFacade.class
@@ -186,7 +185,6 @@ Entities\PhoneDataCopy1.class
 Facades\LoginWayFacadeLocal.class
 Entities\ArmyArea_.class
 Facades\AbstractFacade.class
-Facades\TgroupHasPartsFacade.class
 Facades\RoleHasGroupsFacadeLocal.class
 Entities\ParameterGroup.class
 Entities\SocialDataPK.class

@@ -14,18 +14,30 @@ public class Pterminal_group {
        private String name;
        private String serial;
        private String shopname;
+       private String pvalue;
        private int  count;
        private int  id;
        private String  type;
 
-    public Pterminal_group(String name, String serial, String shopname, int count, int id, String type) {
+    public Pterminal_group(String name, String serial, String shopname, String pvalue, int count, int id, String type) {
         this.name = name;
         this.serial = serial;
         this.shopname = shopname;
+        this.pvalue = pvalue;
         this.count = count;
         this.id = id;
         this.type = type;
     }
+
+    public String getPvalue() {
+        return pvalue;
+    }
+
+    public void setPvalue(String pvalue) {
+        this.pvalue = pvalue;
+    }
+
+
        
        
        
