@@ -407,7 +407,145 @@
        
         </div>
         
+       <div class="row">
+          <div class="col-md-12 col-sm-6 col-xs-12">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Data</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                   <h:form id="form111">
+                  <p:messages id="messages111" showDetail="true" closable="true" />
+               
+                <p:wizard id="carsgo" flowListener="#{terminalgroup.onFlowProcess}">
+        <p:tab id="Gtermainal" title="Group">
+            <p:panel header="Terminal Group" >
+                <p:dataTable id="GroupTerminal" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TGroup}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletermgroup}" rowKey="#{para.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTGroup}" update=":form111:messages111 :form111:GroupTerminal" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTGroup}" update=":form111:messages111 :form111:GroupTerminal"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+    <p:column headerText="Type" sortBy="#{para.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="XML Header" sortBy="#{para.groupdesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.groupdesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.groupdesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
+    </f:facet>
+    
+    
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+ 
+              <p:tab id="terminal" title="Terminal">
+            <p:panel header="Terminal Group" >
+                <p:dataTable id="Terminalcar" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TGroup}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletermgroup}" rowKey="#{para.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTGroup}" update=":form111:messages111 :form111:GroupTerminal" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTGroup}" update=":form111:messages111 :form111:GroupTerminal"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+    <p:column headerText="Type" sortBy="#{para.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="XML Header" sortBy="#{para.groupdesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.groupdesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.groupdesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+       
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
+    </f:facet>
+    
+    
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+                    
+
+                  
+               
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+        </div>
         
              <div class="row">
           <div class="col-md-6 col-sm-3 col-xs-6">

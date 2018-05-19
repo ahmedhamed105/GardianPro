@@ -5,6 +5,7 @@
  */
 package com.guardian.Login;
 
+import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
 import Entities.GroupHasParameter;
@@ -38,6 +39,8 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.event.FlowEvent;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -98,6 +101,9 @@ public class Terminalgroup {
         
         List<Terminal> selectTerminals= new ArrayList<Terminal>();
         
+        
+        List<TerminalGroup> TGroup= new ArrayList<TerminalGroup>();
+        TerminalGroup seletermgroup=new TerminalGroup();
         
          List<ApplicationGroup> Appgroup= new ArrayList<ApplicationGroup>();
         
@@ -307,6 +313,22 @@ public class Terminalgroup {
     public void setSelectdelte(TreeNode selectdelte) {
         this.selectdelte = selectdelte;
     }
+
+    public List<TerminalGroup> getTGroup() {
+        return TGroup;
+    }
+
+    public void setTGroup(List<TerminalGroup> TGroup) {
+        this.TGroup = TGroup;
+    }
+
+    public TerminalGroup getSeletermgroup() {
+        return seletermgroup;
+    }
+
+    public void setSeletermgroup(TerminalGroup seletermgroup) {
+        this.seletermgroup = seletermgroup;
+    }
     
     
     
@@ -324,6 +346,7 @@ public class Terminalgroup {
 
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
+        TGroup=terminalGroupFacade.findAll();
          Terminals=terminalFacade.findAll();
         Terminalsgroup=terminalGroupFacade.findAll();
           List<TgroupHasTerminal> grouphasterminal= new ArrayList<TgroupHasTerminal>();
@@ -555,5 +578,53 @@ public class Terminalgroup {
                
             
             }
+            
+            
+            
+             public String onFlowProcess(FlowEvent event) {
+                 
+                 if(event.getOldStep().equals("Gtermainal") && event.getNewStep().equals("terminal")){
+                  if(seletermgroup != null){     
+                     return event.getNewStep();
+                 }else{
+                 return  "Gtermainal";
+                 }
+                 }else{
+                    return  "Gtermainal";
+                 }
+                
+            
+    }
+             
+             
+                    public void onRowEditTGroup(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          seletermgroup=((TerminalGroup) event.getObject());
+            seletermgroup.setUpdateDate(date);
+          terminalGroupFacade.edit(seletermgroup);
+          
+          Messages.addInfoMessage("Edited "+((TerminalGroup) event.getObject()).getGroupname(),1);
+    }
+     
+    public void onRowCancelTGroup(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((TerminalGroup) event.getObject()).getGroupname(),1);
+    }
+    
+      public void removeTGroup(ActionEvent actionEvent){
+              if(seletermgroup != null){  
+          // please add remove group
+         try {
+                   terminalGroupFacade.remove(seletermgroup);
+             Messages.addInfoMessage("removed "+seletermgroup.getGroupname(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+seletermgroup.getGroupname()+" return to Admin",2);
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose terminal Group",2);
+   
+              }
+         
+     
+     }
     
 }
