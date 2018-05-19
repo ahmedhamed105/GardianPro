@@ -673,12 +673,10 @@ public class Terminalgroup {
           terminalGroupFacade.edit(seletermgroup);
           
           Messages.addInfoMessage("Edited "+((TerminalGroup) event.getObject()).getGroupname(),1);
-    }
-     
+    }  
     public void onRowCancelTGroup(RowEditEvent event) {
           Messages.addInfoMessage("Cancelled "+((TerminalGroup) event.getObject()).getGroupname(),1);
     }
-    
     public void removeTGroup(ActionEvent actionEvent){
               if(seletermgroup != null){  
           // please add remove group
@@ -713,13 +711,10 @@ public class Terminalgroup {
           selegroupHasTerminal.getTerminalID().setUpdateDate(date);
           terminalFacade.edit(selegroupHasTerminal.getTerminalID());
           Messages.addInfoMessage("Edited "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
-    }
-     
+    } 
     public void onRowCancelT(RowEditEvent event) {
           Messages.addInfoMessage("Cancelled "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
     }
-    
-    
     public void removeT(ActionEvent actionEvent){
               if(selegroupHasTerminal != null){  
           // please add remove group
@@ -753,9 +748,7 @@ public class Terminalgroup {
               }
          
      
-     }
-          
-          
+     }      
     public void ADDT(ActionEvent actionEvent){
               if(selectTerminals != null && seletermgroup !=null){  
                    date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -808,12 +801,9 @@ public class Terminalgroup {
           applicationGroupFacade.edit(selegroupHasSoftware.getApplicationGroupID());
           Messages.addInfoMessage("Edited "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
     }
-     
     public void onRowCancelTS(RowEditEvent event) {
           Messages.addInfoMessage("Cancelled "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
     }
-    
-    
     public void removeTS(ActionEvent actionEvent){
               if(selegroupHasSoftware != null){  
           // please add remove group
@@ -835,9 +825,7 @@ public class Terminalgroup {
               }
          
      
-     }
-          
-          
+     }      
     public void ADDTS(ActionEvent actionEvent){
               if(selectAppgroup != null && seletermgroup !=null){  
                    date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
