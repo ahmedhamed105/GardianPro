@@ -12,6 +12,7 @@ import Entities.GroupHasParameter;
 import Entities.ParameterGroup;
 import Entities.Terminal;
 import Entities.TerminalGroup;
+import Entities.TerminalTemplate;
 import Entities.TgroupHasAccesory;
 import Entities.TgroupHasGparameter;
 import Entities.TgroupHasParameter;
@@ -23,6 +24,7 @@ import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
+import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasAccesoryFacadeLocal;
 import Facades.TgroupHasGparameterFacadeLocal;
 import Facades.TgroupHasParameterFacadeLocal;
@@ -86,10 +88,13 @@ public class Terminalgroup {
          @EJB
     private TerminalFacadeLocal terminalFacade;
          
+          @EJB
+    private TerminalTemplateFacadeLocal terminalTemplateFacade;
          
          
          
          
+          List<TgroupHasTerminal> S_grouphasterminal= new ArrayList<TgroupHasTerminal>();
          
       
       
@@ -104,6 +109,12 @@ public class Terminalgroup {
         
         List<TerminalGroup> TGroup= new ArrayList<TerminalGroup>();
         TerminalGroup seletermgroup=new TerminalGroup();
+        
+        
+        List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
+        TgroupHasTerminal selegroupHasTerminal= new TgroupHasTerminal();
+        List<TerminalTemplate> Terminaltemplate= new ArrayList<TerminalTemplate>();
+        
         
          List<ApplicationGroup> Appgroup= new ArrayList<ApplicationGroup>();
         
@@ -122,7 +133,6 @@ public class Terminalgroup {
         
          List<Entities.TerminalGroup> Terminalsgroup= new ArrayList<TerminalGroup>();
          
-         List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
          
           List<TgroupHasGparameter> groupHasGparameter= new ArrayList<TgroupHasGparameter>();
           
@@ -329,6 +339,30 @@ public class Terminalgroup {
     public void setSeletermgroup(TerminalGroup seletermgroup) {
         this.seletermgroup = seletermgroup;
     }
+
+    public List<TgroupHasTerminal> getGroupHasTerminal() {
+        return groupHasTerminal;
+    }
+
+    public void setGroupHasTerminal(List<TgroupHasTerminal> groupHasTerminal) {
+        this.groupHasTerminal = groupHasTerminal;
+    }
+
+    public TgroupHasTerminal getSelegroupHasTerminal() {
+        return selegroupHasTerminal;
+    }
+
+    public void setSelegroupHasTerminal(TgroupHasTerminal selegroupHasTerminal) {
+        this.selegroupHasTerminal = selegroupHasTerminal;
+    }
+
+    public List<TerminalTemplate> getTerminaltemplate() {
+        return Terminaltemplate;
+    }
+
+    public void setTerminaltemplate(List<TerminalTemplate> Terminaltemplate) {
+        this.Terminaltemplate = Terminaltemplate;
+    }
     
     
     
@@ -347,11 +381,14 @@ public class Terminalgroup {
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
         TGroup=terminalGroupFacade.findAll();
-         Terminals=terminalFacade.findAll();
+        
+           Terminaltemplate=terminalTemplateFacade.findAll();
         Terminalsgroup=terminalGroupFacade.findAll();
-          List<TgroupHasTerminal> grouphasterminal= new ArrayList<TgroupHasTerminal>();
-           grouphasterminal= tgroupHasTerminalFacade.findAll();
-           for(TgroupHasTerminal tgroupHasTerminal:grouphasterminal){
+        
+         Terminals=terminalFacade.findAll();
+         
+           S_grouphasterminal= tgroupHasTerminalFacade.findAll();
+           for(TgroupHasTerminal tgroupHasTerminal:S_grouphasterminal){
            Terminals.remove(tgroupHasTerminal.getTerminalID());
            }
                 paragroup=parameterGroupFacade.findAll();
@@ -584,8 +621,12 @@ public class Terminalgroup {
              public String onFlowProcess(FlowEvent event) {
                  
                  if(event.getOldStep().equals("Gtermainal") && event.getNewStep().equals("terminal")){
-                  if(seletermgroup != null){     
-                     return event.getNewStep();
+                  if(seletermgroup != null){    
+                     
+                    groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+                    
+                     System.out.println(groupHasTerminal.size());
+                     return "terminal";
                  }else{
                  return  "Gtermainal";
                  }
@@ -615,6 +656,12 @@ public class Terminalgroup {
           // please add remove group
          try {
                    terminalGroupFacade.remove(seletermgroup);
+                                   Terminals=terminalFacade.findAll();
+             for(TgroupHasTerminal tgroupHasTerminal:S_grouphasterminal){
+           Terminals.remove(tgroupHasTerminal.getTerminalID());
+           }
+                   
+                   
              Messages.addInfoMessage("removed "+seletermgroup.getGroupname(),1);
          } catch (Exception e) {
               Messages.addInfoMessage("Not removed "+seletermgroup.getGroupname()+" return to Admin",2);
@@ -626,5 +673,92 @@ public class Terminalgroup {
          
      
      }
+      
+      
+      
+      
+                    public void onRowEditT(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          selegroupHasTerminal=((TgroupHasTerminal) event.getObject());
+        //    selegroupHasTerminal.setUpdateDate(date);
+          tgroupHasTerminalFacade.edit(selegroupHasTerminal);
+          selegroupHasTerminal.getTerminalID().setUpdateDate(date);
+          terminalFacade.edit(selegroupHasTerminal.getTerminalID());
+          Messages.addInfoMessage("Edited "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
+    }
+     
+    public void onRowCancelT(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
+    }
+    
+    
+          public void removeT(ActionEvent actionEvent){
+              if(selegroupHasTerminal != null){  
+          // please add remove group
+         try {
+                   tgroupHasTerminalFacade.remove(selegroupHasTerminal);
+                   
+           
+             try {
+                   Terminals=terminalFacade.findAll();
+                   S_grouphasterminal= tgroupHasTerminalFacade.findAll();
+                   if(Terminals.size()>0){
+            for(TgroupHasTerminal tgroupHasTerminal:S_grouphasterminal){
+           Terminals.remove(tgroupHasTerminal.getTerminalID());
+           }
+                   }
+             } catch (Exception e) {
+             }
+         
+                   
+             Messages.addInfoMessage("removed "+selegroupHasTerminal.getTerminalID().getTid(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selegroupHasTerminal.getTerminalID().getTid()+" return to Admin",2);
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose terminal Group",2);
+   
+              }
+         
+     
+     }
+          
+          
+           public void ADDT(ActionEvent actionEvent){
+              if(selectTerminals != null && seletermgroup !=null){  
+          // please add remove group
+         try {
+               
+                 for(int i=0;i<selectTerminals.size();i++){
+              TgroupHasTerminal a=new TgroupHasTerminal();
+              a.setTerminalGroupID(seletermgroup);
+              a.setTerminalID(selectTerminals.get(i)); 
+              tgroupHasTerminalFacade.create(a);
+               Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1);
+          }
+                   
+            try {
+                   Terminals=terminalFacade.findAll();
+                   S_grouphasterminal= tgroupHasTerminalFacade.findAll();
+                   if(Terminals.size()>0){
+            for(TgroupHasTerminal tgroupHasTerminal:S_grouphasterminal){
+           Terminals.remove(tgroupHasTerminal.getTerminalID());
+           }
+                   }
+             } catch (Exception e) {
+             }
+                   
+            
+         } catch (Exception e) {
+              Messages.addInfoMessage("return to Admin",2);
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose terminal Group",2);
+   
+              }
+         
+     
+     }
+      
     
 }
