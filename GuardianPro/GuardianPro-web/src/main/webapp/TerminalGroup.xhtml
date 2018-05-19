@@ -493,7 +493,7 @@
                 
                    <label for="terminals">Terminal Choose</label>  
        <p:selectManyMenu scrollHeight="150" style="width: 100%"  id="Aterminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
-          var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter terminals">
+          var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
         <f:selectItems value="#{terminalgroup.terminals}" var="f" itemLabel="#{f.tid}" itemValue="#{f}" />
  
             <p:column>

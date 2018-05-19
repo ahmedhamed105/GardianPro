@@ -708,12 +708,14 @@ public class Terminalgroup {
            }
                    }
              } catch (Exception e) {
+                 e.printStackTrace();
              }
          
                    
              Messages.addInfoMessage("removed "+selegroupHasTerminal.getTerminalID().getTid(),1);
          } catch (Exception e) {
               Messages.addInfoMessage("Not removed "+selegroupHasTerminal.getTerminalID().getTid()+" return to Admin",2);
+        e.printStackTrace();
          }
               }else{
                          Messages.addInfoMessage("Please choose terminal Group",2);
