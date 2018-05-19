@@ -116,6 +116,11 @@ public class Terminalgroup {
         List<TerminalTemplate> Terminaltemplate= new ArrayList<TerminalTemplate>();
         
         
+        List<TgroupHasSoftware> groupHasSoftware= new ArrayList<TgroupHasSoftware>();
+        TgroupHasSoftware selegroupHasSoftware=new TgroupHasSoftware();
+        
+        
+        
          List<ApplicationGroup> Appgroup= new ArrayList<ApplicationGroup>();
         
         List<ApplicationGroup> selectAppgroup= new ArrayList<ApplicationGroup>();
@@ -138,7 +143,7 @@ public class Terminalgroup {
           
            List<TgroupHasParameter> groupHasParameter= new ArrayList<TgroupHasParameter>();
         
-           List<TgroupHasSoftware> groupHasSoftware= new ArrayList<TgroupHasSoftware>();
+          
            
            List<TgroupHasAccesory> groupHasAccesory= new ArrayList<TgroupHasAccesory>();
        // List<Terminal> selectTerminals= new ArrayList<Terminal>();
@@ -362,6 +367,22 @@ public class Terminalgroup {
 
     public void setTerminaltemplate(List<TerminalTemplate> Terminaltemplate) {
         this.Terminaltemplate = Terminaltemplate;
+    }
+
+    public List<TgroupHasSoftware> getGroupHasSoftware() {
+        return groupHasSoftware;
+    }
+
+    public void setGroupHasSoftware(List<TgroupHasSoftware> groupHasSoftware) {
+        this.groupHasSoftware = groupHasSoftware;
+    }
+
+    public TgroupHasSoftware getSelegroupHasSoftware() {
+        return selegroupHasSoftware;
+    }
+
+    public void setSelegroupHasSoftware(TgroupHasSoftware selegroupHasSoftware) {
+        this.selegroupHasSoftware = selegroupHasSoftware;
     }
     
     
@@ -622,14 +643,21 @@ public class Terminalgroup {
                  
                  if(event.getOldStep().equals("Gtermainal") && event.getNewStep().equals("terminal")){
                   if(seletermgroup != null){    
-                     
-                    groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+
+                           groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+             
+                   
                     
-                     System.out.println(groupHasTerminal.size());
+                    // System.out.println(groupHasTerminal.size());
                      return "terminal";
                  }else{
                  return  "Gtermainal";
                  }
+                 }else if(event.getOldStep().equals("terminal") && event.getNewStep().equals("Application")){
+               
+                     groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
+                     return "Application";
+                 
                  }else{
                     return  "Gtermainal";
                  }
@@ -638,7 +666,7 @@ public class Terminalgroup {
     }
              
              
-                    public void onRowEditTGroup(RowEditEvent event) {
+    public void onRowEditTGroup(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           seletermgroup=((TerminalGroup) event.getObject());
             seletermgroup.setUpdateDate(date);
@@ -651,7 +679,7 @@ public class Terminalgroup {
           Messages.addInfoMessage("Cancelled "+((TerminalGroup) event.getObject()).getGroupname(),1);
     }
     
-      public void removeTGroup(ActionEvent actionEvent){
+    public void removeTGroup(ActionEvent actionEvent){
               if(seletermgroup != null){  
           // please add remove group
          try {
@@ -677,7 +705,7 @@ public class Terminalgroup {
       
       
       
-                    public void onRowEditT(RowEditEvent event) {
+    public void onRowEditT(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           selegroupHasTerminal=((TgroupHasTerminal) event.getObject());
         //    selegroupHasTerminal.setUpdateDate(date);
@@ -692,7 +720,7 @@ public class Terminalgroup {
     }
     
     
-          public void removeT(ActionEvent actionEvent){
+    public void removeT(ActionEvent actionEvent){
               if(selegroupHasTerminal != null){  
           // please add remove group
          try {
@@ -710,7 +738,9 @@ public class Terminalgroup {
              } catch (Exception e) {
                  e.printStackTrace();
              }
-         
+           groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+             
+                   
                    
              Messages.addInfoMessage("removed "+selegroupHasTerminal.getTerminalID().getTid(),1);
          } catch (Exception e) {
@@ -718,7 +748,7 @@ public class Terminalgroup {
         e.printStackTrace();
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal Group",2);
+                         Messages.addInfoMessage("Please choose terminal",2);
    
               }
          
@@ -726,8 +756,9 @@ public class Terminalgroup {
      }
           
           
-           public void ADDT(ActionEvent actionEvent){
+    public void ADDT(ActionEvent actionEvent){
               if(selectTerminals != null && seletermgroup !=null){  
+                   date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           // please add remove group
          try {
                
@@ -735,6 +766,8 @@ public class Terminalgroup {
               TgroupHasTerminal a=new TgroupHasTerminal();
               a.setTerminalGroupID(seletermgroup);
               a.setTerminalID(selectTerminals.get(i)); 
+            //   a.setCreateDate(date);
+          //  a.setUpdateDate(date);
               tgroupHasTerminalFacade.create(a);
                Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1);
           }
@@ -749,8 +782,85 @@ public class Terminalgroup {
                    }
              } catch (Exception e) {
              }
-                   
+                 groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+             
+                       
             
+         } catch (Exception e) {
+              Messages.addInfoMessage("return to Admin",2);
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose terminal Group",2);
+   
+              }
+         
+     
+     }
+    
+    
+    
+    public void onRowEditTS(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          selegroupHasSoftware=((TgroupHasSoftware) event.getObject());
+          selegroupHasSoftware.setUpdateDate(date);
+          tgroupHasSoftwareFacade.edit(selegroupHasSoftware);
+          selegroupHasSoftware.getApplicationGroupID().setUpdateDate(date);
+          applicationGroupFacade.edit(selegroupHasSoftware.getApplicationGroupID());
+          Messages.addInfoMessage("Edited "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
+    }
+     
+    public void onRowCancelTS(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
+    }
+    
+    
+    public void removeTS(ActionEvent actionEvent){
+              if(selegroupHasSoftware != null){  
+          // please add remove group
+         try {
+                   tgroupHasSoftwareFacade.remove(selegroupHasSoftware);
+                   
+           
+        groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
+         
+                   
+             Messages.addInfoMessage("removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname()+" return to Admin",2);
+        e.printStackTrace();
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose APP Group",2);
+   
+              }
+         
+     
+     }
+          
+          
+    public void ADDTS(ActionEvent actionEvent){
+              if(selectAppgroup != null && seletermgroup !=null){  
+                   date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          // please add remove group
+         try {
+               
+          for(int i=0;i<selectAppgroup.size();i++){
+              try {
+                  TgroupHasSoftware a=new TgroupHasSoftware();
+              a.setTerminalGroupID(seletermgroup);
+              a.setApplicationGroupID(selectAppgroup.get(i));
+               a.setCreateDate(date);
+            a.setUpdateDate(date);
+              tgroupHasSoftwareFacade.create(a);
+                   Messages.addInfoMessage("ADD "+selectAppgroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
+         
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+                    
+          }
+  
+              groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
          } catch (Exception e) {
               Messages.addInfoMessage("return to Admin",2);
          }

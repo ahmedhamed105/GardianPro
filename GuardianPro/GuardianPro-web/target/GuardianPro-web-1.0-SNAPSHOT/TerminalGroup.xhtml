@@ -489,8 +489,7 @@
  
               <p:tab id="terminal" title="Terminal">
             <p:panel header="Terminal Group" >
-                
-                
+         
                    <label for="terminals">Terminal Choose</label>  
        <p:selectManyMenu scrollHeight="150" style="width: 100%"  id="Aterminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
           var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
@@ -638,6 +637,71 @@
    </p:dataTable>
             </p:panel>
         </p:tab>
+                    
+                      <p:tab id="Application" title="Terminal">
+            <p:panel header="Terminal Group" >
+         
+              <label for="appgroup">Applications Choose</label>  
+                     <p:selectManyMenu scrollHeight="150" style="width: 100%" id="Wappgroup" value="#{terminalgroup.selectAppgroup}" converter="#{cappGroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                         <f:selectItems value="#{terminalgroup.appgroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+             
+             </p:selectManyMenu>
+                
+                
+                <p:dataTable id="Appscar" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para2" value="#{terminalgroup.groupHasSoftware}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasSoftware}" rowKey="#{para2.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTS}" update=":form111:messages111 :form111:Appscar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTS}" update=":form111:messages111 :form111:Appscar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="APP group name" sortBy="#{para2.applicationGroupID.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para2.applicationGroupID.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput" value="#{para2.applicationGroupID.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="Group Description" sortBy="#{para2.SDesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para2.SDesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput19" value="#{para2.SDesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+      
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+                    
     </p:wizard>
                     
 
