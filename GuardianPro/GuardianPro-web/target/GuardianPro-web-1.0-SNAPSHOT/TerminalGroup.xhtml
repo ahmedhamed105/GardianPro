@@ -458,14 +458,14 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
      
-    <p:column headerText="Type" sortBy="#{para.groupname}"  >
+    <p:column headerText="Group name" sortBy="#{para.groupname}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.groupname}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInput" value="#{para.groupname}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
         
-    <p:column headerText="XML Header" sortBy="#{para.groupdesc}"  >
+    <p:column headerText="Group Description" sortBy="#{para.groupdesc}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.groupdesc}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInput1" value="#{para.groupdesc}" style="width:100%"/></f:facet>
@@ -489,34 +489,137 @@
  
               <p:tab id="terminal" title="Terminal">
             <p:panel header="Terminal Group" >
+         
+                   <label for="terminals">Terminal Choose</label>  
+       <p:selectManyMenu scrollHeight="150" style="width: 100%"  id="Aterminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
+          var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+        <f:selectItems value="#{terminalgroup.terminals}" var="f" itemLabel="#{f.tid}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.tid}" />
+            </p:column>
+                         <p:column>
+                <h:outputText value="-" />
+            </p:column>
+             <p:column>
+                <h:outputText value="#{t.POSSerialNo}" />
+            </p:column>
+                               <p:column>
+                <h:outputText value="-" />
+            </p:column>
+            <p:column>
+             <h:outputText value="#{t.shopName}" />
+            </p:column>
+             </p:selectManyMenu>
+                
+                
                 <p:dataTable id="Terminalcar" widgetVar="carsTable"
-                             emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TGroup}" editable="true" style="margin-bottom:20px" rows="5"
+                             emptyMessage="No Parmeter found with given criteria" var="para1" value="#{terminalgroup.groupHasTerminal}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletermgroup}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasTerminal}" rowKey="#{para1.id}"> 
                       
  
-                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTGroup}" update=":form111:messages111 :form111:GroupTerminal" />
-                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTGroup}" update=":form111:messages111 :form111:GroupTerminal"   />
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditT}" update=":form111:messages111 :form111:GroupTerminal" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelT}" update=":form111:messages111 :form111:GroupTerminal"   />
        
        
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
      
-    <p:column headerText="Type" sortBy="#{para.groupname}"  >
+   
+    <p:column headerText="TID" sortBy="#{para1.terminalID.tid}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.groupname}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{para.groupname}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.tid}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput" value="#{para1.terminalID.tid}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
         
-    <p:column headerText="XML Header" sortBy="#{para.groupdesc}"  >
+            <p:column headerText="Serial" sortBy="#{para1.terminalID.POSSerialNo}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.groupdesc}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.groupdesc}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.POSSerialNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput19" value="#{para1.terminalID.POSSerialNo}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
-       
+    
+    
+       <p:column headerText="Owner Name" sortBy="#{para1.terminalID.ownerName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.ownerName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput18" value="#{para1.terminalID.ownerName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+   
+    
+    
+       <p:column headerText="Merchant Name" sortBy="#{para1.terminalID.merchantName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.merchantName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput17" value="#{para1.terminalID.merchantName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Shop Name" sortBy="#{para1.terminalID.shopName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.shopName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput16" value="#{para1.terminalID.shopName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Address" sortBy="#{para1.terminalID.address}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.address}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput15" value="#{para1.terminalID.address}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Shop Contact" sortBy="#{para1.terminalID.contactperson}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.contactperson}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput14" value="#{para1.terminalID.contactperson}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Tel No." sortBy="#{para1.terminalID.telNo}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.telNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput13" value="#{para1.terminalID.telNo}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Office Contact" sortBy="#{para1.terminalID.officeContact}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.officeContact}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput12" value="#{para1.terminalID.officeContact}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+       <p:column headerText="Office Tel No" sortBy="#{para1.terminalID.officeTelNo}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.officeTelNo}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput11" value="#{para1.terminalID.officeTelNo}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="terminal template" sortBy="#{para1.terminalID.terminaltemplateID.TName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para1.terminalID.terminaltemplateID.TName}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu converter="#{cterminalTemplate}" class="form-control select2" id="selecttemplate1" value="#{para1.terminalID.terminaltemplateID}" required="true" requiredMessage="please Enter template">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{terminalbean.terminaltemplate}" var="c" itemValue="#{c}" itemLabel="#{c.TName}" />
+                 </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column> 
+
 
        <p:column style="width:32px">
            <p:rowEditor />
@@ -524,13 +627,147 @@
     
     
          <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.removeT(actionEvent)}"/>  
     </f:facet>
     
-    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.ADDT(actionEvent)}"/>  
+    </f:facet>
+
    </p:dataTable>
             </p:panel>
         </p:tab>
+                    
+                      <p:tab id="Application" title="Application">
+            <p:panel header="Terminal Group" >
+         
+              <label for="appgroup">Applications Choose</label>  
+                     <p:selectManyMenu scrollHeight="150" style="width: 100%" id="Wappgroup" value="#{terminalgroup.selectAppgroup}" converter="#{cappGroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                         <f:selectItems value="#{terminalgroup.appgroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+             
+             </p:selectManyMenu>
+                
+                
+                <p:dataTable id="Appscar" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para2" value="#{terminalgroup.groupHasSoftware}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasSoftware}" rowKey="#{para2.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTS}" update=":form111:messages111 :form111:Appscar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTS}" update=":form111:messages111 :form111:Appscar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="APP group name" sortBy="#{para2.applicationGroupID.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para2.applicationGroupID.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput" value="#{para2.applicationGroupID.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="Group Description" sortBy="#{para2.SDesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para2.SDesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput19" value="#{para2.SDesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+      
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+                    
+                    
+                    
+                           <p:tab id="accessory" title="accessory">
+            <p:panel header="Terminal Group" >
+         
+                 <label for="acessorygroup">accessory Choose</label>  
+                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wacessorygroup" value="#{terminalgroup.selectAcessorygroup}" converter="#{caccessorygroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.acessorygroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+             
+             </p:selectManyMenu>
+                
+                
+                <p:dataTable id="accescar" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para3" value="#{terminalgroup.groupHasAccesory}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasAccesory}" rowKey="#{para3.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditA}" update=":form111:messages111 :form111:accescar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelA}" update=":form111:messages111 :form111:accescar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="accessory group name" sortBy="#{para3.accessoryGroupID.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para3.accessoryGroupID.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput" value="#{para3.accessoryGroupID.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="accessory Description" sortBy="#{para3.aaccessory}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para3.aaccessory}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput19" value="#{para3.aaccessory}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+      
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+                    
     </p:wizard>
                     
 
