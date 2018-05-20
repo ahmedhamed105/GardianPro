@@ -458,14 +458,14 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
      
-    <p:column headerText="Type" sortBy="#{para.groupname}"  >
+    <p:column headerText="Group name" sortBy="#{para.groupname}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.groupname}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInput" value="#{para.groupname}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
         
-    <p:column headerText="XML Header" sortBy="#{para.groupdesc}"  >
+    <p:column headerText="Group Description" sortBy="#{para.groupdesc}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.groupdesc}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInput1" value="#{para.groupdesc}" style="width:100%"/></f:facet>
@@ -638,7 +638,7 @@
             </p:panel>
         </p:tab>
                     
-                      <p:tab id="Application" title="Terminal">
+                      <p:tab id="Application" title="Application">
             <p:panel header="Terminal Group" >
          
               <label for="appgroup">Applications Choose</label>  
@@ -696,6 +696,72 @@
     
              <f:facet name="footer">
              <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+            </p:panel>
+        </p:tab>
+                    
+                    
+                    
+                           <p:tab id="accessory" title="accessory">
+            <p:panel header="Terminal Group" >
+         
+                 <label for="acessorygroup">accessory Choose</label>  
+                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wacessorygroup" value="#{terminalgroup.selectAcessorygroup}" converter="#{caccessorygroup}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.acessorygroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+             
+             </p:selectManyMenu>
+                
+                
+                <p:dataTable id="accescar" widgetVar="carsTable"
+                             emptyMessage="No Parmeter found with given criteria" var="para3" value="#{terminalgroup.groupHasAccesory}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasAccesory}" rowKey="#{para3.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditA}" update=":form111:messages111 :form111:accescar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelA}" update=":form111:messages111 :form111:accescar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="accessory group name" sortBy="#{para3.accessoryGroupID.groupname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para3.accessoryGroupID.groupname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput" value="#{para3.accessoryGroupID.groupname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="accessory Description" sortBy="#{para3.aaccessory}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para3.aaccessory}" /></f:facet>
+               <f:facet name="input"><p:inputText id="tmodelInput19" value="#{para3.aaccessory}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+      
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"/>  
     </f:facet>
 
    </p:dataTable>

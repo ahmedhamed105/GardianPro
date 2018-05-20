@@ -118,20 +118,18 @@ public class Terminalgroup {
         
         List<TgroupHasSoftware> groupHasSoftware= new ArrayList<TgroupHasSoftware>();
         TgroupHasSoftware selegroupHasSoftware=new TgroupHasSoftware();
-        
-        
-        
          List<ApplicationGroup> Appgroup= new ArrayList<ApplicationGroup>();
-        
         List<ApplicationGroup> selectAppgroup= new ArrayList<ApplicationGroup>();
         
         
-           List<AccessoryGroup> Acessorygroup= new ArrayList<AccessoryGroup>();
         
+        List<TgroupHasAccesory> groupHasAccesory= new ArrayList<TgroupHasAccesory>();
+        TgroupHasAccesory selegroupHasAccesory= new TgroupHasAccesory();
+        List<AccessoryGroup> Acessorygroup= new ArrayList<AccessoryGroup>();
         List<AccessoryGroup> selectAcessorygroup= new ArrayList<AccessoryGroup>();
         
         
-            List<ParameterGroup> paragroup= new ArrayList<ParameterGroup>();
+        List<ParameterGroup> paragroup= new ArrayList<ParameterGroup>();
         
         List<ParameterGroup> selectparagroup= new ArrayList<ParameterGroup>();
         
@@ -145,7 +143,7 @@ public class Terminalgroup {
         
           
            
-           List<TgroupHasAccesory> groupHasAccesory= new ArrayList<TgroupHasAccesory>();
+      
        // List<Terminal> selectTerminals= new ArrayList<Terminal>();
            
            
@@ -178,6 +176,25 @@ public class Terminalgroup {
      */
     public Terminalgroup() {
     }
+
+    public List<TgroupHasAccesory> getGroupHasAccesory() {
+        return groupHasAccesory;
+    }
+
+    public void setGroupHasAccesory(List<TgroupHasAccesory> groupHasAccesory) {
+        this.groupHasAccesory = groupHasAccesory;
+    }
+
+    public TgroupHasAccesory getSelegroupHasAccesory() {
+        return selegroupHasAccesory;
+    }
+
+    public void setSelegroupHasAccesory(TgroupHasAccesory selegroupHasAccesory) {
+        this.selegroupHasAccesory = selegroupHasAccesory;
+    }
+    
+    
+    
 
     public TgroupHasParameter getGroupHasPara() {
         return groupHasPara;
@@ -639,9 +656,9 @@ public class Terminalgroup {
             
             
             
-             public String onFlowProcess(FlowEvent event) {
+public String onFlowProcess(FlowEvent event) {
                  
-                 if(event.getOldStep().equals("Gtermainal") && event.getNewStep().equals("terminal")){
+        if(event.getOldStep().equals("Gtermainal") && event.getNewStep().equals("terminal")){
                   if(seletermgroup != null){    
 
                            groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
@@ -653,14 +670,19 @@ public class Terminalgroup {
                  }else{
                  return  "Gtermainal";
                  }
-                 }else if(event.getOldStep().equals("terminal") && event.getNewStep().equals("Application")){
+        }else if(event.getOldStep().equals("terminal") && event.getNewStep().equals("Application")){
                
                      groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
                      return "Application";
                  
-                 }else{
+        }else if(event.getOldStep().equals("Application") && event.getNewStep().equals("accessory")){
+               
+                     groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
+                     return "accessory";
+                 
+        }else{
                     return  "Gtermainal";
-                 }
+        }
                 
             
     }
@@ -849,6 +871,76 @@ public class Terminalgroup {
           }
   
               groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
+         } catch (Exception e) {
+              Messages.addInfoMessage("return to Admin",2);
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose terminal Group",2);
+   
+              }
+         
+     
+     }
+    
+    
+    
+    public void onRowEditA(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          selegroupHasAccesory=((TgroupHasAccesory) event.getObject());
+          selegroupHasAccesory.setUpdateDate(date);
+          tgroupHasAccesoryFacade.edit(selegroupHasAccesory);
+          selegroupHasAccesory.getAccessoryGroupID().setUpdateDate(date);
+          accessoryGroupFacade.edit(selegroupHasAccesory.getAccessoryGroupID());
+          Messages.addInfoMessage("Edited "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1);
+    }
+    public void onRowCancelA(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1);
+    }
+    public void removeA(ActionEvent actionEvent){
+              if(selegroupHasAccesory != null){  
+          // please add remove group
+         try {
+                   tgroupHasAccesoryFacade.remove(selegroupHasAccesory);
+                   
+           
+        groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
+         
+                   
+             Messages.addInfoMessage("removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname(),1);
+         } catch (Exception e) {
+              Messages.addInfoMessage("Not removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname()+" return to Admin",2);
+        e.printStackTrace();
+         }
+              }else{
+                         Messages.addInfoMessage("Please choose Accessory Group",2);
+   
+              }
+         
+     
+     }      
+    public void ADDA(ActionEvent actionEvent){
+              if(selectAcessorygroup != null && seletermgroup !=null){  
+                   date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          // please add remove group
+         try {
+             
+             
+                for(int i=0;i<selectAcessorygroup.size();i++){
+               
+               TgroupHasAccesory a=new TgroupHasAccesory();
+               a.setAaccessory("0");
+              a.setTerminalGroupID(seletermgroup);
+              a.setAccessoryGroupID(selectAcessorygroup.get(i));
+              a.setCreateDate(date);
+            a.setUpdateDate(date);
+              tgroupHasAccesoryFacade.create(a);
+           Messages.addInfoMessage("ADD "+selectAcessorygroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
+         
+          }
+               
+   
+  
+              groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
          } catch (Exception e) {
               Messages.addInfoMessage("return to Admin",2);
          }
