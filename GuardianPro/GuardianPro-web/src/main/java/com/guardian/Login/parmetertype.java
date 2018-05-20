@@ -8,6 +8,7 @@ package com.guardian.Login;
 import Entities.ParameterType;
 import Facades.ParameterTypeFacadeLocal;
 import Facades.UserFacadeLocal;
+import com.tutorialspoint.interceptor.LibraryBeanRemote;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,6 +33,8 @@ public class parmetertype {
     @EJB
     private ParameterTypeFacadeLocal parameterTypeFacade;
     
+    @EJB
+    private LibraryBeanRemote liberaryBean;
     
       List<ParameterType> parmeter_types = new ArrayList<ParameterType>();
       
@@ -50,6 +53,7 @@ public class parmetertype {
     }
     
     public void init(){
+        liberaryBean.addBook("aaa");
              Login.login=userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){
