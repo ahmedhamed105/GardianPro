@@ -68,8 +68,6 @@ public class Role implements Serializable {
     private Date updateDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleprevilegeID")
     private Collection<RoleHasComponent> roleHasComponentCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleprevilegeID")
-    private Collection<RoleHasGroups> roleHasGroupsCollection;
 
     public Role() {
     }
@@ -132,15 +130,6 @@ public class Role implements Serializable {
 
     public void setRoleHasComponentCollection(Collection<RoleHasComponent> roleHasComponentCollection) {
         this.roleHasComponentCollection = roleHasComponentCollection;
-    }
-
-    @XmlTransient
-    public Collection<RoleHasGroups> getRoleHasGroupsCollection() {
-        return roleHasGroupsCollection;
-    }
-
-    public void setRoleHasGroupsCollection(Collection<RoleHasGroups> roleHasGroupsCollection) {
-        this.roleHasGroupsCollection = roleHasGroupsCollection;
     }
 
     @Override

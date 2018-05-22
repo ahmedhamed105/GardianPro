@@ -5,10 +5,13 @@
  */
 package Facades;
 
+import Entities.Groups;
 import Entities.RoleHasGroups;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,22 @@ public class RoleHasGroupsFacade extends AbstractFacade<RoleHasGroups> implement
         super(RoleHasGroups.class);
     }
     
+    
+    @Override
+    public List<RoleHasGroups> find_role_by_group(Groups group){ 
+           Query role_find = em.createNamedQuery("RoleHasGroups.findByGroupsid");
+        role_find.setParameter("id", group);
+        try {
+         List<RoleHasGroups>  roles =  role_find.getResultList();
+          //  System.out.println("ahmed hamed  "+parah.getGroupname());
+         if(roles==null){
+         return null;
+         }else{
+         return roles;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+        }  
 }

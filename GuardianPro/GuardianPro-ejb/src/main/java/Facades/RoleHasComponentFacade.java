@@ -5,10 +5,13 @@
  */
 package Facades;
 
+import Entities.Role;
 import Entities.RoleHasComponent;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,22 @@ public class RoleHasComponentFacade extends AbstractFacade<RoleHasComponent> imp
     public RoleHasComponentFacade() {
         super(RoleHasComponent.class);
     }
-    
+
+    @Override
+    public List<RoleHasComponent> find_component_by_role(Role role) {
+        Query component_find = em.createNamedQuery("RoleHasComponent.findByRole");
+        component_find.setParameter("id", role);
+        try {
+            List<RoleHasComponent> components = component_find.getResultList();
+            //  System.out.println("ahmed hamed  "+parah.getGroupname());
+            if (components == null) {
+                return null;
+            } else {
+                return components;
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

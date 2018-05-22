@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Groups;
 import Entities.RoleHasGroups;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +31,5 @@ public interface RoleHasGroupsFacadeLocal {
 
     int count();
     
+    List<RoleHasGroups> find_role_by_group(Groups group);
 }

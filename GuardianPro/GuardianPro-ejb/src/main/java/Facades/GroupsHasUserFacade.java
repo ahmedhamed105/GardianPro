@@ -6,9 +6,12 @@
 package Facades;
 
 import Entities.GroupsHasUser;
+import Entities.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +31,23 @@ public class GroupsHasUserFacade extends AbstractFacade<GroupsHasUser> implement
     public GroupsHasUserFacade() {
         super(GroupsHasUser.class);
     }
+    
+    @Override
+    public   List<GroupsHasUser> find_groups_by_user(User user){ 
+           Query groups_find = em.createNamedQuery("GroupsHasUser.findByUserid");
+        groups_find.setParameter("id", user);
+        try {
+         List<GroupsHasUser>  groups =  groups_find.getResultList();
+          //  System.out.println("ahmed hamed  "+parah.getGroupname());
+         if(groups==null){
+         return null;
+         }else{
+         return groups;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+        }  
     
 }

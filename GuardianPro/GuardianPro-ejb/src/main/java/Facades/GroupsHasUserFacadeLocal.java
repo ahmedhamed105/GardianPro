@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.GroupsHasUser;
+import Entities.User;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface GroupsHasUserFacadeLocal {
     List<GroupsHasUser> findRange(int[] range);
 
     int count();
+    
+    List<GroupsHasUser> find_groups_by_user(User user);
     
 }

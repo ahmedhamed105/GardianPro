@@ -49,9 +49,10 @@ public class IntervalTimer {
         System.out.println("Next Timeout : " + timer.getNextTimeout());
         System.out.println("Time Remaining : " + timer.getTimeRemaining());
         System.out.println("____________________________________________");
-        Date fileDate = new Date();
+        //Date fileDate = new Date();
         String fileExt;
-        fileExt= String.valueOf(fileDate.getTimezoneOffset());     
+        fileExt= String.valueOf(new Date().getTimezoneOffset());    
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ fileExt);
 //         try {
 //            Path fileToMovePath = 
 //                Files.createFile(Paths.get("F:/FIB/Git/My Works/test2/" + fileExt + ".txt"));

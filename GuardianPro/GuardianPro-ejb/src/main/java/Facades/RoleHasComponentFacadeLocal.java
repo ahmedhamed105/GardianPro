@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Role;
 import Entities.RoleHasComponent;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +31,5 @@ public interface RoleHasComponentFacadeLocal {
 
     int count();
     
+    List<RoleHasComponent> find_component_by_role(Role role);
 }
