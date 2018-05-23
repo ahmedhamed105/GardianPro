@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class TerminalGroup implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
+    private Collection<TgroupHasParameter> tgroupHasParameterCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
     private Collection<TgroupHasTerminal> tgroupHasTerminalCollection;
 
     @Basic(optional = false)
@@ -202,6 +205,15 @@ public class TerminalGroup implements Serializable {
 
     public void setTgroupHasTerminalCollection(Collection<TgroupHasTerminal> tgroupHasTerminalCollection) {
         this.tgroupHasTerminalCollection = tgroupHasTerminalCollection;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasParameter> getTgroupHasParameterCollection() {
+        return tgroupHasParameterCollection;
+    }
+
+    public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
+        this.tgroupHasParameterCollection = tgroupHasParameterCollection;
     }
     
 }

@@ -34,21 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TgroupHasParameter.findAll", query = "SELECT t FROM TgroupHasParameter t"),
     @NamedQuery(name = "TgroupHasParameter.findById", query = "SELECT t FROM TgroupHasParameter t WHERE t.id = :id"),
-    @NamedQuery(name = "TgroupHasParameter.findByGroup", query = "SELECT t FROM TgroupHasParameter t WHERE t.tgrouphasGparameterID = :id"),
     @NamedQuery(name = "TgroupHasParameter.findByParmetervalue", query = "SELECT t FROM TgroupHasParameter t WHERE t.parmetervalue = :parmetervalue"),
-    @NamedQuery(name = "TgroupHasParameter.findByParmeterdesc", query = "SELECT t FROM TgroupHasParameter t WHERE t.parmeterdesc = :parmeterdesc")})
+    @NamedQuery(name = "TgroupHasParameter.findByParmeterdesc", query = "SELECT t FROM TgroupHasParameter t WHERE t.parmeterdesc = :parmeterdesc"),
+    @NamedQuery(name = "TgroupHasParameter.findByCreateDate", query = "SELECT t FROM TgroupHasParameter t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "TgroupHasParameter.findByUpdateDate", query = "SELECT t FROM TgroupHasParameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasParameter implements Serializable {
-
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "create_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "update_date", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,12 +54,22 @@ public class TgroupHasParameter implements Serializable {
     @Size(max = 500)
     @Column(name = "Parmeter_desc", length = 500)
     private String parmeterdesc;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "create_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "update_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
     @JoinColumn(name = "Parameter_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private Parameter parameterID;
-    @JoinColumn(name = "Tgroup_has_Gparameter_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "Terminal_Group_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private TgroupHasGparameter tgrouphasGparameterID;
+    private TerminalGroup terminalGroupID;
 
     public TgroupHasParameter() {
     }
@@ -78,9 +78,11 @@ public class TgroupHasParameter implements Serializable {
         this.id = id;
     }
 
-    public TgroupHasParameter(Integer id, String parmetervalue) {
+    public TgroupHasParameter(Integer id, String parmetervalue, Date createDate, Date updateDate) {
         this.id = id;
         this.parmetervalue = parmetervalue;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
     public Integer getId() {
@@ -107,6 +109,22 @@ public class TgroupHasParameter implements Serializable {
         this.parmeterdesc = parmeterdesc;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
     public Parameter getParameterID() {
         return parameterID;
     }
@@ -115,12 +133,12 @@ public class TgroupHasParameter implements Serializable {
         this.parameterID = parameterID;
     }
 
-    public TgroupHasGparameter getTgrouphasGparameterID() {
-        return tgrouphasGparameterID;
+    public TerminalGroup getTerminalGroupID() {
+        return terminalGroupID;
     }
 
-    public void setTgrouphasGparameterID(TgroupHasGparameter tgrouphasGparameterID) {
-        this.tgrouphasGparameterID = tgrouphasGparameterID;
+    public void setTerminalGroupID(TerminalGroup terminalGroupID) {
+        this.terminalGroupID = terminalGroupID;
     }
 
     @Override
@@ -146,22 +164,6 @@ public class TgroupHasParameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.TgroupHasParameter[ id=" + id + " ]";
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
     
 }

@@ -700,9 +700,7 @@
 
    </p:dataTable>
             </p:panel>
-        </p:tab>
-                    
-                    
+        </p:tab>   
                     
                            <p:tab id="accessory" title="accessory">
             <p:panel header="Terminal Group" >
@@ -765,6 +763,96 @@
     </f:facet>
 
    </p:dataTable>
+            </p:panel>
+        </p:tab>
+                    
+                    
+                         <p:tab id="Parameter" title="Parameter">
+            <p:panel header="Parameter" >
+                <p:panelGrid columns="4" layout="grid">
+                    
+                     <label for="paragroup">parameter Group Choose</label>  
+              <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wparagroup" value="#{terminalgroup.selectparagroup}" converter="#{cgroupparameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.paragroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.groupname}" />
+            </p:column>
+          
+             
+             </p:selectManyMenu>
+                 
+                         <label for="paragroup">parameter Choose</label>  
+                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wpara" value="#{terminalgroup.selectpara}" converter="#{CParameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.para}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.displayName}" />
+            </p:column>
+          
+             
+             </p:selectManyMenu>
+                </p:panelGrid> 
+                
+                 <p:dataTable id="paramcar" widgetVar="carsTable"
+                              emptyMessage="No Parmeter found with given criteria" var="para4" value="#{terminalgroup.groupHasParameter}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasparameter}" rowKey="#{para4.id}"> 
+                      
+ 
+                    <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditA}" update=":form111:messages111 :form111:accescar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelA}" update=":form111:messages111 :form111:accescar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="parameter name" sortBy="#{para4.parameterID.fieldName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parameterID.fieldName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput" value="#{para4.parameterID.fieldName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="parameter Value" sortBy="#{para4.parmetervalue}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parmetervalue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput19" value="#{para4.parmetervalue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="parameter Description" sortBy="#{para4.parmeterdesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parmeterdesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput20" value="#{para4.parmeterdesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+      
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+                
+                
+               
+               
             </p:panel>
         </p:tab>
                     

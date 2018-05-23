@@ -9,6 +9,7 @@ import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
 import Entities.GroupHasParameter;
+import Entities.Parameter;
 import Entities.ParameterGroup;
 import Entities.Terminal;
 import Entities.TerminalGroup;
@@ -21,6 +22,7 @@ import Entities.TgroupHasTerminal;
 import Facades.AccessoryGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
+import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
@@ -51,6 +53,9 @@ import org.primefaces.model.TreeNode;
  * @author ahmed.elemam
  */
 public class Terminalgroup {
+
+    @EJB
+    private ParameterFacadeLocal parameterFacade;
     
      @EJB
     private GroupHasParameterFacadeLocal groupHasParameterFacade;
@@ -129,15 +134,17 @@ public class Terminalgroup {
         List<AccessoryGroup> selectAcessorygroup= new ArrayList<AccessoryGroup>();
         
         
-        List<ParameterGroup> paragroup= new ArrayList<ParameterGroup>();
-        
+         List<TgroupHasParameter> groupHasparameter= new ArrayList<TgroupHasParameter>();
+        TgroupHasParameter selegroupHasparameter= new TgroupHasParameter();
+        List<Parameter> para= new ArrayList<Parameter>(); 
+        List<Parameter> selectpara= new ArrayList<Parameter>();
+        List<ParameterGroup> paragroup= new ArrayList<ParameterGroup>(); 
         List<ParameterGroup> selectparagroup= new ArrayList<ParameterGroup>();
         
         
          List<Entities.TerminalGroup> Terminalsgroup= new ArrayList<TerminalGroup>();
          
-         
-          List<TgroupHasGparameter> groupHasGparameter= new ArrayList<TgroupHasGparameter>();
+        
           
            List<TgroupHasParameter> groupHasParameter= new ArrayList<TgroupHasParameter>();
         
@@ -176,6 +183,37 @@ public class Terminalgroup {
      */
     public Terminalgroup() {
     }
+
+    public List<TgroupHasParameter> getGroupHasparameter() {
+        return groupHasparameter;
+    }
+
+    public void setGroupHasparameter(List<TgroupHasParameter> groupHasparameter) {
+        this.groupHasparameter = groupHasparameter;
+    }
+
+    public TgroupHasParameter getSelegroupHasparameter() {
+        return selegroupHasparameter;
+    }
+
+    public void setSelegroupHasparameter(TgroupHasParameter selegroupHasparameter) {
+        this.selegroupHasparameter = selegroupHasparameter;
+    }
+    
+    
+
+  
+
+    public List<TgroupHasParameter> getGroupHasParameter() {
+        return groupHasParameter;
+    }
+
+    public void setGroupHasParameter(List<TgroupHasParameter> groupHasParameter) {
+        this.groupHasParameter = groupHasParameter;
+    }
+    
+    
+    
 
     public List<TgroupHasAccesory> getGroupHasAccesory() {
         return groupHasAccesory;
@@ -401,6 +439,22 @@ public class Terminalgroup {
     public void setSelegroupHasSoftware(TgroupHasSoftware selegroupHasSoftware) {
         this.selegroupHasSoftware = selegroupHasSoftware;
     }
+
+    public List<Parameter> getPara() {
+        return para;
+    }
+
+    public void setPara(List<Parameter> para) {
+        this.para = para;
+    }
+
+    public List<Parameter> getSelectpara() {
+        return selectpara;
+    }
+
+    public void setSelectpara(List<Parameter> selectpara) {
+        this.selectpara = selectpara;
+    }
     
     
     
@@ -430,6 +484,7 @@ public class Terminalgroup {
            Terminals.remove(tgroupHasTerminal.getTerminalID());
            }
                 paragroup=parameterGroupFacade.findAll();
+                para=parameterFacade.findAll();
            List<TgroupHasGparameter> groupHasGparam= new ArrayList<TgroupHasGparameter>();
               groupHasGparam= tgroupHasGparameterFacade.findAll();
            for(TgroupHasGparameter tgroupHasTerminal:groupHasGparam){
@@ -467,19 +522,19 @@ public class Terminalgroup {
                root1 = new DefaultTreeNode(new PGroup_tree("Groups",Terminalsgroup.size(),0,"root"), null);
               for(int i=0;i<Terminalsgroup.size();i++){
           try {
-              groupHasGparameter  = tgroupHasGparameterFacade.find_term_groups(Terminalsgroup.get(i));
+            //  groupHasGparameter  = tgroupHasGparameterFacade.find_term_groups(Terminalsgroup.get(i));
               
             //  System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
-              DefaultTreeNode documents1 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasGparameter.size(),Terminalsgroup.get(i).getId(),"GROUP"), root1);
-               for(int j=0;j<groupHasGparameter.size();j++){
-                //   System.out.println("para "+groupHasGparameter.get(j).getParameterGroupID().getGroupname());
-             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),"",1,groupHasTerminal.get(j).getId(),"Parmeter_Group"), documents1);
-                groupHasParameter= tgroupHasParameterFacade.find_term_groups(groupHasGparameter.get(j));
-                 for(int j1=0;j1<groupHasParameter.size();j1++){
-                //   System.out.println("para "+groupHasParameter.get(j).getParameterID().getFieldName());
-             DefaultTreeNode documentss2 = new DefaultTreeNode(new Pterminal_group(groupHasParameter.get(j).getParameterID().getDisplayName(),groupHasParameter.get(j).getParameterID().getInputtypeID().getType(),groupHasParameter.get(j).getParameterID().getParametertypeID().getType(),groupHasParameter.get(j).getParmetervalue(),1,groupHasParameter.get(j).getId(),"Parmeter"), documentss1);
-              }
-              }
+            //  DefaultTreeNode documents1 = new DefaultTreeNode(new Pterminal_group(Terminalsgroup.get(i).getGroupname(),"","","",groupHasGparameter.size(),Terminalsgroup.get(i).getId(),"GROUP"), root1);
+//               for(int j=0;j<groupHasGparameter.size();j++){
+//                //   System.out.println("para "+groupHasGparameter.get(j).getParameterGroupID().getGroupname());
+//             DefaultTreeNode documentss1 = new DefaultTreeNode(new Pterminal_group(groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),groupHasGparameter.get(j).getParameterGroupID().getGroupname(),"",1,groupHasTerminal.get(j).getId(),"Parmeter_Group"), documents1);
+//                groupHasParameter= tgroupHasParameterFacade.find_term_groups(groupHasGparameter.get(j));
+//                 for(int j1=0;j1<groupHasParameter.size();j1++){
+//                //   System.out.println("para "+groupHasParameter.get(j).getParameterID().getFieldName());
+//             DefaultTreeNode documentss2 = new DefaultTreeNode(new Pterminal_group(groupHasParameter.get(j).getParameterID().getDisplayName(),groupHasParameter.get(j).getParameterID().getInputtypeID().getType(),groupHasParameter.get(j).getParameterID().getParametertypeID().getType(),groupHasParameter.get(j).getParmetervalue(),1,groupHasParameter.get(j).getId(),"Parmeter"), documentss1);
+//              }
+//              }
           
           } catch (Exception e) {
               e.printStackTrace();
@@ -608,7 +663,7 @@ public class Terminalgroup {
             for(int j=0;j<b.size();j++){
                 TgroupHasParameter v=new TgroupHasParameter();
                 v.setParameterID(b.get(j).getParameterID());
-                v.setTgrouphasGparameterID(a);
+               // v.setTgrouphasGparameterID(a);
                 if(b.get(j).getParameterID().getDefaultvalue()==null){
                       v.setParmetervalue("0");
                 }else{
@@ -679,6 +734,15 @@ public String onFlowProcess(FlowEvent event) {
                
                      groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
                      return "accessory";
+                 
+        }else if(event.getOldStep().equals("accessory") && event.getNewStep().equals("Parameter")){
+            List<TgroupHasGparameter> a=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
+            groupHasParameter.clear();
+            for(TgroupHasGparameter b:a){
+                groupHasParameter.addAll(tgroupHasParameterFacade.find_term_groups(b));
+            }
+                  
+                     return "Parameter";
                  
         }else{
                     return  "Gtermainal";

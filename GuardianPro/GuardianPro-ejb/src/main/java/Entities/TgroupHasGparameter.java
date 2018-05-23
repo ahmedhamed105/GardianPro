@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,13 +17,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,11 +32,17 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TgroupHasGparameter.findAll", query = "SELECT t FROM TgroupHasGparameter t"),
-    @NamedQuery(name = "TgroupHasGparameter.findByGroup", query = "SELECT t FROM TgroupHasGparameter t WHERE t.parameterGroupID = :id"),
-    @NamedQuery(name = "TgroupHasGparameter.findByTGroup", query = "SELECT t FROM TgroupHasGparameter t WHERE t.terminalGroupID = :id"),
-    @NamedQuery(name = "TgroupHasGparameter.findById", query = "SELECT t FROM TgroupHasGparameter t WHERE t.id = :id")})
+    @NamedQuery(name = "TgroupHasGparameter.findById", query = "SELECT t FROM TgroupHasGparameter t WHERE t.id = :id"),
+    @NamedQuery(name = "TgroupHasGparameter.findByCreateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -51,15 +53,6 @@ public class TgroupHasGparameter implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID", nullable = false)
-    private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
-    private Collection<TgroupHasParameter> tgroupHasParameterCollection;
     @JoinColumn(name = "Parameter_Group_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private ParameterGroup parameterGroupID;
@@ -74,6 +67,12 @@ public class TgroupHasGparameter implements Serializable {
         this.id = id;
     }
 
+    public TgroupHasGparameter(Integer id, Date createDate, Date updateDate) {
+        this.id = id;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -82,13 +81,20 @@ public class TgroupHasGparameter implements Serializable {
         this.id = id;
     }
 
-    @XmlTransient
-    public Collection<TgroupHasParameter> getTgroupHasParameterCollection() {
-        return tgroupHasParameterCollection;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
-        this.tgroupHasParameterCollection = tgroupHasParameterCollection;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public ParameterGroup getParameterGroupID() {
@@ -130,22 +136,6 @@ public class TgroupHasGparameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.TgroupHasGparameter[ id=" + id + " ]";
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
     
 }
