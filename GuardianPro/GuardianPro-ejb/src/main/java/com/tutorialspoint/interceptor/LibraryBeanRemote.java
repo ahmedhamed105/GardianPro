@@ -7,13 +7,14 @@ package com.tutorialspoint.interceptor;
 
 import com.tutorialspoint.test.Book;
 import java.util.List;
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
 /**
  *
  * @author ahmed.ibraheem
  */
-@Remote
+@Local
 public interface LibraryBeanRemote {
     
   

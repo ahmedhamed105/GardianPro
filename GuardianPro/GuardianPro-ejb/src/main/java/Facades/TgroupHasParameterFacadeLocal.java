@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.TerminalGroup;
 import Entities.TgroupHasGparameter;
 import Entities.TgroupHasParameter;
 import java.util.List;
@@ -31,6 +32,6 @@ public interface TgroupHasParameterFacadeLocal {
 
     int count();
     
-    List<Entities.TgroupHasParameter> find_term_groups(TgroupHasGparameter group);
+    List<Entities.TgroupHasParameter> find_term_groups(TerminalGroup group);
     
 }
