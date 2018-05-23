@@ -33,7 +33,10 @@ import Facades.TgroupHasParameterFacadeLocal;
 import Facades.TgroupHasSoftwareFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
+import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -43,10 +46,23 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.apache.commons.io.FileUtils;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -750,6 +766,30 @@ public String onFlowProcess(FlowEvent event) {
      
      }
       
+    
+    
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	private static String ftpHost;
+	private static int ftpPort;
+
+        // TODO Auto-generated catch block
+        static {
+    ftpHost = "localhost";
+    ftpPort = 990;
+    System.out.println("ftpHost=" + ftpHost);
+    System.out.println("ftpPort=" + ftpPort);
+	}
+
+    private String xmlPath = "D:\\TMS\\app\\XML";
+    private String applicationPath = "D:\\TMS\\app\\application";
+    
+    
+    
+    
+    
+    
+    
       public void onRowEditP(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           selegroupHasparameter=((TgroupHasParameter) event.getObject());
@@ -849,4 +889,59 @@ public String onFlowProcess(FlowEvent event) {
          
      
      }
+    public void ExportP(RowEditEvent event) {
+               getXML(seletermgroup);
+             Messages.addInfoMessage("Exported "+seletermgroup.getGroupname(),1);
+       
+    }
+    
+    
+    
+    
+    public static String getXML(TerminalGroup terminals){
+    
+        try {
+            DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
+            dbfac.setValidating(true);
+            
+            DocumentBuilder docBuilder = dbfac.newDocumentBuilder();
+            Document doc = docBuilder.newDocument();
+            
+            Element root = doc.createElement("TerminalXML"); 
+            Element e = doc.createElement("terminalId");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getGroupname())));
+			root.appendChild(e);
+                        
+                        
+            doc.appendChild(root);
+                        
+                        
+            TransformerFactory transfac = TransformerFactory.newInstance();
+			Transformer trans = transfac.newTransformer();
+
+			trans.setOutputProperty(OutputKeys.INDENT, "yes");
+
+			trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+			StringWriter sw = new StringWriter();
+			StreamResult result = new StreamResult(sw);
+			DOMSource source = new DOMSource(doc);
+			trans.transform(source, result);
+			String xmlString = sw.toString().replaceAll("\n", "\r\n");
+			 FileUtils.write(new File("D:\\ahmed.txt"), xmlString);
+
+			return xmlString;
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "";
+    }
+    
 }
