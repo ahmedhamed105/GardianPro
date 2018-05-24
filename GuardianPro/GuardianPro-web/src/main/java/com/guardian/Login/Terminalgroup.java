@@ -5,7 +5,6 @@
  */
 package com.guardian.Login;
 
-import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
 import Entities.GroupHasParameter;
@@ -59,7 +58,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.io.FileUtils;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -890,7 +888,11 @@ public String onFlowProcess(FlowEvent event) {
      
      }
     public void ExportP(RowEditEvent event) {
-               getXML(seletermgroup);
+            groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+            for(TgroupHasTerminal d:groupHasTerminal){
+              getXML(d);
+            }
+             
              Messages.addInfoMessage("Exported "+seletermgroup.getGroupname(),1);
        
     }
@@ -898,8 +900,10 @@ public String onFlowProcess(FlowEvent event) {
     
     
     
-    public static String getXML(TerminalGroup terminals){
+    public static String getXML(TgroupHasTerminal terminals){
     
+        
+        
         try {
             DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
             dbfac.setValidating(true);
@@ -908,9 +912,63 @@ public String onFlowProcess(FlowEvent event) {
             Document doc = docBuilder.newDocument();
             
             Element root = doc.createElement("TerminalXML"); 
+            
             Element e = doc.createElement("terminalId");
-			e.appendChild(doc.createTextNode(String.valueOf(terminals.getGroupname())));
+	    e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getId())));
+             root.appendChild(e);
+             
+            e = doc.createElement("tid");
+			e.appendChild(doc.createTextNode(terminals.getTerminalID().getTid()));
 			root.appendChild(e);
+
+
+			e = doc.createElement("detailAddress");
+			e.appendChild(doc.createTextNode(terminals.getTerminalID().getAddress()));
+			root.appendChild(e);
+
+			
+			e = doc.createElement("merchantName");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getMerchantName())));
+			root.appendChild(e);
+
+			e = doc.createElement("officeContact");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOwnerName())));
+			root.appendChild(e);
+
+			e = doc.createElement("officeTelNo");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOfficeTelNo())));
+			root.appendChild(e);
+
+			e = doc.createElement("ownerName");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOwnerName())));
+			root.appendChild(e);
+
+			e = doc.createElement("posSerialNo");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getPOSSerialNo())));
+			root.appendChild(e);
+
+			e = doc.createElement("recordNo");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getId())));
+			root.appendChild(e);
+
+			e = doc.createElement("shopContact");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getContactperson())));
+			root.appendChild(e);
+
+			e = doc.createElement("shopName");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getShopName())));
+			root.appendChild(e);
+
+			e = doc.createElement("shopTelNo");
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getTelNo())));
+			root.appendChild(e);
+
+			e = doc.createElement("status");
+			e.appendChild(doc.createTextNode(String.valueOf("ACTIVE")));
+			root.appendChild(e);
+
+			
+                        
                         
                         
             doc.appendChild(root);
