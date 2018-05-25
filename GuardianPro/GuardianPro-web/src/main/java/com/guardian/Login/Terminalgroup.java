@@ -540,7 +540,7 @@ public String onFlowProcess(FlowEvent event) {
     public void onRowEditT(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           selegroupHasTerminal=((TgroupHasTerminal) event.getObject());
-        //    selegroupHasTerminal.setUpdateDate(date);
+           selegroupHasTerminal.setUpdateDate(date);
           tgroupHasTerminalFacade.edit(selegroupHasTerminal);
           selegroupHasTerminal.getTerminalID().setUpdateDate(date);
           terminalFacade.edit(selegroupHasTerminal.getTerminalID());
@@ -593,8 +593,8 @@ public String onFlowProcess(FlowEvent event) {
               TgroupHasTerminal a=new TgroupHasTerminal();
               a.setTerminalGroupID(seletermgroup);
               a.setTerminalID(selectTerminals.get(i)); 
-            //   a.setCreateDate(date);
-          //  a.setUpdateDate(date);
+              a.setCreateDate(date);
+              a.setUpdateDate(date);
               tgroupHasTerminalFacade.create(a);
                Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1);
           }
@@ -765,28 +765,11 @@ public String onFlowProcess(FlowEvent event) {
      }
       
     
-    
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	private static String ftpHost;
-	private static int ftpPort;
-
-        // TODO Auto-generated catch block
-        static {
-    ftpHost = "localhost";
-    ftpPort = 990;
-    System.out.println("ftpHost=" + ftpHost);
-    System.out.println("ftpPort=" + ftpPort);
-	}
 
     private String xmlPath = "D:\\TMS\\app\\XML";
     private String applicationPath = "D:\\TMS\\app\\application";
-    
-    
-    
-    
-    
-    
+
     
       public void onRowEditP(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -887,6 +870,25 @@ public String onFlowProcess(FlowEvent event) {
          
      
      }
+    
+    
+    
+    
+        
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	private static String ftpHost;
+	private static int ftpPort;
+
+        // TODO Auto-generated catch block
+        static {
+    ftpHost = "localhost";
+    ftpPort = 990;
+    System.out.println("ftpHost=" + ftpHost);
+    System.out.println("ftpPort=" + ftpPort);
+	}
+    
+    
     public void ExportP(RowEditEvent event) {
             groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
             for(TgroupHasTerminal d:groupHasTerminal){
@@ -964,7 +966,7 @@ public String onFlowProcess(FlowEvent event) {
 			root.appendChild(e);
 
 			e = doc.createElement("status");
-			e.appendChild(doc.createTextNode(String.valueOf("ACTIVE")));
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getTerminalstatusID().getTstatus())));
 			root.appendChild(e);
 
 			

@@ -8,9 +8,11 @@ package com.guardian.Login;
 import Entities.ParameterType;
 import Entities.Terminal;
 import Entities.TerminalGroup;
+import Entities.TerminalStatus;
 import Entities.TerminalTemplate;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
+import Facades.TerminalStatusFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -45,7 +47,8 @@ public class Terminalbean {
       
       @EJB
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
-      
+      @EJB
+    private TerminalStatusFacadeLocal terminalStatusFacade;
     
     
     
@@ -54,8 +57,11 @@ public class Terminalbean {
     private Terminal term=new Terminal();
     
      List<TerminalTemplate> Terminaltemplate= new ArrayList<TerminalTemplate>();
+      TerminalTemplate selecttemplate=new TerminalTemplate();
      
-     TerminalTemplate selecttemplate=new TerminalTemplate();
+     List<TerminalStatus> Terminalstatus= new ArrayList<TerminalStatus>();
+      TerminalStatus selectstatus=new TerminalStatus();
+    
      
       List<Terminal> Terminals= new ArrayList<Terminal>();
       
@@ -82,6 +88,7 @@ public class Terminalbean {
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
         Terminaltemplate=terminalTemplateFacade.findAll();
+        Terminalstatus=terminalStatusFacade.findAll();
         Terminals=terminalFacade.findAll();
             System.out.println("com.guardian.Login.Terminalbean.init() "+Terminals.size());
 
@@ -98,6 +105,25 @@ public class Terminalbean {
 }
    
     }
+
+    public List<TerminalStatus> getTerminalstatus() {
+        return Terminalstatus;
+    }
+
+    public void setTerminalstatus(List<TerminalStatus> Terminalstatus) {
+        this.Terminalstatus = Terminalstatus;
+    }
+
+    public TerminalStatus getSelectstatus() {
+        return selectstatus;
+    }
+
+    public void setSelectstatus(TerminalStatus selectstatus) {
+        this.selectstatus = selectstatus;
+    }
+      
+      
+      
 
     public Terminal getSelectTerminal() {
         return selectTerminal;
