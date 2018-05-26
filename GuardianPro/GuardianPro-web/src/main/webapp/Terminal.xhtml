@@ -411,6 +411,18 @@
            </p:cellEditor>
        </p:column>
     
+    <p:column headerText="terminal status" sortBy="#{para.terminalstatusID.tstatus}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.terminalstatusID.tstatus}" /></f:facet>
+               <f:facet name="input">
+                   <h:selectOneMenu converter="#{cterminalstatus}" class="form-control select2" id="selectstatus1" value="#{para.terminalstatusID}" required="true" requiredMessage="please Enter status">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{terminalbean.terminalstatus}" var="x" itemValue="#{x}" itemLabel="#{x.tstatus}" />
+                 </h:selectOneMenu>
+               </f:facet>
+           </p:cellEditor>
+       </p:column> 
+    
     <p:column headerText="terminal template" sortBy="#{para.terminaltemplateID.TName}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.terminaltemplateID.TName}" /></f:facet>
@@ -543,6 +555,19 @@
                  <f:selectItems value="#{terminalbean.terminaltemplate}" var="c" itemValue="#{c}" itemLabel="#{c.TName}" />
                  </h:selectOneMenu>
                  <p:message for="selecttemplate" display="text"/>
+                 
+                 
+                 
+                         <label for="selectstatus">select terminal status</label>   
+         
+                         <h:selectOneMenu converter="#{cterminalstatus}" class="form-control select2" id="selectstatus" value="#{terminalbean.term.terminalstatusID}" required="true" requiredMessage="please Enter status">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{terminalbean.terminalstatus}" var="x" itemValue="#{x}" itemLabel="#{x.tstatus}" />
+                 </h:selectOneMenu>
+                 <p:message for="selectstatus" display="text"/>
+                 
+                 
+                
   
                   <br/>
                   <br/>

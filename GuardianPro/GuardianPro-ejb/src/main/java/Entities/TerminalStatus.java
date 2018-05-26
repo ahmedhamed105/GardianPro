@@ -6,36 +6,41 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ahmed.elemam
  */
 @Entity
-@Table(name = "tgroup_has_gparameter", catalog = "guardianpro", schema = "")
+@Table(name = "terminal_status", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TgroupHasGparameter.findAll", query = "SELECT t FROM TgroupHasGparameter t"),
-    @NamedQuery(name = "TgroupHasGparameter.findById", query = "SELECT t FROM TgroupHasGparameter t WHERE t.id = :id"),
-    @NamedQuery(name = "TgroupHasGparameter.findByCreateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.createDate = :createDate"),
-    @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
-public class TgroupHasGparameter implements Serializable {
+    @NamedQuery(name = "TerminalStatus.findAll", query = "SELECT t FROM TerminalStatus t"),
+    @NamedQuery(name = "TerminalStatus.findById", query = "SELECT t FROM TerminalStatus t WHERE t.id = :id"),
+    @NamedQuery(name = "TerminalStatus.findByTstatus", query = "SELECT t FROM TerminalStatus t WHERE t.tstatus = :tstatus"),
+    @NamedQuery(name = "TerminalStatus.findByTdescrip", query = "SELECT t FROM TerminalStatus t WHERE t.tdescrip = :tdescrip"),
+    @NamedQuery(name = "TerminalStatus.findByCreateDate", query = "SELECT t FROM TerminalStatus t WHERE t.createDate = :createDate"),
+    @NamedQuery(name = "TerminalStatus.findByUpdateDate", query = "SELECT t FROM TerminalStatus t WHERE t.updateDate = :updateDate")})
+public class TerminalStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,6 +48,14 @@ public class TgroupHasGparameter implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID", nullable = false)
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "Tstatus", nullable = false, length = 45)
+    private String tstatus;
+    @Size(max = 45)
+    @Column(name = "Tdescrip", length = 45)
+    private String tdescrip;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -53,22 +66,19 @@ public class TgroupHasGparameter implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Parameter_Group_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private ParameterGroup parameterGroupID;
-    @JoinColumn(name = "Terminal_Group_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private TerminalGroup terminalGroupID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalstatusID")
+    private Collection<Terminal> terminalCollection;
 
-    public TgroupHasGparameter() {
+    public TerminalStatus() {
     }
 
-    public TgroupHasGparameter(Integer id) {
+    public TerminalStatus(Integer id) {
         this.id = id;
     }
 
-    public TgroupHasGparameter(Integer id, Date createDate, Date updateDate) {
+    public TerminalStatus(Integer id, String tstatus, Date createDate, Date updateDate) {
         this.id = id;
+        this.tstatus = tstatus;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -79,6 +89,22 @@ public class TgroupHasGparameter implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTstatus() {
+        return tstatus;
+    }
+
+    public void setTstatus(String tstatus) {
+        this.tstatus = tstatus;
+    }
+
+    public String getTdescrip() {
+        return tdescrip;
+    }
+
+    public void setTdescrip(String tdescrip) {
+        this.tdescrip = tdescrip;
     }
 
     public Date getCreateDate() {
@@ -97,20 +123,13 @@ public class TgroupHasGparameter implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public ParameterGroup getParameterGroupID() {
-        return parameterGroupID;
+    @XmlTransient
+    public Collection<Terminal> getTerminalCollection() {
+        return terminalCollection;
     }
 
-    public void setParameterGroupID(ParameterGroup parameterGroupID) {
-        this.parameterGroupID = parameterGroupID;
-    }
-
-    public TerminalGroup getTerminalGroupID() {
-        return terminalGroupID;
-    }
-
-    public void setTerminalGroupID(TerminalGroup terminalGroupID) {
-        this.terminalGroupID = terminalGroupID;
+    public void setTerminalCollection(Collection<Terminal> terminalCollection) {
+        this.terminalCollection = terminalCollection;
     }
 
     @Override
@@ -123,10 +142,10 @@ public class TgroupHasGparameter implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TgroupHasGparameter)) {
+        if (!(object instanceof TerminalStatus)) {
             return false;
         }
-        TgroupHasGparameter other = (TgroupHasGparameter) object;
+        TerminalStatus other = (TerminalStatus) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -135,7 +154,7 @@ public class TgroupHasGparameter implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.TgroupHasGparameter[ id=" + id + " ]";
+        return "Entities.TerminalStatus[ id=" + id + " ]";
     }
     
 }

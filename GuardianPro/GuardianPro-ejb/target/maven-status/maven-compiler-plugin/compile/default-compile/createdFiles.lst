@@ -114,6 +114,7 @@ Facades\LogScreenFacade.class
 Entities\NationalIdHasMaritalStatusHasAddress_.class
 Facades\ParameterTypeFacadeLocal.class
 Facades\RoleFacade.class
+com\tutorialspoint\interceptor\LibraryBean.class
 Entities\Address.class
 Facades\NationalIdFacadeLocal.class
 Entities\TgroupHasGparameter.class
@@ -139,6 +140,7 @@ Entities\TerminalHasParts.class
 Facades\ArmyAreaFacade.class
 Entities\NationalIdHasMaritalStatus.class
 Facades\UserFacadeLocal.class
+com\timer\schedual\IntervalTimer.class
 Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Facades\AccessoryFacade.class
@@ -175,6 +177,7 @@ Facades\WebsiteDataHasUserFacadeLocal.class
 Entities\DownloadMethod.class
 Entities\LoginType.class
 Entities\TgroupHasSoftware.class
+com\tutorialspoint\test\Book.class
 Entities\Status_.class
 Facades\StreetFacade.class
 Entities\TgroupHasAccesory_.class
@@ -193,12 +196,15 @@ Facades\AccessoryHasGroupFacadeLocal.class
 Facades\AddressFacadeLocal.class
 Facades\DownloadMethodFacadeLocal.class
 Entities\User.class
+com\tutorialspoint\test\EJBTester.class
 Entities\LogScreen_.class
+com\tutorialspoint\interceptor\LibraryBeanRemote.class
 Entities\PasswordHistory.class
 Facades\RoleHasGroupsFacade.class
 Entities\ApplicationGroup.class
 Facades\GroupsHasUserFacadeLocal.class
 Facades\ComponentFacadeLocal.class
+com\tutorialspoint\interceptor\BusinessInterceptor.class
 Facades\MaritalStatusFacadeLocal.class
 Entities\TgroupHasSoftware_.class
 Facades\TerminalFacadeLocal.class

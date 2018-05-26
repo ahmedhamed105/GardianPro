@@ -35,7 +35,7 @@ public class TgroupHasParameterFacade extends AbstractFacade<TgroupHasParameter>
     
     
       @Override
-        public   List<Entities.TgroupHasParameter> find_term_groups(TgroupHasGparameter group){ 
+        public   List<Entities.TgroupHasParameter> find_term_groups(TerminalGroup group){ 
            Query para_find = em.createNamedQuery("TgroupHasParameter.findByGroup");
         para_find.setParameter("id", group);
         try {

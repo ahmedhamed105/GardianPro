@@ -219,7 +219,7 @@ public class ParameterGroups {
           for(Entities.TgroupHasGparameter tgroupHasGparameter:go){
                TgroupHasParameter v=new TgroupHasParameter();
                 v.setParameterID(selparameter.get(i));
-                v.setTgrouphasGparameterID(tgroupHasGparameter);
+               // v.setTgrouphasGparameterID(tgroupHasGparameter);
                 if(selparameter.get(i).getDefaultvalue()==null){
                  v.setParmetervalue("0");
                 }else{

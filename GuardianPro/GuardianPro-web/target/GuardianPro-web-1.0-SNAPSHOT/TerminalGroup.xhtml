@@ -321,75 +321,12 @@
                         
                           <label for="groupname">Terminal Group name</label>
                   <p:inputText class="form-control" id="groupname"  value="#{terminalgroup.termgroup.groupname}" required="true" requiredMessage="please Enter Group name"/>						
-                          <label for="terminals">Terminal Choose</label>  
-                          <p:selectManyMenu scrollHeight="150" style="width: 100%"  id="terminals" value="#{terminalgroup.selectTerminals}" converter="#{cterminal}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter terminals">
-                       <f:selectItems value="#{terminalgroup.terminals}" var="f" itemLabel="#{f.tid}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.tid}" />
-            </p:column>
-                         <p:column>
-                <h:outputText value="-" />
-            </p:column>
-             <p:column>
-                <h:outputText value="#{t.POSSerialNo}" />
-            </p:column>
-                               <p:column>
-                <h:outputText value="-" />
-            </p:column>
-            <p:column>
-             <h:outputText value="#{t.shopName}" />
-            </p:column>
-             </p:selectManyMenu>
-                   
-                
-                  
-                 
-                    
-                    
-                    
-                     <label for="appgroup">Applications Choose</label>  
-                     <p:selectManyMenu scrollHeight="150" style="width: 100%" id="appgroup" value="#{terminalgroup.selectAppgroup}" converter="#{cappGroup}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="false" requiredMessage="please Enter application">
-                         <f:selectItems value="#{terminalgroup.appgroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.groupname}" />
-            </p:column>
-             
-             </p:selectManyMenu>
-                   
-                    
-                         <label for="acessorygroup">accessory Choose</label>  
-                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="acessorygroup" value="#{terminalgroup.selectAcessorygroup}" converter="#{caccessorygroup}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
-                             <f:selectItems value="#{terminalgroup.acessorygroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.groupname}" />
-            </p:column>
-             
-             </p:selectManyMenu>
-                    
-                    
-              <label for="paragroup">parameter Choose</label>  
-              <p:selectManyMenu scrollHeight="150" style="width: 100%" id="paragroup" value="#{terminalgroup.selectparagroup}" converter="#{cgroupparameter}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter paramter">
-                             <f:selectItems value="#{terminalgroup.paragroup}" var="f" itemLabel="#{f.groupname}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.groupname}" />
-            </p:column>
-          
-             
-             </p:selectManyMenu>
-                 
+                       
                     </p:panelGrid>
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages"  action="#{terminalgroup.Addgroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"/>  
    
                   
                   
@@ -700,9 +637,7 @@
 
    </p:dataTable>
             </p:panel>
-        </p:tab>
-                    
-                    
+        </p:tab>   
                     
                            <p:tab id="accessory" title="accessory">
             <p:panel header="Terminal Group" >
@@ -768,6 +703,96 @@
             </p:panel>
         </p:tab>
                     
+                    
+                         <p:tab id="Parameter" title="Parameter">
+            <p:panel header="Parameter" >
+                <p:panelGrid columns="4" layout="grid">
+                    
+                     <label for="paragroup">parameter Group Choose</label>  
+              <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wparagroup" value="#{terminalgroup.selectparagroup}" converter="#{cgroupparameter}"
+                                       var="s" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.paragroup}" var="v" itemLabel="#{v.groupname}" itemValue="#{v}" />
+ 
+            <p:column>
+                <h:outputText value="#{s.groupname}" />
+            </p:column>
+          
+             
+             </p:selectManyMenu>
+                 
+                         <label for="paragroup">parameter Choose</label>  
+                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wpara" value="#{terminalgroup.selectpara}" converter="#{CParameter}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
+                             <f:selectItems value="#{terminalgroup.para}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.displayName}" />
+            </p:column>
+          
+             
+             </p:selectManyMenu>
+                </p:panelGrid> 
+                
+                 <p:dataTable id="paramcar" widgetVar="carsTable"
+                              emptyMessage="No Parmeter found with given criteria" var="para4" value="#{terminalgroup.groupHasparameter}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasparameter}" rowKey="#{para4.id}"> 
+                      
+ 
+                     <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditP}" update=":form111:messages111 :form111:accescar" />
+                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelP}" update=":form111:messages111 :form111:paramcar"   />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+     
+   
+    <p:column headerText="parameter name" sortBy="#{para4.parameterID.fieldName}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parameterID.fieldName}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput" value="#{para4.parameterID.fieldName}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+        
+    <p:column headerText="parameter Value" sortBy="#{para4.parmetervalue}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parmetervalue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput19" value="#{para4.parmetervalue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="parameter Description" sortBy="#{para4.parmeterdesc}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para4.parmeterdesc}" /></f:facet>
+               <f:facet name="input"><p:inputText id="pmodelInput20" value="#{para4.parmeterdesc}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+         <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.removeP(actionEvent)}"/>  
+    </f:facet>
+    
+             <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ADDP(actionEvent)}"/>  
+    </f:facet>
+            <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="Export XML" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ExportP(actionEvent)}"/>  
+    </f:facet>
+
+   </p:dataTable>
+     
+            </p:panel>
+        </p:tab>
+                    
+                    
+                    
     </p:wizard>
                     
 
@@ -784,322 +809,7 @@
         </div>
         </div>
         
-             <div class="row">
-          <div class="col-md-6 col-sm-3 col-xs-6">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Terminals</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                   <h:form id="form11">
-                  <p:messages id="messages11" showDetail="true" closable="true" />
-                <div class="form-group">
-                   
-                    <p:treeTable id="cars1" value="#{terminalgroup.root}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte}">
-        <f:facet name="header">
-          Terminal Group 
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.name}" />
-        </p:column>
-        <p:column headerText="serial">
-            <h:outputText value="#{group.serial}" />
-        </p:column>
-        <p:column headerText="Shop name">
-            <h:outputText value="#{group.shopname}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
-
        
-      
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form11:messages11"  action="#{terminalgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form11:messages11"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
-             
-                  
-                </div>
-                   </h:form>     
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-        </div>
-        
-            <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Parameter</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                   <h:form id="form12">
-                  <p:messages id="messages12" showDetail="true" closable="true" />
-                <div class="form-group">
-                    
-                    <p:treeTable id="cars2" value="#{terminalgroup.root1}" var="group" liveResize="true" selectionMode="single" selection="#{terminalgroup.selectdelte1}" >
-        <f:facet name="header">
-           Parameter Group 
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.name}" />
-        </p:column>
-        <p:column headerText="input_type">
-            <h:outputText value="#{group.serial}" />
-        </p:column>
-        <p:column headerText="para_type">
-            <h:outputText value="#{group.shopname}" />
-        </p:column>
-         <p:column headerText="value">
-            <h:outputText value="#{group.pvalue}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
-
- 
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form12:messages12"  action="#{terminalgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form12:messages12"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
-             <br/>
-             <br/>
-                      <label for="parmetervalue">Value</label>
-                             <p:inputText class="form-control" id="parmetervalue"  value="#{terminalgroup.groupHasPara.parmetervalue}" required="true" requiredMessage="please Enter parmeter value"/>						
-                            <p:message for="parmetervalue" display="text"/>
-                            
-                                  <label for="parmeterdesc">Description</label>
-                                  <p:inputText class="form-control" id="parmeterdesc"  value="#{terminalgroup.groupHasPara.parmeterdesc}" />						
-                            <p:message for="parmeterdesc" display="text"/>
-                    
-                <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form12:messages12"  action="#{terminalgroup.addparavalue(actionEvent)}"/>  
-      
-                </div>
-                   </h:form>     
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-                
-             
-                
-        </div>
-        
-        <div class="row">
-          <div class="col-md-6 col-sm-3 col-xs-6">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Software </h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                   <h:form id="form13">
-                  <p:messages id="messages13" showDetail="true" closable="true" />
-                <div class="form-group">
-                    
-                    <p:treeTable id="cars3" value="#{terminalgroup.root2}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte2}">
-        <f:facet name="header">
-            Software Group
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.name}" />
-        </p:column>
-        <p:column headerText="serial">
-            <h:outputText value="#{group.serial}" />
-        </p:column>
-        <p:column headerText="Shop name">
-            <h:outputText value="#{group.shopname}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
-
-       
-      
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form13:messages13"  action="#{terminalgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form13:messages13"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
-             
-                  
-                </div>
-                   </h:form>     
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-        </div>
-        
-        
-        <div class="row">
-          <div class="col-md-6 col-sm-3 col-xs-6">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Accesory</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                   <h:form id="form14">
-                  <p:messages id="messages14" showDetail="true" closable="true" />
-                <div class="form-group">
-                    
-                    <p:treeTable id="cars3" value="#{terminalgroup.root3}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte3}">
-        <f:facet name="header">
-            Accesory Group
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.name}" />
-        </p:column>
-        <p:column headerText="serial">
-            <h:outputText value="#{group.serial}" />
-        </p:column>
-        <p:column headerText="Shop name">
-            <h:outputText value="#{group.shopname}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
-
-       
-      
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form14:messages14"  action="#{terminalgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form14:messages14"  action="#{terminalgroup.removeGroup(actionEvent)}"/>  
-             
-                  
-                </div>
-                   </h:form>     
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-        </div>
-        
         
         
         <div class="row">

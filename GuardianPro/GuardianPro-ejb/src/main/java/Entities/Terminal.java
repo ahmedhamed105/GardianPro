@@ -6,8 +6,10 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -47,6 +51,18 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Terminal.findByCreateDate", query = "SELECT t FROM Terminal t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "Terminal.findByUpdateDate", query = "SELECT t FROM Terminal t WHERE t.updateDate = :updateDate")})
 public class Terminal implements Serializable {
+
+    @Column(name = "schedule_start")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date scheduleStart;
+    @Column(name = "schedule_end")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date scheduleEnd;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalID")
+    private Collection<TgroupHasTerminal> tgroupHasTerminalCollection;
+    @JoinColumn(name = "Terminal_status_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private TerminalStatus terminalstatusID;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -252,6 +268,39 @@ public class Terminal implements Serializable {
     @Override
     public String toString() {
         return "Entities.Terminal[ id=" + id + " ]";
+    }
+
+    public Date getScheduleStart() {
+        return scheduleStart;
+    }
+
+    public void setScheduleStart(Date scheduleStart) {
+        this.scheduleStart = scheduleStart;
+    }
+
+    public Date getScheduleEnd() {
+        return scheduleEnd;
+    }
+
+    public void setScheduleEnd(Date scheduleEnd) {
+        this.scheduleEnd = scheduleEnd;
+    }
+
+    @XmlTransient
+    public Collection<TgroupHasTerminal> getTgroupHasTerminalCollection() {
+        return tgroupHasTerminalCollection;
+    }
+
+    public void setTgroupHasTerminalCollection(Collection<TgroupHasTerminal> tgroupHasTerminalCollection) {
+        this.tgroupHasTerminalCollection = tgroupHasTerminalCollection;
+    }
+
+    public TerminalStatus getTerminalstatusID() {
+        return terminalstatusID;
+    }
+
+    public void setTerminalstatusID(TerminalStatus terminalstatusID) {
+        this.terminalstatusID = terminalstatusID;
     }
     
 }
