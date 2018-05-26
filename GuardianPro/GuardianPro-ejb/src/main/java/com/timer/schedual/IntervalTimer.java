@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -53,14 +54,7 @@ public class IntervalTimer {
         String fileExt;
         fileExt= String.valueOf(new Date().getTimezoneOffset());    
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ fileExt);
-//         try {
-//            Path fileToMovePath = 
-//                Files.createFile(Paths.get("F:/FIB/Git/My Works/test2/" + fileExt + ".txt"));
-//            Path targetPath = Paths.get("F:/FIB/Git/My Works/test/");
-//            Files.move(fileToMovePath, targetPath.resolve(fileToMovePath.getFileName()));
-//        } catch (IOException ex) {
-//            Logger.getLogger(IntervalTimer.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
 
         File source = new File("F:/FIB/Git/My Works/test/XMLfile.txt");
         File destination = new File("F:/FIB/Git/My Works/test2/XMLfile"+fileExt+".txt");
@@ -90,4 +84,33 @@ public class IntervalTimer {
         return false;
     }
 
+    private boolean moveFile(String oldPath, String newPath){
+        Date date = new Date();
+              String dateStr = fromDateToString(date,"yyyyMMdd_hh_mm_ss");
+              newPath=newPath.replace("\\", "/")+"_"+dateStr;
+              File file = new File(oldPath);
+              if(file.renameTo(new File(newPath))){
+                     System.out.println("The file:["+oldPath+"] has been moved to backup path:["+newPath+"].");
+              }else{
+                     System.out.println("The file:["+oldPath+"] can't be moved to backup path:["+newPath+"], kindly check if back up path exists");
+              }
+               return false;
+    }
+    
+    
+    public static String fromDateToString(Date date,String format) {
+              SimpleDateFormat targetFormat = new SimpleDateFormat(format);
+              try {
+                     
+                     String formattedDt = targetFormat.format(date);
+                     return formattedDt;
+              } catch (Exception e) {
+                     // TODO Auto-generated catch block
+                     e.printStackTrace();
+              }
+              return null;
+       }
+
+    
+    
 }
