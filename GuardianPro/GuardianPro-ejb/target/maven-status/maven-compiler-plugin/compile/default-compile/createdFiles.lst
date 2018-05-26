@@ -12,6 +12,7 @@ Entities\UserPassword.class
 Facades\StreetFacadeLocal.class
 Facades\ProfileDataFacadeLocal.class
 Entities\Address_.class
+Entities\TerminalStatus_.class
 Entities\TerminalGroup_.class
 Facades\TgroupHasGparameterFacadeLocal.class
 Entities\Application_.class
@@ -96,6 +97,7 @@ Facades\BirthDataFacadeLocal.class
 Entities\NationalIdHasMaritalStatus1_.class
 Entities\ProfileData.class
 Entities\Component.class
+Entities\TerminalStatus.class
 Facades\PartsFacade.class
 Entities\ProfileData_.class
 Facades\UserStatusFacade.class
@@ -116,6 +118,7 @@ Facades\ParameterTypeFacadeLocal.class
 Facades\RoleFacade.class
 com\tutorialspoint\interceptor\LibraryBean.class
 Entities\Address.class
+Facades\TerminalStatusFacadeLocal.class
 Facades\NationalIdFacadeLocal.class
 Entities\TgroupHasGparameter.class
 Entities\EmailSmsSend.class
@@ -176,6 +179,7 @@ Entities\NationalIdHasMaritalStatusHasAddressPK.class
 Facades\WebsiteDataHasUserFacadeLocal.class
 Entities\DownloadMethod.class
 Entities\LoginType.class
+Facades\TerminalStatusFacade.class
 Entities\TgroupHasSoftware.class
 com\tutorialspoint\test\Book.class
 Entities\Status_.class
