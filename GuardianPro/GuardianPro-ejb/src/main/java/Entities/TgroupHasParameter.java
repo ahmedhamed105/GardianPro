@@ -41,6 +41,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TgroupHasParameter.findByUpdateDate", query = "SELECT t FROM TgroupHasParameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasParameter implements Serializable {
 
+    @JoinColumn(name = "Parmeter_schema_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private ParmeterSchema parmeterschemaID;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -165,6 +169,14 @@ public class TgroupHasParameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.TgroupHasParameter[ id=" + id + " ]";
+    }
+
+    public ParmeterSchema getParmeterschemaID() {
+        return parmeterschemaID;
+    }
+
+    public void setParmeterschemaID(ParmeterSchema parmeterschemaID) {
+        this.parmeterschemaID = parmeterschemaID;
     }
     
 }
