@@ -20,11 +20,14 @@ import Facades.RoleHasComponentFacadeLocal;
 import Facades.RoleHasGroupsFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
@@ -63,6 +66,10 @@ public class Login {
     List<Component> components = new ArrayList<Component>();
     List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
     List<RoleHasComponent> roleHasComponents = new ArrayList<RoleHasComponent>();
+    List<Component> allComponent = new ArrayList<Component>();
+    Map<Component, Boolean> componentView = new HashMap<Component, Boolean>();
+    Map<Component, Boolean> componentEdit = new HashMap<Component, Boolean>();
+    List<Integer> componentID = new ArrayList<Integer>();
 
     boolean remeber;
     String username;
@@ -158,6 +165,18 @@ public class Login {
                             }
                         }
 
+                        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+                        Map<String, Object> sessionMap = externalContext.getSessionMap();
+                        if (Roles != null) {
+                            sessionMap.put("RolesMap", Roles);
+                        }
+                        if (components != null) {
+                            sessionMap.put("roleHasComponentMap", roleHasComponents);
+                        }
+                        if (groups != null) {
+                            sessionMap.put("GroupsMap", groups);
+                        }
+
                         //ahmed.ibraheem
                         // Load All Rolls
                         return "Login";
@@ -187,4 +206,125 @@ public class Login {
 
     }
 
+    public List<Groups> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Groups> groups) {
+        this.groups = groups;
+    }
+
+    public List<GroupsHasUser> getGroupsHasUsers() {
+        return groupsHasUsers;
+    }
+
+    public void setGroupsHasUsers(List<GroupsHasUser> groupsHasUsers) {
+        this.groupsHasUsers = groupsHasUsers;
+    }
+
+    public List<Role> getRoles() {
+        return Roles;
+    }
+
+    public void setRoles(List<Role> Roles) {
+        this.Roles = Roles;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
+
+    public List<RoleHasGroups> getRoleHasGroupses() {
+        return roleHasGroupses;
+    }
+
+    public void setRoleHasGroupses(List<RoleHasGroups> roleHasGroupses) {
+        this.roleHasGroupses = roleHasGroupses;
+    }
+
+    public List<RoleHasComponent> getRoleHasComponents() {
+        return roleHasComponents;
+    }
+
+    public void setRoleHasComponents(List<RoleHasComponent> roleHasComponents) {
+        this.roleHasComponents = roleHasComponents;
+    }
+
+    public List<Component> getAllComponent() {
+        return allComponent;
+    }
+
+    public void setAllComponent(List<Component> allComponent) {
+        this.allComponent = allComponent;
+    }
+
+    public Map<Component, Boolean> getComponentView() {
+        return componentView;
+    }
+
+    public void setComponentView(Map<Component, Boolean> componentView) {
+        this.componentView = componentView;
+    }
+
+    public Map<Component, Boolean> getComponentEdit() {
+        return componentEdit;
+    }
+
+    public void setComponentEdit(Map<Component, Boolean> componentEdit) {
+        this.componentEdit = componentEdit;
+    }
+
+    public void loadViewEdit() {
+        List<Component> allComponent = new ArrayList<Component>();
+        allComponent = componentFacade.findAll();
+        for (Component component : allComponent) {
+            componentView.put(component, false);
+            componentEdit.put(component, false);
+
+            for (RoleHasComponent comPriv : roleHasComponents) {
+                if (component.equals(comPriv.getComponentcomponentID())) {
+                    if (comPriv.getView().equalsIgnoreCase("true")) {
+                        componentView.replace(component, true);
+                    }
+
+                    if (comPriv.getEdit().equalsIgnoreCase("true")) {
+                        componentEdit.replace(component, true);
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean isViewed(String componentName){
+        Component component = null;
+        for (Component com : allComponent) {
+            if (com.getName().equalsIgnoreCase(componentName)) {
+                component= com;
+            }
+        }
+        if (component!=null) {
+            return componentView.get(component);
+        }
+        else
+            return false;
+    }
+    
+    public boolean isEdit(String componentName){
+        Component component = null;
+        for (Component com : allComponent) {
+            if (com.getName().equalsIgnoreCase(componentName)) {
+                component= com;
+            }
+        }
+        if (component!=null) {
+            return componentEdit.get(component);
+        }
+        else
+            return false;
+    }
+    
 }
