@@ -10,6 +10,9 @@ import Entities.ApplicationGroup;
 import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
+import Entities.ParmeterSchema;
+import Entities.Pchildparent;
+import Entities.Pgchildparent;
 import Entities.Terminal;
 import Entities.TerminalGroup;
 import Entities.TerminalTemplate;
@@ -23,6 +26,8 @@ import Facades.ApplicationGroupFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
+import Facades.PchildparentFacadeLocal;
+import Facades.PgchildparentFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
@@ -58,6 +63,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.io.FileUtils;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -67,6 +73,12 @@ import org.w3c.dom.Element;
  * @author ahmed.elemam
  */
 public class Terminalgroup {
+
+    @EJB
+    private PgchildparentFacadeLocal pgchildparentFacade;
+
+    @EJB
+    private PchildparentFacadeLocal pchildparentFacade;
 
  
     @EJB
@@ -110,9 +122,13 @@ public class Terminalgroup {
          
           @EJB
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
+          
+          
          
          
-         
+       private TreeNode root;   
+       
+         private TreeNode selectdelte;
          
           List<TgroupHasTerminal> S_grouphasterminal= new ArrayList<TgroupHasTerminal>();
          
@@ -169,9 +185,9 @@ public class Terminalgroup {
         
         
 
-    private TreeNode rootA;
+   
       
-    private TreeNode selectdelteA;
+  
       
       
   
@@ -181,6 +197,26 @@ public class Terminalgroup {
      */
     public Terminalgroup() {
     }
+
+    public TreeNode getSelectdelte() {
+        return selectdelte;
+    }
+
+    public void setSelectdelte(TreeNode selectdelte) {
+        this.selectdelte = selectdelte;
+    }
+    
+    
+
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
+    
+    
 
     public List<TgroupHasParameter> getGroupHasparameter() {
         return groupHasparameter;
@@ -489,7 +525,13 @@ public String onFlowProcess(FlowEvent event) {
         }else if(event.getOldStep().equals("accessory") && event.getNewStep().equals("Parameter")){
            
             groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
-                  
+              root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
+              
+              for(TgroupHasParameter gp:groupHasparameter){
+                DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(gp.getParameterID().getParametertypeID().getType(),0,0,"GROUP"), root);     
+              }
+              
+            
                      return "Parameter";
                  
         }else{
@@ -829,6 +871,22 @@ public String onFlowProcess(FlowEvent event) {
              v.setTerminalGroupID(seletermgroup);
              v.setParmetervalue("0");
              tgroupHasParameterFacade.create(v);
+               Pchildparent pc=pchildparentFacade.find_parameter(b.getParameterID().getParametertypeID());
+               if(pc.getRoot() == 1){
+                   Pgchildparent cd=new Pgchildparent();
+                   cd.setRoot(1);
+                   cd.setChildNo(0);
+                   cd.setTgrouphasparameterID(v);
+                   cd.setTgrouphasparameterID1(v);
+                   pgchildparentFacade.create(cd);
+               }else{
+               
+               
+               }
+              
+              
+             
+             
            }
                    
           }

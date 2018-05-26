@@ -41,6 +41,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ParameterType.findByUpdateDate", query = "SELECT p FROM ParameterType p WHERE p.updateDate = :updateDate")})
 public class ParameterType implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
+    private Collection<Pchildparent> pchildparentCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID1")
+    private Collection<Pchildparent> pchildparentCollection1;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -157,6 +162,24 @@ public class ParameterType implements Serializable {
 
     public void setXMLheader(String xMLheader) {
         this.xMLheader = xMLheader;
+    }
+
+    @XmlTransient
+    public Collection<Pchildparent> getPchildparentCollection() {
+        return pchildparentCollection;
+    }
+
+    public void setPchildparentCollection(Collection<Pchildparent> pchildparentCollection) {
+        this.pchildparentCollection = pchildparentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Pchildparent> getPchildparentCollection1() {
+        return pchildparentCollection1;
+    }
+
+    public void setPchildparentCollection1(Collection<Pchildparent> pchildparentCollection1) {
+        this.pchildparentCollection1 = pchildparentCollection1;
     }
     
 }

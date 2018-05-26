@@ -731,7 +731,31 @@
           
              
              </p:selectManyMenu>
-                </p:panelGrid> 
+                         
+            <br/>             
+           <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara  :form111:treecars1" action="#{terminalgroup.ADDP(actionEvent)}"/>  
+ 
+             <br/>   
+            </p:panelGrid> 
+                <p:panelGrid columns="2" layout="grid">   
+             <p:treeTable id="treecars1" value="#{terminalgroup.root}" var="group" selectionMode="single" selection="#{terminalgroup.selectdelte}">
+        <f:facet name="header">
+            Group Parmeter
+        </f:facet>
+        <p:column headerText="Name">
+            <h:outputText value="#{group.parameterGroup}" />
+        </p:column>
+         <p:column headerText="Count">
+            <h:outputText value="#{group.count}" />
+        </p:column>
+        <p:column headerText="type">
+            <h:outputText value="#{group.type}" />
+        </p:column>
+
+       
+      
+    </p:treeTable>
+                
                 
                  <p:dataTable id="paramcar" widgetVar="carsTable"
                               emptyMessage="No Parmeter found with given criteria" var="para4" value="#{terminalgroup.groupHasparameter}" editable="true" style="margin-bottom:20px" rows="5"
@@ -779,15 +803,13 @@
              <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.removeP(actionEvent)}"/>  
     </f:facet>
     
-             <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ADDP(actionEvent)}"/>  
-    </f:facet>
+      
             <f:facet name="footer">
              <p:commandButton class="btn btn-primary" value="Export XML" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ExportP(actionEvent)}"/>  
     </f:facet>
 
    </p:dataTable>
-     
+          </p:panelGrid>  
             </p:panel>
         </p:tab>
                     

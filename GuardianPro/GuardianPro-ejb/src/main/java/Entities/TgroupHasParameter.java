@@ -6,8 +6,10 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,9 +45,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TgroupHasParameter.findByUpdateDate", query = "SELECT t FROM TgroupHasParameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasParameter implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasparameterID")
+    private Collection<Pgchildparent> pgchildparentCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasparameterID1")
+    private Collection<Pgchildparent> pgchildparentCollection1;
     @JoinColumn(name = "Parmeter_schema_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private ParmeterSchema parmeterschemaID;
+
+
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -171,6 +181,24 @@ public class TgroupHasParameter implements Serializable {
         return "Entities.TgroupHasParameter[ id=" + id + " ]";
     }
 
+    @XmlTransient
+    public Collection<Pgchildparent> getPgchildparentCollection() {
+        return pgchildparentCollection;
+    }
+
+    public void setPgchildparentCollection(Collection<Pgchildparent> pgchildparentCollection) {
+        this.pgchildparentCollection = pgchildparentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Pgchildparent> getPgchildparentCollection1() {
+        return pgchildparentCollection1;
+    }
+
+    public void setPgchildparentCollection1(Collection<Pgchildparent> pgchildparentCollection1) {
+        this.pgchildparentCollection1 = pgchildparentCollection1;
+    }
+
     public ParmeterSchema getParmeterschemaID() {
         return parmeterschemaID;
     }
@@ -178,5 +206,7 @@ public class TgroupHasParameter implements Serializable {
     public void setParmeterschemaID(ParmeterSchema parmeterschemaID) {
         this.parmeterschemaID = parmeterschemaID;
     }
+
+   
     
 }
