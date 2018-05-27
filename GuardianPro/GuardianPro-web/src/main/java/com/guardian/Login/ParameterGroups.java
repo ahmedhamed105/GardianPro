@@ -118,7 +118,7 @@ public class ParameterGroups {
               para  = groupHasParameterFacade.get_para_group(Gpara.get(i));
               
               System.out.println("group "+Gpara.get(i).getGroupname()+para.size());
-              DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),para.size(),Gpara.get(i).getId(),"GROUP"), root);
+              DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),para.size(),Gpara.get(i).getId(),Gpara.get(i).getParametertypeID().getType()), root);
          
               for(int j=0;j<para.size();j++){
                    System.out.println("para "+para.get(j).getParameterID().getDisplayName());
@@ -128,7 +128,7 @@ public class ParameterGroups {
           } catch (Exception e) {
               e.printStackTrace();
                System.out.println("error");
-                 DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),0,Gpara.get(i).getId(),"GROUP"), root);
+                 DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),0,Gpara.get(i).getId(),Gpara.get(i).getParametertypeID().getType()), root);
           }
          
       
