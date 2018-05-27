@@ -42,6 +42,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -58,6 +59,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.io.FileUtils;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.TreeDragDropEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.w3c.dom.Document;
@@ -112,11 +114,15 @@ public class Terminalgroup {
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
           
           
+             private TreeNode root1;
+     
+    private TreeNode root2;
+     
+    private TreeNode selectedNode1;
+     
+    private TreeNode selectedNode2;
          
-         
-       private TreeNode root;   
-       
-         private TreeNode selectdelte;
+    
          
           List<TgroupHasTerminal> S_grouphasterminal= new ArrayList<TgroupHasTerminal>();
          
@@ -185,25 +191,10 @@ public class Terminalgroup {
     public Terminalgroup() {
     }
 
-    public TreeNode getSelectdelte() {
-        return selectdelte;
-    }
-
-    public void setSelectdelte(TreeNode selectdelte) {
-        this.selectdelte = selectdelte;
-    }
+    
     
     
 
-    public TreeNode getRoot() {
-        return root;
-    }
-
-    public void setRoot(TreeNode root) {
-        this.root = root;
-    }
-    
-    
 
 
     
@@ -381,6 +372,38 @@ public class Terminalgroup {
     public void setSelectpara(List<Parameter> selectpara) {
         this.selectpara = selectpara;
     }
+
+    public TreeNode getRoot1() {
+        return root1;
+    }
+
+    public void setRoot1(TreeNode root1) {
+        this.root1 = root1;
+    }
+
+    public TreeNode getRoot2() {
+        return root2;
+    }
+
+    public void setRoot2(TreeNode root2) {
+        this.root2 = root2;
+    }
+
+    public TreeNode getSelectedNode1() {
+        return selectedNode1;
+    }
+
+    public void setSelectedNode1(TreeNode selectedNode1) {
+        this.selectedNode1 = selectedNode1;
+    }
+
+    public TreeNode getSelectedNode2() {
+        return selectedNode2;
+    }
+
+    public void setSelectedNode2(TreeNode selectedNode2) {
+        this.selectedNode2 = selectedNode2;
+    }
     
     
     
@@ -490,8 +513,30 @@ public String onFlowProcess(FlowEvent event) {
         }else if(event.getOldStep().equals("accessory") && event.getNewStep().equals("Parameter")){
            
           //  groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
-              root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
+            //  root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
               
+            
+             root1 = new DefaultTreeNode("Root", null);
+        TreeNode node0 = new DefaultTreeNode("Node 0", root1);
+        TreeNode node1 = new DefaultTreeNode("Node 1", root1);
+        TreeNode node2 = new DefaultTreeNode("Node 2", root1);
+         
+        TreeNode node00 = new DefaultTreeNode("Node 0.0", node0);
+        TreeNode node01 = new DefaultTreeNode("Node 0.1", node0);
+         
+        TreeNode node10 = new DefaultTreeNode("Node 1.0", node1);
+        TreeNode node11 = new DefaultTreeNode("Node 1.1", node1);
+         
+        TreeNode node000 = new DefaultTreeNode("Node 0.0.0", node00);
+        TreeNode node001 = new DefaultTreeNode("Node 0.0.1", node00);
+        TreeNode node010 = new DefaultTreeNode("Node 0.1.0", node01);
+         
+        TreeNode node100 = new DefaultTreeNode("Node 1.0.0", node10);
+         
+        root2 = new DefaultTreeNode("Root2", null);
+        TreeNode item0 = new DefaultTreeNode("XML root", root2);
+  
+            
            //   for(TgroupHasParameter gp:groupHasparameter){
          //       DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(gp.getParameterID().getParametertypeID().getType(),0,0,"GROUP"), root);     
         //      }
@@ -893,6 +938,15 @@ public String onFlowProcess(FlowEvent event) {
          
      
      }
+    
+     public void onDragDrop(TreeDragDropEvent event) {
+        TreeNode dragNode = event.getDragNode();
+        TreeNode dropNode = event.getDropNode();
+        int dropIndex = event.getDropIndex();
+         
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged " + dragNode.getData(), "Dropped on " + dropNode.getData() + " at " + dropIndex);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     
     
     
