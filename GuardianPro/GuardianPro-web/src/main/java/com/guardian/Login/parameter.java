@@ -38,17 +38,14 @@ public class parameter {
         
          @EJB
     private InputTypeFacadeLocal inputTypeFacade;
-         
-         @EJB
-    private ParameterTypeFacadeLocal parameterTypeFacade;
-        
+   
         
         
          List<Parameter> parmeters = new ArrayList<Parameter>();
          
          List<InputType> input_types = new ArrayList<InputType>();
          
-         List<ParameterType> parmeter_types = new ArrayList<ParameterType>();
+      
          
          Parameter parmeter=new Parameter();
          
@@ -75,7 +72,7 @@ public class parameter {
         }else{
          parmeters  = parameterFacade.findAll();
          input_types = inputTypeFacade.findAll();
-         parmeter_types =parameterTypeFacade.findAll();
+        
         }
         
         } catch (Exception e) {
@@ -122,13 +119,7 @@ public class parameter {
         this.input_types = input_types;
     }
 
-    public List<ParameterType> getParmeter_types() {
-        return parmeter_types;
-    }
-
-    public void setParmeter_types(List<ParameterType> parmeter_types) {
-        this.parmeter_types = parmeter_types;
-    }
+  
     
     
     

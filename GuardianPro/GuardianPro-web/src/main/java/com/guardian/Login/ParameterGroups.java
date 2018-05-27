@@ -8,14 +8,14 @@ package com.guardian.Login;
 import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
+import Entities.ParameterType;
 import Entities.TgroupHasGparameter;
-import Entities.TgroupHasParameter;
 import Entities.TgroupHasTerminal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
+import Facades.ParameterTypeFacadeLocal;
 import Facades.TgroupHasGparameterFacadeLocal;
-import Facades.TgroupHasParameterFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
@@ -40,10 +40,7 @@ public class ParameterGroups {
     @EJB
     private TgroupHasGparameterFacadeLocal tgroupHasGparameterFacade;
 
-    @EJB
-    private TgroupHasParameterFacadeLocal tgroupHasParameterFacade;
-    
-    
+ 
 
    
 
@@ -58,6 +55,11 @@ public class ParameterGroups {
 
         @EJB
     private UserFacadeLocal userFacade;
+        
+              
+         @EJB
+    private ParameterTypeFacadeLocal parameterTypeFacade;
+        
         
         
         
@@ -79,6 +81,8 @@ public class ParameterGroups {
         List<Parameter> selparameter= new ArrayList<Parameter>();
         
         ParameterGroup selectgroup=new ParameterGroup();
+        
+           List<ParameterType> parmeter_types = new ArrayList<ParameterType>();
      
       java.sql.Date date ;
       
@@ -106,6 +110,7 @@ public class ParameterGroups {
             selparameter= new ArrayList<Parameter>();
              Gpara=parameterGroupFacade.findAll();
              parameter=parameterFacade.findAll();
+              parmeter_types =parameterTypeFacade.findAll();
      
        root = new DefaultTreeNode(new PGroup_tree("Groups",Gpara.size(),0,"root"), null);
       for(int i=0;i<Gpara.size();i++){
@@ -117,7 +122,7 @@ public class ParameterGroups {
          
               for(int j=0;j<para.size();j++){
                    System.out.println("para "+para.get(j).getParameterID().getDisplayName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),para.get(j).getParameterID().getParametertypeID().getType()), documents);
+             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),para.get(j).getParameterID().getDefaultvalue()), documents);
         
               }
           } catch (Exception e) {
@@ -202,6 +207,16 @@ public class ParameterGroups {
         this.selectdelte = selectdelte;
     }
 
+    public List<ParameterType> getParmeter_types() {
+        return parmeter_types;
+    }
+
+    public void setParmeter_types(List<ParameterType> parmeter_types) {
+        this.parmeter_types = parmeter_types;
+    }
+    
+    
+
  
        public String joingroup(ActionEvent actionEvent){
          for(int i=0;i<selparameter.size();i++){
@@ -212,32 +227,7 @@ public class ParameterGroups {
             a.setCreateDate(date);
             a.setUpdateDate(date);
             a.setParameterID(selparameter.get(i));
-          groupHasParameterFacade.create(a);
-         try{ 
-         List<Entities.TgroupHasGparameter> go=  tgroupHasGparameterFacade.find_group(selectgroup);
-         
-          for(Entities.TgroupHasGparameter tgroupHasGparameter:go){
-               TgroupHasParameter v=new TgroupHasParameter();
-                v.setParameterID(selparameter.get(i));
-               // v.setTgrouphasGparameterID(tgroupHasGparameter);
-                if(selparameter.get(i).getDefaultvalue()==null){
-                 v.setParmetervalue("0");
-                }else{
-                 v.setParmetervalue(selparameter.get(i).getDefaultvalue());
-
-                }
-              
-                 v.setCreateDate(date);
-                 v.setUpdateDate(date);
-                tgroupHasParameterFacade.create(v);
-          
-          }
-         
-         }catch(Exception e){
-         //return "Login";
-         }
-            
-              
+          groupHasParameterFacade.create(a);      
          }
        
          

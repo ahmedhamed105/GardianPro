@@ -17,7 +17,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleHasComponentFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataHasUserFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\Distinct1Facade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParmeterSchemaFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\MaritalStatus.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\StreetFacade.java
@@ -92,7 +91,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Religion.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TgroupHasTerminal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasParameterFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PartsFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TrxType.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Terminal.java
@@ -104,7 +102,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\SocialData.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TerminalHasParts.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TgroupHasSoftware.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasParameterFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupsHasUserFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TerminalTemplate.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacadeLocal.java
@@ -125,7 +122,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\User.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TgroupHasParameter.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\EmailSmsSend.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacadeLocal.java
@@ -138,7 +134,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ApplicationGroupFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasTerminalFacadeLocal.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParmeterSchemaFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasSoftwareFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacade.java
@@ -161,6 +156,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Country.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Component.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Pchildparent.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\Distinct1FacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneTypes.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ParameterType.java

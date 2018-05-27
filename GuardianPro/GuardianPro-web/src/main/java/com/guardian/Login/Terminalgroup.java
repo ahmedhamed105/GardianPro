@@ -12,13 +12,11 @@ import Entities.Parameter;
 import Entities.ParameterGroup;
 import Entities.ParmeterSchema;
 import Entities.Pchildparent;
-import Entities.Pgchildparent;
 import Entities.Terminal;
 import Entities.TerminalGroup;
 import Entities.TerminalTemplate;
 import Entities.TgroupHasAccesory;
 import Entities.TgroupHasGparameter;
-import Entities.TgroupHasParameter;
 import Entities.TgroupHasSoftware;
 import Entities.TgroupHasTerminal;
 import Facades.AccessoryGroupFacadeLocal;
@@ -26,14 +24,11 @@ import Facades.ApplicationGroupFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
-import Facades.PchildparentFacadeLocal;
-import Facades.PgchildparentFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasAccesoryFacadeLocal;
 import Facades.TgroupHasGparameterFacadeLocal;
-import Facades.TgroupHasParameterFacadeLocal;
 import Facades.TgroupHasSoftwareFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -74,12 +69,7 @@ import org.w3c.dom.Element;
  */
 public class Terminalgroup {
 
-    @EJB
-    private PgchildparentFacadeLocal pgchildparentFacade;
-
-    @EJB
-    private PchildparentFacadeLocal pchildparentFacade;
-
+  
  
     @EJB
     private ParameterFacadeLocal parameterFacade;
@@ -87,9 +77,7 @@ public class Terminalgroup {
      @EJB
     private GroupHasParameterFacadeLocal groupHasParameterFacade;
 
-    @EJB
-    private TgroupHasParameterFacadeLocal tgroupHasParameterFacade;
-
+   
     @EJB
     private TgroupHasAccesoryFacadeLocal tgroupHasAccesoryFacade;
 
@@ -165,8 +153,7 @@ public class Terminalgroup {
         List<AccessoryGroup> selectAcessorygroup= new ArrayList<AccessoryGroup>();
         
         
-         List<TgroupHasParameter> groupHasparameter= new ArrayList<TgroupHasParameter>();
-        TgroupHasParameter selegroupHasparameter= new TgroupHasParameter();
+        
         List<Parameter> para= new ArrayList<Parameter>(); 
         List<Parameter> selectpara= new ArrayList<Parameter>();
         List<ParameterGroup> paragroup= new ArrayList<ParameterGroup>(); 
@@ -181,7 +168,7 @@ public class Terminalgroup {
        // List<Terminal> selectTerminals= new ArrayList<Terminal>();
            
            
-          TgroupHasParameter groupHasPara=new TgroupHasParameter();
+ 
         
         
 
@@ -218,22 +205,7 @@ public class Terminalgroup {
     
     
 
-    public List<TgroupHasParameter> getGroupHasparameter() {
-        return groupHasparameter;
-    }
 
-    public void setGroupHasparameter(List<TgroupHasParameter> groupHasparameter) {
-        this.groupHasparameter = groupHasparameter;
-    }
-
-    public TgroupHasParameter getSelegroupHasparameter() {
-        return selegroupHasparameter;
-    }
-
-    public void setSelegroupHasparameter(TgroupHasParameter selegroupHasparameter) {
-        this.selegroupHasparameter = selegroupHasparameter;
-    }
-    
     
 
   
@@ -260,13 +232,6 @@ public class Terminalgroup {
     
     
 
-    public TgroupHasParameter getGroupHasPara() {
-        return groupHasPara;
-    }
-
-    public void setGroupHasPara(TgroupHasParameter groupHasPara) {
-        this.groupHasPara = groupHasPara;
-    }
     
     
 
@@ -524,12 +489,12 @@ public String onFlowProcess(FlowEvent event) {
                  
         }else if(event.getOldStep().equals("accessory") && event.getNewStep().equals("Parameter")){
            
-            groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
+          //  groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
               root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
               
-              for(TgroupHasParameter gp:groupHasparameter){
-                DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(gp.getParameterID().getParametertypeID().getType(),0,0,"GROUP"), root);     
-              }
+           //   for(TgroupHasParameter gp:groupHasparameter){
+         //       DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(gp.getParameterID().getParametertypeID().getType(),0,0,"GROUP"), root);     
+        //      }
               
             
                      return "Parameter";
@@ -815,35 +780,35 @@ public String onFlowProcess(FlowEvent event) {
     
       public void onRowEditP(RowEditEvent event) {
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-          selegroupHasparameter=((TgroupHasParameter) event.getObject());
-          selegroupHasparameter.setUpdateDate(date);
-          tgroupHasParameterFacade.edit(selegroupHasparameter);
-          selegroupHasparameter.getParameterID().setUpdateDate(date);
-          parameterFacade.edit(selegroupHasparameter.getParameterID());
-          Messages.addInfoMessage("Edited "+((TgroupHasParameter) event.getObject()).getParameterID().getDisplayName(),1);
+        //  selegroupHasparameter=((TgroupHasParameter) event.getObject());
+        //  selegroupHasparameter.setUpdateDate(date);
+       //   tgroupHasParameterFacade.edit(selegroupHasparameter);
+       //   selegroupHasparameter.getParameterID().setUpdateDate(date);
+     //     parameterFacade.edit(selegroupHasparameter.getParameterID());
+     //     Messages.addInfoMessage("Edited "+((TgroupHasParameter) event.getObject()).getParameterID().getDisplayName(),1);
     }
     public void onRowCancelP(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((TgroupHasParameter) event.getObject()).getParameterID().getDisplayName(),1);
+     //     Messages.addInfoMessage("Cancelled "+((TgroupHasParameter) event.getObject()).getParameterID().getDisplayName(),1);
     }
     public void removeP(ActionEvent actionEvent){
-              if(selegroupHasparameter != null){  
-          // please add remove group
-         try {
-                   tgroupHasParameterFacade.remove(selegroupHasparameter);
-                   
-           
-      groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
-         
-                   
-             Messages.addInfoMessage("removed "+selegroupHasparameter.getParameterID().getDisplayName(),1);
-         } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selegroupHasparameter.getParameterID().getDisplayName()+" return to Admin",2);
-        e.printStackTrace();
-         }
-              }else{
-                         Messages.addInfoMessage("Please choose Accessory Group",2);
-   
-              }
+//              if(selegroupHasparameter != null){  
+//          // please add remove group
+//         try {
+//                   tgroupHasParameterFacade.remove(selegroupHasparameter);
+//                   
+//           
+//      groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
+//         
+//                   
+//             Messages.addInfoMessage("removed "+selegroupHasparameter.getParameterID().getDisplayName(),1);
+//         } catch (Exception e) {
+//              Messages.addInfoMessage("Not removed "+selegroupHasparameter.getParameterID().getDisplayName()+" return to Admin",2);
+//        e.printStackTrace();
+//         }
+//              }else{
+//                         Messages.addInfoMessage("Please choose Accessory Group",2);
+//   
+//              }
          
      
      }      
@@ -864,25 +829,25 @@ public String onFlowProcess(FlowEvent event) {
            Messages.addInfoMessage("ADD "+selectparagroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
        List<GroupHasParameter> para_list= groupHasParameterFacade.get_para_group(selectparagroup.get(i));
            for(GroupHasParameter b:para_list){
-            TgroupHasParameter v=new TgroupHasParameter();
-             v.setCreateDate(date);
-             v.setUpdateDate(date);
-             v.setParameterID(b.getParameterID());
-             v.setTerminalGroupID(seletermgroup);
-             v.setParmetervalue("0");
-             tgroupHasParameterFacade.create(v);
-               Pchildparent pc=pchildparentFacade.find_parameter(b.getParameterID().getParametertypeID());
-               if(pc.getRoot() == 1){
-                   Pgchildparent cd=new Pgchildparent();
-                   cd.setRoot(1);
-                   cd.setChildNo(0);
-                   cd.setTgrouphasparameterID(v);
-                   cd.setTgrouphasparameterID1(v);
-                   pgchildparentFacade.create(cd);
-               }else{
+          //  TgroupHasParameter v=new TgroupHasParameter();
+         //    v.setCreateDate(date);
+        //     v.setUpdateDate(date);
+        //     v.setParameterID(b.getParameterID());
+       //      v.setTerminalGroupID(seletermgroup);
+       //      v.setParmetervalue("0");
+         //    tgroupHasParameterFacade.create(v);
+            //   Pchildparent pc=pchildparentFacade.find_parameter(b.getParameterID().getParametertypeID());
+            //   if(pc.getRoot() == 1){
+             //      Pgchildparent cd=new Pgchildparent();
+           //        cd.setRoot(1);
+           //        cd.setChildNo(0);
+           //        cd.setTgrouphasparameterID(v);
+          //         cd.setTgrouphasparameterID1(v);
+          //         pgchildparentFacade.create(cd);
+           //    }else{
                
                
-               }
+           //    }
               
               
              
@@ -893,7 +858,7 @@ public String onFlowProcess(FlowEvent event) {
                
    
   
-                groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
+            //    groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
            
          } catch (Exception e) {
               Messages.addInfoMessage("return to Admin",2);
@@ -908,18 +873,18 @@ public String onFlowProcess(FlowEvent event) {
 
                 for(int i=0;i<selectpara.size();i++){
                
-           TgroupHasParameter v=new TgroupHasParameter();
-             v.setCreateDate(date);
-             v.setUpdateDate(date);
-             v.setParameterID(selectpara.get(i));
-             v.setTerminalGroupID(seletermgroup);
-             v.setParmetervalue("0");
-             tgroupHasParameterFacade.create(v);      
+      //     TgroupHasParameter v=new TgroupHasParameter();
+     //        v.setCreateDate(date);
+     //        v.setUpdateDate(date);
+      //       v.setParameterID(selectpara.get(i));
+      //       v.setTerminalGroupID(seletermgroup);
+         //    v.setParmetervalue("0");
+        //     tgroupHasParameterFacade.create(v);      
           }
                
    
   
-               groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
+           //    groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
            
          } catch (Exception e) {
               Messages.addInfoMessage("return to Admin",2);

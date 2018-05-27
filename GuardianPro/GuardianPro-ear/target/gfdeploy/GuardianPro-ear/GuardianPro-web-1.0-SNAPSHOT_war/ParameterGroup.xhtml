@@ -385,6 +385,13 @@
                   <label for="groupname">Parmeter Group name</label>
                   <p:inputText class="form-control" id="groupname"  value="#{parameterGroup.paraGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
                   <p:message for="groupname" display="text"/>
+                  
+                        <label for="parametertypeID">Parameter Type</label>  
+                        <h:selectOneMenu converter="#{cparmetertype}" class="form-control select2" id="parametertypeID" value="#{parameterGroup.paraGroup.parametertypeID}" required="true" requiredMessage="please Enter parameter type">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{parameterGroup.parmeter_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
+                 </h:selectOneMenu>
+                 <p:message for="parametertypeID" display="text"/>
                
                   <br/>
                   <br/>
@@ -454,9 +461,7 @@
             <p:column>
                 <h:outputText value="#{t.displayName}" />
             </p:column>
-                        <p:column>
-                            <h:outputText value="#{t.parametertypeID.type}" />
-            </p:column>
+                     
              </p:selectManyMenu>
                     <p:message for="advanced" display="text"/>
                

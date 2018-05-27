@@ -329,17 +329,7 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="field Name" sortBy="#{para.parametertypeID.type}"  >
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.parametertypeID.type}" /></f:facet>
-               <f:facet name="input">
-                <h:selectOneMenu converter="#{cparmetertype}" class="form-control select2" id="parametertype" value="#{para.parametertypeID}" required="true" requiredMessage="please Enter parameter type">
-                 <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{parameter.parmeter_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
-                 </h:selectOneMenu>
-               </f:facet>
-           </p:cellEditor>
-       </p:column>
+
      
        <p:column headerText="field Name" sortBy="#{para.fieldName}"  >
            <p:cellEditor>
@@ -457,12 +447,7 @@
                 <div class="form-group">
                     
                     
-                    <label for="parametertypeID">Parameter Type</label>  
-                    <h:selectOneMenu converter="#{cparmetertype}" class="form-control select2" id="parametertypeID" value="#{parameter.parmeter.parametertypeID}" required="true" requiredMessage="please Enter parameter type">
-                 <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{parameter.parmeter_types}" var="c" itemValue="#{c}" itemLabel="#{c.type}" />
-                 </h:selectOneMenu>
-                 <p:message for="parametertypeID" display="text"/>
+              
                    
                   <label for="fieldName">field Name</label>
                   <p:inputText class="form-control" id="fieldName"  value="#{parameter.parmeter.fieldName}" required="true" requiredMessage="please Enter field Name"/>						

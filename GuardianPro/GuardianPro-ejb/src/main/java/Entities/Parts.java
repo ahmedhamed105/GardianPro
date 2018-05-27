@@ -15,6 +15,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -39,6 +42,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parts.findByPName", query = "SELECT p FROM Parts p WHERE p.pName = :pName"),
     @NamedQuery(name = "Parts.findByPdesc", query = "SELECT p FROM Parts p WHERE p.pdesc = :pdesc")})
 public class Parts implements Serializable {
+
+    @JoinTable(name = "tgroup_has_parts", joinColumns = {
+        @JoinColumn(name = "Parts_ID", referencedColumnName = "ID", nullable = false)}, inverseJoinColumns = {
+        @JoinColumn(name = "Parts_ID", referencedColumnName = "ID", nullable = false)})
+    @ManyToMany
+    private Collection<Parts> partsCollection;
+    @ManyToMany(mappedBy = "partsCollection")
+    private Collection<Parts> partsCollection1;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "partsID")
     private Collection<TgroupHasParts> tgroupHasPartsCollection;
@@ -164,6 +175,24 @@ public class Parts implements Serializable {
 
     public void setTgroupHasPartsCollection(Collection<TgroupHasParts> tgroupHasPartsCollection) {
         this.tgroupHasPartsCollection = tgroupHasPartsCollection;
+    }
+
+    @XmlTransient
+    public Collection<Parts> getPartsCollection() {
+        return partsCollection;
+    }
+
+    public void setPartsCollection(Collection<Parts> partsCollection) {
+        this.partsCollection = partsCollection;
+    }
+
+    @XmlTransient
+    public Collection<Parts> getPartsCollection1() {
+        return partsCollection1;
+    }
+
+    public void setPartsCollection1(Collection<Parts> partsCollection1) {
+        this.partsCollection1 = partsCollection1;
     }
     
 }

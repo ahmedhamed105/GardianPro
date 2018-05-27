@@ -43,6 +43,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ParameterGroup.findByUpdateDate", query = "SELECT p FROM ParameterGroup p WHERE p.updateDate = :updateDate")})
 public class ParameterGroup implements Serializable {
 
+    @JoinColumn(name = "Parameter_type_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private ParameterType parametertypeID;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterGroupID")
     private Collection<TgroupHasGparameter> tgroupHasGparameterCollection;
 
@@ -168,6 +172,14 @@ public class ParameterGroup implements Serializable {
 
     public void setTgroupHasGparameterCollection(Collection<TgroupHasGparameter> tgroupHasGparameterCollection) {
         this.tgroupHasGparameterCollection = tgroupHasGparameterCollection;
+    }
+
+    public ParameterType getParametertypeID() {
+        return parametertypeID;
+    }
+
+    public void setParametertypeID(ParameterType parametertypeID) {
+        this.parametertypeID = parametertypeID;
     }
     
 }

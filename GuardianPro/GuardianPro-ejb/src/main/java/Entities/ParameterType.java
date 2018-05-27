@@ -42,9 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ParameterType implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
-    private Collection<Pchildparent> pchildparentCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID1")
-    private Collection<Pchildparent> pchildparentCollection1;
+    private Collection<ParameterGroup> parameterGroupCollection;
+
+
 
     @Basic(optional = false)
     @NotNull
@@ -73,8 +73,7 @@ public class ParameterType implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
-    private Collection<Parameter> parameterCollection;
+    
 
     public ParameterType() {
     }
@@ -122,14 +121,7 @@ public class ParameterType implements Serializable {
         this.updateDate = updateDate;
     }
 
-    @XmlTransient
-    public Collection<Parameter> getParameterCollection() {
-        return parameterCollection;
-    }
-
-    public void setParameterCollection(Collection<Parameter> parameterCollection) {
-        this.parameterCollection = parameterCollection;
-    }
+  
 
     @Override
     public int hashCode() {
@@ -165,21 +157,17 @@ public class ParameterType implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Pchildparent> getPchildparentCollection() {
-        return pchildparentCollection;
+    public Collection<ParameterGroup> getParameterGroupCollection() {
+        return parameterGroupCollection;
     }
 
-    public void setPchildparentCollection(Collection<Pchildparent> pchildparentCollection) {
-        this.pchildparentCollection = pchildparentCollection;
+    public void setParameterGroupCollection(Collection<ParameterGroup> parameterGroupCollection) {
+        this.parameterGroupCollection = parameterGroupCollection;
     }
 
-    @XmlTransient
-    public Collection<Pchildparent> getPchildparentCollection1() {
-        return pchildparentCollection1;
-    }
+   
+  
 
-    public void setPchildparentCollection1(Collection<Pchildparent> pchildparentCollection1) {
-        this.pchildparentCollection1 = pchildparentCollection1;
-    }
+    
     
 }

@@ -6,8 +6,10 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +19,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +40,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TgroupHasGparameter.findByCreateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
+    private Collection<Pchildparent> pchildparentCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID1")
+    private Collection<Pchildparent> pchildparentCollection1;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -136,6 +145,24 @@ public class TgroupHasGparameter implements Serializable {
     @Override
     public String toString() {
         return "Entities.TgroupHasGparameter[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Pchildparent> getPchildparentCollection() {
+        return pchildparentCollection;
+    }
+
+    public void setPchildparentCollection(Collection<Pchildparent> pchildparentCollection) {
+        this.pchildparentCollection = pchildparentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Pchildparent> getPchildparentCollection1() {
+        return pchildparentCollection1;
+    }
+
+    public void setPchildparentCollection1(Collection<Pchildparent> pchildparentCollection1) {
+        this.pchildparentCollection1 = pchildparentCollection1;
     }
     
 }

@@ -29,7 +29,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pchildparent.findAll", query = "SELECT p FROM Pchildparent p"),
     @NamedQuery(name = "Pchildparent.findById", query = "SELECT p FROM Pchildparent p WHERE p.id = :id"),
-    @NamedQuery(name = "Pchildparent.findBypara", query = "SELECT p FROM Pchildparent p WHERE p.parametertypeID = :id"),
     @NamedQuery(name = "Pchildparent.findByRoot", query = "SELECT p FROM Pchildparent p WHERE p.root = :root"),
     @NamedQuery(name = "Pchildparent.findByChildNo", query = "SELECT p FROM Pchildparent p WHERE p.childNo = :childNo")})
 public class Pchildparent implements Serializable {
@@ -44,12 +43,12 @@ public class Pchildparent implements Serializable {
     private Integer root;
     @Column(name = "child_no")
     private Integer childNo;
-    @JoinColumn(name = "Parameter_type_ID", referencedColumnName = "ID", nullable = false)
+    @JoinColumn(name = "Tgroup_has_Gparameter_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private ParameterType parametertypeID;
-    @JoinColumn(name = "Parameter_type_ID1", referencedColumnName = "ID", nullable = false)
+    private TgroupHasGparameter tgrouphasGparameterID;
+    @JoinColumn(name = "Tgroup_has_Gparameter_ID1", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private ParameterType parametertypeID1;
+    private TgroupHasGparameter tgrouphasGparameterID1;
 
     public Pchildparent() {
     }
@@ -82,20 +81,20 @@ public class Pchildparent implements Serializable {
         this.childNo = childNo;
     }
 
-    public ParameterType getParametertypeID() {
-        return parametertypeID;
+    public TgroupHasGparameter getTgrouphasGparameterID() {
+        return tgrouphasGparameterID;
     }
 
-    public void setParametertypeID(ParameterType parametertypeID) {
-        this.parametertypeID = parametertypeID;
+    public void setTgrouphasGparameterID(TgroupHasGparameter tgrouphasGparameterID) {
+        this.tgrouphasGparameterID = tgrouphasGparameterID;
     }
 
-    public ParameterType getParametertypeID1() {
-        return parametertypeID1;
+    public TgroupHasGparameter getTgrouphasGparameterID1() {
+        return tgrouphasGparameterID1;
     }
 
-    public void setParametertypeID1(ParameterType parametertypeID1) {
-        this.parametertypeID1 = parametertypeID1;
+    public void setTgrouphasGparameterID1(TgroupHasGparameter tgrouphasGparameterID1) {
+        this.tgrouphasGparameterID1 = tgrouphasGparameterID1;
     }
 
     @Override
