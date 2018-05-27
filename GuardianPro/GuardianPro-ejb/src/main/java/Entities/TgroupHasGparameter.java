@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class TgroupHasGparameter implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
+    private Collection<ParameterValues> parameterValuesCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
     private Collection<Pchildparent> pchildparentCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID1")
     private Collection<Pchildparent> pchildparentCollection1;
@@ -163,6 +166,15 @@ public class TgroupHasGparameter implements Serializable {
 
     public void setPchildparentCollection1(Collection<Pchildparent> pchildparentCollection1) {
         this.pchildparentCollection1 = pchildparentCollection1;
+    }
+
+    @XmlTransient
+    public Collection<ParameterValues> getParameterValuesCollection() {
+        return parameterValuesCollection;
+    }
+
+    public void setParameterValuesCollection(Collection<ParameterValues> parameterValuesCollection) {
+        this.parameterValuesCollection = parameterValuesCollection;
     }
     
 }

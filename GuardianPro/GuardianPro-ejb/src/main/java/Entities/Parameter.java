@@ -51,6 +51,8 @@ public class Parameter implements Serializable {
     @NotNull
     @Column(name = "Allow_Null", nullable = false)
     private boolean allowNull;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
+    private Collection<ParameterValues> parameterValuesCollection;
     @Size(max = 500)
     @Column(name = "Default_value", length = 500)
     private String defaultvalue;
@@ -225,6 +227,16 @@ public class Parameter implements Serializable {
 
     public void setDefaultvalue(String defaultvalue) {
         this.defaultvalue = defaultvalue;
+    }
+
+
+    @XmlTransient
+    public Collection<ParameterValues> getParameterValuesCollection() {
+        return parameterValuesCollection;
+    }
+
+    public void setParameterValuesCollection(Collection<ParameterValues> parameterValuesCollection) {
+        this.parameterValuesCollection = parameterValuesCollection;
     }
 
 
