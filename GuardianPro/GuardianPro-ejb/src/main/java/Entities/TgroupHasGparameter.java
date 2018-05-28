@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TgroupHasGparameter.findAll", query = "SELECT t FROM TgroupHasGparameter t"),
     @NamedQuery(name = "TgroupHasGparameter.findById", query = "SELECT t FROM TgroupHasGparameter t WHERE t.id = :id"),
+    @NamedQuery(name = "TgroupHasGparameter.findBytgroup", query = "SELECT t FROM TgroupHasGparameter t WHERE t.terminalGroupID = :id"),
+      @NamedQuery(name = "TgroupHasGparameter.findBytgroupterm", query = "SELECT t FROM TgroupHasGparameter t WHERE t.terminalGroupID = :id and t.parameterGroupID = :id1"),
     @NamedQuery(name = "TgroupHasGparameter.findByCreateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {

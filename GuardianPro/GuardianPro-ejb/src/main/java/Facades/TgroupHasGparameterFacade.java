@@ -56,8 +56,29 @@ public class TgroupHasGparameterFacade extends AbstractFacade<TgroupHasGparamete
         
       @Override
         public   List<Entities.TgroupHasGparameter> find_term_groups(TerminalGroup group){ 
-           Query para_find = em.createNamedQuery("TgroupHasGparameter.findByTGroup");
+           Query para_find = em.createNamedQuery("TgroupHasGparameter.findBytgroup");
         para_find.setParameter("id", group);
+        try {
+         List<Entities.TgroupHasGparameter>  parah =  para_find.getResultList();
+          //  System.out.println("ahmed hamed  "+parah.getGroupname());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+        }   
+        
+        
+        
+         @Override
+        public   List<Entities.TgroupHasGparameter> find_term_para(TerminalGroup group,ParameterGroup g2){ 
+           Query para_find = em.createNamedQuery("TgroupHasGparameter.findBytgroupterm");
+        para_find.setParameter("id", group);
+        para_find.setParameter("id1", g2);
         try {
          List<Entities.TgroupHasGparameter>  parah =  para_find.getResultList();
           //  System.out.println("ahmed hamed  "+parah.getGroupname());

@@ -713,7 +713,7 @@
                 draggable="true" droppable="true" dragdropScope="demo">
             <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111" />
             <p:treeNode>
-                <h:outputText value="#{node}" />
+                <h:outputText value="#{node.parameterGroup}" />
             </p:treeNode>
         </p:tree>
  
@@ -723,7 +723,7 @@
                 draggable="true" droppable="true" dragdropScope="demo">
             <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111" />
             <p:treeNode>
-                <h:outputText value="#{node}" />
+                <h:outputText value="#{node.parameterGroup}" />
             </p:treeNode>
         </p:tree>
     </h:panelGrid>

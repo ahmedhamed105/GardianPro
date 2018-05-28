@@ -8,6 +8,7 @@ Entities\Parts.class
 Entities\TerminalHasParts_.class
 Entities\ApplicationHasGroup_.class
 Facades\ParameterFacadeLocal.class
+Facades\PchildparentFacadeLocal.class
 Entities\UserPassword.class
 Facades\StreetFacadeLocal.class
 Facades\ProfileDataFacadeLocal.class
@@ -38,6 +39,7 @@ Entities\WebsiteDataHasUser.class
 Facades\ApplicationFacadeLocal.class
 Entities\UserStatus.class
 Facades\LoginWayFacade.class
+Entities\ParameterValues_.class
 Entities\Country_.class
 Facades\AccessoryGroupFacade.class
 Facades\TgroupHasTerminalFacade.class
@@ -95,6 +97,7 @@ Facades\BirthDataFacadeLocal.class
 Entities\NationalIdHasMaritalStatus1_.class
 Entities\ProfileData.class
 Entities\Component.class
+Facades\ParameterValuesFacade.class
 Entities\TerminalStatus.class
 Facades\PartsFacade.class
 Entities\ProfileData_.class
@@ -184,6 +187,7 @@ Entities\TgroupHasSoftware.class
 com\tutorialspoint\test\Book.class
 Entities\Status_.class
 Facades\StreetFacade.class
+Entities\ParameterValues.class
 Entities\TgroupHasAccesory_.class
 Entities\Parameter.class
 Entities\RoleHasGroups_.class
@@ -219,6 +223,7 @@ Facades\LoginTypeFacadeLocal.class
 Facades\PasswordHistoryFacade.class
 Entities\Parameter_.class
 Facades\ConfigParmeterFacade.class
+Facades\PchildparentFacade.class
 Entities\RoleHasGroups.class
 Entities\PhoneDataCopy1_.class
 Facades\SocialDataFacade.class
@@ -245,6 +250,7 @@ Facades\ParameterGroupFacadeLocal.class
 Facades\TerminalTemplateFacade.class
 Facades\NationalIdHasMaritalStatusFacadeLocal.class
 Entities\PhoneData_.class
+Facades\ParameterValuesFacadeLocal.class
 Facades\UserStatusFacadeLocal.class
 Entities\City.class
 Facades\TgroupHasAccesoryFacade.class
