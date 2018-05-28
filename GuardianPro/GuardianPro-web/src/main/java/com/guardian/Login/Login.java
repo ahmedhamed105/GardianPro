@@ -177,6 +177,7 @@ public class Login {
                             sessionMap.put("GroupsMap", groups);
                         }
 
+                        loadViewEdit();
                         //ahmed.ibraheem
                         // Load All Rolls
                         return "Login";
@@ -324,7 +325,7 @@ public class Login {
             return componentEdit.get(component);
         }
         else
-            return false;
+            return true;
     }
     
 }

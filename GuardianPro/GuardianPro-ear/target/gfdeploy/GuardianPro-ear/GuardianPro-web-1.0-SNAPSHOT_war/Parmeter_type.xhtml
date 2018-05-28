@@ -319,7 +319,7 @@
                  emptyMessage="No Parmeter found with given criteria" var="para" value="#{parmetertype.parmeter_types}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{parmetertype.selectparmeter}" rowKey="#{para.id}" rendered="#{login.isViewed("Paramter_Type_DATA_TABLE")}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{parmetertype.selectparmeter}" rowKey="#{para.id}" > 
                       
  
         <p:ajax event="rowEdit" listener="#{parmetertype.onRowEdit}" update=":form:messages :form:cars1" />
