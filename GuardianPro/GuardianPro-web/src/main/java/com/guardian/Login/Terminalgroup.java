@@ -954,7 +954,7 @@ public String onFlowProcess(FlowEvent event) {
         PGroup_tree b=(PGroup_tree)dropNode.getData();
        
         ParameterGroup a1=parameterGroupFacade.find(a.getId());
-        if(b.getId() == 0){
+        if(b.getId() == 0  && (a.getId() == 1 || a.getId() > 4) ){
             TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
@@ -980,6 +980,9 @@ public String onFlowProcess(FlowEvent event) {
               FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged " + a1.getParametertypeID().getType(), "Dropped on " + b.getId() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         }else{
+            try {
+                
+          
         ParameterGroup b1=parameterGroupFacade.find(b.getId());
         if(a1.getParametertypeID().getId()== 2 && b1.getParametertypeID().getId()== 1){
             
@@ -989,15 +992,15 @@ public String onFlowProcess(FlowEvent event) {
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
-            a.setCount(tg.getId());
-           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(a.getCount()); 
+            
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
              Pchildparent tg1=new Pchildparent();
             tg1.setTgrouphasGparameterID(tg);
             tg1.setTgrouphasGparameterID1(ss);
             tg1.setRoot(0);
             tg1.setChildNo(1);
             pchildparentFacade.create(tg1);
-
+            a.setCount(tg.getId());
             List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
             for(GroupHasParameter cd:tg2){
                 ParameterValues tg3=new ParameterValues();
@@ -1009,14 +1012,91 @@ public String onFlowProcess(FlowEvent event) {
             
          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged 2 " + a1.getParametertypeID().getType(), "Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
+        }else if(a1.getParametertypeID().getId()== 3 && b1.getParametertypeID().getId()== 2){
+        
+            TgroupHasGparameter tg=new TgroupHasGparameter();
+            tg.setParameterGroupID(a1);
+            tg.setTerminalGroupID(seletermgroup);
+            tg.setCreateDate(date);
+            tg.setUpdateDate(date);
+            tgroupHasGparameterFacade.create(tg);
+            
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
+             Pchildparent tg1=new Pchildparent();
+            tg1.setTgrouphasGparameterID(tg);
+            tg1.setTgrouphasGparameterID1(ss);
+            tg1.setRoot(0);
+            tg1.setChildNo(2);
+            pchildparentFacade.create(tg1);
+            a.setCount(tg.getId());
+            List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
+            for(GroupHasParameter cd:tg2){
+                ParameterValues tg3=new ParameterValues();
+                tg3.setTgrouphasGparameterID(tg);
+                tg3.setParameterID(cd.getParameterID());
+                tg3.setValue("0");
+                parameterValuesFacade.create(tg3);
+            }
+            
+         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged 2 " + a1.getParametertypeID().getType(), "Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        }else if(a1.getParametertypeID().getId()== 4 && b1.getParametertypeID().getId()== 3){
+        
+            TgroupHasGparameter tg=new TgroupHasGparameter();
+            tg.setParameterGroupID(a1);
+            tg.setTerminalGroupID(seletermgroup);
+            tg.setCreateDate(date);
+            tg.setUpdateDate(date);
+            tgroupHasGparameterFacade.create(tg);
+            
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
+             Pchildparent tg1=new Pchildparent();
+            tg1.setTgrouphasGparameterID(tg);
+            tg1.setTgrouphasGparameterID1(ss);
+            tg1.setRoot(0);
+            tg1.setChildNo(3);
+            pchildparentFacade.create(tg1);
+            a.setCount(tg.getId());
+            List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
+            for(GroupHasParameter cd:tg2){
+                ParameterValues tg3=new ParameterValues();
+                tg3.setTgrouphasGparameterID(tg);
+                tg3.setParameterID(cd.getParameterID());
+                tg3.setValue("0");
+                parameterValuesFacade.create(tg3);
+            }
+            
+         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged 2 " + a1.getParametertypeID().getType(), "Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        
         }else{
                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "no Dragged " + a1.getParametertypeID().getType(), "no Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         }
         
+          } catch (Exception e) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "no Dragged 2","NO ");
+        FacesContext.getCurrentInstance().addMessage(null, message);
         
+            }
         }
+        
+                     groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
+               paragroup=parameterGroupFacade.findAll();
+             System.out.println("hamed "+groupHasGparameter.size());
+             
+             root1 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
+             for(ParameterGroup ba:paragroup){
+          new DefaultTreeNode(new PGroup_tree(ba.getGroupname(),0,ba.getId(),"root"), root1);
+          
+             }
+      
+
+        root2 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
+         
+        TreeNode item0 = new DefaultTreeNode(new PGroup_tree("XML root",0,0,"root"), root2);
          
       
     }

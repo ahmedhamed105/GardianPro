@@ -711,7 +711,7 @@
                 <h:panelGrid columns="3">
         <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}"
                 draggable="true" droppable="true" dragdropScope="demo">
-            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111" />
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
             <p:treeNode>
                 <h:outputText value="#{node.parameterGroup}" />
             </p:treeNode>
@@ -721,7 +721,7 @@
  
         <p:tree id="tree2" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}"
                 draggable="true" droppable="true" dragdropScope="demo">
-            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111" />
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
             <p:treeNode>
                 <h:outputText value="#{node.parameterGroup}" />
             </p:treeNode>
