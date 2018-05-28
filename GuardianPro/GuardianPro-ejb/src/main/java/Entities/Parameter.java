@@ -51,12 +51,12 @@ public class Parameter implements Serializable {
     @NotNull
     @Column(name = "Allow_Null", nullable = false)
     private boolean allowNull;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
+    private Collection<ParameterValues> parameterValuesCollection;
     @Size(max = 500)
     @Column(name = "Default_value", length = 500)
     private String defaultvalue;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
-    private Collection<TgroupHasParameter> tgroupHasParameterCollection;
-
+   
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,9 +91,7 @@ public class Parameter implements Serializable {
     @JoinColumn(name = "Input_type_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private InputType inputtypeID;
-    @JoinColumn(name = "Parameter_type_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private ParameterType parametertypeID;
+ 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
     private Collection<GroupHasParameter> groupHasParameterCollection;
 
@@ -185,13 +183,7 @@ public class Parameter implements Serializable {
         this.inputtypeID = inputtypeID;
     }
 
-    public ParameterType getParametertypeID() {
-        return parametertypeID;
-    }
-
-    public void setParametertypeID(ParameterType parametertypeID) {
-        this.parametertypeID = parametertypeID;
-    }
+  
 
     @XmlTransient
     public Collection<GroupHasParameter> getGroupHasParameterCollection() {
@@ -237,14 +229,19 @@ public class Parameter implements Serializable {
         this.defaultvalue = defaultvalue;
     }
 
+
     @XmlTransient
-    public Collection<TgroupHasParameter> getTgroupHasParameterCollection() {
-        return tgroupHasParameterCollection;
+    public Collection<ParameterValues> getParameterValuesCollection() {
+        return parameterValuesCollection;
     }
 
-    public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
-        this.tgroupHasParameterCollection = tgroupHasParameterCollection;
+    public void setParameterValuesCollection(Collection<ParameterValues> parameterValuesCollection) {
+        this.parameterValuesCollection = parameterValuesCollection;
     }
+
+
+
+   
 
 
 

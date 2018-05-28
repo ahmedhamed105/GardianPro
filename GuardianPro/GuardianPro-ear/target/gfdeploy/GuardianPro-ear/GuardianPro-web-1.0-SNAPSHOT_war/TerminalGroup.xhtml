@@ -378,8 +378,14 @@
                    <h:form id="form111">
                   <p:messages id="messages111" showDetail="true" closable="true" />
                
+<<<<<<< HEAD
                 <p:wizard id="carsgo" flowListener="#{terminalgroup.onFlowProcess}">
         <p:tab id="Gtermainal" title="Group">
+=======
+                <p:wizard id="carsgo" flowListener="#{terminalgroup.onFlowProcess}" >
+   
+                    <p:tab id="Gtermainal" title="Group">
+>>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
             <p:panel header="Terminal Group" >
                 <p:dataTable id="GroupTerminal" widgetVar="carsTable"
                              emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TGroup}" editable="true" style="margin-bottom:20px" rows="5"
@@ -424,7 +430,11 @@
             </p:panel>
         </p:tab>
  
+<<<<<<< HEAD
               <p:tab id="terminal" title="Terminal">
+=======
+                    <p:tab id="terminal" title="Terminal" >
+>>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
             <p:panel header="Terminal Group" >
          
                    <label for="terminals">Terminal Choose</label>  
@@ -704,6 +714,7 @@
         </p:tab>
                     
                     
+<<<<<<< HEAD
                          <p:tab id="Parameter" title="Parameter">
             <p:panel header="Parameter" >
                 <p:panelGrid columns="4" layout="grid">
@@ -788,6 +799,30 @@
 
    </p:dataTable>
      
+=======
+                         <p:tab id="Parameter" title="Parameter" >
+            <p:panel header="Parameter" >
+                
+                <h:panelGrid columns="3">
+        <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}"
+                draggable="true" droppable="true" dragdropScope="demo">
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
+            <p:treeNode>
+                <h:outputText value="#{node.parameterGroup}" />
+            </p:treeNode>
+        </p:tree>
+ 
+        <p:graphicImage alt="Transfer"  name="dist/img/transfer.png" />
+ 
+        <p:tree id="tree2" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}"
+                draggable="true" droppable="true" dragdropScope="demo">
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
+            <p:treeNode>
+                <h:outputText value="#{node.parameterGroup}" />
+            </p:treeNode>
+        </p:tree>
+    </h:panelGrid>
+>>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
             </p:panel>
         </p:tab>
                     
@@ -984,8 +1019,12 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
+<<<<<<< HEAD
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+=======
+
+>>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->

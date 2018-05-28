@@ -42,8 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TerminalGroup.findByGroupdesc", query = "SELECT t FROM TerminalGroup t WHERE t.groupdesc = :groupdesc")})
 public class TerminalGroup implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
-    private Collection<TgroupHasParameter> tgroupHasParameterCollection;
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "terminalGroupID")
     private Collection<TgroupHasTerminal> tgroupHasTerminalCollection;
@@ -207,13 +206,6 @@ public class TerminalGroup implements Serializable {
         this.tgroupHasTerminalCollection = tgroupHasTerminalCollection;
     }
 
-    @XmlTransient
-    public Collection<TgroupHasParameter> getTgroupHasParameterCollection() {
-        return tgroupHasParameterCollection;
-    }
-
-    public void setTgroupHasParameterCollection(Collection<TgroupHasParameter> tgroupHasParameterCollection) {
-        this.tgroupHasParameterCollection = tgroupHasParameterCollection;
-    }
+   
     
 }

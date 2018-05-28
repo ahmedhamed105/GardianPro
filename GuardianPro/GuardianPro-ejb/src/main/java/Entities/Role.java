@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Role.findByUpdateDate", query = "SELECT r FROM Role r WHERE r.updateDate = :updateDate")})
 public class Role implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleprevilegeID")
+    private Collection<RoleHasGroups> roleHasGroupsCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -155,6 +158,15 @@ public class Role implements Serializable {
     @Override
     public String toString() {
         return "Entities.Role[ previlegeID=" + previlegeID + " ]";
+    }
+
+    @XmlTransient
+    public Collection<RoleHasGroups> getRoleHasGroupsCollection() {
+        return roleHasGroupsCollection;
+    }
+
+    public void setRoleHasGroupsCollection(Collection<RoleHasGroups> roleHasGroupsCollection) {
+        this.roleHasGroupsCollection = roleHasGroupsCollection;
     }
     
 }

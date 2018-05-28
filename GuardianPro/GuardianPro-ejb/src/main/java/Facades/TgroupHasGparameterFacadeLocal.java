@@ -36,4 +36,6 @@ public interface TgroupHasGparameterFacadeLocal {
     
     List<Entities.TgroupHasGparameter> find_term_groups(TerminalGroup group);
     
+    List<Entities.TgroupHasGparameter> find_term_para(TerminalGroup group,ParameterGroup g2);
+    
 }

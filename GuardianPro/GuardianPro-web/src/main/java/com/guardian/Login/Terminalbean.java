@@ -17,8 +17,11 @@ import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,7 +54,8 @@ public class Terminalbean {
     private TerminalStatusFacadeLocal terminalStatusFacade;
     
     
-    
+    private String date1;
+    private String date2;
    
     
     private Terminal term=new Terminal();
@@ -105,6 +109,26 @@ public class Terminalbean {
 }
    
     }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
+    }
+
+    public String getDate2() {
+        return date2;
+    }
+
+    public void setDate2(String date2) {
+        this.date2 = date2;
+    }
+      
+      
+      
+      
 
     public List<TerminalStatus> getTerminalstatus() {
         return Terminalstatus;
@@ -174,17 +198,26 @@ public class Terminalbean {
        
        
            public String Addterminal(ActionEvent actionEvent){
-         
-        if(terminalFacade.term_find(term.getTid())){
+               try {
+                   if(terminalFacade.term_find(term.getTid())){
                Messages.addInfoMessage("Duplicated TID",2);
         }else{
              Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             term.setCreateDate(date);
             term.setUpdateDate(date);
+             Date a=new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(date1);  
+            term.setScheduleStart(a);
+                 Date b=new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(date2);  
+            term.setScheduleEnd(b);
             
           terminalFacade.create(term);
-        }
+        } 
+               } catch (Exception e) {
+                   Messages.addInfoMessage("Error when add",2);
+               //    e.printStackTrace();
+               }
+       
          
       return "Login";
      }
@@ -192,12 +225,30 @@ public class Terminalbean {
        
            
             public void onRowEdit(RowEditEvent event) {
-          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-          term=((Terminal) event.getObject());
+        try {
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            term=((Terminal) event.getObject());
             term.setUpdateDate(date);
-          terminalFacade.edit(term);
+            if(!date1.isEmpty() || !"".equals(date1) || date1.length() > 0){
+              Date a=new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(date1);  
+            term.setScheduleStart(a);
+        
+            }
+             
+             if( !date2.isEmpty() || !"".equals(date2) || date2.length() > 0){
+                 Date b=new SimpleDateFormat("yyyy-mm-dd hh:mm").parse(date2);  
+            term.setScheduleEnd(b);
+            }
           
-          Messages.addInfoMessage("Edited "+((Terminal) event.getObject()).getTid(),1);
+       
+            terminalFacade.edit(term);
+            
+            Messages.addInfoMessage("Edited "+((Terminal) event.getObject()).getTid(),1);
+        } catch (ParseException ex) {
+              Messages.addInfoMessage("Error when update",2);
+               ex.printStackTrace();
+            //Logger.getLogger(Terminalbean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
      
     public void onRowCancel(RowEditEvent event) {

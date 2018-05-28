@@ -41,6 +41,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ParameterType.findByUpdateDate", query = "SELECT p FROM ParameterType p WHERE p.updateDate = :updateDate")})
 public class ParameterType implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
+    private Collection<ParameterGroup> parameterGroupCollection;
+
+
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 150)
@@ -68,8 +73,7 @@ public class ParameterType implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
-    private Collection<Parameter> parameterCollection;
+    
 
     public ParameterType() {
     }
@@ -117,14 +121,7 @@ public class ParameterType implements Serializable {
         this.updateDate = updateDate;
     }
 
-    @XmlTransient
-    public Collection<Parameter> getParameterCollection() {
-        return parameterCollection;
-    }
-
-    public void setParameterCollection(Collection<Parameter> parameterCollection) {
-        this.parameterCollection = parameterCollection;
-    }
+  
 
     @Override
     public int hashCode() {
@@ -158,5 +155,19 @@ public class ParameterType implements Serializable {
     public void setXMLheader(String xMLheader) {
         this.xMLheader = xMLheader;
     }
+
+    @XmlTransient
+    public Collection<ParameterGroup> getParameterGroupCollection() {
+        return parameterGroupCollection;
+    }
+
+    public void setParameterGroupCollection(Collection<ParameterGroup> parameterGroupCollection) {
+        this.parameterGroupCollection = parameterGroupCollection;
+    }
+
+   
+  
+
+    
     
 }

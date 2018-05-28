@@ -27,6 +27,9 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
+  
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -435,6 +438,32 @@
            </p:cellEditor>
        </p:column> 
     
+    <p:column headerText="secedule start date" sortBy="#{para.scheduleStart}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.scheduleStart}" /></f:facet>
+               <f:facet name="input">
+                 <p:inputText type="text" id="datepicker2" class="form-control pull-right"  value="#{terminalbean.date1}" >                        
+                        </p:inputText>	
+               </f:facet>
+           </p:cellEditor>
+       </p:column> 
+    
+    <p:column headerText="secedule start date" sortBy="#{para.scheduleEnd}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.scheduleEnd}" /></f:facet>
+               <f:facet name="input">
+                 <p:inputText type="text" id="datepicker3" class="form-control pull-right"  value="#{terminalbean.date2}" >                        
+                        </p:inputText>	
+               </f:facet>
+           </p:cellEditor>
+       </p:column> 
+    
+    
+    
+    
+                					
+         
+    
     
        
 
@@ -546,7 +575,29 @@
                     <label for="officeTelNo">Terminal Office Tel No.</label>
                     <p:inputText class="form-control" id="officeTelNo"  value="#{terminalbean.term.officeTelNo}" />						
                     <p:message for="officeTelNo" display="text"/>
+   
+                   
+                    <p:outputLabel value="schedule start:" />
+                    <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                        <p:inputText type="text" id="datepicker" class="form-control pull-right"  value="#{terminalbean.date1}" >                        
+                        </p:inputText>						
+                </div>
+                     
                     
+                
+                    <p:outputLabel  value="schedule end:" />
+                     <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                         <p:inputText type="text" id="datepicker1" class="form-control pull-right"  value="#{terminalbean.date2}" >
+   
+                        </p:inputText>	
+                </div>
+                  
                     
                     
                          <label for="selecttemplate">select terminal template</label>   
@@ -775,6 +826,88 @@
 <script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="bower_components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+   
+    //Date picker
+    $('#form2\\:datepicker').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+    
+        $('#form2\\:datepicker1').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+    
+      $('[id $=\\:datepicker2]').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+    
+      $('[id $=\\:datepicker3]').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        format: 'yyyy-mm-dd hh:ii'
+    });
+
+  
+  });
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

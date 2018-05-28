@@ -378,8 +378,9 @@
                    <h:form id="form111">
                   <p:messages id="messages111" showDetail="true" closable="true" />
                
-                <p:wizard id="carsgo" flowListener="#{terminalgroup.onFlowProcess}">
-        <p:tab id="Gtermainal" title="Group">
+                <p:wizard id="carsgo" flowListener="#{terminalgroup.onFlowProcess}" >
+   
+                    <p:tab id="Gtermainal" title="Group">
             <p:panel header="Terminal Group" >
                 <p:dataTable id="GroupTerminal" widgetVar="carsTable"
                              emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TGroup}" editable="true" style="margin-bottom:20px" rows="5"
@@ -424,7 +425,7 @@
             </p:panel>
         </p:tab>
  
-              <p:tab id="terminal" title="Terminal">
+                    <p:tab id="terminal" title="Terminal" >
             <p:panel header="Terminal Group" >
          
                    <label for="terminals">Terminal Choose</label>  
@@ -704,90 +705,28 @@
         </p:tab>
                     
                     
-                         <p:tab id="Parameter" title="Parameter">
+                         <p:tab id="Parameter" title="Parameter" >
             <p:panel header="Parameter" >
-                <p:panelGrid columns="4" layout="grid">
-                    
-                     <label for="paragroup">parameter Group Choose</label>  
-              <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wparagroup" value="#{terminalgroup.selectparagroup}" converter="#{cgroupparameter}"
-                                       var="s" filter="true" filterMatchMode="contains" showCheckbox="true" >
-                             <f:selectItems value="#{terminalgroup.paragroup}" var="v" itemLabel="#{v.groupname}" itemValue="#{v}" />
- 
-            <p:column>
-                <h:outputText value="#{s.groupname}" />
-            </p:column>
-          
-             
-             </p:selectManyMenu>
-                 
-                         <label for="paragroup">parameter Choose</label>  
-                         <p:selectManyMenu scrollHeight="150" style="width: 100%" id="wpara" value="#{terminalgroup.selectpara}" converter="#{CParameter}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" >
-                             <f:selectItems value="#{terminalgroup.para}" var="f" itemLabel="#{f.displayName}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.displayName}" />
-            </p:column>
-          
-             
-             </p:selectManyMenu>
-                </p:panelGrid> 
                 
-                 <p:dataTable id="paramcar" widgetVar="carsTable"
-                              emptyMessage="No Parmeter found with given criteria" var="para4" value="#{terminalgroup.groupHasparameter}" editable="true" style="margin-bottom:20px" rows="5"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasparameter}" rowKey="#{para4.id}"> 
-                      
+                <h:panelGrid columns="3">
+        <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}"
+                draggable="true" droppable="true" dragdropScope="demo">
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
+            <p:treeNode>
+                <h:outputText value="#{node.parameterGroup}" />
+            </p:treeNode>
+        </p:tree>
  
-                     <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditP}" update=":form111:messages111 :form111:accescar" />
-                    <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelP}" update=":form111:messages111 :form111:paramcar"   />
-       
-       
-    <p:column selectionMode="single" style="width:32px;text-align:center"/>
-  
-     
-   
-    <p:column headerText="parameter name" sortBy="#{para4.parameterID.fieldName}"  >
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para4.parameterID.fieldName}" /></f:facet>
-               <f:facet name="input"><p:inputText id="pmodelInput" value="#{para4.parameterID.fieldName}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
-        
-    <p:column headerText="parameter Value" sortBy="#{para4.parmetervalue}"  >
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para4.parmetervalue}" /></f:facet>
-               <f:facet name="input"><p:inputText id="pmodelInput19" value="#{para4.parmetervalue}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
-    
-    <p:column headerText="parameter Description" sortBy="#{para4.parmeterdesc}"  >
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para4.parmeterdesc}" /></f:facet>
-               <f:facet name="input"><p:inputText id="pmodelInput20" value="#{para4.parmeterdesc}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
-
-
-       <p:column style="width:32px">
-           <p:rowEditor />
-       </p:column>
-    
-    
-         <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.removeP(actionEvent)}"/>  
-    </f:facet>
-    
-             <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ADDP(actionEvent)}"/>  
-    </f:facet>
-            <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="Export XML" type="submit" ajax="true" update=":form111:messages111 :form111:paramcar :form111:wparagroup :form111:wpara" action="#{terminalgroup.ExportP(actionEvent)}"/>  
-    </f:facet>
-
-   </p:dataTable>
-     
+        <p:graphicImage alt="Transfer"  name="dist/img/transfer.png" />
+ 
+        <p:tree id="tree2" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}"
+                draggable="true" droppable="true" dragdropScope="demo">
+            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
+            <p:treeNode>
+                <h:outputText value="#{node.parameterGroup}" />
+            </p:treeNode>
+        </p:tree>
+    </h:panelGrid>
             </p:panel>
         </p:tab>
                     
@@ -984,8 +923,7 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
