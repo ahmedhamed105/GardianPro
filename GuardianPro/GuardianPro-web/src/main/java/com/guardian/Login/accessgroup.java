@@ -205,6 +205,7 @@ public class accessgroup {
             appGroup.setCreateDate(date);
             appGroup.setUpdateDate(date);
           accessoryGroupFacade.create(appGroup);
+          
        }
       
         Apara=accessoryGroupFacade.findAll();

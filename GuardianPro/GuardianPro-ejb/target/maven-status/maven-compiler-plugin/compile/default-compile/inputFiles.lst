@@ -54,6 +54,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\BirthDataFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalGroupFacadeLocal.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Pgchild.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ConfigParmeterFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Role.java
@@ -63,7 +64,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\WebsiteDataFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ApplicationFacade.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PchildparentFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginType.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterGroupFacade.java
@@ -111,6 +111,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\BirthData.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterTypeFacadeLocal.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PgchildFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\LoginWay.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TrxTypeFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalFacade.java
@@ -125,6 +126,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\User.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacadeLocal.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PgchildFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\EmailSmsSend.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacadeLocal.java
@@ -159,7 +161,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Country.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Component.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Pchildparent.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\Distinct1FacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\PhoneTypes.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ParameterType.java
@@ -190,7 +191,6 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Application.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TerminalStatus.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteDataHasUser.java
-D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PchildparentFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacadeLocal.java

@@ -5,14 +5,14 @@
  */
 package com.guardian.Login;
 
+import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
 import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
 import Entities.ParameterValues;
-import Entities.ParmeterSchema;
-import Entities.Pchildparent;
+import Entities.Pgchild;
 import Entities.Terminal;
 import Entities.TerminalGroup;
 import Entities.TerminalTemplate;
@@ -26,7 +26,7 @@ import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
 import Facades.ParameterValuesFacadeLocal;
-import Facades.PchildparentFacadeLocal;
+import Facades.PgchildFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
@@ -61,6 +61,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.io.FileUtils;
 import org.primefaces.event.FlowEvent;
+import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.TreeDragDropEvent;
 import org.primefaces.model.DefaultTreeNode;
@@ -74,14 +75,15 @@ import org.w3c.dom.Element;
  */
 public class Terminalgroup {
 
+
+
+    @EJB
+    private PgchildFacadeLocal pgchildFacade;
+
     @EJB
     private ParameterValuesFacadeLocal parameterValuesFacade;
 
-    @EJB
-    private PchildparentFacadeLocal pchildparentFacade;
 
-  
- 
     @EJB
     private ParameterFacadeLocal parameterFacade;
     
@@ -123,6 +125,8 @@ public class Terminalgroup {
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
           
           
+          
+          
              private TreeNode root1;
      
     private TreeNode root2;
@@ -130,6 +134,10 @@ public class Terminalgroup {
     private TreeNode selectedNode1;
      
     private TreeNode selectedNode2;
+    
+    
+        List<ParameterValues> TParameterValues= new ArrayList<ParameterValues>();
+        ParameterValues seletParameterValues=new ParameterValues();
          
     
          
@@ -198,6 +206,22 @@ public class Terminalgroup {
      * Creates a new instance of Terminalgroup
      */
     public Terminalgroup() {
+    }
+
+    public List<ParameterValues> getTParameterValues() {
+        return TParameterValues;
+    }
+
+    public void setTParameterValues(List<ParameterValues> TParameterValues) {
+        this.TParameterValues = TParameterValues;
+    }
+
+    public ParameterValues getSeletParameterValues() {
+        return seletParameterValues;
+    }
+
+    public void setSeletParameterValues(ParameterValues seletParameterValues) {
+        this.seletParameterValues = seletParameterValues;
     }
 
     
@@ -526,26 +550,116 @@ public String onFlowProcess(FlowEvent event) {
           //  groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
             //  root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
               
-             groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
+          //   groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
                paragroup=parameterGroupFacade.findAll();
-             System.out.println("hamed "+groupHasGparameter.size());
+            
              
              root1 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
              for(ParameterGroup b:paragroup){
-          new DefaultTreeNode(new PGroup_tree(b.getGroupname(),0,b.getId(),"root"), root1);
-          
+         new DefaultTreeNode(new PGroup_tree(b.getGroupname(),0,b.getId(),b.getParametertypeID().getType()), root1);
+        
              }
       
 
+       groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
         root2 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
-         
+           root2.setExpanded(true);
         TreeNode item0 = new DefaultTreeNode(new PGroup_tree("XML root",0,0,"root"), root2);
-  
+         item0.setExpanded(true);
+         List<TreeNode> roots=new ArrayList<TreeNode>();
+         List<TreeNode> child1=new ArrayList<TreeNode>();
+       
+        for(TgroupHasGparameter sl:groupHasGparameter){
+             try {
+                 List<Pgchild> ad= pgchildFacade.childs_find(sl);
+                 
+                 for(Pgchild pa:ad){
+                  if(pa.getRoot()==1){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(sl.getParameterGroupID().getGroupname(),sl.getId(),sl.getParameterGroupID().getId(),sl.getParameterGroupID().getParametertypeID().getType()), item0);
+                  roots.add(f);
+                   f.setExpanded(true);
+                  }
+                  }
+
+                 
+                   } catch (Exception e) {
+                   }
+        }
+        
+        if(!roots.isEmpty()){
+            for(TreeNode f1:roots){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
             
-           //   for(TgroupHasParameter gp:groupHasparameter){
-         //       DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(gp.getParameterID().getParametertypeID().getType(),0,0,"GROUP"), root);     
-        //      }
-              
+            System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 1){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                  child1.add(f);   
+                   f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+            roots.clear();
+             if(!child1.isEmpty()){
+            for(TreeNode f1:child1){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
+            
+            System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 2){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                  roots.add(f);  
+                   f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+          child1.clear();
+             if(!roots.isEmpty()){
+            for(TreeNode f1:roots){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
+            
+         //   System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 3){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                     f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+            
+            
+        
+        }   
+            
+        
+        }
+            
+        
+        }
+        
+        
+        
+        
+        
+       
             
                      return "Parameter";
                  
@@ -950,40 +1064,49 @@ public String onFlowProcess(FlowEvent event) {
         TreeNode dropNode = event.getDropNode();
         int dropIndex = event.getDropIndex();
        
-        PGroup_tree a=(PGroup_tree)dragNode.getData();
-        PGroup_tree b=(PGroup_tree)dropNode.getData();
+        PGroup_tree xa=(PGroup_tree)dragNode.getData();
+        PGroup_tree xb=(PGroup_tree)dropNode.getData();
+        
+         System.out.println("onDragDrop() "+xa.getParameterGroup()+" "+xa.getId());
+          System.out.println("onDragDrop1() "+xb.getParameterGroup()+" "+xb.getId());
        
-        ParameterGroup a1=parameterGroupFacade.find(a.getId());
-        if(b.getId() == 0  && (a.getId() == 1 || a.getId() > 4) ){
+        ParameterGroup a1=parameterGroupFacade.find(xa.getId());
+        ParameterGroup b1=parameterGroupFacade.find(xb.getId());
+        
+        
+       //  System.out.println("onDragDrop() "+a1.getGroupname()+" "+a1.getParametertypeID().getType());
+     //     System.out.println("onDragDrop() "+b1.getGroupname()+" "+b1.getParametertypeID().getType());
+        
+    if(xb.getId() == 0  && (a1.getParametertypeID().getId() == 1 || a1.getParametertypeID().getId() > 4) ){
             TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
-            a.setCount(tg.getId());
-            Pchildparent tg1=new Pchildparent();
+            xa.setCount(tg.getId());
+            Pgchild tg1=new Pgchild();
             tg1.setTgrouphasGparameterID(tg);
             tg1.setTgrouphasGparameterID1(tg);
             tg1.setRoot(1);
-            tg1.setChildNo(0);
-            pchildparentFacade.create(tg1);
+            tg1.setChild(0);
+            pgchildFacade.create(tg1);
             List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
             for(GroupHasParameter cd:tg2){
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-                tg3.setValue("0");
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
-              FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged " + a1.getParametertypeID().getType(), "Dropped on " + b.getId() + " at " + dropIndex);
+              FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged " + a1.getParametertypeID().getType(), "Dropped on " + xb.getId() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         }else{
             try {
                 
           
-        ParameterGroup b1=parameterGroupFacade.find(b.getId());
+        
         if(a1.getParametertypeID().getId()== 2 && b1.getParametertypeID().getId()== 1){
             
              TgroupHasGparameter tg=new TgroupHasGparameter();
@@ -993,14 +1116,14 @@ public String onFlowProcess(FlowEvent event) {
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
             
-           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
-             Pchildparent tg1=new Pchildparent();
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(xb.getCount()); 
+             Pgchild tg1=new Pgchild();
             tg1.setTgrouphasGparameterID(tg);
             tg1.setTgrouphasGparameterID1(ss);
             tg1.setRoot(0);
-            tg1.setChildNo(1);
-            pchildparentFacade.create(tg1);
-            a.setCount(tg.getId());
+            tg1.setChild(1);
+            pgchildFacade.create(tg1);
+            xa.setCount(tg.getId());
             List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
             for(GroupHasParameter cd:tg2){
                 ParameterValues tg3=new ParameterValues();
@@ -1021,14 +1144,14 @@ public String onFlowProcess(FlowEvent event) {
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
             
-           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
-             Pchildparent tg1=new Pchildparent();
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(xb.getCount()); 
+             Pgchild tg1=new Pgchild();
             tg1.setTgrouphasGparameterID(tg);
             tg1.setTgrouphasGparameterID1(ss);
             tg1.setRoot(0);
-            tg1.setChildNo(2);
-            pchildparentFacade.create(tg1);
-            a.setCount(tg.getId());
+            tg1.setChild(2);
+            pgchildFacade.create(tg1);
+            xa.setCount(tg.getId());
             List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
             for(GroupHasParameter cd:tg2){
                 ParameterValues tg3=new ParameterValues();
@@ -1050,14 +1173,14 @@ public String onFlowProcess(FlowEvent event) {
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
             
-           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(b.getCount()); 
-             Pchildparent tg1=new Pchildparent();
+           TgroupHasGparameter ss= tgroupHasGparameterFacade.find(xb.getCount()); 
+             Pgchild tg1=new Pgchild();
             tg1.setTgrouphasGparameterID(tg);
             tg1.setTgrouphasGparameterID1(ss);
             tg1.setRoot(0);
-            tg1.setChildNo(3);
-            pchildparentFacade.create(tg1);
-            a.setCount(tg.getId());
+            tg1.setChild(3);
+            pgchildFacade.create(tg1);
+            xa.setCount(tg.getId());
             List<GroupHasParameter> tg2=groupHasParameterFacade.get_para_group(a1);
             for(GroupHasParameter cd:tg2){
                 ParameterValues tg3=new ParameterValues();
@@ -1077,29 +1200,145 @@ public String onFlowProcess(FlowEvent event) {
         }
         
           } catch (Exception e) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "no Dragged 2","NO ");
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "no Dragged 2 " + a1.getParametertypeID().getType(), "no Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
             }
         }
         
-                     groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
+                
                paragroup=parameterGroupFacade.findAll();
-             System.out.println("hamed "+groupHasGparameter.size());
+            // System.out.println("hamed "+groupHasGparameter.size());
              
              root1 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
-             for(ParameterGroup ba:paragroup){
-          new DefaultTreeNode(new PGroup_tree(ba.getGroupname(),0,ba.getId(),"root"), root1);
-          
+             for(ParameterGroup b:paragroup){
+         new DefaultTreeNode(new PGroup_tree(b.getGroupname(),0,b.getId(),b.getParametertypeID().getType()), root1);
+        
              }
       
 
+       groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
         root2 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
-         
+         root2.setExpanded(true);
         TreeNode item0 = new DefaultTreeNode(new PGroup_tree("XML root",0,0,"root"), root2);
+        item0.setExpanded(true);
+         List<TreeNode> roots=new ArrayList<TreeNode>();
+         List<TreeNode> child1=new ArrayList<TreeNode>();
+       
+        for(TgroupHasGparameter sl:groupHasGparameter){
+             try {
+                 List<Pgchild> ad= pgchildFacade.childs_find(sl);
+                 
+                 for(Pgchild pa:ad){
+                  if(pa.getRoot()==1){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(sl.getParameterGroupID().getGroupname(),sl.getId(),sl.getParameterGroupID().getId(),sl.getParameterGroupID().getParametertypeID().getType()), item0);
+                  roots.add(f);
+                    f.setExpanded(true);
+                  }
+                  }
+
+                 
+                   } catch (Exception e) {
+                   }
+        }
+        
+        if(!roots.isEmpty()){
+            for(TreeNode f1:roots){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
+            
+            System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 1){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                  child1.add(f);     
+                   f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+            roots.clear();
+             if(!child1.isEmpty()){
+            for(TreeNode f1:child1){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
+            
+            System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 2){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                  roots.add(f);   
+                   f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+          child1.clear();
+             if(!roots.isEmpty()){
+            for(TreeNode f1:roots){
+            PGroup_tree a=(PGroup_tree) f1.getData();
+            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
+                
+            List<Pgchild> ad= pgchildFacade.childs_find(b); 
+            
+         //   System.out.println("hamed "+ad);
+                for(Pgchild pa:ad){ 
+                     if(pa.getRoot()== 0 && pa.getChild() == 3){
+                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
+                     f.setExpanded(true);
+                     }
+                  }
+            
+            }
+            
+            
+            
+            
+        
+        }   
+            
+        
+        }
+            
+        
+        }
+          
+
+      
          
       
     }
+     
+     
+       public void onNodeSelect(NodeSelectEvent event) {
+           PGroup_tree xa=(PGroup_tree)event.getTreeNode().getData();
+         TgroupHasGparameter xb=  tgroupHasGparameterFacade.find(xa.getCount());
+           TParameterValues=parameterValuesFacade.ParameterValues_find(xb);
+
+    }
+       
+       
+            public void onRowEdit(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          seletParameterValues=((ParameterValues) event.getObject());
+           // seletParameterValues.setUpdateDate(date);
+          parameterValuesFacade.edit(seletParameterValues);
+          
+          Messages.addInfoMessage("Edited "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+          Messages.addInfoMessage("Cancelled "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1);
+    }
+    
     
     
     

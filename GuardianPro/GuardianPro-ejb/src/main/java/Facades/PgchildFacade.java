@@ -5,7 +5,6 @@
  */
 package Facades;
 
-import Entities.ParameterValues;
 import Entities.Pgchild;
 import Entities.TgroupHasGparameter;
 import java.util.List;
@@ -19,7 +18,7 @@ import javax.persistence.Query;
  * @author ahmed.elemam
  */
 @Stateless
-public class ParameterValuesFacade extends AbstractFacade<ParameterValues> implements ParameterValuesFacadeLocal {
+public class PgchildFacade extends AbstractFacade<Pgchild> implements PgchildFacadeLocal {
 
     @PersistenceContext(unitName = "com.guardianpro_GuardianPro-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -29,17 +28,17 @@ public class ParameterValuesFacade extends AbstractFacade<ParameterValues> imple
         return em;
     }
 
-    public ParameterValuesFacade() {
-        super(ParameterValues.class);
+    public PgchildFacade() {
+        super(Pgchild.class);
     }
     
     
-      @Override
-   public List<ParameterValues> ParameterValues_find(TgroupHasGparameter parent){
-     Query para_find = em.createNamedQuery("ParameterValues.findByGroup");
+    @Override
+   public List<Pgchild> childs_find(TgroupHasGparameter parent){
+     Query para_find = em.createNamedQuery("Pgchild.findByparent");
         para_find.setParameter("id", parent);
         try {
-         List<ParameterValues> parah =  para_find.getResultList(); 
+         List<Pgchild> parah =  para_find.getResultList(); 
            // System.out.println("ahmed hamed  "+parah.getType());
          if(parah==null){
          return null;

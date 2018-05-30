@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.ParameterValues;
+import Entities.TgroupHasGparameter;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface ParameterValuesFacadeLocal {
     List<ParameterValues> findRange(int[] range);
 
     int count();
+    
+    List<ParameterValues> ParameterValues_find(TgroupHasGparameter parent);
     
 }

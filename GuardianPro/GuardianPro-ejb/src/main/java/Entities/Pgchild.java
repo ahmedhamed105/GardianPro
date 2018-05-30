@@ -24,14 +24,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ahmed.elemam
  */
 @Entity
-@Table(name = "pchildparent", catalog = "guardianpro", schema = "")
+@Table(name = "pgchild", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pchildparent.findAll", query = "SELECT p FROM Pchildparent p"),
-    @NamedQuery(name = "Pchildparent.findById", query = "SELECT p FROM Pchildparent p WHERE p.id = :id"),
-    @NamedQuery(name = "Pchildparent.findByRoot", query = "SELECT p FROM Pchildparent p WHERE p.root = :root"),
-    @NamedQuery(name = "Pchildparent.findByChildNo", query = "SELECT p FROM Pchildparent p WHERE p.childNo = :childNo")})
-public class Pchildparent implements Serializable {
+    @NamedQuery(name = "Pgchild.findAll", query = "SELECT p FROM Pgchild p"),
+    @NamedQuery(name = "Pgchild.findById", query = "SELECT p FROM Pgchild p WHERE p.id = :id"),
+    @NamedQuery(name = "Pgchild.findByparent", query = "SELECT p FROM Pgchild p WHERE p.tgrouphasGparameterID1 = :id"),
+    @NamedQuery(name = "Pgchild.findByRoot", query = "SELECT p FROM Pgchild p WHERE p.root = :root"),
+    @NamedQuery(name = "Pgchild.findByChild", query = "SELECT p FROM Pgchild p WHERE p.child = :child")})
+public class Pgchild implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,8 +42,8 @@ public class Pchildparent implements Serializable {
     private Integer id;
     @Column(name = "root")
     private Integer root;
-    @Column(name = "child_no")
-    private Integer childNo;
+    @Column(name = "child")
+    private Integer child;
     @JoinColumn(name = "Tgroup_has_Gparameter_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private TgroupHasGparameter tgrouphasGparameterID;
@@ -50,10 +51,10 @@ public class Pchildparent implements Serializable {
     @ManyToOne(optional = false)
     private TgroupHasGparameter tgrouphasGparameterID1;
 
-    public Pchildparent() {
+    public Pgchild() {
     }
 
-    public Pchildparent(Integer id) {
+    public Pgchild(Integer id) {
         this.id = id;
     }
 
@@ -73,12 +74,12 @@ public class Pchildparent implements Serializable {
         this.root = root;
     }
 
-    public Integer getChildNo() {
-        return childNo;
+    public Integer getChild() {
+        return child;
     }
 
-    public void setChildNo(Integer childNo) {
-        this.childNo = childNo;
+    public void setChild(Integer child) {
+        this.child = child;
     }
 
     public TgroupHasGparameter getTgrouphasGparameterID() {
@@ -107,10 +108,10 @@ public class Pchildparent implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pchildparent)) {
+        if (!(object instanceof Pgchild)) {
             return false;
         }
-        Pchildparent other = (Pchildparent) object;
+        Pgchild other = (Pgchild) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +120,7 @@ public class Pchildparent implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Pchildparent[ id=" + id + " ]";
+        return "Entities.Pgchild[ id=" + id + " ]";
     }
     
 }

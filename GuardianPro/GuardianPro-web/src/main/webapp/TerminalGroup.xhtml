@@ -708,24 +708,64 @@
                          <p:tab id="Parameter" title="Parameter" >
             <p:panel header="Parameter" >
                 
-                <h:panelGrid columns="3">
-        <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}"
+                <h:panelGrid columns="4">
+        <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}" filterBy="#{node}"
                 draggable="true" droppable="true" dragdropScope="demo">
             <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
-            <p:treeNode>
-                <h:outputText value="#{node.parameterGroup}" />
+            <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+                 <h:outputText value="#{node.parameterGroup}" />   -   <h:outputText value="#{node.type}" />
             </p:treeNode>
         </p:tree>
  
-        <p:graphicImage alt="Transfer"  name="dist/img/transfer.png" />
+                    <p:graphicImage alt="Transfer"  url="dist/img/transfer.png" />
  
-        <p:tree id="tree2" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}"
+        <p:tree id="tree2"  animate="true" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}" filterBy="#{node}"
                 draggable="true" droppable="true" dragdropScope="demo">
             <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
-            <p:treeNode>
-                <h:outputText value="#{node.parameterGroup}" />
+             <p:ajax event="select" update=":form111:messages111 :form111:tree1 :form111:cars1" listener="#{terminalgroup.onNodeSelect}" />
+            <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+                <h:outputText value="#{node.parameterGroup}" />   -   <h:outputText value="#{node.type}" />
             </p:treeNode>
         </p:tree>
+                    
+                           <p:dataTable id="cars1" widgetVar="carsTable"
+                               emptyMessage="No Parmeter found with given criteria" var="para" value="#{terminalgroup.TParameterValues}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletParameterValues}" rowKey="#{para.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEdit}" update=":form111:messages111" />
+       <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancel}" update=":form111:messages111"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+
+     
+    <p:column headerText="parameter Name" sortBy="#{para.parameterID.fieldName}"  >
+           <h:outputText value="#{para.parameterID.fieldName}" />
+       </p:column>
+        
+    <p:column headerText="Value" sortBy="#{para.value}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.value}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.value}" style="width:100%" maxlength="#{para.parameterID.inputLength}"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+   
+    
+   </p:dataTable>
+                  
+                    
+                    
     </h:panelGrid>
             </p:panel>
         </p:tab>
