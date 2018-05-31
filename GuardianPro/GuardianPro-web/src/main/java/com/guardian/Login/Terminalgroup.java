@@ -1129,7 +1129,7 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-                tg3.setValue("0");
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
@@ -1157,7 +1157,7 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-                tg3.setValue("0");
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
@@ -1186,7 +1186,7 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-                tg3.setValue("0");
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             

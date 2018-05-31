@@ -378,7 +378,12 @@
            </p:cellEditor>
        </p:column>
     
-    
+    <p:column headerText="default value" sortBy="#{para.defaultvalue}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.defaultvalue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput2s" maxlength="#{para.inputLength}" value="#{para.defaultvalue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
     <p:column headerText="Note" sortBy="#{para.note}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.note}" /></f:facet>
@@ -477,11 +482,15 @@
                     </label>
                   </div>
                  
+                   <label for="defaultvalue">default value</label>
+                   <p:inputText class="form-control" id="defaultvalue"  maxlength="#{para.inputLength}" value="#{parameter.parmeter.defaultvalue}" >
+                  </p:inputText>
                  
                  <label for="note">note</label>
                  <p:inputText class="form-control" id="note"  value="#{parameter.parmeter.note}" >
-                  </p:inputText>						
+                  </p:inputText>	
                  
+        
                  
                
                   <br/>
