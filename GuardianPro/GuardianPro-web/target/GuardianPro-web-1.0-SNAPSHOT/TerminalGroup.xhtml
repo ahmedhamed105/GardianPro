@@ -420,6 +420,9 @@
              <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
     </f:facet>
     
+           <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="ExportP" type="submit" ajax="true" update=":form111:messages111 :form111:tree1 :form111:tree2" action="#{terminalgroup.ExportP(actionEvent)}"/>  
+    </f:facet>
     
    </p:dataTable>
             </p:panel>
@@ -760,6 +763,14 @@
            <p:rowEditor />
        </p:column>
     
+    
+      <f:facet name="footer">
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:tree1 :form111:tree2" action="#{terminalgroup.removenode(actionEvent)}"/>  
+    </f:facet>
+    
+    
+ 
+   
    
     
    </p:dataTable>

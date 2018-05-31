@@ -135,6 +135,10 @@ public class Terminalgroup {
      
     private TreeNode selectedNode2;
     
+    PGroup_tree selectxa;
+    PGroup_tree selectparent;
+    List<TreeNode> childs;
+    
     
         List<ParameterValues> TParameterValues= new ArrayList<ParameterValues>();
         ParameterValues seletParameterValues=new ParameterValues();
@@ -551,115 +555,8 @@ public String onFlowProcess(FlowEvent event) {
             //  root = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null); 
               
           //   groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
-               paragroup=parameterGroupFacade.findAll();
-            
-             
-             root1 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
-             for(ParameterGroup b:paragroup){
-         new DefaultTreeNode(new PGroup_tree(b.getGroupname(),0,b.getId(),b.getParametertypeID().getType()), root1);
-        
-             }
-      
-
-       groupHasGparameter=tgroupHasGparameterFacade.find_term_groups(seletermgroup);
-        root2 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
-           root2.setExpanded(true);
-        TreeNode item0 = new DefaultTreeNode(new PGroup_tree("XML root",0,0,"root"), root2);
-         item0.setExpanded(true);
-         List<TreeNode> roots=new ArrayList<TreeNode>();
-         List<TreeNode> child1=new ArrayList<TreeNode>();
-       
-        for(TgroupHasGparameter sl:groupHasGparameter){
-             try {
-                 List<Pgchild> ad= pgchildFacade.childs_find(sl);
-                 
-                 for(Pgchild pa:ad){
-                  if(pa.getRoot()==1){
-                  TreeNode f = new DefaultTreeNode(new PGroup_tree(sl.getParameterGroupID().getGroupname(),sl.getId(),sl.getParameterGroupID().getId(),sl.getParameterGroupID().getParametertypeID().getType()), item0);
-                  roots.add(f);
-                   f.setExpanded(true);
-                  }
-                  }
-
-                 
-                   } catch (Exception e) {
-                   }
-        }
-        
-        if(!roots.isEmpty()){
-            for(TreeNode f1:roots){
-            PGroup_tree a=(PGroup_tree) f1.getData();
-            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
-                
-            List<Pgchild> ad= pgchildFacade.childs_find(b); 
-            
-            System.out.println("hamed "+ad);
-                for(Pgchild pa:ad){ 
-                     if(pa.getRoot()== 0 && pa.getChild() == 1){
-                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
-                  child1.add(f);   
-                   f.setExpanded(true);
-                     }
-                  }
-            
-            }
-            
-            
-            roots.clear();
-             if(!child1.isEmpty()){
-            for(TreeNode f1:child1){
-            PGroup_tree a=(PGroup_tree) f1.getData();
-            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
-                
-            List<Pgchild> ad= pgchildFacade.childs_find(b); 
-            
-            System.out.println("hamed "+ad);
-                for(Pgchild pa:ad){ 
-                     if(pa.getRoot()== 0 && pa.getChild() == 2){
-                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
-                  roots.add(f);  
-                   f.setExpanded(true);
-                     }
-                  }
-            
-            }
-            
-            
-          child1.clear();
-             if(!roots.isEmpty()){
-            for(TreeNode f1:roots){
-            PGroup_tree a=(PGroup_tree) f1.getData();
-            TgroupHasGparameter b=tgroupHasGparameterFacade.find(a.getCount());
-                
-            List<Pgchild> ad= pgchildFacade.childs_find(b); 
-            
-         //   System.out.println("hamed "+ad);
-                for(Pgchild pa:ad){ 
-                     if(pa.getRoot()== 0 && pa.getChild() == 3){
-                  TreeNode f = new DefaultTreeNode(new PGroup_tree(pa.getTgrouphasGparameterID().getParameterGroupID().getGroupname(),pa.getTgrouphasGparameterID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getId(),pa.getTgrouphasGparameterID().getParameterGroupID().getParametertypeID().getType()), f1);
-                     f.setExpanded(true);
-                     }
-                  }
-            
-            }
-            
-            
-            
-            
-        
-        }   
-            
-        
-        }
-            
-        
-        }
-        
-        
-        
-        
-        
-       
+              refresh();
+     
             
                      return "Parameter";
                  
@@ -1206,8 +1103,14 @@ public String onFlowProcess(FlowEvent event) {
             }
         }
         
-                
-               paragroup=parameterGroupFacade.findAll();
+ 
+         refresh();
+    }
+     
+     
+     
+    void refresh(){
+         paragroup=parameterGroupFacade.findAll();
             // System.out.println("hamed "+groupHasGparameter.size());
              
              root1 = new DefaultTreeNode(new PGroup_tree("Groups",0,0,"root"), null);
@@ -1310,20 +1213,56 @@ public String onFlowProcess(FlowEvent event) {
             
         
         }
-          
-
-      
-         
-      
-    }
+     }
      
      
        public void onNodeSelect(NodeSelectEvent event) {
            PGroup_tree xa=(PGroup_tree)event.getTreeNode().getData();
+            selectxa=xa;   
+            selectparent=(PGroup_tree)event.getTreeNode().getParent().getData();  
+            childs=event.getTreeNode().getChildren();
          TgroupHasGparameter xb=  tgroupHasGparameterFacade.find(xa.getCount());
            TParameterValues=parameterValuesFacade.ParameterValues_find(xb);
 
     }
+       
+       
+        public void removenode(ActionEvent actionEvent){
+            if(selectxa !=null){
+                
+                 if(!childs.isEmpty()){
+                         Messages.addInfoMessage("please remove Child First",2);
+  
+                    }else{
+                    
+                     TgroupHasGparameter parent=  tgroupHasGparameterFacade.find(selectparent.getCount());
+                    TgroupHasGparameter child=  tgroupHasGparameterFacade.find(selectxa.getCount());
+                    try {
+                      
+                    Pgchild xb=pgchildFacade.Pchild_find(parent, child); 
+                   //  System.out.println("hamed "+xb.getId());
+                     if(xb!=null){
+                    pgchildFacade.remove(xb);
+                    List<ParameterValues> j=parameterValuesFacade.ParameterValues_find(child);
+                    for(ParameterValues k:j){
+                    parameterValuesFacade.remove(k);
+                    }
+                    tgroupHasGparameterFacade.remove(child);
+                     }
+                   
+                    
+                    
+                         refresh();
+                } catch (Exception e) {
+                }
+               
+                    }
+                    childs.clear();
+                 
+                   refresh();
+                
+            }
+       }
        
        
             public void onRowEdit(RowEditEvent event) {
@@ -1359,9 +1298,13 @@ public String onFlowProcess(FlowEvent event) {
     
     
     public void ExportP(RowEditEvent event) {
-            groupHasTerminal=tgroupHasTerminalFacade.find_term_groups(seletermgroup);
+            groupHasTerminal=tgroupHasTerminalFacade.findAll();
             for(TgroupHasTerminal d:groupHasTerminal){
-              getXML(d);
+                try {
+                    System.out.println(getXML(d));  
+                } catch (Exception e) {
+                }
+           
             }
              
              Messages.addInfoMessage("Exported "+seletermgroup.getGroupname(),1);
@@ -1371,9 +1314,11 @@ public String onFlowProcess(FlowEvent event) {
     
     
     
-    public static String getXML(TgroupHasTerminal terminals){
+    public  String getXML(TgroupHasTerminal terminals){
     
+        if(terminals.getTerminalGroupID() == null){
         
+        }else{
         
         try {
             DocumentBuilderFactory dbfac = DocumentBuilderFactory.newInstance();
@@ -1389,59 +1334,117 @@ public String onFlowProcess(FlowEvent event) {
              root.appendChild(e);
              
             e = doc.createElement("tid");
-			e.appendChild(doc.createTextNode(terminals.getTerminalID().getTid()));
-			root.appendChild(e);
+            if(terminals.getTerminalID().getTid()!=null){
+            e.appendChild(doc.createTextNode(terminals.getTerminalID().getTid()));
+            }
+	    root.appendChild(e);
 
 
 			e = doc.createElement("detailAddress");
-			e.appendChild(doc.createTextNode(terminals.getTerminalID().getAddress()));
+                         if(terminals.getTerminalID().getAddress()!=null){
+          e.appendChild(doc.createTextNode(terminals.getTerminalID().getAddress()));
+            }
+	
 			root.appendChild(e);
 
 			
 			e = doc.createElement("merchantName");
+                         if(terminals.getTerminalID().getMerchantName()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getMerchantName())));
-			root.appendChild(e);
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("officeContact");
-			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOwnerName())));
-			root.appendChild(e);
+                         if(terminals.getTerminalID().getOfficeContact()!=null){
+			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOfficeContact())));
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("officeTelNo");
+                         if(terminals.getTerminalID().getOfficeTelNo()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOfficeTelNo())));
-			root.appendChild(e);
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("ownerName");
+                         if(terminals.getTerminalID().getOwnerName()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getOwnerName())));
-			root.appendChild(e);
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("posSerialNo");
+                         if(terminals.getTerminalID().getPOSSerialNo()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getPOSSerialNo())));
-			root.appendChild(e);
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("recordNo");
+                         if(terminals.getTerminalID().getId()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getId())));
+                         }
 			root.appendChild(e);
 
 			e = doc.createElement("shopContact");
+                         if(terminals.getTerminalID().getContactperson()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getContactperson())));
-			root.appendChild(e);
+                         }
+                        root.appendChild(e);
 
 			e = doc.createElement("shopName");
+                         if(terminals.getTerminalID().getShopName()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getShopName())));
+                         }
 			root.appendChild(e);
 
 			e = doc.createElement("shopTelNo");
+                         if(terminals.getTerminalID().getTelNo()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getTelNo())));
+                         }
 			root.appendChild(e);
 
 			e = doc.createElement("status");
+                         if(terminals.getTerminalID().getTerminalstatusID()!=null){
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getTerminalstatusID().getTstatus())));
-			root.appendChild(e);
+                         }
+                         root.appendChild(e);
+                         
+                         Element groupTag = doc.createElement("ParameterGroup");
+                        
+                             List<TgroupHasGparameter> group= tgroupHasGparameterFacade.find_term_groups(terminals.getTerminalGroupID());
+                        
+                    for(TgroupHasGparameter gg:group){
+                        
+                        
+                    
+                            Element groupName = doc.createElement(gg.getParameterGroupID().getParametertypeID().getXMLheader());
+                        
+                        groupName.setAttribute("ID", gg.getParameterGroupID().getId().toString());
+						groupName.setIdAttribute("ID", true);
 
-			
+						if (groupName.getTagName().equals("Terminal"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("Acquirer"))
+							groupName.setAttribute("Level", "2");
+						else if (groupName.getTagName().equals("Issuer"))
+							groupName.setAttribute("Level", "3");
+						else if (groupName.getTagName().equals("CardRange"))
+							groupName.setAttribute("Level", "4");
+						else if (groupName.getTagName().equals("EMVLevel2Key"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("EMVLevel2App"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("EMVCtlApp"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("Other"))
+							groupName.setAttribute("Level", "1");
                         
-                        
-                        
+                        groupTag.appendChild(groupName);
+                    }
+                     root.appendChild(groupTag);    
+                         
+                         
+                         
+
             doc.appendChild(root);
                         
                         
@@ -1460,17 +1463,18 @@ public String onFlowProcess(FlowEvent event) {
 			 FileUtils.write(new File("D:\\ahmed.txt"), xmlString);
 
 			return xmlString;
-        } catch (ParserConfigurationException ex) {
+        } catch (ParserConfigurationException | IOException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        }
         return "";
     }
+    
+    
+      
     
 }

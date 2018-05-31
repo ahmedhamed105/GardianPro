@@ -33,4 +33,6 @@ public interface PgchildFacadeLocal {
     
     List<Pgchild> childs_find(TgroupHasGparameter parent);
     
+    Pgchild Pchild_find(TgroupHasGparameter parent,TgroupHasGparameter child);
+    
 }

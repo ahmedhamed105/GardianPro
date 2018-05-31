@@ -51,5 +51,26 @@ public class PgchildFacade extends AbstractFacade<Pgchild> implements PgchildFac
         }
    
    }
+   
+   
+    @Override
+   public Pgchild Pchild_find(TgroupHasGparameter parent,TgroupHasGparameter child){
+     Query para_find = em.createNamedQuery("Pgchild.findByparentchild");
+        para_find.setParameter("id", parent);
+        para_find.setParameter("id1", child);
+        try {
+         Pgchild parah =  (Pgchild) para_find.getSingleResult();
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+   
+   }
     
 }
