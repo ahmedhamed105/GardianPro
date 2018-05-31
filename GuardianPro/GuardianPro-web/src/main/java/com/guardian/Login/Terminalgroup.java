@@ -1437,6 +1437,16 @@ public String onFlowProcess(FlowEvent event) {
 							groupName.setAttribute("Level", "1");
 						else if (groupName.getTagName().equals("Other"))
 							groupName.setAttribute("Level", "1");
+                                                
+                              List<ParameterValues> v=parameterValuesFacade.ParameterValues_find(gg);
+                                                for(ParameterValues val:v){
+                          e = doc.createElement(val.getParameterID().getFieldName());
+                         if(val.getValue() !=null){
+			e.appendChild(doc.createTextNode(String.valueOf(val.getValue())));
+                         }
+			groupName.appendChild(e);
+                                                }
+                                
                         
                         groupTag.appendChild(groupName);
                     }
