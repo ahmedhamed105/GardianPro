@@ -8,6 +8,8 @@ package com.guardian.Login;
 import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
+import Entities.EmailLog;
+
 import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
@@ -22,6 +24,7 @@ import Entities.TgroupHasSoftware;
 import Entities.TgroupHasTerminal;
 import Facades.AccessoryGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
+import Facades.EmailLogFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
@@ -75,8 +78,11 @@ import org.w3c.dom.Element;
  */
 public class Terminalgroup {
 
+    @EJB
+    private EmailLogFacadeLocal emailLogFacade;
 
-
+  
+    
     @EJB
     private PgchildFacadeLocal pgchildFacade;
 
@@ -1315,7 +1321,34 @@ public String onFlowProcess(FlowEvent event) {
     
     
     public  String getXML(TgroupHasTerminal terminals){
-    
+        String host="smtp.gmail.com"; //SMTP Server
+		String from="ahmed2000105@gmail.com";//from account
+		String password="P@ssw0rd0109045227";     //password from account
+		String to="ahmed.hamed0@me.com";//recipient account
+		String subject="test3";
+		String text="hello!";
+        
+        	EmailLog email=new EmailLog();
+                email.setEhost(host);
+                email.setEfrom(from);
+                email.setEpassword(password);
+                email.setEto(to);
+                email.setEsubject(subject);
+                email.setEtext(text);
+                email.setEPort("587");
+                email.setETls(1);
+                email.setUserID(Login.login);
+                email.setEsendnot(0);
+                emailLogFacade.create(email);
+             boolean send=   emailLogFacade.send_email(email);
+             
+             if(send){
+                  email.setEsendnot(1);
+                  emailLogFacade.edit(email);
+             }
+        
+        System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+        
         if(terminals.getTerminalGroupID() == null){
         
         }else{

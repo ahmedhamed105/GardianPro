@@ -48,6 +48,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<EmailLog> emailLogCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ConfigParmeter> configParmeterCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<GroupsHasUser> groupsHasUserCollection;
@@ -403,6 +406,15 @@ public class User implements Serializable {
 
     public void setPhoneDataCopy1Collection(Collection<PhoneDataCopy1> phoneDataCopy1Collection) {
         this.phoneDataCopy1Collection = phoneDataCopy1Collection;
+    }
+
+    @XmlTransient
+    public Collection<EmailLog> getEmailLogCollection() {
+        return emailLogCollection;
+    }
+
+    public void setEmailLogCollection(Collection<EmailLog> emailLogCollection) {
+        this.emailLogCollection = emailLogCollection;
     }
     
 }
