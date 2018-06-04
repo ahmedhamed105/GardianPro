@@ -7,6 +7,7 @@ package com.guardian.Login;
 
 import Entities.Accessory;
 import Entities.AccessoryGroup;
+import Entities.AccessoryHasGroup;
 import Entities.Application;
 import Entities.ApplicationGroup;
 import Entities.ApplicationHasGroup;
@@ -21,12 +22,14 @@ import Entities.ParameterValues;
 import Entities.Pgchild;
 import Entities.Terminal;
 import Entities.TerminalGroup;
+import Entities.TerminalHasParts;
 import Entities.TerminalTemplate;
 import Entities.TgroupHasAccesory;
 import Entities.TgroupHasGparameter;
 import Entities.TgroupHasSoftware;
 import Entities.TgroupHasTerminal;
 import Facades.AccessoryGroupFacadeLocal;
+import Facades.AccessoryHasGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
 import Facades.ApplicationHasGroupFacadeLocal;
 import Facades.EmailLogFacadeLocal;
@@ -39,6 +42,7 @@ import Facades.ParameterValuesFacadeLocal;
 import Facades.PgchildFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
+import Facades.TerminalHasPartsFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasAccesoryFacadeLocal;
 import Facades.TgroupHasGparameterFacadeLocal;
@@ -84,6 +88,14 @@ import org.w3c.dom.Element;
  * @author ahmed.elemam
  */
 public class Terminalgroup {
+
+    @EJB
+    private TerminalHasPartsFacadeLocal terminalHasPartsFacade;
+
+    @EJB
+    private AccessoryHasGroupFacadeLocal accessoryHasGroupFacade;
+    
+    
 
     @EJB
     private ApplicationHasGroupFacadeLocal applicationHasGroupFacade;
@@ -1486,12 +1498,67 @@ public String onFlowProcess(FlowEvent event) {
                          }
                          root.appendChild(e);
                          
-                         groupHasSoftware = tgroupHasSoftwareFacade.find_term_groups(terminals.getTerminalGroupID());
                          
-                         if ((groupHasSoftware != null) && (!groupHasSoftware.isEmpty())) {
-				Element applicationTag = doc.createElement("ApplicationGroup");
+              	
+                        if ((terminals.getTerminalID().getTerminaltemplateID() != null)) {
+				
                                 
-                                for (TgroupHasSoftware ag : groupHasSoftware) {
+                         List<TerminalHasParts> ter=terminalHasPartsFacade.get_part_group(terminals.getTerminalID().getTerminaltemplateID());
+				if( ter !=null || ter.size()>0){
+                         Element posTerminalTag = doc.createElement("PosTerminal");
+
+				root.appendChild(posTerminalTag);
+                         
+				 for (TerminalHasParts ag : ter) {
+                                   
+					Element e2 = doc.createElement("Part");
+					posTerminalTag.appendChild(e2);
+					Element e3 = doc.createElement("partId");
+					e3.appendChild(doc.createTextNode(String.valueOf(ag.getPartsID().getId())));
+					e2.appendChild(e3);
+					e3 = doc.createElement("qty");
+					e3.appendChild(doc.createTextNode(String.valueOf(ag.getPartsID().getPName())));
+					e2.appendChild(e3);
+                                      
+				}
+                                 
+                                }
+			}     
+                     
+                         
+                         
+                        List<TgroupHasAccesory> groupacess = tgroupHasAccesoryFacade.find_term_groups(terminals.getTerminalGroupID());
+                  	
+                        if ((groupacess != null) && (!groupacess.isEmpty())) {
+				Element accessoryTag = doc.createElement("Accessory");
+
+				root.appendChild(accessoryTag);
+				 for (TgroupHasAccesory ag : groupacess) {
+                                        List<AccessoryHasGroup> acess=accessoryHasGroupFacade.get_app_group(ag.getAccessoryGroupID());
+				
+                                      for (AccessoryHasGroup as : acess) {
+					Element e2 = doc.createElement("Accessory");
+
+					accessoryTag.appendChild(e2);
+					Element e3 = doc.createElement("accessoryId");
+					e3.appendChild(doc.createTextNode(String.valueOf(as.getAccessoryID().getId())));
+					e2.appendChild(e3);
+					e3 = doc.createElement("qty");
+					e3.appendChild(doc.createTextNode(String.valueOf(as.getAccessoryID().getAccName())));
+					e2.appendChild(e3);
+                                      }
+				}
+			}     
+                         
+                         
+                         
+                         
+                       List<TgroupHasSoftware> groupApp = tgroupHasSoftwareFacade.find_term_groups(terminals.getTerminalGroupID());
+                         System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
+                         if ((groupApp != null) && (!groupApp.isEmpty())) {
+				Element applicationTag = doc.createElement("ApplicationGroup");
+                                root.appendChild(applicationTag);
+                                for (TgroupHasSoftware ag : groupApp) {
                                     List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
 					for (ApplicationHasGroup app : appss) {
                                             
@@ -1519,10 +1586,12 @@ public String onFlowProcess(FlowEvent event) {
                          }
                          
                          
-                         Element groupTag = doc.createElement("ParameterGroup");
+                        
                         
                              List<TgroupHasGparameter> group= tgroupHasGparameterFacade.find_term_groups(terminals.getTerminalGroupID());
                         
+                                        if ((group != null) && (!group.isEmpty())) {
+                             Element groupTag = doc.createElement("ParameterGroup");
                     for(TgroupHasGparameter gg:group){
                         
                         
@@ -1562,7 +1631,7 @@ public String onFlowProcess(FlowEvent event) {
                         groupTag.appendChild(groupName);
                     }
                      root.appendChild(groupTag);    
-                         
+                                        }
                          
                          
 

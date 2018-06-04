@@ -171,7 +171,7 @@ public class application {
                       if(applicationFacade.app_find(app.getAppName())){
                            Messages.addInfoMessage("Please Check Application Name",2);
                       }else{
-                    String filename_ext = String.valueOf(generateRandom(16));
+                    String filename_ext = String.valueOf(generateRandom(9))+".tms";
                    copyFile(path.getPValue(),filename_ext, file.getInputstream());
                       Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
