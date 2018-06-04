@@ -7,8 +7,12 @@ package com.guardian.Login;
 
 import Entities.Accessory;
 import Entities.AccessoryGroup;
+import Entities.Application;
 import Entities.ApplicationGroup;
+import Entities.ApplicationHasGroup;
+import Entities.Application_;
 import Entities.EmailLog;
+import Entities.FtpLog;
 
 import Entities.GroupHasParameter;
 import Entities.Parameter;
@@ -24,7 +28,10 @@ import Entities.TgroupHasSoftware;
 import Entities.TgroupHasTerminal;
 import Facades.AccessoryGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
+import Facades.ApplicationHasGroupFacadeLocal;
 import Facades.EmailLogFacadeLocal;
+import Facades.FtpLogFacadeLocal;
+import Facades.FtpMessagesFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
@@ -77,6 +84,17 @@ import org.w3c.dom.Element;
  * @author ahmed.elemam
  */
 public class Terminalgroup {
+
+    @EJB
+    private ApplicationHasGroupFacadeLocal applicationHasGroupFacade;
+
+    @EJB
+    private FtpMessagesFacadeLocal ftpMessagesFacade;
+
+    @EJB
+    private FtpLogFacadeLocal ftpLogFacade;
+    
+    
 
     @EJB
     private EmailLogFacadeLocal emailLogFacade;
@@ -1327,7 +1345,7 @@ public String onFlowProcess(FlowEvent event) {
 		String to="ahmed.hamed0@me.com";//recipient account
 		String subject="test3";
 		String text="hello!";
-        
+         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
                 email.setEhost(host);
                 email.setEfrom(from);
@@ -1339,6 +1357,8 @@ public String onFlowProcess(FlowEvent event) {
                 email.setETls(1);
                 email.setUserID(Login.login);
                 email.setEsendnot(0);
+                email.setUpdateDate(date);
+                email.setCreateDate(date);
                 emailLogFacade.create(email);
              boolean send=   emailLogFacade.send_email(email);
              
@@ -1346,8 +1366,33 @@ public String onFlowProcess(FlowEvent event) {
                   email.setEsendnot(1);
                   emailLogFacade.edit(email);
              }
+             
+              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+             
+        String server = "localhost";
+        String port = "21";
+        String user = "ahmed";
+        String pass = "123456";  
         
-        System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+        FtpLog ftp=new FtpLog();
+        ftp.setServerip(server);
+        ftp.setFPort(port);
+        ftp.setFUsername(user);
+        ftp.setFpassword(pass);
+        ftp.setLocalDIR("D:\\Bank Miser\\comm\\");
+        ftp.setFilename("users.txt");
+        ftp.setFtpDir("\\");
+        ftp.setUpdateDate(date);
+        ftp.setCreateDate(date);
+        ftp.setUserID(Login.login);
+        ftpLogFacade.create(ftp);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+        }else{
+        System.out.println("Not Store file "+ftp_S);
+        }
+       
         
         if(terminals.getTerminalGroupID() == null){
         
@@ -1440,6 +1485,39 @@ public String onFlowProcess(FlowEvent event) {
 			e.appendChild(doc.createTextNode(String.valueOf(terminals.getTerminalID().getTerminalstatusID().getTstatus())));
                          }
                          root.appendChild(e);
+                         
+                         groupHasSoftware = tgroupHasSoftwareFacade.find_term_groups(terminals.getTerminalGroupID());
+                         
+                         if ((groupHasSoftware != null) && (!groupHasSoftware.isEmpty())) {
+				Element applicationTag = doc.createElement("ApplicationGroup");
+                                
+                                for (TgroupHasSoftware ag : groupHasSoftware) {
+                                    List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
+					for (ApplicationHasGroup app : appss) {
+                                            
+                                     
+						Element e2 = doc.createElement("Application");
+
+						applicationTag.appendChild(e2);
+
+						Element e3 = doc.createElement("applicationId");
+						e3.appendChild(doc.createTextNode(String.valueOf(app.getApplicationID().getId())));
+						e2.appendChild(e3);
+						e3 = doc.createElement("name");
+						e3.appendChild(doc.createTextNode(app.getApplicationID().getAppName()));
+						e2.appendChild(e3);
+						e3 = doc.createElement("fieldName");
+						e3.appendChild(doc.createTextNode(app.getApplicationID().getFilename()));
+						e2.appendChild(e3);
+						e3 = doc.createElement("fileSize");
+						e3.appendChild(doc.createTextNode(String.valueOf(app.getApplicationID().getAppSize())));
+						e2.appendChild(e3);
+
+					}
+				}
+                                
+                         }
+                         
                          
                          Element groupTag = doc.createElement("ParameterGroup");
                         

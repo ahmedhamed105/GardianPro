@@ -177,6 +177,7 @@ public class application {
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             app.setAppDir(path.getPValue()+'/'+filename_ext);
             app.setFilename(filename_ext);
+            app.setAppSize((int) file.getSize());
             app.setCreateDate(date);
             app.setUpdateDate(date);
           applicationFacade.create(app);
