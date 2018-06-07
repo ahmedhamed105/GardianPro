@@ -83,6 +83,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\FtpLogFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\FtpMessagesFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AbstractFacade.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ConfigEmailFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Parameter.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusHasAddressFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalStatusFacade.java
@@ -153,8 +154,10 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasTerminalFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasSoftwareFacade.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ConfigEmail.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\MaritalStatusFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\AccessoryHasGroup.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ConfigEmailFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginWayFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleHasGroupsFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterGroupFacadeLocal.java

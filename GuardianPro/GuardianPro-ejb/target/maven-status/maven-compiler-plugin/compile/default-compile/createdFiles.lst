@@ -15,6 +15,7 @@ Entities\Address_.class
 Entities\TerminalStatus_.class
 Entities\TerminalGroup_.class
 Facades\TgroupHasGparameterFacadeLocal.class
+Facades\ConfigEmailFacadeLocal.class
 Entities\Application_.class
 Entities\NationalIdHasMaritalStatus_.class
 Facades\ApplicationHasGroupFacadeLocal.class
@@ -33,6 +34,7 @@ Entities\RoleHasComponent.class
 Facades\RoleHasComponentFacade.class
 Entities\Religion.class
 Entities\GroupHasParameter_.class
+Entities\ConfigEmail.class
 Entities\DownloadMethod_.class
 Facades\PhoneTypesFacade.class
 Facades\NearPlacesFacade.class
@@ -132,6 +134,7 @@ Facades\TerminalStatusFacadeLocal.class
 Facades\NationalIdFacadeLocal.class
 Entities\TgroupHasGparameter.class
 Facades\EmailLogFacadeLocal.class
+Entities\ConfigEmail_.class
 Entities\EmailSmsSend.class
 Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
@@ -260,6 +263,7 @@ Entities\Status.class
 Entities\EmailLog.class
 Entities\WebsiteData_.class
 Entities\SocialType.class
+Facades\ConfigEmailFacade.class
 Facades\BirthDataFacade.class
 Entities\TgroupHasParts.class
 Facades\GroupsFacadeLocal.class
