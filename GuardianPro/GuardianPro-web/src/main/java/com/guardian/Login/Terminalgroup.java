@@ -1339,6 +1339,7 @@ public String onFlowProcess(FlowEvent event) {
                 try {
                     System.out.println(getXML(d));  
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
            
             }
@@ -1351,60 +1352,60 @@ public String onFlowProcess(FlowEvent event) {
     
     
     public  String getXML(TgroupHasTerminal terminals){
-        String host="smtp.gmail.com"; //SMTP Server
-		String from="ahmed2000105@gmail.com";//from account
-		String password="P@ssw0rd0109045227";     //password from account
-		String to="ahmed.hamed0@me.com";//recipient account
-		String subject="test3";
-		String text="hello!";
-         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        	EmailLog email=new EmailLog();
-                email.setEhost(host);
-                email.setEfrom(from);
-                email.setEpassword(password);
-                email.setEto(to);
-                email.setEsubject(subject);
-                email.setEtext(text);
-                email.setEPort("587");
-                email.setETls(1);
-                email.setUserID(Login.login);
-                email.setEsendnot(0);
-                email.setUpdateDate(date);
-                email.setCreateDate(date);
-                emailLogFacade.create(email);
-             boolean send=   emailLogFacade.send_email(email);
-             
-             if(send){
-                  email.setEsendnot(1);
-                  emailLogFacade.edit(email);
-             }
-             
-              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
-             
-        String server = "localhost";
-        String port = "21";
-        String user = "ahmed";
-        String pass = "123456";  
-        
-        FtpLog ftp=new FtpLog();
-        ftp.setServerip(server);
-        ftp.setFPort(port);
-        ftp.setFUsername(user);
-        ftp.setFpassword(pass);
-        ftp.setLocalDIR("D:\\Bank Miser\\comm\\");
-        ftp.setFilename("users.txt");
-        ftp.setFtpDir("\\");
-        ftp.setUpdateDate(date);
-        ftp.setCreateDate(date);
-        ftp.setUserID(Login.login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-        }else{
-        System.out.println("Not Store file "+ftp_S);
-        }
-       
+//        String host="smtp.gmail.com"; //SMTP Server
+//		String from="ahmed2000105@gmail.com";//from account
+//		String password="P@ssw0rd0109045227";     //password from account
+//		String to="ahmed.hamed0@me.com";//recipient account
+//		String subject="test3";
+//		String text="hello!";
+//         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//        	EmailLog email=new EmailLog();
+//                email.setEhost(host);
+//                email.setEfrom(from);
+//                email.setEpassword(password);
+//                email.setEto(to);
+//                email.setEsubject(subject);
+//                email.setEtext(text);
+//                email.setEPort("587");
+//                email.setETls(1);
+//                email.setUserID(Login.login);
+//                email.setEsendnot(0);
+//                email.setUpdateDate(date);
+//                email.setCreateDate(date);
+//                emailLogFacade.create(email);
+//             boolean send=   emailLogFacade.send_email(email);
+//             
+//             if(send){
+//                  email.setEsendnot(1);
+//                  emailLogFacade.edit(email);
+//             }
+//             
+//              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+//             
+//        String server = "localhost";
+//        String port = "21";
+//        String user = "ahmed";
+//        String pass = "123456";  
+//        
+//        FtpLog ftp=new FtpLog();
+//        ftp.setServerip(server);
+//        ftp.setFPort(port);
+//        ftp.setFUsername(user);
+//        ftp.setFpassword(pass);
+//        ftp.setLocalDIR("D:\\Bank Miser\\comm\\");
+//        ftp.setFilename("users.txt");
+//        ftp.setFtpDir("\\");
+//        ftp.setUpdateDate(date);
+//        ftp.setCreateDate(date);
+//        ftp.setUserID(Login.login);
+//        ftpLogFacade.create(ftp);
+//        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+//        if(ftp_S){
+//        System.out.println("Store file "+ftp_S);
+//        }else{
+//        System.out.println("Not Store file "+ftp_S);
+//        }
+//       
         
         if(terminals.getTerminalGroupID() == null){
         
@@ -1554,7 +1555,7 @@ public String onFlowProcess(FlowEvent event) {
                          
                          
                        List<TgroupHasSoftware> groupApp = tgroupHasSoftwareFacade.find_term_groups(terminals.getTerminalGroupID());
-                         System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
+                      //   System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
                          if ((groupApp != null) && (!groupApp.isEmpty())) {
 				Element applicationTag = doc.createElement("ApplicationGroup");
                                 root.appendChild(applicationTag);
@@ -1589,13 +1590,56 @@ public String onFlowProcess(FlowEvent event) {
                         
                         
                              List<TgroupHasGparameter> group= tgroupHasGparameterFacade.find_term_groups(terminals.getTerminalGroupID());
+                        List<TgroupHasGparameter> group1=new ArrayList<>();
+                         List<TgroupHasGparameter> group2=new ArrayList<>();
+                        group2.addAll(group);
                         
-                                        if ((group != null) && (!group.isEmpty())) {
-                             Element groupTag = doc.createElement("ParameterGroup");
-                    for(TgroupHasGparameter gg:group){
+                      //  System.out.println("gy "+group);
+                         
+                         for(int i=1;i<5;i++){
+                             
+                                for(TgroupHasGparameter gg:group){
+                             
+                                 if(null!=gg.getParameterGroupID().getParametertypeID().getId()){
+                                     
+                      if (gg.getParameterGroupID().getParametertypeID().getId() == i) {
+                        //  System.out.println("group "+gg.getParameterGroupID().getParametertypeID().getId());
+                             group1.add(gg);
+                             group2.remove(gg);
+                      }
+                                 } 
+                             }
+                         
+                         }
+                     
+                          //   System.out.println("gy1 "+group1);
+                         //    System.out.println("gy2 "+group2);
+                            if (((group1 != null) && (!group1.isEmpty())) || ((group2 != null) && (!group2.isEmpty())) ) {  
+                              Element groupTag = doc.createElement("ParameterGroup");
+                          if ((group1 != null) && (!group1.isEmpty())) {
+                            
+                            Pgchild pg = null;
+                            Pgchild pg1 = null;
+                            Pgchild pg2=null;
+                            List<TgroupHasGparameter> terminal_pg = new ArrayList<>();
+                            List<TgroupHasGparameter> Accq_pg = new ArrayList<>();
+                            List<TgroupHasGparameter> Issuer_pg = new ArrayList<>();
+                            
+                            int terminal_count=0;
+                            int Accq_count=0;
+                            int Issuer_count=0;
+                            int Card_count=0;
+                             int select=0;
+                             
+                        // System.out.println("sd "+group1);     
+                    for(TgroupHasGparameter gg:group1){
                         
+                          List<ParameterValues> v=parameterValuesFacade.ParameterValues_find(gg);
                         
-                    
+                      //  System.out.println("group "+gg);
+                      
+                      
+    
                             Element groupName = doc.createElement(gg.getParameterGroupID().getParametertypeID().getXMLheader());
                         
                         groupName.setAttribute("ID", gg.getParameterGroupID().getId().toString());
@@ -1618,8 +1662,108 @@ public String onFlowProcess(FlowEvent event) {
 						else if (groupName.getTagName().equals("Other"))
 							groupName.setAttribute("Level", "1");
                                                 
-                              List<ParameterValues> v=parameterValuesFacade.ParameterValues_find(gg);
-                                                for(ParameterValues val:v){
+                            
+                              
+                               e = doc.createElement("ID");
+                               e.appendChild(doc.createTextNode(gg.getParameterGroupID().getId().toString()));
+                         
+			            groupName.appendChild(e);
+                                    
+                        if (groupName.getTagName().equals("Terminal")){
+                        //    System.out.println("Terminal");
+                             terminal_pg.add(gg);
+                             terminal_count++;
+                        }else if (groupName.getTagName().equals("Acquirer")&& terminal_pg != null)
+                        {
+                         //    System.out.println("Acquirer");
+                        pg=  pgchildFacade.Pchild_find(terminal_pg.get(terminal_count-1),terminal_pg.get(terminal_count-1));                                  
+                        e = doc.createElement("TerminalID");
+			e.appendChild(doc.createTextNode(pg.getTgrouphasGparameterID().getParameterGroupID().getId().toString())); 
+			groupName.appendChild(e);
+                        Accq_pg.add(gg);
+                        Accq_count++;
+                                                 
+                        }
+			else if (groupName.getTagName().equals("Issuer") && pg !=null && Accq_pg !=null )
+                         {              
+                      //  System.out.println("Issuer");
+                         e = doc.createElement("TerminalID");
+			e.appendChild(doc.createTextNode(pg.getTgrouphasGparameterID().getParameterGroupID().getId().toString()));  
+			groupName.appendChild(e);
+                        // System.out.println("acc "+Accq_pg);
+                               
+                        e = doc.createElement("AcquirerID");  
+                          for(int y=0;y<Accq_pg.size();y++){
+                        // System.out.println("A "+Accq_pg.get(y)+" "+gg);
+                             
+                              try {
+                                    pg1=  pgchildFacade.Pchild_find(Accq_pg.get(y),gg);
+                                    if(pg1==null){
+                                    continue;
+                                    }
+                                   select=y;
+                                //           System.out.println("OK1");
+                       
+		                  break;
+                              } catch (Exception em) {
+                              //     System.out.println("Error1");
+                              }
+                            
+                          }
+                    	e.appendChild(doc.createTextNode(pg1.getTgrouphasGparameterID1().getParameterGroupID().getId().toString()));
+			groupName.appendChild(e);
+                        
+                        Issuer_pg.add(gg);
+                        Issuer_count++;
+                                               
+                                                }
+			else if (groupName.getTagName().equals("CardRange")&& pg !=null && pg1 !=null && Accq_pg !=null && Issuer_pg != null)
+                                                {
+                                                    
+                     
+                         //  System.out.println("Issuer "+Issuer_pg);
+                                                
+                                 //     System.out.println("CardRange");               
+                         e = doc.createElement("TerminalID");       
+			e.appendChild(doc.createTextNode(pg.getTgrouphasGparameterID().getParameterGroupID().getId().toString()));
+			groupName.appendChild(e);
+                                                
+                    e = doc.createElement("AcquirerID");
+                     e.appendChild(doc.createTextNode(pg1.getTgrouphasGparameterID1().getParameterGroupID().getId().toString()));
+                    groupName.appendChild(e);
+                        
+                    e = doc.createElement("IssuerID");
+                    for(int y=0;y<Issuer_pg.size();y++){
+                       //  System.out.println("getXML() "+Issuer_pg.get(y)+" "+gg);
+                               
+                        try {
+                      
+                            pg2=  pgchildFacade.Pchild_find(Issuer_pg.get(y),gg);
+                             if(pg2==null){
+                                    continue;
+                                    }
+                         //     System.out.println("OK");
+                               break;
+                        } catch (Exception ec) {
+                         //    System.out.println("error");
+                        }
+                     
+                    }
+                     e.appendChild(doc.createTextNode(pg2.getTgrouphasGparameterID1().getParameterGroupID().getId().toString()));
+                    groupName.appendChild(e); 
+                    
+                   
+                    
+                    Card_count++;    
+                                                }
+                        
+                        
+                      
+                       		
+					
+                              
+                              
+                 for(ParameterValues val:v){
                           e = doc.createElement(val.getParameterID().getFieldName());
                          if(val.getValue() !=null){
 			e.appendChild(doc.createTextNode(String.valueOf(val.getValue())));
@@ -1630,8 +1774,68 @@ public String onFlowProcess(FlowEvent event) {
                         
                         groupTag.appendChild(groupName);
                     }
+                     }
+                                        
+                     if ((group2 != null) && (!group2.isEmpty())) {
+                         
+                         System.out.println("com.guardian.Login.Terminalgroup.getXML()");
+                    
+                       for(TgroupHasGparameter gg:group2){
+                        
+                          List<ParameterValues> v=parameterValuesFacade.ParameterValues_find(gg);
+                        
+                      //  System.out.println("group "+gg);
+                      
+                      
+    
+                            Element groupName = doc.createElement(gg.getParameterGroupID().getParametertypeID().getXMLheader());
+                        
+                        groupName.setAttribute("ID", gg.getParameterGroupID().getId().toString());
+						groupName.setIdAttribute("ID", true);
+
+						if (groupName.getTagName().equals("Terminal"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("Acquirer"))
+							groupName.setAttribute("Level", "2");
+						else if (groupName.getTagName().equals("Issuer"))
+							groupName.setAttribute("Level", "3");
+						else if (groupName.getTagName().equals("CardRange"))
+							groupName.setAttribute("Level", "4");
+						else if (groupName.getTagName().equals("EMVLevel2Key"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("EMVLevel2App"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("EMVCtlApp"))
+							groupName.setAttribute("Level", "1");
+						else if (groupName.getTagName().equals("Other"))
+							groupName.setAttribute("Level", "1");
+                                                
+                            
+                              
+                               e = doc.createElement("ID");
+                               e.appendChild(doc.createTextNode(gg.getParameterGroupID().getId().toString()));
+                         
+			            groupName.appendChild(e);
+                                    
+                                    
+                                       for(ParameterValues val:v){
+                          e = doc.createElement(val.getParameterID().getFieldName());
+                         if(val.getValue() !=null){
+			e.appendChild(doc.createTextNode(String.valueOf(val.getValue())));
+                         }
+			groupName.appendChild(e);
+                                                }
+                                       
+                                       
+                                       groupTag.appendChild(groupName);
+                                    
+                       }
+                       
+                     }
+                       
+                    
                      root.appendChild(groupTag);    
-                                        }
+                            }              
                          
                          
 
