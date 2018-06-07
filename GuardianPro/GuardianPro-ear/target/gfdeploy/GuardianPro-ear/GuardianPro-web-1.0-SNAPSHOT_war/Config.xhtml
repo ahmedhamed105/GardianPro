@@ -373,7 +373,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">Parmeter</h3>
+              <h3 class="box-title">Emails</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -403,10 +403,10 @@
                 <div class="form-group">
                     
                   <p:dataTable id="cars1p" widgetVar="carsTable1"
-                               emptyMessage="No Part found with given criteria" var="parap" value="#{pconfig.configParmeter}" editable="true" style="margin-bottom:20px" rows="5"
+                               emptyMessage="No Part found with given criteria" var="parap" value="#{pconfig.configEmail}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectconfig}" rowKey="#{parap.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectEmail}" rowKey="#{parap.id}"> 
                       
  
         <p:ajax event="rowEdit" listener="#{pconfig.onERowEdit}" update=":formp:messagesp :formp:cars1p" />
@@ -416,21 +416,16 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="part name" sortBy="#{parap.parameter}"  >
+    <p:column headerText="part name" sortBy="#{parap.email}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{parap.parameter}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{parap.parameter}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{parap.email}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputp" value="#{parap.email}" style="width:100%" validatorMessage="please enter email corrct">
+                   <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                   </p:inputText></f:facet>
            </p:cellEditor>
        </p:column>
-    
-    <p:column headerText="part Description" sortBy="#{parap.PValue}"  >
-           <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{parap.PValue}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput1" value="#{parap.PValue}" style="width:100%"/></f:facet>
-           </p:cellEditor>
-       </p:column>
-     
-
+   
        
     <p:column style="width:32px">
            <p:rowEditor />
@@ -485,16 +480,17 @@
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="appName">part Name</label>
-                  <p:inputText class="form-control" id="appName"  value="#{parts.part.PName}" required="true" requiredMessage="please Enter part name"/>						
+                  <label for="appName">EMAIL</label>
+                  <p:inputText class="form-control" id="appName"  value="#{pconfig.selectEmail.email}" required="true"   validatorMessage="please enter email corrct" requiredMessage="please Enter Email">
+                  <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                  </p:inputText>						
                   <p:message for="appName" display="text"/>
-                 <label for="pdesc">part Description</label>
-                 <p:inputText class="form-control" id="pdesc"  value="#{parts.part.pdesc}" />						
-                  <p:message for="pdesc" display="text"/>
+           
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{parts.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" update=":form1:messages1 :formp:cars1p" action="#{pconfig.ADD(actionEvent)}"/>  
    
                   
                   

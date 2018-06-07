@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -107,6 +108,7 @@ public class Pconfig {
 
         }else{
          ConfigParmeter  = configParmeterFacade.findAll();
+         ConfigEmail=configEmailFacade.findAll();
         
         }
         
@@ -151,7 +153,7 @@ public class Pconfig {
     
     
     
-     public String ADD(){
+      public String ADD(ActionEvent actionEvent){
           if(configEmailFacade.email_find(selectEmail.getEmail())){
              Messages.addInfoMessage("Duplicated",2);
         }else{
@@ -159,6 +161,7 @@ public class Pconfig {
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             selectEmail.setCreateDate(date);
             selectEmail.setUpdateDate(date);
+            selectEmail.setUserID(Login.login);
           configEmailFacade.create(selectEmail);
         }
          
