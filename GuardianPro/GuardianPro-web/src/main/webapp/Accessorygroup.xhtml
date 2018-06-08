@@ -9,6 +9,7 @@
         <title>accessory Group</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{accessgroup.init()}"/>
+            <f:event type="preRenderView" listener="#{menu.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -209,9 +210,9 @@
       </div>
     </nav>
   </header>
-<ui:insert name="content" >
+
     <ui:include src="Slider.xhtml" />
-	   	</ui:insert>
+
 
    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

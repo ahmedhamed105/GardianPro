@@ -1,14 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Slide</title>
-    </h:head>
-    <h:body>
+
      <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets" >
-    <ui:define name="content">
+                     xmlns:ui="http://java.sun.com/jsf/facelets" 
+                     xmlns:f="http://xmlns.jcp.org/jsf/core"
+                     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                     xmlns:h="http://xmlns.jcp.org/jsf/html">
+   
         <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
 
@@ -41,30 +39,40 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Choose .. </li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+       
+        
+        
+        <ui:repeat value="#{menu.menus}" var="car">
+            <h:panelGroup rendered="#{empty menu.sub_menu(car)}">
+           
+  <li class="active"><a href="#"><i class="fa fa-link"></i> <span>#{car.name}</span></a></li>>
+            </h:panelGroup>
+              <h:panelGroup rendered="#{not empty menu.sub_menu(car)}">
+   <li class="treeview">
+             <a href="#"><i class="fa fa-link"></i> <span>#{car.name}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+              <ui:repeat value="#{menu.sub_menu(car)}" var="car1">
+                  <li><a href="#">#{car1.name}</a></li>
+              </ui:repeat>
           </ul>
         </li>
+</h:panelGroup>
+            
+      
+        </ui:repeat>
+        
+       
       </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>
-    </ui:define>
+ 
 </ui:composition>
 
 
-    </h:body>
-</html>
 
