@@ -126,6 +126,19 @@ public class User implements Serializable {
     @JoinColumn(name = "User_Password_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private UserPassword userPasswordID;
+    
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<ActionLog> actionLogCollection;
+	
+	@XmlTransient
+    public Collection<ActionLog> getActionLogCollection() {
+        return actionLogCollection;
+    }
+
+    public void setActionLogCollection(Collection<ActionLog> actionLogCollection) {
+        this.actionLogCollection = actionLogCollection;
+    }
 
     public User() {
     }

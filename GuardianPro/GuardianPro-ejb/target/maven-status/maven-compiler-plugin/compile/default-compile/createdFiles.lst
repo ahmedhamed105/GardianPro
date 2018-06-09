@@ -22,6 +22,7 @@ Facades\ApplicationHasGroupFacadeLocal.class
 Facades\ProfileDataFacade.class
 Facades\Distinct1FacadeLocal.class
 Facades\PartsFacadeLocal.class
+Entities\ActionLog.class
 Entities\City_.class
 Facades\ReligionFacadeLocal.class
 Facades\MaritalStatusFacade.class
@@ -180,12 +181,14 @@ Facades\ApplicationFacade.class
 Facades\MilitaryStatusFacade.class
 Entities\NationalIdHasMaritalStatusHasAddressPK.class
 Facades\WebsiteDataHasUserFacadeLocal.class
+Facades\ActionLogFacade.class
 Entities\DownloadMethod.class
 Entities\LoginType.class
 Facades\TerminalStatusFacade.class
 Entities\TgroupHasSoftware.class
 com\tutorialspoint\test\Book.class
 Entities\Status_.class
+Entities\ActionLog_.class
 Facades\StreetFacade.class
 Entities\ParameterValues.class
 Entities\TgroupHasAccesory_.class
@@ -211,6 +214,7 @@ com\tutorialspoint\interceptor\LibraryBeanRemote.class
 Entities\PasswordHistory.class
 Facades\RoleHasGroupsFacade.class
 Entities\ApplicationGroup.class
+Facades\ActionLogFacadeLocal.class
 Facades\GroupsHasUserFacadeLocal.class
 Facades\ComponentFacadeLocal.class
 com\tutorialspoint\interceptor\BusinessInterceptor.class

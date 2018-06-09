@@ -5,7 +5,9 @@
  */
 package Facades;
 
+import Entities.Component;
 import Entities.Groups;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,11 +32,11 @@ public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacade
         super(Groups.class);
     }
     
-    
+    @Override
     public boolean input_find(String description) {
   
        Query para_find = em.createNamedQuery("Groups.findByDescription");
-        para_find.setParameter("description", description);
+       para_find.setParameter("description", description);
         try {
          Entities.Groups  groups = (Entities.Groups) para_find.getSingleResult(); 
          //   System.out.println("ahmed hamed  "+inputtype.getType());
@@ -48,4 +50,5 @@ public class GroupsFacade extends AbstractFacade<Groups> implements GroupsFacade
             return false;
         }
     }
+
 }

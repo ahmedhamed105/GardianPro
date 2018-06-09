@@ -6,9 +6,11 @@
 package Facades;
 
 import Entities.Component;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,28 @@ public class ComponentFacade extends AbstractFacade<Component> implements Compon
     public ComponentFacade() {
         super(Component.class);
     }
-    
+
+    @Override
+    public List<Component> getChild(Integer PID) {
+
+        Query component_find = em.createNamedQuery("Component.findByParentID");
+        if (PID == -1) {
+            component_find.setParameter("parentID", null);
+        } else {
+            component_find.setParameter("parentID", PID);
+        }
+        try {
+            List<Component> components = (List<Component>) component_find.getResultList();
+
+            if (components == null) {
+                return null;
+            } else {
+                return components;
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

@@ -311,7 +311,7 @@
         
              
               <div class="box-body">
-                   <h:form id="form">
+                  <h:form id="form" rendered="#{login.isViewed("paramter_edit_view")}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
@@ -395,7 +395,9 @@
     
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"
+                           disabled="#{login.isEdit("paramter_submit_editable")}"     rendered="#{login.isViewed("paramter_submit_viewable")}"
+                           />  
     </f:facet>
     
    </p:dataTable>
@@ -442,7 +444,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form1">
+                  <h:form id="form1" rendered="#{login.isViewed("paramter_select_form_view")}">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                     
@@ -486,7 +488,9 @@
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parameter.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parameter.ADD(actionEvent)}"
+                                  disabled="#{login.isEdit("paramter_add_editable")}"     rendered="#{login.isViewed("paramter_add_viewable")}" 
+                                   />  
    
                   
                   

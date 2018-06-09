@@ -309,7 +309,7 @@
             </div>
               
             <!-- /.box-header -->
-            <!-- form start -->
+             <!--form start--> 
         
              
               <div class="box-body">
@@ -326,7 +326,10 @@
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"
+                                   rendered="#{login.isViewed('terminalgroup_edit_submit_view')}"
+                                   disabled="#{login.isViewed('terminalgroup_edit_submit_edit')}"
+                                   />  
    
                   
                   
@@ -629,11 +632,17 @@
     
     
          <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"/>  
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"
+                              rendered="#{login.isViewed('termenalgroup_remove_view')}"
+                              disabled="#{login.isEdit('termenalgroup_remove_edit')}"
+                              />  
     </f:facet>
     
              <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"/>  
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"
+                              rendered="#{login.isViewed('termenalgroup_add_view')}"
+                              disabled="#{login.isEdit('termenalgroup_add_edit')}"
+                              />  
     </f:facet>
 
    </p:dataTable>
@@ -693,11 +702,16 @@
     
     
          <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"/>  
+             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"
+                              rendered="#{login.isViewed('termenalgroup_termenal_remove_view')}"
+                              disabled="#{login.isEdit('termenalgroup_termenal_remove_edit')}"/>  
     </f:facet>
     
              <f:facet name="footer">
-             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"/>  
+             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"
+                              rendered="#{login.isViewed('termenalgroup_termenal_add_view')}"
+                              disabled="#{login.isEdit('termenalgroup_termenal_add_edit')}"
+                              />  
     </f:facet>
 
    </p:dataTable>

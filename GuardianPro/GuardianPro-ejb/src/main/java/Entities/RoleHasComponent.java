@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RoleHasComponent.findAll", query = "SELECT r FROM RoleHasComponent r")
     , @NamedQuery(name = "RoleHasComponent.findById", query = "SELECT r FROM RoleHasComponent r WHERE r.id = :id")
     , @NamedQuery(name = "RoleHasComponent.findByRole", query = "SELECT r FROM RoleHasComponent r WHERE r.roleprevilegeID = :id")
+    , @NamedQuery(name = "RoleHasComponent.findByRoleAndComponent", query = "SELECT r FROM RoleHasComponent r WHERE r.roleprevilegeID = :id AND r.componentcomponentID = :component")
     , @NamedQuery(name = "RoleHasComponent.findByView", query = "SELECT r FROM RoleHasComponent r WHERE r.view = :view")
     , @NamedQuery(name = "RoleHasComponent.findByEdit", query = "SELECT r FROM RoleHasComponent r WHERE r.edit = :edit")
     , @NamedQuery(name = "RoleHasComponent.findByCreateDate", query = "SELECT r FROM RoleHasComponent r WHERE r.createDate = :createDate")

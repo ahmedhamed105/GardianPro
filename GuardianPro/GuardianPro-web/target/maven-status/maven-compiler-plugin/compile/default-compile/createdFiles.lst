@@ -2,6 +2,7 @@ com\guardian\Login\Login.class
 com\guardian\Login\Pterminal_group.class
 com\guardian\converter\Cterminal.class
 com\guardian\converter\Cterminalstatus.class
+com\guardian\Login\SobhyBean.class
 com\guardian\converter\CappGroup.class
 com\guardian\Login\Messages.class
 com\guardian\converter\Cparts.class
@@ -11,6 +12,7 @@ com\guardian\Login\accessory.class
 com\guardian\Login\TerminalTemp.class
 com\guardian\Login\accessgroup.class
 com\guardian\converter\CterminalTemplate.class
+com\guardian\util\ActionlogingUtil.class
 com\guardian\Login\Partsbean.class
 com\guardian\Login\Terminalbean.class
 com\guardian\converter\Caccessorygroup.class
@@ -19,10 +21,12 @@ com\guardian\Login\Terminalgroup.class
 com\guardian\Login\ParameterGroups.class
 com\guardian\Login\Groups1.class
 com\guardian\converter\Cgroupparameter.class
+com\guardian\Login\RolesBean.class
 com\guardian\Login\parmetertype.class
 com\guardian\converter\Capp.class
 com\guardian\Login\Inputtype.class
 com\guardian\converter\CParameter.class
+com\guardian\Login\ComponentsOfRole.class
 com\guardian\Login\appgroup.class
 com\guardian\Login\application.class
 com\guardian\Login\parameter.class

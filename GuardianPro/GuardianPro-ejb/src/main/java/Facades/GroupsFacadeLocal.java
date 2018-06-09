@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Component;
 import Entities.Groups;
 import java.util.List;
 import javax.ejb.Local;
@@ -31,5 +32,6 @@ public interface GroupsFacadeLocal {
     int count();
 
    boolean input_find(String description);
+   
     
 }

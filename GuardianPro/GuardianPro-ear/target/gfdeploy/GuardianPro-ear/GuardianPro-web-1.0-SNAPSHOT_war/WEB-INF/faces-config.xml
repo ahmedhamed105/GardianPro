@@ -23,7 +23,21 @@
         <managed-bean-name>parmetertype</managed-bean-name>
         <managed-bean-class>com.guardian.Login.parmetertype</managed-bean-class>
     
-        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>rolesBean</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.RolesBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>roleBackBean</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.RoleBackBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    roleBackBean
     <managed-bean>
         <managed-bean-name>messages</managed-bean-name>
         <managed-bean-class>com.guardian.Login.Messages</managed-bean-class>

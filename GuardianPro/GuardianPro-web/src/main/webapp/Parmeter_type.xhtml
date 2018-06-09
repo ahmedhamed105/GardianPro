@@ -311,13 +311,13 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="form" rendered="#{login.isEdit("paramter_type_remove_edit")}">
+                                    <h:form id="form" rendered="#{login.isEdit('paramter_type_remove_edit')}">
                                         <p:messages id="messages" showDetail="true" closable="true" />
                                         <div class="form-group">
 
                                             <p:dataTable id="cars1" widgetVar="carsTable"
                                                          emptyMessage="No Parmeter found with given criteria" var="para" value="#{parmetertype.parmeter_types}" editable="true" style="margin-bottom:20px" rows="5"
-                                                         paginator="true" rendered="#{login.isEdit("paramter_type_edit_edit")}"
+                                                         paginator="true" rendered="#{login.isEdit('paramter_type_edit_edit')}"
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                          rowsPerPageTemplate="5,10,15" selection="#{parmetertype.selectparmeter}" rowKey="#{para.id}" > 
 
@@ -353,7 +353,7 @@
 
                                                 <f:facet name="footer">
                                                     <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parmetertype.remove(actionEvent)}"
-                                                                     disabled = "#{login.isViewed("paramter_type_remove_view")}"
+                                                                     disabled = "#{login.isViewed('paramter_type_remove_view')}"
                                                                      
                                                 />  
                                                 </f:facet>
@@ -402,7 +402,7 @@
 
 
                                 <div class="box-body" >
-                                    <h:form id="form1" rendered="#{login.isEdit("paramter_type_add_edit")}">
+                                    <h:form id="form1" rendered="#{login.isEdit('paramter_type_add_edit')}">
                                         <p:messages id="messages1" showDetail="true" closable="true"/>
                                         <div class="form-group">
 
@@ -416,7 +416,7 @@
                                             <br/>
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parmetertype.ADD(actionEvent)}"
-                                                             disabled = "#{login.isViewed("paramter_type_add_view")}"
+                                                             disabled = "#{login.isViewed('paramter_type_add_view')}"
                                                              />  
 
 

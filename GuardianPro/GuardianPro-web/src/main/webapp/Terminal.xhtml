@@ -316,7 +316,7 @@
         
              
               <div class="box-body">
-                   <h:form id="form">
+                  <h:form id="form" rendered="#{login.isViewed("termenal_edit_view")}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
@@ -475,7 +475,10 @@
     
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"
+                           rendered="#{login.isViewed("termenal_edit_submit_view")}"
+                           disabled="#{login.isEdit("termenal_edit_submit_edit")}"
+                           />  
     </f:facet>
     
    </p:dataTable>
@@ -530,7 +533,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form2">
+                  <h:form id="form2" rendered="#{login.isViewed("termenal_add_view")}">
                   <p:messages id="messages2" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
@@ -622,7 +625,10 @@
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"
+                                   rendered="#{login.isViewed("termenal_edit_submit_view")}"
+                                   disabled="#{login.isEdit("termenal_edit_submit_edit")}"
+                                   />  
    
                   
                   

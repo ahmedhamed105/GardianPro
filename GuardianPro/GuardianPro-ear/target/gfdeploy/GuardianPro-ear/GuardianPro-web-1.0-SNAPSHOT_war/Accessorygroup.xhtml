@@ -311,11 +311,11 @@
         
              
               <div class="box-body">
-                   <h:form id="form">
+                   <h:form id="form" rendered="#{login.isViewed("accessorygroup_edit_edit")}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:treeTable id="cars1" value="#{accessgroup.root}" var="group" selectionMode="single" selection="#{accessgroup.selectdelte}">
+                    <p:treeTable id="cars1" value="#{accessgroup.root}" var="group" selectionMode="single" selection="#{accessgroup.selectdelte}" >
         <f:facet name="header">
             accessory Group
         </f:facet>
@@ -333,8 +333,12 @@
       
     </p:treeTable>
                     
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.removeGroup(actionEvent)}"/>  
+                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.remove(actionEvent)}" 
+                                 disabled = "#{login.isEdit("accessorygroup_remove_view")}"
+                                rendered="#{login.isViewed("accessorygroup_remove_edit")}"/>  
+                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.removeGroup(actionEvent)}"
+                                  disabled = "#{login.isEdit("accessorygroup_submit_view")}"
+                                  rendered="#{login.isViewed("accessorygroup_submot_edit")}" />  
              
                   
                 </div>
@@ -377,8 +381,8 @@
             <!-- form start -->
         
              
-              <div class="box-body">
-                  <h:form id="form1">
+              <div class="box-body" >
+                  <h:form id="form1" rendered="#{login.isViewed("accessorygroup_add_submot_edit")}" >
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
@@ -388,7 +392,10 @@
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.ADD(actionEvent)}" 
+                                   disabled="#{login.isEdit("accessorygroup_add_submit_view")}"
+
+                                   />  
    
                   
                   
@@ -435,12 +442,14 @@
         
              
               <div class="box-body">
-                  <h:form id="form3">
+                  <h:form id="form3" rendered="#{login.isViewed("accessorygroup__select_one_menu_submot_edit")}">
                   <p:messages id="messages3" showDetail="true" closable="true"/>
                 <div class="form-group">
                     
                       <label for="appGroup">Group Choose</label>   
-                      <h:selectOneMenu converter="#{caccessorygroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
+                      <h:selectOneMenu converter="#{caccessorygroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group"
+                                       disabled="#{login.isEdit("accessorygroup__select_aplicatin_Group")}"
+                                       >
                  <f:selectItem itemLabel="Select One" itemValue="" />
                  <f:selectItems value="#{accessgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
                  </h:selectOneMenu>
@@ -448,7 +457,10 @@
                             
                              <label for="advanced">accessory Choose</label>  
                              <p:selectManyMenu  id="advanced" value="#{accessgroup.selapp}" converter="#{caccessory}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application">
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application"
+                                       disabled="#{login.isEdit("accessorygroup__select_aplicatin")}"
+                                       
+                                       >
                                  <f:selectItems value="#{accessgroup.app}" var="f" itemLabel="#{f.accName}" itemValue="#{f}" />
  
             <p:column>
@@ -459,7 +471,9 @@
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{accessgroup.joingroup(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{accessgroup.joingroup(actionEvent)}"
+                                   disabled="#{login.isEdit("accessorygroup__select_aplicatin_Group_submit")}"
+                                   />  
    
                   
                   

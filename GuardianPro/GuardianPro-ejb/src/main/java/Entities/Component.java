@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -75,6 +76,12 @@ public class Component implements Serializable {
     private Date updateDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentcomponentID")
     private Collection<RoleHasComponent> roleHasComponentCollection;
+    
+    @Transient
+    private boolean view;
+    
+    @Transient
+    private boolean edit;
 
     public Component() {
     }
@@ -146,6 +153,24 @@ public class Component implements Serializable {
         this.updateDate = updateDate;
     }
 
+    public boolean isView() {
+        return view;
+    }
+
+    public void setView(boolean view) {
+        this.view = view;
+    }
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+
+    
+    
     @XmlTransient
     public Collection<RoleHasComponent> getRoleHasComponentCollection() {
         return roleHasComponentCollection;

@@ -284,7 +284,7 @@ public class Login {
         allComponent = componentFacade.findAll();
         for (Component component : allComponent) {
             componentView.put(component, false);
-            componentEdit.put(component, false);
+            componentEdit.put(component, true);
 
             for (RoleHasComponent comPriv : roleHasComponents) {
                 if (component.equals(comPriv.getComponentcomponentID())) {
@@ -293,7 +293,7 @@ public class Login {
                     }
 
                     if (comPriv.getEdit().equalsIgnoreCase("true")) {
-                        componentEdit.replace(component, true);
+                        componentEdit.replace(component, false);
                     }
                 }
             }

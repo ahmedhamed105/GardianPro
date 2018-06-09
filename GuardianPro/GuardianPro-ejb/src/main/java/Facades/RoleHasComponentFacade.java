@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Component;
 import Entities.Role;
 import Entities.RoleHasComponent;
 import java.util.List;
@@ -43,6 +44,25 @@ public class RoleHasComponentFacade extends AbstractFacade<RoleHasComponent> imp
                 return null;
             } else {
                 return components;
+            }
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    @Override
+     public RoleHasComponent find_component_by_role_component(Role role, Component component) {
+        Query component_find = em.createNamedQuery("RoleHasComponent.findByRoleAndComponent");
+        component_find.setParameter("id", role);
+        component_find.setParameter("component", component);
+        try {
+            RoleHasComponent roleHascomponent = (RoleHasComponent)component_find.getSingleResult();
+            //  System.out.println("ahmed hamed  "+parah.getGroupname());
+            if (roleHascomponent == null) {
+                return null;
+            } else {
+                return roleHascomponent;
             }
 
         } catch (Exception e) {

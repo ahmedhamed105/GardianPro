@@ -30,4 +30,5 @@ public interface ComponentFacadeLocal {
 
     int count();
     
+    List<Component> getChild(Integer PID);
 }

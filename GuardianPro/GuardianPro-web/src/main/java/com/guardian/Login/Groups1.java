@@ -7,8 +7,12 @@ package com.guardian.Login;
 
 import Entities.Component;
 import Entities.Groups;
+import Entities.Role;
 import Entities.RoleHasComponent;
+import Entities.RoleHasGroups;
 import Facades.GroupsFacadeLocal;
+import Facades.RoleFacadeLocal;
+import Facades.RoleHasGroupsFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import javax.inject.Named;
@@ -36,14 +40,19 @@ import org.primefaces.event.RowEditEvent;
 @SessionScoped
 public class Groups1 implements Serializable {
 
-    /**
-     * Creates a new instance of Groups
-     */
+    @EJB
+    private RoleFacadeLocal roleFacade;
+
+    @EJB
+    private RoleHasGroupsFacadeLocal roleHasGroupsFacade;
+
     @EJB
     private UserFacadeLocal userFacade;
 
     @EJB
     private GroupsFacadeLocal groupsFacadeLocal;
+    
+    
 
     List<Groups> groups = new ArrayList<Groups>();
     java.sql.Date date;
@@ -54,6 +63,8 @@ public class Groups1 implements Serializable {
     List<RoleHasComponent> enabledComponents = new ArrayList<RoleHasComponent>();
     Map<RoleHasComponent, String> componentView = new HashMap<RoleHasComponent,String>();
     Map<RoleHasComponent, String> componentEdit = new HashMap<RoleHasComponent,String>();
+    List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
+    List<Role> roles= new ArrayList<Role>();
 
     public Groups1() {
     }
@@ -143,6 +154,15 @@ public class Groups1 implements Serializable {
         this.selectGroup = selectGroup;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    
     public void remove(ActionEvent actionEvent) {
         try {
             groupsFacadeLocal.remove(selectGroup);
@@ -156,6 +176,13 @@ public class Groups1 implements Serializable {
         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         group = ((Groups) event.getObject());
         group.setUpdateDate(date);
+        ///////////////////////////get all roles of group
+        roleHasGroupses= roleHasGroupsFacade.find_role_by_group(group);
+        for (RoleHasGroups hasGroups : roleHasGroupses) {
+            roles.add(roleFacade.find(hasGroups.getRoleprevilegeID()));
+        }
+        
+        //////////////////////////
         groupsFacadeLocal.edit(group);
 
         Messages.addInfoMessage("Edited " + ((Groups) event.getObject()).getDescription(), 1);
@@ -179,4 +206,7 @@ public class Groups1 implements Serializable {
 
         return "Login";
     }
+    
+    
+    
 }

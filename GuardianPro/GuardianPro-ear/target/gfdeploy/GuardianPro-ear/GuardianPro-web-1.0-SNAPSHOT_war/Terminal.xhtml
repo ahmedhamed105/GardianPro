@@ -27,12 +27,9 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css"/>
-<<<<<<< HEAD
-=======
   
     <!-- Ionicons -->
     <link rel="stylesheet" href="bower_components/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
->>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -319,7 +316,7 @@
         
              
               <div class="box-body">
-                   <h:form id="form">
+                  <h:form id="form" rendered="#{login.isViewed("termenal_edit_view")}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
@@ -441,8 +438,6 @@
            </p:cellEditor>
        </p:column> 
     
-<<<<<<< HEAD
-=======
     <p:column headerText="secedule start date" sortBy="#{para.scheduleStart}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{para.scheduleStart}" /></f:facet>
@@ -469,7 +464,6 @@
                 					
          
     
->>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
     
        
 
@@ -481,7 +475,10 @@
     
     
       <f:facet name="footer">
-          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"/>  
+          <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"
+                           rendered="#{login.isViewed("termenal_edit_submit_view")}"
+                           disabled="#{login.isEdit("termenal_edit_submit_edit")}"
+                           />  
     </f:facet>
     
    </p:dataTable>
@@ -536,7 +533,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form2">
+                  <h:form id="form2" rendered="#{login.isViewed("termenal_add_view")}">
                   <p:messages id="messages2" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
@@ -581,9 +578,6 @@
                     <label for="officeTelNo">Terminal Office Tel No.</label>
                     <p:inputText class="form-control" id="officeTelNo"  value="#{terminalbean.term.officeTelNo}" />						
                     <p:message for="officeTelNo" display="text"/>
-<<<<<<< HEAD
-                    
-=======
    
                    
                     <p:outputLabel value="schedule start:" />
@@ -607,7 +601,6 @@
                         </p:inputText>	
                 </div>
                   
->>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
                     
                     
                          <label for="selecttemplate">select terminal template</label>   
@@ -632,7 +625,10 @@
   
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"
+                                   rendered="#{login.isViewed("termenal_edit_submit_view")}"
+                                   disabled="#{login.isEdit("termenal_edit_submit_edit")}"
+                                   />  
    
                   
                   
@@ -837,8 +833,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<<<<<<< HEAD
-=======
 
 <!-- InputMask -->
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
@@ -921,7 +915,6 @@
   });
 </script>
 
->>>>>>> 55a8f471fe508e3de6b40a6ea6aad986d3cefaea
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

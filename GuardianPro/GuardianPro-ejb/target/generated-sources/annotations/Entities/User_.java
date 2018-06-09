@@ -1,6 +1,7 @@
 package Entities;
 
 import Entities.AccessoryGroup;
+import Entities.ActionLog;
 import Entities.ApplicationGroup;
 import Entities.BirthData;
 import Entities.ConfigParmeter;
@@ -26,10 +27,11 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-05-28T12:26:29")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-07T16:29:51")
 @StaticMetamodel(User.class)
 public class User_ { 
 
+    public static volatile CollectionAttribute<User, ActionLog> actionLogCollection;
     public static volatile SingularAttribute<User, Date> updateDate;
     public static volatile CollectionAttribute<User, TerminalTemplate> terminalTemplateCollection;
     public static volatile CollectionAttribute<User, PhoneData> phoneDataCollection;
