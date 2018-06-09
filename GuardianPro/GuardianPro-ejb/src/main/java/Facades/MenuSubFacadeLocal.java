@@ -33,4 +33,6 @@ public interface MenuSubFacadeLocal {
     
     List<MenuSub> sub_menulist(Menu b);
     
+    String get_name(String b);
+    
 }

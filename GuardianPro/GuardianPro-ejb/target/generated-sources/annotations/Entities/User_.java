@@ -1,6 +1,7 @@
 package Entities;
 
 import Entities.AccessoryGroup;
+import Entities.ActionBar;
 import Entities.ActionLog;
 import Entities.ApplicationGroup;
 import Entities.BirthData;
@@ -31,7 +32,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-09T12:42:59")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-09T16:00:07")
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -43,6 +44,7 @@ public class User_ {
     public static volatile CollectionAttribute<User, FtpLog> ftpLogCollection;
     public static volatile CollectionAttribute<User, TerminalGroup> terminalGroupCollection;
     public static volatile CollectionAttribute<User, AccessoryGroup> accessoryGroupCollection;
+    public static volatile CollectionAttribute<User, ActionBar> actionBarCollection;
     public static volatile CollectionAttribute<User, NationalId> nationalIdCollection;
     public static volatile CollectionAttribute<User, PhoneDataCopy1> phoneDataCopy1Collection;
     public static volatile SingularAttribute<User, Integer> id;

@@ -96,6 +96,22 @@ public class menu {
     
     
     
+      public String tittle(String a){
+          FacesContext ctx = FacesContext.getCurrentInstance();
+String path = ctx.getExternalContext().getRequestContextPath();
+          String result=path;
+          
+          if ( menuFacade.get_name(a)==null) {
+             result= menuSubFacade.get_name(a);
+          }else{
+          result= menuFacade.get_name(a);
+          }
+
+     return result;
+      }
+    
+    
+    
     
     
 }

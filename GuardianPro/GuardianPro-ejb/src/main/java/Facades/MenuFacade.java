@@ -32,7 +32,24 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
         super(Menu.class);
     }
     
-    
+         @Override
+    public String get_name(String b) {
+ 
+         Query para_find = em.createNamedQuery("Menu.findByLink");
+        para_find.setParameter("link", b);
+        try {
+         String  parah =  ((Menu)para_find.getSingleResult()).getName(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+    }
       
     
 }

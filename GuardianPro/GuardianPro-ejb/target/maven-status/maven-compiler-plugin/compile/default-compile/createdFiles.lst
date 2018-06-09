@@ -33,6 +33,7 @@ Facades\MaritalStatusFacade.class
 Facades\NationalIdHasMaritalStatusFacade.class
 Facades\NationalIdHasMaritalStatusHasAddressFacade.class
 Entities\LoginWay.class
+Facades\ActionBarFacade.class
 Entities\RoleHasComponent.class
 Facades\RoleHasComponentFacade.class
 Entities\Religion.class
@@ -71,6 +72,7 @@ Entities\NationalIdHasMaritalStatus1PK_.class
 Entities\MaritalStatus_.class
 Entities\AccessoryHasGroup_.class
 Email\Ftputils.class
+Facades\ActionBarFacadeLocal.class
 Facades\UserFacade.class
 Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
@@ -146,6 +148,7 @@ Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
 Facades\FtpLogFacadeLocal.class
 Facades\TgroupHasSoftwareFacade.class
+Entities\ActionBar_.class
 Entities\TgroupHasTerminal.class
 Entities\ParameterGroup_.class
 Facades\AccessoryFacadeLocal.class
@@ -231,6 +234,7 @@ Entities\ParameterGroup.class
 Entities\SocialDataPK.class
 Entities\SocialData_.class
 Facades\AccessoryHasGroupFacadeLocal.class
+Entities\ActionBar.class
 Facades\AddressFacadeLocal.class
 Facades\DownloadMethodFacadeLocal.class
 Entities\User.class

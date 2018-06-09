@@ -64,6 +64,8 @@ public class accessgroup {
       java.sql.Date date ;
       
       private TreeNode selectdelte;
+      
+      
      
 
     /**

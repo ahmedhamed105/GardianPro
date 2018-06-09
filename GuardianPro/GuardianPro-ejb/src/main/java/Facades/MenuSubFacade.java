@@ -51,4 +51,24 @@ public class MenuSubFacade extends AbstractFacade<MenuSub> implements MenuSubFac
         }
     }
     
+    
+         @Override
+    public String get_name(String b) {
+ 
+         Query para_find = em.createNamedQuery("MenuSub.findByLink");
+         para_find.setParameter("link", b);
+        try {
+         String  parah =  ((MenuSub)para_find.getSingleResult()).getName(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
 }

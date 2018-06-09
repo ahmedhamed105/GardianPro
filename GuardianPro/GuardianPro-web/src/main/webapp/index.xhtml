@@ -331,6 +331,125 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      
+      
+      <div class="row">
+              <ui:repeat value="#{action.actionBar}" var="car1">
+                       <h:panelGroup rendered="#{car1.name eq 'Terminal Group'}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+     
+          <div class="small-box bg-aqua-gradient">
+            <div class="inner">
+                <h3>#{main.get_size(car1.name)}</h3>
+
+              <p>#{car1.name}</p>
+            </div>
+              <div class="icon">
+              <i class="fa fa-group"></i>
+            </div>
+          
+            
+            <a href="#{car1.link}" class="small-box-footer">
+              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+           
+        </div>
+                              </h:panelGroup>
+                  <h:panelGroup rendered="#{car1.name eq 'Parmeter Group'}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+     
+          <div class="small-box bg-green">
+            <div class="inner">
+                <h3>#{main.get_size(car1.name)}</h3>
+
+              <p>#{car1.name}</p>
+            </div>
+              <div class="icon">
+              <i class="fa fa-university"></i>
+            </div>
+          
+            
+            <a href="#{car1.link}" class="small-box-footer">
+              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+           
+        </div>
+                              </h:panelGroup>
+                   <h:panelGroup rendered="#{car1.name eq 'Parameter'}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+     
+          <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>#{main.get_size(car1.name)}</h3>
+
+              <p>#{car1.name}</p>
+            </div>
+              <div class="icon">
+              <i class="fa fa-usb"></i>
+            </div>
+          
+            
+            <a href="#{car1.link}" class="small-box-footer">
+              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+           
+        </div>
+                              </h:panelGroup>
+                  <h:panelGroup rendered="#{car1.name eq 'Terminal'}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+     
+          <div class="small-box bg-navy">
+            <div class="inner">
+                <h3>#{main.get_size(car1.name)}</h3>
+
+              <p>#{car1.name}</p>
+            </div>
+              <div class="icon">
+              <i class="fa fa-magic"></i>
+            </div>
+          
+            
+            <a href="#{car1.link}" class="small-box-footer">
+              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+           
+        </div>
+                              </h:panelGroup>
+                    <h:panelGroup rendered="#{car1.name ne 'Parameter' and  car1.name ne 'Parmeter Group' and  car1.name ne 'Terminal Group' and car1.name ne 'Terminal'}">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+     
+          <div class="small-box bg-gray">
+            <div class="inner">
+                <h3>#{main.get_size(car1.name)}</h3>
+
+              <p>#{car1.name}</p>
+            </div>
+              <div class="icon">
+              <i class="fa fa-pause"></i>
+            </div>
+          
+            
+            <a href="#{car1.link}" class="small-box-footer">
+              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+           
+        </div>
+                              </h:panelGroup>
+              </ui:repeat>
+          
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
         
         
         <div class="row">

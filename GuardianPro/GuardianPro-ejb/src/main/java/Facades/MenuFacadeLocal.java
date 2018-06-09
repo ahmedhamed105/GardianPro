@@ -30,4 +30,6 @@ public interface MenuFacadeLocal {
 
     int count();
     
+    String get_name(String b);
+    
 }

@@ -187,5 +187,30 @@ public class Main {
     }
     
     
+     public int get_size(String mon){
+         int cout=0;
+         
+        switch (mon) {
+            case "Terminal Group":
+                cout=TerminalGroup.size();
+                break;
+            case "Parmeter Group":
+                cout=parmetersGroup.size();
+                break;
+            case "Parameter":
+                cout=parmeters.size();
+                break;
+            case "Terminal":
+                cout=Terminals.size();
+                break;
+            default:
+                cout=0;
+                break;
+        }
+         
+         return cout;
+         
+     }
+    
     
 }
