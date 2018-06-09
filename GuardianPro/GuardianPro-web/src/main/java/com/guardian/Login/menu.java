@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -96,13 +97,26 @@ public class menu {
     
     
     
-      public String tittle(String a){
-          FacesContext ctx = FacesContext.getCurrentInstance();
-String path = ctx.getExternalContext().getRequestContextPath();
-          String result=path;
+      public String tittle(){
+        //  FacesContext ctx = FacesContext.getCurrentInstance();
+String path = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI();
+
+          String result="main";
+          String a=path.split("/")[path.split("/").length-1];
+          System.out.println("com.guardian.Login.menu.tittle() "+a);
           
           if ( menuFacade.get_name(a)==null) {
-             result= menuSubFacade.get_name(a);
+              try {
+                  
+                    if ( menuSubFacade.get_name(a)==null) {
+                    result="main";
+                    }else{
+                    result=menuSubFacade.get_name(a);
+                    }
+              } catch (Exception e) {
+                  result="main";
+              }
+           
           }else{
           result= menuFacade.get_name(a);
           }
