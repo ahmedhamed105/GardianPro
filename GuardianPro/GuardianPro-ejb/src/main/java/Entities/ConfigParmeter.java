@@ -34,12 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ConfigParmeter.findAll", query = "SELECT c FROM ConfigParmeter c"),
     @NamedQuery(name = "ConfigParmeter.findById", query = "SELECT c FROM ConfigParmeter c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfigParmeter.findByParameter", query = "SELECT c FROM ConfigParmeter c WHERE c.parameter = :parameter"),
+    @NamedQuery(name =ConfigParmeter.NAMED_QUERY_FIND_BY_PARAMETER , query = "SELECT c FROM ConfigParmeter c WHERE c.parameter = :parameter"),
     @NamedQuery(name = "ConfigParmeter.findByPValue", query = "SELECT c FROM ConfigParmeter c WHERE c.pValue = :pValue"),
     @NamedQuery(name = "ConfigParmeter.findByCreateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.createDate = :createDate"),
     @NamedQuery(name = "ConfigParmeter.findByUpdateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.updateDate = :updateDate")})
 public class ConfigParmeter implements Serializable {
-
+    /*start mohammed.ayad 8/6/2018*/
+    public static final String NAMED_QUERY_FIND_BY_PARAMETER="ConfigParmeter.findByParameter";
+    /*end mohammed.ayad 8/6/2018*/
     @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private User userID;

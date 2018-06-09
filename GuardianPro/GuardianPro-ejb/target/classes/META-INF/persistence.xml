@@ -8,6 +8,7 @@
     <class>Entities.GroupsHasUser</class>
     <class>Entities.Groups</class>
     <class>Entities.Role</class>
+    <class>Entities.TerminalParserLog</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
