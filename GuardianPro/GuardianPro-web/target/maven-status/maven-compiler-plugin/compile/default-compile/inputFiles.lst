@@ -1,71 +1,3 @@
-<<<<<<< HEAD
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Partsbean.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\PGroup_tree.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessorygroup.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cgroupparameter.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\SobhyBean.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalbean.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ComponentsOfRole.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Messages.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparts.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\util\ActionlogingUtil.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparmetertype.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cinputtype.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\appgroup.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Pterminal_group.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\TerminalTemp.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminalstatus.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalgroup.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessory.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\RolesBean.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Inputtype.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parmetertype.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CParameter.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ParameterGroups.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminal.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CappGroup.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessgroup.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Login.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parameter.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cdownload.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Capp.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\application.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CterminalTemplate.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessory.java
-F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Groups1.java
-=======
-<<<<<<< HEAD
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parameter.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ParameterGroups.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalgroup.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminalstatus.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\TerminalTemp.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CterminalTemplate.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparts.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Messages.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\PGroup_tree.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parmetertype.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessory.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Groups1.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\appgroup.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparmetertype.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessgroup.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Login.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessory.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Capp.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalbean.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cinputtype.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CParameter.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Pterminal_group.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminal.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cdownload.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cgroupparameter.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Partsbean.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CappGroup.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\application.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Inputtype.java
-E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessorygroup.java
-=======
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cinputtype.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Inputtype.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessory.java
@@ -78,14 +10,19 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guar
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminalstatus.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cgroupparameter.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Groups1.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\RolesBean.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Messages.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessorygroup.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\menu.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\appgroup.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cdownload.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CterminalTemplate.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CappGroup.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminal.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\util\ActionlogingUtil.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Partsbean.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\SobhyBean.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ComponentsOfRole.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Pconfig.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parmetertype.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CParameter.java
@@ -97,5 +34,3 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guar
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\TerminalTemp.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\application.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\PGroup_tree.java
->>>>>>> 16ca32925162f74250a07b2970223472ee15bd25
->>>>>>> 8c8e45d771ced4b0fa9bffeb6f38d3306d7d0ff7

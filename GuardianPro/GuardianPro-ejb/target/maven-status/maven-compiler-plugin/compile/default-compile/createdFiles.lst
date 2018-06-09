@@ -23,10 +23,12 @@ Facades\ProfileDataFacade.class
 Facades\Distinct1FacadeLocal.class
 Facades\FtpMessagesFacade.class
 Facades\PartsFacadeLocal.class
+Facades\TerminalParserLogFacade.class
 Entities\ActionLog.class
 Entities\City_.class
 Email\returnvalues.class
 Facades\ReligionFacadeLocal.class
+Facades\MenuSubFacadeLocal.class
 Facades\MaritalStatusFacade.class
 Facades\NationalIdHasMaritalStatusFacade.class
 Facades\NationalIdHasMaritalStatusHasAddressFacade.class
@@ -44,6 +46,7 @@ Facades\ApplicationFacadeLocal.class
 Entities\UserStatus.class
 Facades\LoginWayFacade.class
 Entities\ParameterValues_.class
+com\timer\schedual\ParserTimer.class
 Entities\Country_.class
 Facades\AccessoryGroupFacade.class
 Facades\TgroupHasTerminalFacade.class
@@ -90,6 +93,7 @@ Entities\TrxType.class
 Facades\TerminalHasPartsFacade.class
 Entities\Groups_.class
 Email\EmailUtils$1.class
+Entities\MenuSub.class
 Facades\LogScreenFacadeLocal.class
 Facades\RoleHasComponentFacadeLocal.class
 Facades\WebsiteDataFacade.class
@@ -106,6 +110,7 @@ Facades\ApplicationGroupFacadeLocal.class
 Facades\BirthDataFacadeLocal.class
 Entities\NationalIdHasMaritalStatus1_.class
 Entities\ProfileData.class
+Facades\TerminalParserLogFacadeLocal.class
 Entities\Component.class
 Entities\FtpMessages_.class
 Facades\ParameterValuesFacade.class
@@ -177,6 +182,7 @@ Facades\TerminalFacade.class
 Entities\Religion_.class
 Entities\LoginType_.class
 Facades\MilitaryStatusFacadeLocal.class
+Facades\MenuFacadeLocal.class
 Entities\ApplicationHasGroup.class
 Entities\UserStatus_.class
 Entities\EmailSmsSend_.class
@@ -187,11 +193,13 @@ Facades\PgchildFacade.class
 Facades\InputTypeFacadeLocal.class
 Entities\TgroupHasParts_.class
 Facades\ApplicationHasGroupFacade.class
+Entities\MenuSub_.class
 Entities\FtpMessages.class
 Facades\UserPasswordFacadeLocal.class
 Entities\TgroupHasAccesory.class
 Entities\TerminalGroup.class
 Facades\ReligionFacade.class
+Entities\TerminalParserLog.class
 Facades\ApplicationFacade.class
 Facades\MilitaryStatusFacade.class
 Entities\NationalIdHasMaritalStatusHasAddressPK.class
@@ -218,6 +226,7 @@ Entities\ArmyArea_.class
 Entities\ParmeterSchema.class
 Facades\AbstractFacade.class
 Facades\RoleHasGroupsFacadeLocal.class
+Entities\TerminalParserLog_.class
 Entities\ParameterGroup.class
 Entities\SocialDataPK.class
 Entities\SocialData_.class
@@ -225,6 +234,7 @@ Facades\AccessoryHasGroupFacadeLocal.class
 Facades\AddressFacadeLocal.class
 Facades\DownloadMethodFacadeLocal.class
 Entities\User.class
+Entities\Menu.class
 com\tutorialspoint\test\EJBTester.class
 Entities\LogScreen_.class
 com\tutorialspoint\interceptor\LibraryBeanRemote.class
@@ -246,8 +256,11 @@ Facades\PasswordHistoryFacade.class
 Entities\Parameter_.class
 Facades\ConfigParmeterFacade.class
 Entities\RoleHasGroups.class
+Entities\Menu_.class
 Entities\PhoneDataCopy1_.class
+Facades\MenuFacade.class
 Facades\SocialDataFacade.class
+Facades\MenuSubFacade.class
 Facades\TrxTypeFacade.class
 Facades\Distinct1Facade.class
 Entities\NationalIdHasMaritalStatus1.class
