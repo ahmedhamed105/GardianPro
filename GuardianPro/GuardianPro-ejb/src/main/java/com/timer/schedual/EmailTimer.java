@@ -34,16 +34,16 @@ import javax.ejb.Timer;
 //@Startup
 @Singleton
 @LocalBean
-public class ParserTimer {
+public class EmailTimer {
 
     @EJB
     TerminalParserLogFacadeLocal terminalLogFile;
 
 
-    @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
+    @Schedule(hour = "*", minute = "*", second = "*/20", persistent = false)
     public void execute(Timer timer) {
 
-        System.out.println("Executing ...");
+        System.out.println("Email Executing ...");
 
         System.out.println("Execution Time : " + new Date());
         ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");

@@ -133,7 +133,33 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
        mes.setFmessages(val.getMessage());
             create(mes);
                 
+                }else if(type == 5){
+               val=  Ftputils.checkFileExists(ftpClient,ftp.getFtpDir()+ftp.getFilename());
+               mes=new FtpMessages();
+        mes.setFTPLogID(ftp);
+        mes.setCreateDate(date);
+       mes.setFmessages(val.getMessage());
+            create(mes);
+                
+                }else if(type == 6){
+               val=  Ftputils.CopyfileFTP(ftpClient,ftp.getFtpDir(),ftp.getFilename(),ftp.getLocalDIR());
+               mes=new FtpMessages();
+        mes.setFTPLogID(ftp);
+        mes.setCreateDate(date);
+       mes.setFmessages(val.getMessage());
+            create(mes);
+                
+                }else if(type == 7){
+               val=  Ftputils.checkFileExists(ftpClient,ftp.getFtpDir());
+               mes=new FtpMessages();
+        mes.setFTPLogID(ftp);
+        mes.setCreateDate(date);
+       mes.setFmessages(val.getMessage());
+            create(mes);
+                
                 }
+                
+              
                 
            
 //store in exist folder inside shard folder directly

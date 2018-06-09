@@ -146,4 +146,41 @@ public class Ftputils {
         return val;
     }
     
+    public static returnvalues checkFileExists(FTPClient ftpClient,String filePath) throws IOException {
+         returnvalues val=new returnvalues();
+    InputStream inputStream = ftpClient.retrieveFileStream(filePath);
+    int returnCode = ftpClient.getReplyCode();
+    if (inputStream == null || returnCode == 550) {
+              val.setStatus(false);
+        val.setMessage("not found");
+        return val;
+       
+    }
+             val.setStatus(true);
+        val.setMessage("Exist File");
+        return val;
+}
+    
+        public static returnvalues CopyfileFTP(FTPClient ftpClient,String path1,String filename,String path2) throws IOException {
+         returnvalues val=new returnvalues();
+          boolean fileFlag = false;
+            StringBuilder buf=new StringBuilder();
+   FileInputStream fis1= new FileInputStream(new File(path1+filename));
+            try {
+    fileFlag = ftpClient.storeFile(path2, fis1);
+             buf.append(showServerReply(ftpClient));
+       } catch (IOException ex) {
+             buf.append(ex.getMessage());
+            System.err.println(ex);
+        }
+    
+    
+     val.setStatus(fileFlag);
+        val.setMessage(buf.toString());
+        return val;
+}
+    
+    
+     
+    
 }

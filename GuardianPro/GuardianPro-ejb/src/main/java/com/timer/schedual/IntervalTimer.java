@@ -45,21 +45,21 @@ public class IntervalTimer {
     
     @Timeout
     public void execute(Timer timer) {
-//        System.out.println("Timer Service : " + timer.getInfo());
-//        System.out.println("Current Time : " + new Date());
-//        System.out.println("Next Timeout : " + timer.getNextTimeout());
-//        System.out.println("Time Remaining : " + timer.getTimeRemaining());
-//        System.out.println("____________________________________________");
-//        //Date fileDate = new Date();
-//        String fileExt;
-//        fileExt= String.valueOf(new Date().getTimezoneOffset());    
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ fileExt);
-//
-//
-//        File source = new File("F:/FIB/Git/My Works/test/XMLfile.txt");
-//        File destination = new File("F:/FIB/Git/My Works/test2/XMLfile"+fileExt+".txt");
-//       boolean result =  move(source,destination);
-//        System.out.println("File Result >>>>" +result);
+        System.out.println("Timer Service : " + timer.getInfo());
+        System.out.println("Current Time : " + new Date());
+        System.out.println("Next Timeout : " + timer.getNextTimeout());
+        System.out.println("Time Remaining : " + timer.getTimeRemaining());
+        System.out.println("____________________________________________");
+        //Date fileDate = new Date();
+        String fileExt;
+        fileExt= String.valueOf(new Date().getTimezoneOffset());    
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>"+ fileExt);
+
+
+        File source = new File("F:/FIB/Git/My Works/test/XMLfile.txt");
+        File destination = new File("F:/FIB/Git/My Works/test2/XMLfile"+fileExt+".txt");
+       boolean result =  move(source,destination);
+        System.out.println("File Result >>>>" +result);
     }
     
     

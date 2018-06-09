@@ -1351,61 +1351,7 @@ public String onFlowProcess(FlowEvent event) {
     
     
     
-    public  String getXML(TgroupHasTerminal terminals){
-//        String host="smtp.gmail.com"; //SMTP Server
-//		String from="ahmed2000105@gmail.com";//from account
-//		String password="P@ssw0rd0109045227";     //password from account
-//		String to="ahmed.hamed0@me.com";//recipient account
-//		String subject="test3";
-//		String text="hello!";
-//         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-//        	EmailLog email=new EmailLog();
-//                email.setEhost(host);
-//                email.setEfrom(from);
-//                email.setEpassword(password);
-//                email.setEto(to);
-//                email.setEsubject(subject);
-//                email.setEtext(text);
-//                email.setEPort("587");
-//                email.setETls(1);
-//                email.setUserID(Login.login);
-//                email.setEsendnot(0);
-//                email.setUpdateDate(date);
-//                email.setCreateDate(date);
-//                emailLogFacade.create(email);
-//             boolean send=   emailLogFacade.send_email(email);
-//             
-//             if(send){
-//                  email.setEsendnot(1);
-//                  emailLogFacade.edit(email);
-//             }
-//             
-//              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
-//             
-//        String server = "localhost";
-//        String port = "21";
-//        String user = "ahmed";
-//        String pass = "123456";  
-//        
-//        FtpLog ftp=new FtpLog();
-//        ftp.setServerip(server);
-//        ftp.setFPort(port);
-//        ftp.setFUsername(user);
-//        ftp.setFpassword(pass);
-//        ftp.setLocalDIR("D:\\Bank Miser\\comm\\");
-//        ftp.setFilename("users.txt");
-//        ftp.setFtpDir("\\");
-//        ftp.setUpdateDate(date);
-//        ftp.setCreateDate(date);
-//        ftp.setUserID(Login.login);
-//        ftpLogFacade.create(ftp);
-//        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
-//        if(ftp_S){
-//        System.out.println("Store file "+ftp_S);
-//        }else{
-//        System.out.println("Not Store file "+ftp_S);
-//        }
-//       
+       public  String getXML(TgroupHasTerminal terminals){ 
         
         if(terminals.getTerminalGroupID() == null){
         
@@ -1854,10 +1800,10 @@ public String onFlowProcess(FlowEvent event) {
 			DOMSource source = new DOMSource(doc);
 			trans.transform(source, result);
 			String xmlString = sw.toString().replaceAll("\n", "\r\n");
-			 FileUtils.write(new File("D:\\ahmed.txt"), xmlString);
+			// FileUtils.write(new File("D:\\ahmed.txt"), xmlString);
 
 			return xmlString;
-        } catch (ParserConfigurationException | IOException ex) {
+        } catch (ParserConfigurationException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
