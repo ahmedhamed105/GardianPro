@@ -83,10 +83,12 @@ public class RolesBean implements Serializable {
             } else {
                 Roles = roleFacade.findAll();
                 actionlogs = actionLoging.getListofLogs(Login.login, pagename);
-                System.out.println(Roles.get(0).getDescription());
+               // System.out.println(Roles.get(0).getDescription());
             }
 
         } catch (Exception e) {
+           
+           // e.printStackTrace();
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 

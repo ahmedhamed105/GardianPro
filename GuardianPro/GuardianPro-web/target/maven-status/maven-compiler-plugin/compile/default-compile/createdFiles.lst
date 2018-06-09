@@ -12,6 +12,7 @@ com\guardian\Login\menu.class
 com\guardian\Login\accessory.class
 com\guardian\Login\TerminalTemp.class
 com\guardian\Login\accessgroup.class
+com\guardian\Login\Main.class
 com\guardian\converter\CterminalTemplate.class
 com\guardian\util\ActionlogingUtil.class
 com\guardian\Login\Partsbean.class

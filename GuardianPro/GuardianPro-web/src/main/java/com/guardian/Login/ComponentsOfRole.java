@@ -99,10 +99,12 @@ public class ComponentsOfRole implements Serializable {
                     roleObj=roleFacade.find(RoleID);
                     rolHasCoponentObj= roleHasComponentFacade.find_component_by_role_component(roleObj, component);
                     if (Integer.parseInt(rolHasCoponentObj.getEdit()) == 1) {
+                        System.out.println("edit");
                         component.setEdit(true);
                     }
                     if (Integer.parseInt(rolHasCoponentObj.getView()) == 1) {
-                        component.setEdit(true);
+                         System.out.println("view");
+                        component.setView(true);
                     }
                 }
                 

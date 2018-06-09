@@ -344,16 +344,25 @@
                                                        <h:outputText value="#{rol.description}" />
                                                    
                                                 </p:column>
+                                                
+                                                    
+     <p:column headerText="View" sortBy="#{rol.view}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{rol.view}" /></f:facet>
+               <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.view}" /></f:facet>
+           </p:cellEditor>
+       </p:column>
+                                                
+                                                
+                                                    <p:column headerText="Edit" sortBy="#{rol.edit}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{rol.edit}" /></f:facet>
+               <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.edit}" /></f:facet>
+           </p:cellEditor>
+       </p:column>
 
-                                                <p:column headerText="View" sortBy="#{rol.view}"  >
                                                 
-                                                        <h:selectBooleanCheckbox value="#{rol.view}" />
-                                                        
-                                                </p:column>
-                                                
-                                                <p:column headerText="Edit"  >
-                                                          <h:selectBooleanCheckbox value="#{rol.edit}" />
-                                                </p:column>
+           
 
                                                 <p:column headerText="sub component"   >
                                                      <h:commandLink action="CompinentOfRole.xhtml" value="Component" >
