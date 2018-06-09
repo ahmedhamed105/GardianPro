@@ -42,6 +42,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Application.findByUpdateDate", query = "SELECT a FROM Application a WHERE a.updateDate = :updateDate")})
 public class Application implements Serializable {
 
+    @Column(name = "APP_SIZE")
+    private Integer appSize;
+    
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -173,5 +177,14 @@ public class Application implements Serializable {
     public void setFilename(String filename) {
         this.filename = filename;
     }
-    
+
+    public Integer getAppSize() {
+        return appSize;
+    }
+
+    public void setAppSize(Integer appSize) {
+        this.appSize = appSize;
+    }
+
+
 }

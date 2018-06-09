@@ -48,6 +48,18 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<Menu> menuCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<ConfigEmail> configEmailCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<FtpLog> ftpLogCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<EmailLog> emailLogCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ConfigParmeter> configParmeterCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<GroupsHasUser> groupsHasUserCollection;
@@ -416,6 +428,42 @@ public class User implements Serializable {
 
     public void setPhoneDataCopy1Collection(Collection<PhoneDataCopy1> phoneDataCopy1Collection) {
         this.phoneDataCopy1Collection = phoneDataCopy1Collection;
+    }
+
+    @XmlTransient
+    public Collection<EmailLog> getEmailLogCollection() {
+        return emailLogCollection;
+    }
+
+    public void setEmailLogCollection(Collection<EmailLog> emailLogCollection) {
+        this.emailLogCollection = emailLogCollection;
+    }
+
+    @XmlTransient
+    public Collection<FtpLog> getFtpLogCollection() {
+        return ftpLogCollection;
+    }
+
+    public void setFtpLogCollection(Collection<FtpLog> ftpLogCollection) {
+        this.ftpLogCollection = ftpLogCollection;
+    }
+
+    @XmlTransient
+    public Collection<ConfigEmail> getConfigEmailCollection() {
+        return configEmailCollection;
+    }
+
+    public void setConfigEmailCollection(Collection<ConfigEmail> configEmailCollection) {
+        this.configEmailCollection = configEmailCollection;
+    }
+
+    @XmlTransient
+    public Collection<Menu> getMenuCollection() {
+        return menuCollection;
+    }
+
+    public void setMenuCollection(Collection<Menu> menuCollection) {
+        this.menuCollection = menuCollection;
     }
     
 }

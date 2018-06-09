@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "ParameterValues.findAll", query = "SELECT p FROM ParameterValues p"),
     @NamedQuery(name = "ParameterValues.findById", query = "SELECT p FROM ParameterValues p WHERE p.id = :id"),
+     @NamedQuery(name = "ParameterValues.findByGroup", query = "SELECT p FROM ParameterValues p WHERE p.tgrouphasGparameterID = :id"),
     @NamedQuery(name = "ParameterValues.findByValue", query = "SELECT p FROM ParameterValues p WHERE p.value = :value")})
 public class ParameterValues implements Serializable {
 

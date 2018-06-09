@@ -6,9 +6,13 @@
 package Facades;
 
 import Entities.ParameterValues;
+import Entities.Pgchild;
+import Entities.TgroupHasGparameter;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +32,25 @@ public class ParameterValuesFacade extends AbstractFacade<ParameterValues> imple
     public ParameterValuesFacade() {
         super(ParameterValues.class);
     }
+    
+    
+      @Override
+   public List<ParameterValues> ParameterValues_find(TgroupHasGparameter parent){
+     Query para_find = em.createNamedQuery("ParameterValues.findByGroup");
+        para_find.setParameter("id", parent);
+        try {
+         List<ParameterValues> parah =  para_find.getResultList(); 
+           // System.out.println("ahmed hamed  "+parah.getType());
+         if(parah==null){
+         return null;
+         }else{
+         return parah;
+         }
+                
+        } catch (Exception e) {
+            return null;
+        }
+   
+   }
     
 }

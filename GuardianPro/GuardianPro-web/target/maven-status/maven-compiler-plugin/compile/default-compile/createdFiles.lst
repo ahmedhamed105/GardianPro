@@ -21,7 +21,11 @@ com\guardian\Login\Terminalgroup.class
 com\guardian\Login\ParameterGroups.class
 com\guardian\Login\Groups1.class
 com\guardian\converter\Cgroupparameter.class
+<<<<<<< HEAD
 com\guardian\Login\RolesBean.class
+=======
+com\guardian\Login\Pconfig.class
+>>>>>>> 8c8e45d771ced4b0fa9bffeb6f38d3306d7d0ff7
 com\guardian\Login\parmetertype.class
 com\guardian\converter\Capp.class
 com\guardian\Login\Inputtype.class

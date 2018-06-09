@@ -43,13 +43,19 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {
 
+    @Column(name = "terminal_id")
+    private Integer terminalId;
+    @Column(name = "ACC_id")
+    private Integer aCCid;
+    @Column(name = "ISS_id")
+    private Integer iSSid;
+    @Column(name = "Card_id")
+    private Integer cardid;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
     private Collection<ParameterValues> parameterValuesCollection;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID")
-    private Collection<Pchildparent> pchildparentCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tgrouphasGparameterID1")
-    private Collection<Pchildparent> pchildparentCollection1;
+  
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -152,23 +158,7 @@ public class TgroupHasGparameter implements Serializable {
         return "Entities.TgroupHasGparameter[ id=" + id + " ]";
     }
 
-    @XmlTransient
-    public Collection<Pchildparent> getPchildparentCollection() {
-        return pchildparentCollection;
-    }
-
-    public void setPchildparentCollection(Collection<Pchildparent> pchildparentCollection) {
-        this.pchildparentCollection = pchildparentCollection;
-    }
-
-    @XmlTransient
-    public Collection<Pchildparent> getPchildparentCollection1() {
-        return pchildparentCollection1;
-    }
-
-    public void setPchildparentCollection1(Collection<Pchildparent> pchildparentCollection1) {
-        this.pchildparentCollection1 = pchildparentCollection1;
-    }
+   
 
     @XmlTransient
     public Collection<ParameterValues> getParameterValuesCollection() {
@@ -177,6 +167,38 @@ public class TgroupHasGparameter implements Serializable {
 
     public void setParameterValuesCollection(Collection<ParameterValues> parameterValuesCollection) {
         this.parameterValuesCollection = parameterValuesCollection;
+    }
+
+    public Integer getTerminalId() {
+        return terminalId;
+    }
+
+    public void setTerminalId(Integer terminalId) {
+        this.terminalId = terminalId;
+    }
+
+    public Integer getACCid() {
+        return aCCid;
+    }
+
+    public void setACCid(Integer aCCid) {
+        this.aCCid = aCCid;
+    }
+
+    public Integer getISSid() {
+        return iSSid;
+    }
+
+    public void setISSid(Integer iSSid) {
+        this.iSSid = iSSid;
+    }
+
+    public Integer getCardid() {
+        return cardid;
+    }
+
+    public void setCardid(Integer cardid) {
+        this.cardid = cardid;
     }
     
 }

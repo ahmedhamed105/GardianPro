@@ -5,7 +5,7 @@
  */
 package Facades;
 
-import Entities.Pchildparent;
+import Entities.EmailLog;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,20 +14,22 @@ import javax.ejb.Local;
  * @author ahmed.elemam
  */
 @Local
-public interface PchildparentFacadeLocal {
+public interface EmailLogFacadeLocal {
 
-    void create(Pchildparent pchildparent);
+    void create(EmailLog emailLog);
 
-    void edit(Pchildparent pchildparent);
+    void edit(EmailLog emailLog);
 
-    void remove(Pchildparent pchildparent);
+    void remove(EmailLog emailLog);
 
-    Pchildparent find(Object id);
+    EmailLog find(Object id);
 
-    List<Pchildparent> findAll();
+    List<EmailLog> findAll();
 
-    List<Pchildparent> findRange(int[] range);
+    List<EmailLog> findRange(int[] range);
 
     int count();
+    
+    boolean send_email(EmailLog em);
     
 }

@@ -13,6 +13,7 @@ import Entities.RoleHasComponent;
 import Entities.RoleHasGroups;
 import Entities.User;
 import Facades.ComponentFacadeLocal;
+import Facades.ConfigParmeterFacadeLocal;
 import Facades.GroupsFacadeLocal;
 import Facades.GroupsHasUserFacadeLocal;
 import Facades.RoleFacadeLocal;
@@ -38,6 +39,9 @@ import javax.faces.event.ActionEvent;
 @ManagedBean
 @SessionScoped
 public class Login {
+    
+     @EJB
+    private ConfigParmeterFacadeLocal configParmeterFacade;
 
     @EJB
     private RoleHasComponentFacadeLocal roleHasComponentFacade;
@@ -75,6 +79,19 @@ public class Login {
     String username;
     String password;
     static User login = new User();
+    
+                static String smtp_host="smtp.gmail.com"; //SMTP Server
+		static String smtp_from="ahmed2000105@gmail.com";//from account
+		static String smtp_password="P@ssw0rd0109045227";     //password from account
+		static String smtp_to="ahmed.hamed0@me.com";//recipient account
+                static String smtp_port="587";//recipient account
+                static int smtp_TLS=1;//recipient account
+                static String FTP_server = "localhost";
+                static String FTP_port = "21";
+                static String FTP_user = "ahmed";
+                static String FTP_pass = "123456";  
+                static String FTP_APP_DIR = "\\APPLICATION\\"; 
+
 
     /**
      * Creates a new instance of Login
@@ -124,6 +141,18 @@ public class Login {
                     case 1:
                         Messages.addInfoMessage("Login ok!!", 1);
                         login = u1;
+                        
+                smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
+		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
 
                         //ahmed.ibraheem
                         // Load All Rolls

@@ -7,9 +7,15 @@ package com.guardian.Login;
 
 import Entities.Application;
 import Entities.ConfigParmeter;
+import Entities.EmailLog;
+import Entities.FtpLog;
 import Facades.ApplicationFacadeLocal;
 import Facades.ConfigParmeterFacadeLocal;
+import Facades.EmailLogFacadeLocal;
+import Facades.FtpLogFacadeLocal;
+import Facades.FtpMessagesFacadeLocal;
 import Facades.UserFacadeLocal;
+import static com.guardian.Login.Login.smtp_host;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,6 +39,16 @@ import org.primefaces.model.UploadedFile;
  * @author ahmed.elemam
  */
 public class application {
+    
+    
+    @EJB
+    private EmailLogFacadeLocal emailLogFacade;
+    
+     @EJB
+    private FtpMessagesFacadeLocal ftpMessagesFacade;
+
+    @EJB
+    private FtpLogFacadeLocal ftpLogFacade;
 
     @EJB
     private ConfigParmeterFacadeLocal configParmeterFacade;
@@ -84,7 +100,18 @@ public class application {
 
         }else{
           applicatios = applicationFacade.findAll();
-           path=configParmeterFacade.getparameter("APP_DIR");
+           path=configParmeterFacade.getparameter("LOCAL_APP_DIR");
+             Login.smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+		Login.smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+		Login.smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
+		Login.smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                Login.smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                Login.smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                Login.FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                Login.FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                Login.FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                Login.FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                Login.FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
         }
         
         } catch (Exception e) {
@@ -161,7 +188,8 @@ public class application {
    
 
          public String ADD(){
-              
+                            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                
               try {
              String filename = file.getFileName(); 
             String extension = filename.substring(filename.lastIndexOf('.'), filename.length());
@@ -171,12 +199,72 @@ public class application {
                       if(applicationFacade.app_find(app.getAppName())){
                            Messages.addInfoMessage("Please Check Application Name",2);
                       }else{
-                    String filename_ext = String.valueOf(generateRandom(16));
-                   copyFile(path.getPValue(),filename_ext, file.getInputstream());
+                    String filename_ext = String.valueOf(generateRandom(9))+".tms";
+                    
+                 copyFile(path.getPValue(),filename_ext, file.getInputstream());
+                    
+
+                          try {
+                               FtpLog ftp=new FtpLog();
+        ftp.setServerip(Login.FTP_server);
+        ftp.setFPort(Login.FTP_port);
+        ftp.setFUsername(Login.FTP_user);
+        ftp.setFpassword(Login.FTP_pass);
+        ftp.setLocalDIR(path.getPValue()+"/");
+        ftp.setFilename(filename_ext);
+        ftp.setFtpDir(Login.FTP_APP_DIR);
+        ftp.setUpdateDate(date);
+        ftp.setCreateDate(date);
+        ftp.setUserID(Login.login);
+        ftpLogFacade.create(ftp);
+      //  ftp=ftpLogFacade.find(ftp.getId());
+         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+        }else{
+        System.out.println("Not Store file "+ftp_S);
+        }
+                        
+         } catch (Exception e) {
+                              
+                 
+		String subject="Not able to Store tms file in FTP";
+		String text="Not able to Store tms file in FTP";
+         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        	EmailLog email=new EmailLog();
+                email.setEhost(Login.smtp_host);
+                email.setEfrom(Login.smtp_from);
+                email.setEpassword(Login.smtp_password);
+                email.setEto(Login.smtp_to);
+                email.setEsubject(subject);
+                email.setEtext(text);
+                email.setEPort(Login.smtp_port);
+                email.setETls(Login.smtp_TLS);
+                email.setUserID(Login.login);
+                email.setEsendnot(0);
+                email.setUpdateDate(date);
+                email.setCreateDate(date);
+                emailLogFacade.create(email);
+             boolean send= emailLogFacade.send_email(email);            
+             if(send){
+                  email.setEsendnot(1);
+                  emailLogFacade.edit(email);
+             }
+             
+              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+                              
+                              
+                       
+                          }
+        
+       
+                    
+               
                       Messages.addInfoMessage("ADDED",1);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            app.setAppDir(path.getPValue()+'/'+filename_ext);
+            app.setAppDir("\\APPLICATION\\"+filename_ext);
             app.setFilename(filename_ext);
+            app.setAppSize((int) file.getSize());
             app.setCreateDate(date);
             app.setUpdateDate(date);
           applicationFacade.create(app);
