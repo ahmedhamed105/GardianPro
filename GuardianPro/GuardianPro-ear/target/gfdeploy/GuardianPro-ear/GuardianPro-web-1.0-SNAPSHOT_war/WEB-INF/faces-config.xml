@@ -184,4 +184,9 @@
         <managed-bean-class>com.guardian.Login.Main</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>action</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.Action</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

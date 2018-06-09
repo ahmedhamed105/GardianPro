@@ -48,6 +48,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<ActionBar> actionBarCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<Menu> menuCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
@@ -464,6 +467,15 @@ public class User implements Serializable {
 
     public void setMenuCollection(Collection<Menu> menuCollection) {
         this.menuCollection = menuCollection;
+    }
+
+    @XmlTransient
+    public Collection<ActionBar> getActionBarCollection() {
+        return actionBarCollection;
+    }
+
+    public void setActionBarCollection(Collection<ActionBar> actionBarCollection) {
+        this.actionBarCollection = actionBarCollection;
     }
     
 }

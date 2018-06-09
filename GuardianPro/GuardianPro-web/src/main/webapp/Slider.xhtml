@@ -49,14 +49,15 @@
             </h:panelGroup>
               <h:panelGroup rendered="#{not empty menu.sub_menu(car)}">
    <li class="treeview">
-             <a href="#"><i class="fa fa-link"></i> <span>#{car.name}</span>
+       <a href="#{car.link}"><i class="fa fa-link"></i> <span>#{car.name}</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
+                  <li><a href="#{car.link}">#{car.name}</a></li>
               <ui:repeat value="#{menu.sub_menu(car)}" var="car1">
-                  <li><a href="#">#{car1.name}</a></li>
+                  <li><a href="#{car1.link}">#{car1.name}</a></li>
               </ui:repeat>
           </ul>
         </li>
