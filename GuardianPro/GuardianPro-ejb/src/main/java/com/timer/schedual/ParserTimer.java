@@ -47,17 +47,20 @@ public class ParserTimer {
         System.out.println("Executing ...");
 
         System.out.println("Execution Time : " + new Date());
-//        ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");
-   //     terminalLogFile.refresh(configParmeter);
-    //    boolean timerParserFlag = Boolean.parseBoolean(configParmeter.getPValue().trim());
-//       System.out.println("Timer Parser Flag : " + timerParserFlag);
-//        if (timerParserFlag) {//here will be data base flage that control the process
-//            ConfigParmeter logFilePath = terminalLogFile.loadTimerParserParametes("parameter", "TERMINAL_LOG_FILE_PATH");
-//            terminalLogFile.refresh(logFilePath);
-//            parseTerminalsLogFiles(logFilePath.getPValue().trim());
-//
-//        }
+        ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");
+        terminalLogFile.refresh(configParmeter);
+        if(configParmeter.getPValue()!=null){
+            boolean timerParserFlag = Boolean.parseBoolean(configParmeter.getPValue().trim());
+            System.out.println("Timer Parser Flag : " + timerParserFlag);
+            if (timerParserFlag) {//here will be data base flage that control the process
+                ConfigParmeter logFilePath = terminalLogFile.loadTimerParserParametes("parameter", "TERMINAL_LOG_FILE_PATH");
+                terminalLogFile.refresh(logFilePath);
+                if(logFilePath.getPValue()!=null){
+                    parseTerminalsLogFiles(logFilePath.getPValue().trim());
+                }
 
+            }
+        }
         System.out.println("____________________________________________");
 
     }
