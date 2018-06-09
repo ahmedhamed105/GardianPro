@@ -103,7 +103,10 @@ public class ComponentsOfRole implements Serializable {
                         component.setEdit(true);
                     }
                     if (Integer.parseInt(rolHasCoponentObj.getView()) == 1) {
+<<<<<<< HEAD
                          System.out.println("view");
+=======
+>>>>>>> 1a39a2ad8d2aa1daf01013fb7d564ba446a5d7a4
                         component.setView(true);
                     }
                 }
