@@ -155,4 +155,14 @@
         <managed-bean-class>com.guardian.converter.Cterminalstatus</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>pconfig</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.Pconfig</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>menu</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.menu</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

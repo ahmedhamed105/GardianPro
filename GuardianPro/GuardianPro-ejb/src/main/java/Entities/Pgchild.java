@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pgchild.findAll", query = "SELECT p FROM Pgchild p"),
     @NamedQuery(name = "Pgchild.findById", query = "SELECT p FROM Pgchild p WHERE p.id = :id"),
     @NamedQuery(name = "Pgchild.findByparent", query = "SELECT p FROM Pgchild p WHERE p.tgrouphasGparameterID1 = :id"),
+      @NamedQuery(name = "Pgchild.findBychild", query = "SELECT p FROM Pgchild p WHERE p.tgrouphasGparameterID = :id"),
+ 
     @NamedQuery(name = "Pgchild.findByparentchild", query = "SELECT p FROM Pgchild p WHERE p.tgrouphasGparameterID1 = :id AND p.tgrouphasGparameterID = :id1"),
     @NamedQuery(name = "Pgchild.findByRoot", query = "SELECT p FROM Pgchild p WHERE p.root = :root"),
     @NamedQuery(name = "Pgchild.findByChild", query = "SELECT p FROM Pgchild p WHERE p.child = :child")})

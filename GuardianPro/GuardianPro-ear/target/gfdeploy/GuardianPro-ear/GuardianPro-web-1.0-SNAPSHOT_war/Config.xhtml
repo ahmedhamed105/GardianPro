@@ -3,13 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>accessory Group</title>
+        <title>Config</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{accessgroup.init()}"/>
-            <f:event type="preRenderView" listener="#{menu.init()}"/>
+            <f:event type="preRenderView" listener="#{pconfig.init()}"/>
 </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -210,21 +208,70 @@
       </div>
     </nav>
   </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
 
-    <ui:include src="Slider.xhtml" />
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
 
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+        </div>
+        <div class="pull-left info">
+            <p>#{login.login.firstName} #{login.login.lastname}</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search..."/>
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">Choose .. </li>
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Link in level 2</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
 
    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        accessory Group Page 
+        Config Page 
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">accessory Group</li>
+        <li class="active">Config</li>
       </ol>
     </section>
 
@@ -239,7 +286,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">accessory Group</h3>
+              <h3 class="box-title">Parmeter</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -268,27 +315,125 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                    <p:treeTable id="cars1" value="#{accessgroup.root}" var="group" selectionMode="single" selection="#{accessgroup.selectdelte}">
-        <f:facet name="header">
-            accessory Group
-        </f:facet>
-        <p:column headerText="Name">
-            <h:outputText value="#{group.parameterGroup}" />
-        </p:column>
-         <p:column headerText="Count">
-            <h:outputText value="#{group.count}" />
-        </p:column>
-        <p:column headerText="type">
-            <h:outputText value="#{group.type}" />
-        </p:column>
+                  <p:dataTable id="cars1" widgetVar="carsTable"
+                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.configParmeter}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectconfig}" rowKey="#{para.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{pconfig.onRowEdit}" update=":form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancel}" update=":form:messages :form:cars1"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+    <p:column headerText="Config name" sortBy="#{para.parameter}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.parameter}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{para.parameter}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="Config Value" sortBy="#{para.PValue}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.PValue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.PValue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+     
 
        
+    <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+   </p:dataTable>
+                  
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
       
-    </p:treeTable>
-                    
-                <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.remove(actionEvent)}"/>  
-                 <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.removeGroup(actionEvent)}"/>  
+          <!-- /.box -->
+            </div>
+        </div>
+       
+        
+        </div>
+        
+              <div class="row">
+          <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                 <div class="box-header with-border">
+              <h3 class="box-title">Emails</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
              
+              <div class="box-body">
+                   <h:form id="formp">
+                  <p:messages id="messagesp" showDetail="true" closable="true" />
+                <div class="form-group">
+                    
+                  <p:dataTable id="cars1p" widgetVar="carsTable1"
+                               emptyMessage="No Part found with given criteria" var="parap" value="#{pconfig.configEmail}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectEmail}" rowKey="#{parap.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{pconfig.onERowEdit}" update=":formp:messagesp :formp:cars1p" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onERowCancel}" update=":formp:messagesp :formp:cars1p"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+    <p:column headerText="part name" sortBy="#{parap.email}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{parap.email}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputp" value="#{parap.email}" style="width:100%" validatorMessage="please enter email corrct">
+                   <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                   </p:inputText></f:facet>
+           </p:cellEditor>
+       </p:column>
+   
+       
+    <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+   </p:dataTable>
+                  
                   
                 </div>
                    </h:form>     
@@ -306,7 +451,7 @@
           <div class="box">
             
                  <div class="box-header with-border">
-              <h3 class="box-title">accessory Group</h3>
+              <h3 class="box-title">Email</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -328,25 +473,32 @@
               
             <!-- /.box-header -->
             <!-- form start -->
-        
+       
              
               <div class="box-body">
-                  <h:form id="form1">
+                  <h:form id="form1" enctype="multipart/form-data">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
-                  <label for="groupname">accessory Group name</label>
-                  <p:inputText class="form-control" id="groupname"  value="#{accessgroup.appGroup.groupname}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                  <p:message for="groupname" display="text"/>
+                  <label for="appName">EMAIL</label>
+                  <p:inputText class="form-control" id="appName"  value="#{pconfig.selectEmail.email}" required="true"   validatorMessage="please enter email corrct" requiredMessage="please Enter Email">
+                  <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                  </p:inputText>						
+                  <p:message for="appName" display="text"/>
+           
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:appGroup :form3:advanced"  action="#{accessgroup.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" update=":form1:messages1 :formp:cars1p" action="#{pconfig.ADD(actionEvent)}"/>  
    
                   
                   
                 </div>
-                   </h:form>     
+                   </h:form>  
+                  
+     
+                  
               </div>
               <!-- /.box-body -->
                  <div class="box-footer">
@@ -356,78 +508,6 @@
             </div>
         </div>
         </div>
-        
-         <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-              <h3 class="box-title">Group and applications</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-                  <h:form id="form3">
-                  <p:messages id="messages3" showDetail="true" closable="true"/>
-                <div class="form-group">
-                    
-                      <label for="appGroup">Group Choose</label>   
-                      <h:selectOneMenu converter="#{caccessorygroup}" class="form-control select2" id="appGroup" value="#{accessgroup.selectgroup}" required="true" requiredMessage="please Enter application Group">
-                 <f:selectItem itemLabel="Select One" itemValue="" />
-                 <f:selectItems value="#{accessgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
-                 </h:selectOneMenu>
-                 <p:message for="appGroup" display="text"/>
-                            
-                             <label for="advanced">accessory Choose</label>  
-                             <p:selectManyMenu  id="advanced" value="#{accessgroup.selapp}" converter="#{caccessory}"
-                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application">
-                                 <f:selectItems value="#{accessgroup.app}" var="f" itemLabel="#{f.accName}" itemValue="#{f}" />
- 
-            <p:column>
-                <h:outputText value="#{t.accName}" />
-            </p:column>
-             </p:selectManyMenu>
-                    <p:message for="advanced" display="text"/>
-               
-                  <br/>
-                  <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{accessgroup.joingroup(actionEvent)}"/>  
-   
-                  
-                  
-                </div>
-                   </h:form>        
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-         </div>
-        
         
         <div class="row">
           <div class="col-md-12 col-sm-6 col-xs-12">

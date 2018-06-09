@@ -19,6 +19,7 @@ com\guardian\Login\Terminalgroup.class
 com\guardian\Login\ParameterGroups.class
 com\guardian\Login\Groups1.class
 com\guardian\converter\Cgroupparameter.class
+com\guardian\Login\Pconfig.class
 com\guardian\Login\parmetertype.class
 com\guardian\converter\Capp.class
 com\guardian\Login\Inputtype.class

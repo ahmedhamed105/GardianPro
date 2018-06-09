@@ -3,6 +3,7 @@ package Entities;
 import Entities.AccessoryGroup;
 import Entities.ApplicationGroup;
 import Entities.BirthData;
+import Entities.ConfigEmail;
 import Entities.ConfigParmeter;
 import Entities.EmailLog;
 import Entities.EmailSmsSend;
@@ -28,7 +29,11 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
+<<<<<<< HEAD
 @Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-06T08:41:35")
+=======
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-08T11:10:57")
+>>>>>>> 16ca32925162f74250a07b2970223472ee15bd25
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -47,6 +52,7 @@ public class User_ {
     public static volatile SingularAttribute<User, Date> createDate;
     public static volatile SingularAttribute<User, UserPassword> userPasswordID;
     public static volatile CollectionAttribute<User, LoginWay> loginWayCollection;
+    public static volatile CollectionAttribute<User, ConfigEmail> configEmailCollection;
     public static volatile CollectionAttribute<User, EmailLog> emailLogCollection;
     public static volatile SingularAttribute<User, String> middlename;
     public static volatile CollectionAttribute<User, BirthData> birthDataCollection;
