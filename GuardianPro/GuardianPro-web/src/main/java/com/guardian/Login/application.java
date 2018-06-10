@@ -203,7 +203,7 @@ public class application {
                     
                  copyFile(path.getPValue(),filename_ext, file.getInputstream());
                     
-
+File d=new File(path.getPValue()+"/"+filename_ext);
                           try {
                                FtpLog ftp=new FtpLog();
         ftp.setServerip(Login.FTP_server);
@@ -267,6 +267,7 @@ public class application {
             app.setAppSize((int) file.getSize());
             app.setCreateDate(date);
             app.setUpdateDate(date);
+            app.setAPPlength((int) d.length());
           applicationFacade.create(app);
                       }
                   }else{

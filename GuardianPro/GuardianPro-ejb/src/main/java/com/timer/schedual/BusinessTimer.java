@@ -187,11 +187,18 @@ public class BusinessTimer {
                    
                 try {
                 String xmlFilecontent =getXML(d);
-                deletedir(d);
-                createdir(d);
-                String filename =   getxmlfilename(d, xmlFilecontent);
-                FileUtils.write(new File(FTP_LOCAL_DIR+filename), xmlFilecontent);
-                saveXML(d,filename);
+    deletedir(d);
+    createdir(d);
+    String filename =   getxmlfilename(d, xmlFilecontent);
+    File f=new  File(FTP_LOCAL_DIR+filename);
+    FileUtils.write(f, xmlFilecontent);
+    saveXML(d,filename);
+    String DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, filename, (int) f.length());
+    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
+    FileUtils.write(f1, DLLcontent);
+    saveDLL(d, DLLfilename);
+                
                   
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -213,8 +220,12 @@ public class BusinessTimer {
     deletedir(d);
     createdir(d);
     String filename =   getxmlfilename(d, xmlFilecontent);
-    FileUtils.write(new File(FTP_LOCAL_DIR+filename), xmlFilecontent);
-     saveXML(d,filename);
+    File f=new  File(FTP_LOCAL_DIR+filename);
+    FileUtils.write(f, xmlFilecontent);
+    saveXML(d,filename);
+    String dll=getDLL(d, filename, (int) f.length());
+    
+     
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -334,6 +345,51 @@ public class BusinessTimer {
     
     
     public boolean saveXML(TgroupHasTerminal d,String filename){
+         Date now = new Date();
+          FtpLog ftp=new FtpLog();
+        ftp.setServerip(FTP_server);
+        ftp.setFPort(FTP_port);
+        ftp.setFUsername(FTP_user);
+        ftp.setFpassword(FTP_pass);
+        ftp.setLocalDIR(FTP_LOCAL_DIR);
+        ftp.setFilename(filename);
+        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//"+filename);
+        ftp.setUpdateDate(now);
+        ftp.setCreateDate(now);
+        ftp.setUserID(login);
+        ftpLogFacade.create(ftp);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+          return false;
+        }else{
+           ftp=new FtpLog();
+        ftp.setServerip(FTP_server);
+        ftp.setFPort(FTP_port);
+        ftp.setFUsername(FTP_user);
+        ftp.setFpassword(FTP_pass);
+        ftp.setLocalDIR(FTP_LOCAL_DIR);
+        ftp.setFilename(filename);
+        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//");
+        ftp.setUpdateDate(now);
+        ftp.setCreateDate(now);
+        ftp.setUserID(login);
+        ftpLogFacade.create(ftp);
+         ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+          return true;
+        }else{
+        return false;
+        
+        }
+        
+        }
+    
+ 
+    }
+    
+     public boolean saveDLL(TgroupHasTerminal d,String filename){
          Date now = new Date();
           FtpLog ftp=new FtpLog();
         ftp.setServerip(FTP_server);
@@ -966,7 +1022,36 @@ public class BusinessTimer {
                   return xmlFilename;
     }
 
+    
+     public  String getDLL(TgroupHasTerminal terminals,String xmlfilename,int XMLlength){
+         StringBuffer a=new StringBuffer();
+     a.append(xmlfilename + ", " + (int) XMLlength + ", 1");
+     a.append("\n\n\n");
+     
+     
+         List<TgroupHasSoftware> groupApp = tgroupHasSoftwareFacade.find_term_groups(terminals.getTerminalGroupID());
+                      //   System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
+                         if ((groupApp != null) && (!groupApp.isEmpty())) {
+				
+                                for (TgroupHasSoftware ag : groupApp) {
+                                    List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
+					for (ApplicationHasGroup app : appss) {
+                                     a.append(app.getApplicationID().getFilename()).append(", ").append((int) app.getApplicationID().getAPPlength()).append(", 1");
+                                     a.append("\n\n\n");
+						
+					}
+				}
+                                
+                         }
+     
+     return a.toString();
+     }
   
+     
+      public String getdllfilename(TgroupHasTerminal d){
+       String DLL = d.getTerminalID().getTid() + "_" + d.getTerminalID().getPOSSerialNo() + ".DLL";
+      return DLL;
+      }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
