@@ -1314,24 +1314,7 @@ public String onFlowProcess(FlowEvent event) {
           Messages.addInfoMessage("Cancelled "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1);
     }
     
-    
-    
-    
-    
-        
-    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-	private static String ftpHost;
-	private static int ftpPort;
-
-        // TODO Auto-generated catch block
-        static {
-    ftpHost = "localhost";
-    ftpPort = 990;
-    System.out.println("ftpHost=" + ftpHost);
-    System.out.println("ftpPort=" + ftpPort);
-	}
-    
+ 
     
     public void ExportP(RowEditEvent event) {
             groupHasTerminal=tgroupHasTerminalFacade.findAll();

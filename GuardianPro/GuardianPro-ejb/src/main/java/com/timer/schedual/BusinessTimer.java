@@ -78,6 +78,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -162,8 +163,10 @@ public class BusinessTimer {
                 static String FTP_port = "21";
                 static String FTP_user = "ahmed";
                 static String FTP_pass = "123456";  
+                
                 static String FTP_APP_DIR = "\\APPLICATION\\"; 
                 static String FTP_APP_Live_DIR = "\\APP\\"; 
+                static String FTP_LOCAL_DIR = "C:\\"; 
                 static String FTP_XML_Live_DIR = "\\POS\\"; 
                 static User login;
                 
@@ -183,9 +186,12 @@ public class BusinessTimer {
                      saveapp(d);   
                    
                 try {
-                  String xmlFilecontent =getXML(d);
-                    deletedir(d);
-                    createdir(d);
+                String xmlFilecontent =getXML(d);
+                deletedir(d);
+                createdir(d);
+                String filename =   getxmlfilename(d, xmlFilecontent);
+                FileUtils.write(new File(FTP_LOCAL_DIR+filename), xmlFilecontent);
+                saveXML(d,filename);
                   
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -202,39 +208,13 @@ public class BusinessTimer {
 
                         saveapp(d);
  try {
-      	int sum = 0;
-     String xmlFilecontent =getXML(d);
-                    deletedir(d);
-                    createdir(d);
-                   
-                    
-                    				for (int x = 0; x < xmlFilecontent.length(); x += 2) {
-							int x0 = xmlFilecontent.charAt(x);
-							int x1;
-							if (x == xmlFilecontent.length() - 1) {
-								x1 = 0;
-							} else {
-								x1 = xmlFilecontent.charAt(x + 1);
-							}
-							sum += x0 << 8 | x1;
-						}
-						String hexStr = Integer.toHexString(sum);
-						if (hexStr.length() == 0) {
-							hexStr = "0000";
-						} else if (hexStr.length() == 1) {
-							hexStr = "000" + hexStr;
-						} else if (hexStr.length() == 2) {
-							hexStr = "00" + hexStr;
-						} else if (hexStr.length() == 3) {
-							hexStr = "0" + hexStr;
-						} else if (hexStr.length() > 4) {
-							hexStr = hexStr.substring(hexStr.length() - 4);
-						}
-						//System.out.println("terminal tid : " + d.getTerminalID().getTid() + ", auto, sum : " + sum + ", hexStr : " + hexStr);
-						Date date = d.getTerminalID().getCreateDate();
-						String str = new SimpleDateFormat("yyyyMMdd").format(date);
-						String xmlFilename = d.getTerminalID().getTid() + "_" + str + "_" + hexStr.toUpperCase() + ".edc";
-                  
+      
+    String xmlFilecontent =getXML(d);
+    deletedir(d);
+    createdir(d);
+    String filename =   getxmlfilename(d, xmlFilecontent);
+    FileUtils.write(new File(FTP_LOCAL_DIR+filename), xmlFilecontent);
+     saveXML(d,filename);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -348,6 +328,52 @@ public class BusinessTimer {
  
     }
     
+    
+    public boolean saveXML(TgroupHasTerminal d,String filename){
+         Date now = new Date();
+          FtpLog ftp=new FtpLog();
+        ftp.setServerip(FTP_server);
+        ftp.setFPort(FTP_port);
+        ftp.setFUsername(FTP_user);
+        ftp.setFpassword(FTP_pass);
+        ftp.setLocalDIR(FTP_LOCAL_DIR);
+        ftp.setFilename(filename);
+        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//"+filename);
+        ftp.setUpdateDate(now);
+        ftp.setCreateDate(now);
+        ftp.setUserID(login);
+        ftpLogFacade.create(ftp);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+          return false;
+        }else{
+           ftp=new FtpLog();
+        ftp.setServerip(FTP_server);
+        ftp.setFPort(FTP_port);
+        ftp.setFUsername(FTP_user);
+        ftp.setFpassword(FTP_pass);
+        ftp.setLocalDIR(FTP_LOCAL_DIR);
+        ftp.setFilename(filename);
+        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//");
+        ftp.setUpdateDate(now);
+        ftp.setCreateDate(now);
+        ftp.setUserID(login);
+        ftpLogFacade.create(ftp);
+         ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+          return true;
+        }else{
+        return false;
+        
+        }
+        
+        }
+    
+ 
+    }
+    
         public boolean deletefile(String filename){
          Date now = new Date();
           FtpLog ftp=new FtpLog();
@@ -440,7 +466,7 @@ public class BusinessTimer {
         return false;
     }
     
-       public  String getXML(TgroupHasTerminal terminals){ 
+    public  String getXML(TgroupHasTerminal terminals){ 
         
         if(terminals.getTerminalGroupID() == null){
         
@@ -901,6 +927,39 @@ public class BusinessTimer {
         }
         }
         return "";
+    }
+    
+    public String getxmlfilename(TgroupHasTerminal d,String xmlFilecontent){
+    
+        int sum=0;
+                    
+                    				for (int x = 0; x < xmlFilecontent.length(); x += 2) {
+							int x0 = xmlFilecontent.charAt(x);
+							int x1;
+							if (x == xmlFilecontent.length() - 1) {
+								x1 = 0;
+							} else {
+								x1 = xmlFilecontent.charAt(x + 1);
+							}
+							sum += x0 << 8 | x1;
+						}
+						String hexStr = Integer.toHexString(sum);
+						if (hexStr.length() == 0) {
+							hexStr = "0000";
+						} else if (hexStr.length() == 1) {
+							hexStr = "000" + hexStr;
+						} else if (hexStr.length() == 2) {
+							hexStr = "00" + hexStr;
+						} else if (hexStr.length() == 3) {
+							hexStr = "0" + hexStr;
+						} else if (hexStr.length() > 4) {
+							hexStr = hexStr.substring(hexStr.length() - 4);
+						}
+						//System.out.println("terminal tid : " + d.getTerminalID().getTid() + ", auto, sum : " + sum + ", hexStr : " + hexStr);
+						Date date = d.getTerminalID().getCreateDate();
+						String str = new SimpleDateFormat("yyyyMMdd").format(date);
+						String xmlFilename = d.getTerminalID().getTid() + "_" + str + "_" + hexStr.toUpperCase() + ".edc";
+                  return xmlFilename;
     }
 
   
