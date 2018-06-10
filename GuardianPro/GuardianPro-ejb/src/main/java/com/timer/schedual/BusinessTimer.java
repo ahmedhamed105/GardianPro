@@ -256,6 +256,10 @@ public class BusinessTimer {
                 FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
                 FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
                 FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
+                
+                FTP_APP_Live_DIR = configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue(); 
+                FTP_LOCAL_DIR = configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue(); 
+                FTP_XML_Live_DIR = configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue(); 
     }
     
     public boolean deletedir(TgroupHasTerminal d){
