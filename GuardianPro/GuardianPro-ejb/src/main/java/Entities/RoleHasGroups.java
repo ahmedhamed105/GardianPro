@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RoleHasGroups.findAll", query = "SELECT r FROM RoleHasGroups r")
     , @NamedQuery(name = "RoleHasGroups.findById", query = "SELECT r FROM RoleHasGroups r WHERE r.id = :id")
     , @NamedQuery(name = "RoleHasGroups.findByGroupsid", query = "SELECT r FROM RoleHasGroups r WHERE r.groupsGroupid = :id")
+    , @NamedQuery(name = "RoleHasGroups.findByGroupsidRoleid", query = "SELECT r FROM RoleHasGroups r WHERE r.groupsGroupid = :groupId AND r.roleprevilegeID = :roleId")
     , @NamedQuery(name = "RoleHasGroups.findByCreateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.createDate = :createDate")
     , @NamedQuery(name = "RoleHasGroups.findByUpdateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.updateDate = :updateDate")})
 public class RoleHasGroups implements Serializable {

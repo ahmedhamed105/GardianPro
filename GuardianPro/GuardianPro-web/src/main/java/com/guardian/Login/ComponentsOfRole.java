@@ -96,7 +96,7 @@ public class ComponentsOfRole implements Serializable {
                 Role roleObj=new Role();
                 RoleHasComponent rolHasCoponentObj ;
                 for (Component component : components) {
-                    roleObj=roleFacade.find(RoleID);
+                    roleObj=roleFacade.find(Integer.parseInt(RoleID));
                     rolHasCoponentObj= roleHasComponentFacade.find_component_by_role_component(roleObj, component);
                     if (Integer.parseInt(rolHasCoponentObj.getEdit()) == 1) {
                         System.out.println("edit");
@@ -114,14 +114,10 @@ public class ComponentsOfRole implements Serializable {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
              System.out.println("eeeeeeeeeeeeeeee" + e);
-//            try {
-//                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-//
-//               // ec.redirect(ec.getRequestContextPath() + "/faces/login.xhtml");
-//            } catch (IOException ex) {
-//               // Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+
+             
         }
 
     }
