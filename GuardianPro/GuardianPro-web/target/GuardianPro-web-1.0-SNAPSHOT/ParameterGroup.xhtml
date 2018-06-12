@@ -243,7 +243,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form" rendered="#{login.isViewed("paramterGroup_form_edit_view")}">
+                  <h:form id="form" rendered="#{login.isViewed('paramterGroup_form_edit_view')}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
@@ -266,10 +266,10 @@
     </p:treeTable>
                     
                 <p:commandButton class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.remove(actionEvent)}"
-                                 disabled="#{login.isEdit("paramtergroup_remove_editable")}"     rendered="#{login.isViewed("paramtergroup_remove_viewable")}"
+                                 disabled="#{login.isEdit('paramtergroup_remove_editable')}"     rendered="#{login.isViewed('paramtergroup_remove_viewable')}"
                                  />  
                  <p:commandButton class="btn btn-primary" value="Remove Group" type="submit" ajax="true" update=":form:messages :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.removeGroup(actionEvent)}"
-                                  disabled="#{login.isEdit("paramtergroup_removegroup_editable")}"     rendered="#{login.isViewed("paramtergroup_removegroup_viewable")}"
+                                  disabled="#{login.isEdit('paramtergroup_removegroup_editable')}"     rendered="#{login.isViewed('paramtergroup_removegroup_viewable')}"
                                   />  
              
                   
@@ -295,7 +295,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form1" rendered="#{login.isViewed("paramtergroup_form_add_view")}">
+                  <h:form id="form1" rendered="#{login.isViewed('paramtergroup_form_add_view')}">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
@@ -313,7 +313,7 @@
                   <br/>
                   <br/>
                   <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form3:parameterGroup :form3:advanced"  action="#{parameterGroup.ADD(actionEvent)}"
-                                   disabled="#{login.isEdit("paramtergroup_add_editable")}"     rendered="#{login.isViewed("paramtergroup_add_viewable")}"
+                                   disabled="#{login.isEdit('paramtergroup_add_editable')}"     rendered="#{login.isViewed('paramtergroup_add_viewable')}"
                                    />  
    
                   
@@ -342,7 +342,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form3" rendered="#{login.isViewed("paramtergroup_assign_group_form_view")}">
+                  <h:form id="form3" rendered="#{login.isViewed('paramtergroup_assign_group_form_view')}">
                   <p:messages id="messages3" showDetail="true" closable="true"/>
                 <div class="form-group">
                     
@@ -368,7 +368,7 @@
                   <br/>
                   <br/>
                   <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form3:messages3 :form:cars1" action="#{parameterGroup.joingroup(actionEvent)}"
-                                   disabled="#{login.isEdit("paramtergroup_assign_editable")}"     rendered="#{login.isViewed("paramtergroup_assign_viewable")}"
+                                   disabled="#{login.isEdit('paramtergroup_assign_editable')}"     rendered="#{login.isViewed('paramtergroup_assign_viewable')}"
                                    />  
    
                   

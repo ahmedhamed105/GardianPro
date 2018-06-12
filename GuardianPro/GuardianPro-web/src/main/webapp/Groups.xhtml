@@ -9,7 +9,7 @@
         <title>#{menu.tittle()}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{groups.init()}"/>
-        <f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
+            <f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <!-- Tell the browser to be responsive to screen width -->
@@ -233,7 +233,7 @@
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <ui:include src="Actionbar.xhtml" />
+                                <ui:include src="Actionbar.xhtml" />
 
                                 <!-- /.box-header -->
                                 <!-- form start -->
@@ -285,8 +285,8 @@
                                                 </p:column>
                                                 <f:facet name="footer">
                                                     <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
-                                                     disabled = "#{login.isViewed("groups_edit_view")}"
-                                                     rendered="#{login.isEdit("groups_edit_edit")}"/>  
+                                                                     disabled = "#{login.isViewed('groups_edit_view')}"
+                                                                     rendered="#{login.isEdit('groups_edit_edit')}"/>  
                                                 </f:facet>
 
                                             </p:dataTable>
@@ -307,14 +307,14 @@
                             <!-- general form elements -->
                             <div class="box">
 
-                            <ui:include src="Actionbar.xhtml" />
+                                <ui:include src="Actionbar.xhtml" />
 
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
                                 <div class="box-body">
-                                    <h:form id="form1" rendered="#{login.isViewed("groups_add_edit")}">
+                                    <h:form id="form1" rendered="#{login.isViewed('groups_add_edit')}">
                                         <p:messages id="messages1" showDetail="true" closable="true"/>
                                         <div class="form-group">
 
@@ -334,8 +334,8 @@
                                             <br/>
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{groups.ADD(actionEvent)}" 
-                                                             disabled = "#{login.isViewed("groups_add_view")}"
-                                                             
+                                                             disabled = "#{login.isViewed('groups_add_view')}"
+
                                                              />  
 
 
@@ -358,7 +358,7 @@
                             <!-- general form elements -->
                             <div class="box">
 
-                                 <ui:include src="Actionbar.xhtml" />
+                                <ui:include src="Actionbar.xhtml" />
 
                                 <!-- /.box-header -->
                                 <!-- form start -->

@@ -40,7 +40,7 @@ public class ParserTimer {
     TerminalParserLogFacadeLocal terminalLogFile;
 
 
-    @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
+//    @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("Executing ...");

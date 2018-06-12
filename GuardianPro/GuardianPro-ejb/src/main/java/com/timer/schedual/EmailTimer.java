@@ -40,7 +40,7 @@ public class EmailTimer {
     TerminalParserLogFacadeLocal terminalLogFile;
 
 
-    @Schedule(hour = "*", minute = "*", second = "*/20", persistent = false)
+    //@Schedule(hour = "*", minute = "*", second = "*/20", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("Email Executing ...");

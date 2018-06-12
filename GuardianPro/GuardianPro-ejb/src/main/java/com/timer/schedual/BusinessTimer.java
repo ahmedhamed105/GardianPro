@@ -171,7 +171,7 @@ public class BusinessTimer {
    List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
 
 
-    @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
+//    @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("XML Executing ...");
