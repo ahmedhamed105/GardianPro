@@ -45,7 +45,7 @@
         <ui:repeat value="#{menu.menus}" var="car">
             <h:panelGroup rendered="#{empty menu.sub_menu(car)}">
            
-  <li class="active"><a href="#"><i class="fa fa-link"></i> <span>#{car.name}</span></a></li>>
+  <li class="active"><a href="#{car.link}"><i class="fa fa-link"></i> <span>#{car.name}</span></a></li>>
             </h:panelGroup>
               <h:panelGroup rendered="#{not empty menu.sub_menu(car)}">
    <li class="treeview">
