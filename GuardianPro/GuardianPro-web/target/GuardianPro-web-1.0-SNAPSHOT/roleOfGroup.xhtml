@@ -260,8 +260,8 @@
                                                          rowsPerPageTemplate="5,10,15" selection="#{RolesOfGroup.selectGroup}" rowKey="#{rol.previlegeID}" > 
 
 
-                                                <p:ajax event="rowEdit" listener="#{componentsOfRole.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{componentsOfRole.onRowCancel}" update=":form:messages :form:cars1"  />
+                                                <p:ajax event="rowEdit" listener="#{RolesOfGroup.onRowEdit}" update=":form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{RolesOfGroup.onRowCancel}" update=":form:messages :form:cars1"  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -280,7 +280,7 @@
                                                 </p:column>
 
 
-                                                <p:column headerText="View" sortBy="#{rol.view}"  >
+                                                <p:column headerText="add" sortBy="#{rol.view}"  >
                                                     <p:cellEditor>
                                                         <f:facet name="output"><h:outputText value="#{rol.view}" /></f:facet>
                                                         <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.view}" /></f:facet>
