@@ -51,4 +51,6 @@ public interface UserFacadeLocal {
     int user_status(User User1);
 //    Collection<Groups> groupsByUser(String Username);
    // Collection<Role> rolesOfUser(String Username);
+    
+    boolean user_find(String user);
 }

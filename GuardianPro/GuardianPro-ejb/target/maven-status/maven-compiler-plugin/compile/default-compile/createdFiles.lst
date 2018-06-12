@@ -67,6 +67,7 @@ Facades\EmailSmsSendFacade.class
 Facades\GroupHasParameterFacadeLocal.class
 Entities\TrxType_.class
 Entities\ParameterType_.class
+com\timer\schedual\EmailTimer.class
 Entities\WebsiteData.class
 Entities\NationalIdHasMaritalStatus1PK_.class
 Entities\MaritalStatus_.class
@@ -225,6 +226,7 @@ Facades\PhoneDataFacadeLocal.class
 Facades\FtpMessagesFacadeLocal.class
 Entities\PhoneDataCopy1.class
 Facades\LoginWayFacadeLocal.class
+com\timer\schedual\BusinessTimer.class
 Entities\ArmyArea_.class
 Entities\ParmeterSchema.class
 Facades\AbstractFacade.class

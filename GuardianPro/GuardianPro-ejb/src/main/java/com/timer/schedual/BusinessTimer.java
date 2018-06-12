@@ -179,11 +179,27 @@ public class BusinessTimer {
 
         System.out.println("XML Executing ...");
         
+            smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
+		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
+                
+                FTP_APP_Live_DIR = configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue(); 
+                FTP_LOCAL_DIR = configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue(); 
+                FTP_XML_Live_DIR = configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue(); 
+        
          groupHasTerminal=tgroupHasTerminalFacade.findAll();
             for(TgroupHasTerminal d:groupHasTerminal){
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
-                     saveapp(d);   
+                        
                    
                 try {
                 String xmlFilecontent =getXML(d);
@@ -198,7 +214,7 @@ public class BusinessTimer {
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
     FileUtils.write(f1, DLLcontent);
     saveDLL(d, DLLfilename);
-                
+    saveapp(d);       
                   
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -213,18 +229,22 @@ public class BusinessTimer {
                     if (date2.before(now) && date1.after(now)) {
                         
 
-                        saveapp(d);
+                    
  try {
       
-    String xmlFilecontent =getXML(d);
+        String xmlFilecontent =getXML(d);
     deletedir(d);
     createdir(d);
     String filename =   getxmlfilename(d, xmlFilecontent);
     File f=new  File(FTP_LOCAL_DIR+filename);
     FileUtils.write(f, xmlFilecontent);
     saveXML(d,filename);
-    String dll=getDLL(d, filename, (int) f.length());
-    
+    String DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, filename, (int) f.length());
+    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
+    FileUtils.write(f1, DLLcontent);
+    saveDLL(d, DLLfilename);
+    saveapp(d);
      
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -256,21 +276,7 @@ public class BusinessTimer {
           login = userFacade.find(1);
         System.out.println("intit..............");
 //        parseTerminalsLogFiles("E:\\3yad\\private\\projects\\GardianPro\\20180602_001014_40000001.LOG");
-       smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
-		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
-		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
-		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
-                smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
-                smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
-                FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
-                FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
-                FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
-                FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
-                FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
-                
-                FTP_APP_Live_DIR = configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue(); 
-                FTP_LOCAL_DIR = configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue(); 
-                FTP_XML_Live_DIR = configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue(); 
+   
     }
     
     public boolean deletedir(TgroupHasTerminal d){
@@ -465,11 +471,11 @@ public class BusinessTimer {
     public boolean saveapp(TgroupHasTerminal d){
          Date now = new Date();
     List<TgroupHasSoftware> groupApp = tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
-                      //   System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
+                       System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
                          if ((groupApp != null) && (!groupApp.isEmpty())) {
 		
                                 for (TgroupHasSoftware ag : groupApp) {
-                                    List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
+          List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
 			for (ApplicationHasGroup app : appss) {
             deletefile(app.getApplicationID().getFilename());         
          FtpLog ftp=new FtpLog();

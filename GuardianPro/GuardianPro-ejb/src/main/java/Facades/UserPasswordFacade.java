@@ -43,4 +43,7 @@ public class UserPasswordFacade extends AbstractFacade<UserPassword> implements 
             return null;
         }
     }
+        
+        
+   
 }

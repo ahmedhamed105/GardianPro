@@ -106,6 +106,25 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         }
     }
      
+       @Override
+    public boolean user_find(String user) {
+  
+       Query para_find = em.createNamedQuery("User.findByUsername");
+        para_find.setParameter("username", user);
+        try {
+         Entities.User  Users = (Entities.User) para_find.getSingleResult(); 
+         //   System.out.println("ahmed hamed  "+inputtype.getType());
+         if(Users==null){
+         return false;
+         }else{
+         return true;
+         }
+                
+        } catch (Exception e) {
+            return false;
+        }
+    }
+     
 //     @Override
 //     public Collection<Groups> groupsByUser(String Username){      
 //       Query password_username = em.createNamedQuery("User.findByUsername");

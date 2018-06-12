@@ -12,6 +12,11 @@
     </session-config>
     
 
+<welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+</welcome-file-list>
+    
+
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
