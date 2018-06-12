@@ -136,7 +136,9 @@ public class Login {
 
         try {
             User u1 = userFacade.search_username(username).get(0);
-            if (u1.getUserPasswordID().getPassword().equals(password)) {
+            
+              String decrypted = Encryption.encrypt(password);
+            if (u1.getUserPasswordID().getPassword().equals(decrypted)) {
                 switch (userFacade.user_status(u1)) {
                     case 1:
                         Messages.addInfoMessage("Login ok!!", 1);
@@ -156,6 +158,8 @@ public class Login {
 
                         //ahmed.ibraheem
                         // Load All Rolls
+                
+               
                         groupsHasUsers = groupsHasUserFacade.find_groups_by_user(u1);
                         if (groupsHasUsers != null) {
 
@@ -209,6 +213,9 @@ public class Login {
                         loadViewEdit();
                         //ahmed.ibraheem
                         // Load All Rolls
+       ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+       ec.redirect(ec.getRequestContextPath()
+               + "/faces/Main.xhtml");
                         return "Login";
                     case 2:
                         Messages.addInfoMessage("Login Error User Closed !!", 2);

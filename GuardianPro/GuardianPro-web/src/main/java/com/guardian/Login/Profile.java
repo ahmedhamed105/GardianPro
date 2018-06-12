@@ -13,10 +13,13 @@ import Facades.UserPasswordFacadeLocal;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -144,7 +147,8 @@ public class Profile {
             try {
         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         UserPassword paa=selectUser.getUserPasswordID();
-        paa.setPassword(password);
+         String encrypted = Encryption.encrypt(password);
+        paa.setPassword(encrypted);
         paa.setUpdateDate(date);
         userPasswordFacade.edit(paa);
               
@@ -190,7 +194,8 @@ public class Profile {
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((User) event.getObject()).getUsername(),1);
+        
+          Messages.addInfoMessage("Cancelled "+" "+((User) event.getObject()).getUsername(),1);
     }
     
     
@@ -200,17 +205,21 @@ public class Profile {
         if(userFacade.user_find(User.getUsername())){
                Messages.addInfoMessage("Duplicated",2);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+            
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             User.setCreateDate(date);
             User.setUpdateDate(date);
             UserPassword paa=new UserPassword();
-            paa.setPassword(password);
+             String encrypted = Encryption.encrypt(password);
+            paa.setPassword(encrypted);
             paa.setCreateDate(date);
             paa.setUpdateDate(date);
             userPasswordFacade.create(paa);
             User.setUserPasswordID(paa);
-          userFacade.create(User);
+          userFacade.create(User);     
+          Messages.addInfoMessage("ADDED ",1);
+             
+
         }
           }else{
                 Messages.addInfoMessage("please sure that two passord is same",2);
@@ -218,5 +227,6 @@ public class Profile {
           }
       return "Login";
      }
-       
+     
+          
 }
