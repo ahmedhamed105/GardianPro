@@ -5,7 +5,9 @@
 package com.timer.schedual;
 
 import Entities.ConfigParmeter;
+import Entities.EmailLog;
 import Entities.TerminalParserLog;
+import Facades.EmailLogFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalParserLogFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,30 +40,34 @@ import javax.ejb.Timer;
 public class EmailTimer {
 
     @EJB
+    private EmailLogFacadeLocal emailLogFacade;
+
+    @EJB
     TerminalParserLogFacadeLocal terminalLogFile;
+    
+    
 
 
-    //@Schedule(hour = "*", minute = "*", second = "*/20", persistent = false)
+    @Schedule(hour = "*", minute = "*/2", second = "*", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("Email Executing ...");
 
         System.out.println("Execution Time : " + new Date());
-        ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");
-        terminalLogFile.refresh(configParmeter);
-        if(configParmeter.getPValue()!=null){
-            boolean timerParserFlag = Boolean.parseBoolean(configParmeter.getPValue().trim());
-            System.out.println("Timer Parser Flag : " + timerParserFlag);
-            if (timerParserFlag) {//here will be data base flage that control the process
-                ConfigParmeter logFilePath = terminalLogFile.loadTimerParserParametes("parameter", "TERMINAL_LOG_FILE_PATH");
-                terminalLogFile.refresh(logFilePath);
-                if(logFilePath.getPValue()!=null){
-                    parseTerminalsLogFiles(logFilePath.getPValue().trim());
-                }
-
-            }
+        
+        List<EmailLog> emails=emailLogFacade.FindALL_notsend();
+        if(emails != null){
+        for(EmailLog email:emails){
+         boolean send=   emailLogFacade.send_email(email);
+             if(send){
+                  Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                  email.setEsendnot(1);
+                  email.setUpdateDate(date);
+                  emailLogFacade.edit(email);
+             }
         }
-        System.out.println("____________________________________________");
+        }
+       
 
     }
 
@@ -71,47 +78,7 @@ public class EmailTimer {
        
     }
 
-    private void parseTerminalsLogFiles(String filePath) {
-        try {
-            System.out.format("Start parsing terminal log file:\n %s", filePath);
-            Path path = Paths.get(filePath);
-            List<String> lines = Files.readAllLines(path);
-            if (lines != null && lines.size() > 0) {
-                Map<String, String> fileContent = new HashMap<>();
-                for (String line : lines) {
-                    String[] values = line.split("=");
-                    String key = values[0];
-                    String value = values[1];
-                    fileContent.put(key, value);
 
-                }
-                System.out.println("File content ... " + fileContent);
-                createLogAndSave(fileContent);
-            }
-            System.out.format("end parsing terminal log file:\n %s", filePath);
-
-        } catch (IOException ex) {
-            System.err.println(ex);
-
-        }
-
-    }
-
-    private void createLogAndSave(Map<String, String> fileContent) {
-        TerminalParserLog parserLog = new TerminalParserLog();
-        parserLog.setTid(fileContent.get("TID"));
-        parserLog.setDt(fileContent.get("DT"));
-        parserLog.setVer(fileContent.get("VER"));
-        parserLog.setMode(fileContent.get("MODE"));
-        parserLog.setErr(fileContent.get("ERR"));
-        terminalLogFile.saveNewTerminalLog(parserLog);
-//        com.guardian.Login.
-//        Login.login = userFacade.find(1);
-//        if(Login.login==null || Login.login.getId() == 0){
-//            
-//        }}
-
-    }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

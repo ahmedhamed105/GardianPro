@@ -32,4 +32,6 @@ public interface EmailLogFacadeLocal {
     
     boolean send_email(EmailLog em);
     
+    List<EmailLog> FindALL_notsend();
+    
 }

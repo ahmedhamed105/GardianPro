@@ -6,13 +6,11 @@ package com.timer.schedual;
 
 import Entities.AccessoryHasGroup;
 import Entities.ApplicationHasGroup;
-import Entities.ConfigParmeter;
 import Entities.EmailLog;
 import Entities.FtpLog;
 import Entities.ParameterValues;
 import Entities.Pgchild;
 import Entities.TerminalHasParts;
-import Entities.TerminalParserLog;
 import Entities.TgroupHasAccesory;
 import Entities.TgroupHasGparameter;
 import Entities.TgroupHasSoftware;
@@ -34,39 +32,25 @@ import Facades.PgchildFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
 import Facades.TerminalHasPartsFacadeLocal;
-import Facades.TerminalParserLogFacadeLocal;
 import Facades.TerminalTemplateFacadeLocal;
 import Facades.TgroupHasAccesoryFacadeLocal;
 import Facades.TgroupHasGparameterFacadeLocal;
 import Facades.TgroupHasSoftwareFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.GZIPOutputStream;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
-import javax.ejb.Schedule;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.ejb.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -1058,6 +1042,26 @@ public class BusinessTimer {
        String DLL = d.getTerminalID().getTid() + "_" + d.getTerminalID().getPOSSerialNo() + ".DLL";
       return DLL;
       }
+      
+      
+      
+      public void email(String text,String subject){
+         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        	EmailLog email=new EmailLog();
+                email.setEhost(smtp_host);
+                email.setEfrom(smtp_from);
+                email.setEpassword(smtp_password);
+                email.setEto(smtp_to);
+                email.setEsubject(text);
+                email.setEtext(subject);
+                email.setEPort("587");
+                email.setETls(1);
+                email.setUserID(login);
+                email.setEsendnot(0);
+                email.setUpdateDate(date);
+                email.setCreateDate(date);
+                emailLogFacade.create(email);
+      }   
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")

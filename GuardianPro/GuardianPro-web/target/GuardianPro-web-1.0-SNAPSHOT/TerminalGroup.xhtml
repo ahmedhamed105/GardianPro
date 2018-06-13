@@ -15,6 +15,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
 
+        
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
         <!-- Font Awesome -->
@@ -178,7 +179,7 @@
                                                         </f:facet>
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="ExportP" type="submit" ajax="true" update=":form111:messages111 :form111:tree1 :form111:tree2" action="#{terminalgroup.ExportP(actionEvent)}"/>  
+                                                            <p:commandButton class="btn btn-primary" value="Export XML" type="submit" ajax="false"  action="#{terminalgroup.ExportP(actionEvent)}"/>  
                                                         </f:facet>
 
                                                     </p:dataTable>
@@ -572,7 +573,33 @@
 
                     <div class="row">
 
+ <div class="col-md-6 col-sm-3 col-xs-6">
+                            <!-- general form elements -->
+                            <div class="box">
 
+                                  <div class="box-header with-border">
+      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+                                <ui:include src="Actionbar.xhtml" />
+  </div>
+
+                                <!-- /.box-header -->
+                                <!-- form start -->
+
+
+                                <div class="box-body">
+                                      <h:form id="form122">
+                                          <p:editor value="#{terminalgroup.eportedxml}"  >
+                                     
+                                    </p:editor>
+                                      </h:form>
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                </div>
+
+                                <!-- /.box -->
+                            </div>
+                        </div>
 
                         <div class="col-md-6 col-sm-3 col-xs-6">
                             <!-- general form elements -->

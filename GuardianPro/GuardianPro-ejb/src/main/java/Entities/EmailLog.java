@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EmailLog.findAll", query = "SELECT e FROM EmailLog e"),
+    @NamedQuery(name = "EmailLog.findAllN", query = "SELECT e FROM EmailLog e WHERE e.esendnot = 0"),
     @NamedQuery(name = "EmailLog.findById", query = "SELECT e FROM EmailLog e WHERE e.id = :id"),
+    
     @NamedQuery(name = "EmailLog.findByEhost", query = "SELECT e FROM EmailLog e WHERE e.ehost = :ehost"),
     @NamedQuery(name = "EmailLog.findByEfrom", query = "SELECT e FROM EmailLog e WHERE e.efrom = :efrom"),
     @NamedQuery(name = "EmailLog.findByEpassword", query = "SELECT e FROM EmailLog e WHERE e.epassword = :epassword"),

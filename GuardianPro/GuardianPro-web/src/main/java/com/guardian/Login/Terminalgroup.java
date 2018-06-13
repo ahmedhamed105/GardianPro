@@ -55,6 +55,7 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -160,7 +161,7 @@ public class Terminalgroup {
           @EJB
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
           
-          
+          String eportedxml;
           
           
              private TreeNode root1;
@@ -247,6 +248,16 @@ public class Terminalgroup {
      */
     public Terminalgroup() {
     }
+
+    public String getEportedxml() {
+        return eportedxml;
+    }
+
+    public void setEportedxml(String eportedxml) {
+        this.eportedxml = eportedxml;
+    }
+    
+    
 
     public List<ParameterValues> getTParameterValues() {
         return TParameterValues;
@@ -1317,18 +1328,26 @@ public String onFlowProcess(FlowEvent event) {
  
     
     public void ExportP(RowEditEvent event) {
+        if(seletermgroup == null){
+           Messages.addInfoMessage("Please select Terminal Group ",2);
+           eportedxml="NO XML";
+        }else{
+        StringBuffer m=new StringBuffer();
             groupHasTerminal=tgroupHasTerminalFacade.findAll();
             for(TgroupHasTerminal d:groupHasTerminal){
                 try {
-                    System.out.println(getXML(d));  
+                    m.append(getXML(d));
+                      m.append("\n");
                 } catch (Exception e) {
+                    email("Error : XML Not exported", "SPOECTRA TMS APP");     
                     e.printStackTrace();
                 }
            
             }
-             
-             Messages.addInfoMessage("Exported "+seletermgroup.getGroupname(),1);
-       
+            
+            eportedxml=m.toString();    
+             Messages.addInfoMessage("XML View For "+seletermgroup.getGroupname(),1);
+        }
     }
     
     
@@ -1798,6 +1817,22 @@ public String onFlowProcess(FlowEvent event) {
     }
     
     
-      
+  public void email(String text,String subject){
+         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        	EmailLog email=new EmailLog();
+                email.setEhost(Login.smtp_host);
+                email.setEfrom(Login.smtp_from);
+                email.setEpassword(Login.smtp_password);
+                email.setEto(Login.smtp_to);
+                email.setEsubject(text);
+                email.setEtext(subject);
+                email.setEPort("587");
+                email.setETls(1);
+                email.setUserID(Login.login);
+                email.setEsendnot(0);
+                email.setUpdateDate(date);
+                email.setCreateDate(date);
+                emailLogFacade.create(email);
+      }     
     
 }

@@ -7,9 +7,12 @@ package Facades;
 
 import Email.EmailUtils;
 import Entities.EmailLog;
+import Entities.User;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,7 +33,7 @@ public class EmailLogFacade extends AbstractFacade<EmailLog> implements EmailLog
         super(EmailLog.class);
     }
     
-       @Override
+    @Override
     public boolean send_email(EmailLog em) {
         try {
            EmailUtils.send(em);  
@@ -40,6 +43,20 @@ public class EmailLogFacade extends AbstractFacade<EmailLog> implements EmailLog
                 return false;
         }
        
+    }
+    
+    
+     @Override
+        public  List<EmailLog> FindALL_notsend(){
+    
+            
+       Query user_username = em.createNamedQuery("EmailLog.findAllN");
+        try {
+                List<EmailLog>  EmailLog = user_username.getResultList();     
+                return EmailLog;
+        } catch (Exception e) {
+            return null;
+        }
     }
     
 }
