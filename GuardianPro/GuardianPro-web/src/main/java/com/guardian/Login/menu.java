@@ -5,8 +5,10 @@
  */
 package com.guardian.Login;
 
+import Entities.Component;
 import Entities.Menu;
 import Entities.MenuSub;
+import Facades.ComponentFacadeLocal;
 import Facades.MenuFacadeLocal;
 import Facades.MenuSubFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -25,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author ahmed.elemam
  */
 public class menu {
+
+    @EJB
+    private ComponentFacadeLocal componentFacade;
 
     @EJB
     private MenuSubFacadeLocal menuSubFacade;
@@ -96,7 +101,21 @@ public class menu {
       }
     
     
-    
+      public String comname(String name){
+          try {
+                 Component a= componentFacade.getname(name);
+                 if(a==null){
+                  return "Main";
+                 }else{
+                  return a.getCname();      
+                 }
+ 
+          } catch (Exception e) {
+              return "Main";
+          }
+     
+      
+      }
       public String tittle(){
         //  FacesContext ctx = FacesContext.getCurrentInstance();
 String path = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI();

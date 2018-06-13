@@ -30,6 +30,26 @@ public class ComponentFacade extends AbstractFacade<Component> implements Compon
     public ComponentFacade() {
         super(Component.class);
     }
+    
+    
+    @Override
+      public Component getname(String name){
+          try {
+               Query component_find = em.createNamedQuery("Component.findByName");
+       component_find.setParameter("name", name);
+      Component components = (Component) component_find.getSingleResult();
+      
+        if (components == null) {
+                return null;
+            } else {
+                return components;
+            }
+          } catch (Exception e) {
+              return null;
+          }
+      
+      
+      }
 
     @Override
     public List<Component> getChild(Integer PID) {

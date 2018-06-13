@@ -45,6 +45,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Component.findByUpdateDate", query = "SELECT c FROM Component c WHERE c.updateDate = :updateDate")})
 public class Component implements Serializable {
 
+    @Size(max = 150)
+    @Column(name = "C_name", length = 150)
+    private String cname;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -203,6 +207,14 @@ public class Component implements Serializable {
     @Override
     public String toString() {
         return "Entities.Component[ componentID=" + componentID + " ]";
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
     }
     
 }
