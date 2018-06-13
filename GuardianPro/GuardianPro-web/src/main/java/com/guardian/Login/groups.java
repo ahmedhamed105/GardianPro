@@ -36,9 +36,8 @@ import org.primefaces.event.RowEditEvent;
  *
  * @author ahmed.ibraheem
  */
-@Named(value = "groups")
-@SessionScoped
-public class Groups1 implements Serializable {
+
+public class groups implements Serializable {
 
     @EJB
     private RoleFacadeLocal roleFacade;
@@ -66,11 +65,14 @@ public class Groups1 implements Serializable {
     List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
     List<Role> roles= new ArrayList<Role>();
 
-    public Groups1() {
+    public groups() {
     }
 
     public void init() {
+        System.out.println("com.guardian.Login.Groups1.init()");
         Login.login = userFacade.find(1);
+        
+        System.out.println("com.guardian.Login.Groups1.init()");
         try {
             if (Login.login == null || Login.login.getId() == 0) {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -83,10 +85,11 @@ public class Groups1 implements Serializable {
             } else {
                 groups = groupsFacadeLocal.findAll();
 
-                System.out.println(groups.get(0).getDescription());
+//                System.out.println(groups.get(0).getDescription());
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 

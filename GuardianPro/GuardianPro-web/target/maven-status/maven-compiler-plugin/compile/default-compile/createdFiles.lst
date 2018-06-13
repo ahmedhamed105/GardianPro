@@ -13,6 +13,7 @@ com\guardian\Login\accessory.class
 com\guardian\Login\TerminalTemp.class
 com\guardian\Login\accessgroup.class
 com\guardian\Login\Main.class
+com\guardian\Login\groups.class
 com\guardian\Login\RolesOfGroup.class
 com\guardian\converter\CterminalTemplate.class
 com\guardian\util\ActionlogingUtil.class
@@ -25,7 +26,6 @@ com\guardian\Login\ParameterGroups.class
 com\guardian\Login\Action.class
 com\guardian\Login\Profile.class
 com\guardian\Login\Encryption.class
-com\guardian\Login\Groups1.class
 com\guardian\converter\Cgroupparameter.class
 com\guardian\Login\Pconfig.class
 com\guardian\Login\RolesBean.class
