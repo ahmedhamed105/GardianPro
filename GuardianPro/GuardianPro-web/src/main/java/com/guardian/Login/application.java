@@ -115,12 +115,18 @@ public class application {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 19);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 19);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -172,6 +178,9 @@ public class application {
                 System.out.println("New file created!");
                 } catch (IOException e) {
                 System.out.println(e.getMessage());
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 19);
+                /*end mohammed.ayad*/
                 }
     }
      
@@ -197,7 +206,7 @@ public class application {
                   if(extension.toUpperCase().trim().equals(".TMS")){
                       System.out.println("ahmed "+app.getAppName());
                       if(applicationFacade.app_find(app.getAppName())){
-                           Messages.addInfoMessage("Please Check Application Name",2);
+                           Messages.addInfoMessage("Please Check Application Name",2,19);
                       }else{
                     String filename_ext = String.valueOf(generateRandom(9))+".tms";
                     
@@ -226,7 +235,9 @@ File d=new File(path.getPValue()+"/"+filename_ext);
         }
                         
          } catch (Exception e) {
-                              
+                 /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 19);
+                /*end mohammed.ayad*/             
                  
 		String subject="Not able to Store tms file in FTP";
 		String text="Not able to Store tms file in FTP";
@@ -260,7 +271,7 @@ File d=new File(path.getPValue()+"/"+filename_ext);
        
                     
                
-                      Messages.addInfoMessage("ADDED",1);
+                      Messages.addInfoMessage("ADDED",1,19);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             app.setAppDir("\\APPLICATION\\"+filename_ext);
             app.setFilename(filename_ext);
@@ -271,11 +282,14 @@ File d=new File(path.getPValue()+"/"+filename_ext);
           applicationFacade.create(app);
                       }
                   }else{
-                  Messages.addInfoMessage("Please Check File Type",2);
+                  Messages.addInfoMessage("Please Check File Type",2,19);
                   }
            
         } catch (IOException e) {
             e.printStackTrace();
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 19);
+                /*end mohammed.ayad*/
         }
            
 
@@ -287,9 +301,9 @@ File d=new File(path.getPValue()+"/"+filename_ext);
           public void remove(ActionEvent actionEvent){
          try {
                    applicationFacade.remove(seletapp);
-             Messages.addInfoMessage("removed "+seletapp.getAppName(),1);
+             Messages.addInfoMessage("removed "+seletapp.getAppName(),1,19);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+seletapp.getAppName()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+seletapp.getAppName()+" return to Admin "+e.getMessage(),3,19);
          }
          
      

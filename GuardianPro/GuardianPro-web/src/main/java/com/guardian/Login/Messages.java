@@ -41,20 +41,34 @@ public class Messages {
     public Messages() {
     }
 
-    public static void addInfoMessage(String summary, int type) {
+    public static void addInfoMessage(String summary, int type,int pageId) {
         if (type == 1) {
-            String infoMsgFormate=messagesFormate.get(0).getPValue();
-            if(infoMsgFormate!=null &&!infoMsgFormate.equalsIgnoreCase("")){
-                summary=infoMsgFormate+summary;
-                System.out.println("summary : "+summary);
+            if(messagesFormate.size()>0 && messagesFormate.get(0)!=null){
+                String infoMsgFormate=messagesFormate.get(0).getPValue();
+                if(infoMsgFormate!=null &&!infoMsgFormate.equalsIgnoreCase("")){
+                    summary=infoMsgFormate+summary;
+                    System.out.println("summary : "+summary);
+                }
             }
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
             FacesContext.getCurrentInstance().addMessage(null, message);
         } else if (type == 2) {
-            String errorMsgFormate=messagesFormate.get(0).getPValue();
-            if(errorMsgFormate!=null &&!errorMsgFormate.equalsIgnoreCase("")){
-                summary=errorMsgFormate+summary;
-                System.out.println("summary : "+summary);
+            if(messagesFormate.size()>0 && messagesFormate.get(1)!=null){
+                String errorMsgFormate=messagesFormate.get(1).getPValue();
+                if(errorMsgFormate!=null &&!errorMsgFormate.equalsIgnoreCase("")){
+                    summary=errorMsgFormate+summary;
+                    System.out.println("summary : "+summary);
+                }
+            }
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }else if (type == 3) {
+            if(messagesFormate.size()>0 && messagesFormate.get(2)!=null){
+                String errorMsgFormate=messagesFormate.get(2).getPValue();
+                if(errorMsgFormate!=null &&!errorMsgFormate.equalsIgnoreCase("")){
+                    summary=errorMsgFormate+summary;
+                    System.out.println("summary : "+summary);
+                }
             }
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
             FacesContext.getCurrentInstance().addMessage(null, message);

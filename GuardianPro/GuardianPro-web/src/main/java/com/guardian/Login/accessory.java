@@ -64,12 +64,18 @@ public class accessory {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 17);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 17);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -104,9 +110,9 @@ public class accessory {
         public void remove(ActionEvent actionEvent){
          try {
                    accessoryFacade.remove(selectacc);
-             Messages.addInfoMessage("removed "+selectacc.getAccName(),1);
+             Messages.addInfoMessage("removed "+selectacc.getAccName(),1,17);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectacc.getAccName()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectacc.getAccName()+" return to Admin "+e.getMessage(),3,17);
          }
          
      
@@ -120,20 +126,20 @@ public class accessory {
             Accessory.setUpdateDate(date);
           accessoryFacade.edit(Accessory);
           
-          Messages.addInfoMessage("Edited "+((Accessory) event.getObject()).getAccName(),1);
+          Messages.addInfoMessage("Edited "+((Accessory) event.getObject()).getAccName(),1,17);
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((Accessory) event.getObject()).getAccName(),1);
+          Messages.addInfoMessage("Cancelled "+((Accessory) event.getObject()).getAccName(),1,17);
     }
     
     
     public String ADD(ActionEvent actionEvent){
          
       if(accessoryFacade.access_find(Accessory.getAccName())){
-             Messages.addInfoMessage("Duplicated",2);
+             Messages.addInfoMessage("Duplicated",2,17);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,17);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             Accessory.setCreateDate(date);
             Accessory.setUpdateDate(date);

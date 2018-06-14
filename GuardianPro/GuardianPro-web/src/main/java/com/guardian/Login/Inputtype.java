@@ -64,12 +64,18 @@ public class Inputtype {
            }
 
            } catch (Exception e) {
+               /*start mohammed.ayad*/
+               Messages.addInfoMessage(e.getMessage(), 3, 4);
+               /*end mohammed.ayad*/
                try {
                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
                    ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
                } catch (IOException ex) {
                    Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                   /*start mohammed.ayad*/
+                    Messages.addInfoMessage(ex.getMessage(), 3, 4);
+                    /*end mohammed.ayad*/
                }
    }
 
@@ -113,9 +119,13 @@ public class Inputtype {
      public void remove(ActionEvent actionEvent){
          try {
                    inputTypeFacade.remove(selecttype);
-             Messages.addInfoMessage("removed "+selecttype.getType(),1);
+             /*start mohammed.ayad*/
+             Messages.addInfoMessage("removed "+selecttype.getType(),1,4);
+             /*end mohammed.ayad*/
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selecttype.getType()+" return to Admin",2);
+             /*start mohammed.ayad*/
+              Messages.addInfoMessage("Not removed "+selecttype.getType()+" return to Admin",3,4);
+              /*end mohammed.ayad*/
          }
          
      
@@ -128,12 +138,15 @@ public class Inputtype {
           type=((InputType) event.getObject());
             type.setUpdateDate(date);
           inputTypeFacade.edit(type);
-          
-          Messages.addInfoMessage("Edited "+((InputType) event.getObject()).getType(),1);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((InputType) event.getObject()).getType(),1,4);
+          /*end mohammed.ayad*/
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((InputType) event.getObject()).getType(),1);
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((InputType) event.getObject()).getType(),1,4);
+          /*end mohammed.ayad*/
     }
     
     
@@ -141,9 +154,13 @@ public class Inputtype {
      public String ADD(ActionEvent actionEvent){
          
         if(inputTypeFacade.input_find(type.getType())){
-               Messages.addInfoMessage("Duplicated",2);
+            /*start mohammed.ayad*/
+               Messages.addInfoMessage("Duplicated",2,4);
+             /*end mohammed.ayad*/
         }else{
-             Messages.addInfoMessage("ADDED",1);
+            /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,4);
+             /*end mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             type.setCreateDate(date);
             type.setUpdateDate(date);

@@ -130,12 +130,18 @@ public class Profile {
            }
 
            } catch (Exception e) {
+               /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 10);
+                /*end mohammed.ayad*/
                try {
                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
                    ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
                } catch (IOException ex) {
                    Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                   /*start mohammed.ayad*/
+                    Messages.addInfoMessage(ex.getMessage(), 3, 10);
+                    /*end mohammed.ayad*/
                }
    }
 
@@ -151,14 +157,18 @@ public class Profile {
         paa.setPassword(encrypted);
         paa.setUpdateDate(date);
         userPasswordFacade.edit(paa);
-              
-             Messages.addInfoMessage("reset password for "+selectUser.getUsername(),1);
+              /*start mohammed.ayad*/
+             Messages.addInfoMessage("reset password for "+selectUser.getUsername(),1,10);
+             /*end mohammed.ayad*/
          } catch (Exception e) {
-              Messages.addInfoMessage("Not reset "+selectUser.getUsername()+" return to Admin",2);
+             /*start mohammed.ayad*/
+              Messages.addInfoMessage("Not reset "+selectUser.getUsername()+" return to Admin "+e.getMessage(),3,10);
+              /*start mohammed.ayad*/
          }
            }else{
-           
-            Messages.addInfoMessage("please sure that two passord is same or select User First",2);
+           /*start mohammed.ayad*/
+            Messages.addInfoMessage("please sure that two passord is same or select User First",2,10);
+            /*end mohammed.ayad*/
            }
         
          
@@ -174,9 +184,9 @@ public class Profile {
                    userFacade.remove(selectUser);
                    
                     userPasswordFacade.remove(selectUser.getUserPasswordID());
-             Messages.addInfoMessage("removed "+selectUser.getUsername(),1);
+             Messages.addInfoMessage("removed "+selectUser.getUsername(),1,10);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectUser.getUsername()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectUser.getUsername()+" return to Admin "+e.getMessage(),3,10);
          }
          
      
@@ -190,12 +200,12 @@ public class Profile {
             User.setUpdateDate(date);
           userFacade.edit(User);
           
-          Messages.addInfoMessage("Edited "+((User) event.getObject()).getUsername(),1);
+          Messages.addInfoMessage("Edited "+((User) event.getObject()).getUsername(),1,10);
     }
      
     public void onRowCancel(RowEditEvent event) {
         
-          Messages.addInfoMessage("Cancelled "+" "+((User) event.getObject()).getUsername(),1);
+          Messages.addInfoMessage("Cancelled "+" "+((User) event.getObject()).getUsername(),1,10);
     }
     
     
@@ -203,7 +213,7 @@ public class Profile {
      public String ADD(ActionEvent actionEvent){
           if(password.equals(conpassword)){
         if(userFacade.user_find(User.getUsername())){
-               Messages.addInfoMessage("Duplicated",2);
+               Messages.addInfoMessage("Duplicated",2,10);
         }else{
             
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -217,12 +227,12 @@ public class Profile {
             userPasswordFacade.create(paa);
             User.setUserPasswordID(paa);
           userFacade.create(User);     
-          Messages.addInfoMessage("ADDED ",1);
+          Messages.addInfoMessage("ADDED ",1,10);
              
 
         }
           }else{
-                Messages.addInfoMessage("please sure that two passord is same",2);
+                Messages.addInfoMessage("please sure that two passord is same",2,10);
       
           }
       return "Login";

@@ -99,12 +99,18 @@ public class Terminalbean {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 14);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 14);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -200,9 +206,9 @@ public class Terminalbean {
            public String Addterminal(ActionEvent actionEvent){
                try {
                    if(terminalFacade.term_find(term.getTid())){
-               Messages.addInfoMessage("Duplicated TID",2);
+               Messages.addInfoMessage("Duplicated TID",2,14);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,14);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             term.setCreateDate(date);
             term.setUpdateDate(date);
@@ -214,7 +220,7 @@ public class Terminalbean {
           terminalFacade.create(term);
         } 
                } catch (Exception e) {
-                   Messages.addInfoMessage("Error when add",2);
+                   Messages.addInfoMessage("Error when add "+e.getMessage(),3,14);
                //    e.printStackTrace();
                }
        
@@ -243,16 +249,16 @@ public class Terminalbean {
        
             terminalFacade.edit(term);
             
-            Messages.addInfoMessage("Edited "+((Terminal) event.getObject()).getTid(),1);
+            Messages.addInfoMessage("Edited "+((Terminal) event.getObject()).getTid(),1,14);
         } catch (ParseException ex) {
-              Messages.addInfoMessage("Error when update",2);
+              Messages.addInfoMessage("Error when update "+ex.getMessage(),3,14);
                ex.printStackTrace();
             //Logger.getLogger(Terminalbean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((Terminal) event.getObject()).getTid(),1);
+          Messages.addInfoMessage("Cancelled "+((Terminal) event.getObject()).getTid(),1,14);
     }
     
     
@@ -260,13 +266,13 @@ public class Terminalbean {
          public void remove(ActionEvent actionEvent){
              
              if(tgroupHasTerminalFacade.find_term(selectTerminal)){
-             Messages.addInfoMessage("please remove TID from any Terminal Group",2);
+             Messages.addInfoMessage("please remove TID from any Terminal Group",2,14);
              }else{
          try {
                    terminalFacade.remove(selectTerminal);
-             Messages.addInfoMessage("removed "+selectTerminal.getTid(),1);
+             Messages.addInfoMessage("removed "+selectTerminal.getTid(),1,14);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectTerminal.getTid()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectTerminal.getTid()+" return to Admin "+e.getMessage(),3,14);
          }
              }
          

@@ -113,12 +113,18 @@ public class Pconfig {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 9);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 9);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -130,12 +136,15 @@ public class Pconfig {
           selectconfig=((ConfigParmeter) event.getObject());
             selectconfig.setUpdateDate(date);
           configParmeterFacade.edit(selectconfig);
-          
-          Messages.addInfoMessage("Edited "+((ConfigParmeter) event.getObject()).getParameter(),1);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((ConfigParmeter) event.getObject()).getParameter(),1,9);
+          /*end mohammed.ayad*/
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((ConfigParmeter) event.getObject()).getParameter(),1);
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((ConfigParmeter) event.getObject()).getParameter(),1,9);
+          /*end mohammed.ayad*/
     }
     
        public void onERowEdit(RowEditEvent event) {
@@ -143,21 +152,28 @@ public class Pconfig {
           selectEmail=((ConfigEmail) event.getObject());
             selectEmail.setUpdateDate(date);
           configEmailFacade.edit(selectEmail);
-          
-          Messages.addInfoMessage("Edited "+((ConfigEmail) event.getObject()).getEmail(),1);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((ConfigEmail) event.getObject()).getEmail(),1,9);
+          /*end mohammed.ayad*/
     }
      
     public void onERowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((ConfigEmail) event.getObject()).getEmail(),1);
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((ConfigEmail) event.getObject()).getEmail(),1,9);
+          /*end mohammed.ayad*/
     }
     
     
     
       public String ADD(ActionEvent actionEvent){
           if(configEmailFacade.email_find(selectEmail.getEmail())){
-             Messages.addInfoMessage("Duplicated",2);
+              /*start mohammed.ayad*/
+             Messages.addInfoMessage("Duplicated",2,9);
+             /*end mohammed.ayad*/
         }else{
-             Messages.addInfoMessage("ADDED",1);
+              /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,9);
+             /*end mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             selectEmail.setCreateDate(date);
             selectEmail.setUpdateDate(date);

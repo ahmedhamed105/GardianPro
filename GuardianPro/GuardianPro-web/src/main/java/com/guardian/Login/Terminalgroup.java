@@ -537,12 +537,18 @@ public class Terminalgroup {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 15);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 15);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -552,9 +558,9 @@ public class Terminalgroup {
           public String Addgroup(ActionEvent actionEvent){
          
         if(terminalGroupFacade.group_find(termgroup.getGroupname())){
-               Messages.addInfoMessage("Duplicated",2);
+               Messages.addInfoMessage("Duplicated",2,15);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,15);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             termgroup.setCreateDate(date);
             termgroup.setUpdateDate(date);
@@ -621,10 +627,10 @@ public String onFlowProcess(FlowEvent event) {
             seletermgroup.setUpdateDate(date);
           terminalGroupFacade.edit(seletermgroup);
           
-          Messages.addInfoMessage("Edited "+((TerminalGroup) event.getObject()).getGroupname(),1);
+          Messages.addInfoMessage("Edited "+((TerminalGroup) event.getObject()).getGroupname(),1,15);
     }  
     public void onRowCancelTGroup(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((TerminalGroup) event.getObject()).getGroupname(),1);
+          Messages.addInfoMessage("Cancelled "+((TerminalGroup) event.getObject()).getGroupname(),1,15);
     }
     public void removeTGroup(ActionEvent actionEvent){
               if(seletermgroup != null){  
@@ -637,12 +643,12 @@ public String onFlowProcess(FlowEvent event) {
            }
                    
                    
-             Messages.addInfoMessage("removed "+seletermgroup.getGroupname(),1);
+             Messages.addInfoMessage("removed "+seletermgroup.getGroupname(),1,15);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+seletermgroup.getGroupname()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+seletermgroup.getGroupname()+" return to Admin "+e.getMessage(),3,15);
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal Group",2);
+                         Messages.addInfoMessage("Please choose terminal Group",2,15);
    
               }
          
@@ -659,10 +665,10 @@ public String onFlowProcess(FlowEvent event) {
           tgroupHasTerminalFacade.edit(selegroupHasTerminal);
           selegroupHasTerminal.getTerminalID().setUpdateDate(date);
           terminalFacade.edit(selegroupHasTerminal.getTerminalID());
-          Messages.addInfoMessage("Edited "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
+          Messages.addInfoMessage("Edited "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1,15);
     } 
     public void onRowCancelT(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1);
+          Messages.addInfoMessage("Cancelled "+((TgroupHasTerminal) event.getObject()).getTerminalID().getTid(),1,15);
     }
     public void removeT(ActionEvent actionEvent){
               if(selegroupHasTerminal != null){  
@@ -686,13 +692,13 @@ public String onFlowProcess(FlowEvent event) {
              
                    
                    
-             Messages.addInfoMessage("removed "+selegroupHasTerminal.getTerminalID().getTid(),1);
+             Messages.addInfoMessage("removed "+selegroupHasTerminal.getTerminalID().getTid(),1,15);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selegroupHasTerminal.getTerminalID().getTid()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selegroupHasTerminal.getTerminalID().getTid()+" return to Admin "+e.getMessage(),3,15);
         e.printStackTrace();
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal",2);
+                         Messages.addInfoMessage("Please choose terminal",2,15);
    
               }
          
@@ -711,7 +717,7 @@ public String onFlowProcess(FlowEvent event) {
               a.setCreateDate(date);
               a.setUpdateDate(date);
               tgroupHasTerminalFacade.create(a);
-               Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1);
+               Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1,15);
           }
                    
             try {
@@ -729,10 +735,10 @@ public String onFlowProcess(FlowEvent event) {
                        
             
          } catch (Exception e) {
-              Messages.addInfoMessage("return to Admin",2);
+              Messages.addInfoMessage("return to Admin "+e.getMessage(),3,15);
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal Group",2);
+                         Messages.addInfoMessage("Please choose terminal Group",2,15);
    
               }
          
@@ -748,10 +754,10 @@ public String onFlowProcess(FlowEvent event) {
           tgroupHasSoftwareFacade.edit(selegroupHasSoftware);
           selegroupHasSoftware.getApplicationGroupID().setUpdateDate(date);
           applicationGroupFacade.edit(selegroupHasSoftware.getApplicationGroupID());
-          Messages.addInfoMessage("Edited "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
+          Messages.addInfoMessage("Edited "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1,15);
     }
     public void onRowCancelTS(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1);
+          Messages.addInfoMessage("Cancelled "+((TgroupHasSoftware) event.getObject()).getApplicationGroupID().getGroupname(),1,15);
     }
     public void removeTS(ActionEvent actionEvent){
               if(selegroupHasSoftware != null){  
@@ -763,13 +769,13 @@ public String onFlowProcess(FlowEvent event) {
         groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
          
                    
-             Messages.addInfoMessage("removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname(),1);
+             Messages.addInfoMessage("removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname(),1,15);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selegroupHasSoftware.getApplicationGroupID().getGroupname()+" return to Admin "+e.getMessage(),3,15);
         e.printStackTrace();
          }
               }else{
-                         Messages.addInfoMessage("Please choose APP Group",2);
+                         Messages.addInfoMessage("Please choose APP Group",2,15);
    
               }
          
@@ -789,7 +795,7 @@ public String onFlowProcess(FlowEvent event) {
                a.setCreateDate(date);
             a.setUpdateDate(date);
               tgroupHasSoftwareFacade.create(a);
-                   Messages.addInfoMessage("ADD "+selectAppgroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
+                   Messages.addInfoMessage("ADD "+selectAppgroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1,15);
          
               } catch (Exception e) {
                   e.printStackTrace();
@@ -799,10 +805,10 @@ public String onFlowProcess(FlowEvent event) {
   
               groupHasSoftware=tgroupHasSoftwareFacade.find_term_groups(seletermgroup);
          } catch (Exception e) {
-              Messages.addInfoMessage("return to Admin",2);
+              Messages.addInfoMessage("return to Admin "+e.getMessage(),3,15);
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal Group",2);
+                         Messages.addInfoMessage("Please choose terminal Group",2,15);
    
               }
          
@@ -818,10 +824,10 @@ public String onFlowProcess(FlowEvent event) {
           tgroupHasAccesoryFacade.edit(selegroupHasAccesory);
           selegroupHasAccesory.getAccessoryGroupID().setUpdateDate(date);
           accessoryGroupFacade.edit(selegroupHasAccesory.getAccessoryGroupID());
-          Messages.addInfoMessage("Edited "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1);
+          Messages.addInfoMessage("Edited "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1,15);
     }
     public void onRowCancelA(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1);
+          Messages.addInfoMessage("Cancelled "+((TgroupHasAccesory) event.getObject()).getAccessoryGroupID().getGroupname(),1,15);
     }
     public void removeA(ActionEvent actionEvent){
               if(selegroupHasAccesory != null){  
@@ -833,13 +839,13 @@ public String onFlowProcess(FlowEvent event) {
         groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
          
                    
-             Messages.addInfoMessage("removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname(),1);
+             Messages.addInfoMessage("removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname(),1,15);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selegroupHasAccesory.getAccessoryGroupID().getGroupname()+" return to Admin "+e.getMessage(),3,15);
         e.printStackTrace();
          }
               }else{
-                         Messages.addInfoMessage("Please choose Accessory Group",2);
+                         Messages.addInfoMessage("Please choose Accessory Group",2,15);
    
               }
          
@@ -861,7 +867,7 @@ public String onFlowProcess(FlowEvent event) {
               a.setCreateDate(date);
             a.setUpdateDate(date);
               tgroupHasAccesoryFacade.create(a);
-           Messages.addInfoMessage("ADD "+selectAcessorygroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
+           Messages.addInfoMessage("ADD "+selectAcessorygroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1,15);
          
           }
                
@@ -869,10 +875,10 @@ public String onFlowProcess(FlowEvent event) {
   
               groupHasAccesory=tgroupHasAccesoryFacade.find_term_groups(seletermgroup);
          } catch (Exception e) {
-              Messages.addInfoMessage("return to Admin",2);
+              Messages.addInfoMessage("return to Admin "+e.getMessage(),3,15);
          }
               }else{
-                         Messages.addInfoMessage("Please choose terminal Group",2);
+                         Messages.addInfoMessage("Please choose terminal Group",2,15);
    
               }
          
@@ -934,7 +940,7 @@ public String onFlowProcess(FlowEvent event) {
             a.setCreateDate(date);
             a.setUpdateDate(date);
             tgroupHasGparameterFacade.create(a);
-           Messages.addInfoMessage("ADD "+selectparagroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1);
+           Messages.addInfoMessage("ADD "+selectparagroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1,15);
        List<GroupHasParameter> para_list= groupHasParameterFacade.get_para_group(selectparagroup.get(i));
            for(GroupHasParameter b:para_list){
           //  TgroupHasParameter v=new TgroupHasParameter();
@@ -969,7 +975,7 @@ public String onFlowProcess(FlowEvent event) {
             //    groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
            
          } catch (Exception e) {
-              Messages.addInfoMessage("return to Admin",2);
+              Messages.addInfoMessage("return to Admin "+e.getMessage(),3,15);
          }
               }
               
@@ -995,7 +1001,7 @@ public String onFlowProcess(FlowEvent event) {
            //    groupHasparameter=tgroupHasParameterFacade.find_term_groups(seletermgroup);
            
          } catch (Exception e) {
-              Messages.addInfoMessage("return to Admin",2);
+              Messages.addInfoMessage("return to Admin "+e.getMessage(),3,15);
          }
               }
          
@@ -1146,6 +1152,7 @@ public String onFlowProcess(FlowEvent event) {
           } catch (Exception e) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "no Dragged 2 " + a1.getParametertypeID().getType(), "no Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
+        Messages.addInfoMessage(e.getMessage(), 3, 15);
         
             }
         }
@@ -1189,6 +1196,7 @@ public String onFlowProcess(FlowEvent event) {
 
                  
                    } catch (Exception e) {
+                       Messages.addInfoMessage(e.getMessage(), 3, 15);
                    }
         }
         
@@ -1278,7 +1286,7 @@ public String onFlowProcess(FlowEvent event) {
             if(selectxa !=null){
                 
                  if(!childs.isEmpty()){
-                         Messages.addInfoMessage("please remove Child First",2);
+                         Messages.addInfoMessage("please remove Child First",2,15);
   
                     }else{
                     
@@ -1301,6 +1309,7 @@ public String onFlowProcess(FlowEvent event) {
                     
                          refresh();
                 } catch (Exception e) {
+                    Messages.addInfoMessage(e.getMessage(), 3, 15);
                 }
                
                     }
@@ -1318,18 +1327,18 @@ public String onFlowProcess(FlowEvent event) {
            // seletParameterValues.setUpdateDate(date);
           parameterValuesFacade.edit(seletParameterValues);
           
-          Messages.addInfoMessage("Edited "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1);
+          Messages.addInfoMessage("Edited "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1,15);
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1);
+          Messages.addInfoMessage("Cancelled "+((ParameterValues) event.getObject()).getParameterID().getFieldName(),1,15);
     }
     
  
     
     public void ExportP(RowEditEvent event) {
         if(seletermgroup == null){
-           Messages.addInfoMessage("Please select Terminal Group ",2);
+           Messages.addInfoMessage("Please select Terminal Group ",2,15);
            eportedxml="NO XML";
         }else{
         StringBuffer m=new StringBuffer();
@@ -1341,12 +1350,13 @@ public String onFlowProcess(FlowEvent event) {
                 } catch (Exception e) {
                     email("Error : XML Not exported", "SPOECTRA TMS APP");     
                     e.printStackTrace();
+                    Messages.addInfoMessage(e.getMessage(), 3, 15);
                 }
            
             }
             
             eportedxml=m.toString();    
-             Messages.addInfoMessage("XML View For "+seletermgroup.getGroupname(),1);
+             Messages.addInfoMessage("XML View For "+seletermgroup.getGroupname(),1,15);
         }
     }
     
@@ -1807,10 +1817,13 @@ public String onFlowProcess(FlowEvent event) {
 			return xmlString;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+            Messages.addInfoMessage(ex.getMessage(), 3, 15);
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+            Messages.addInfoMessage(ex.getMessage(), 3, 15);
         } catch (TransformerException ex) {
             Logger.getLogger(Terminalgroup.class.getName()).log(Level.SEVERE, null, ex);
+            Messages.addInfoMessage(ex.getMessage(), 3, 15);
         }
         }
         return "";
