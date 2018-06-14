@@ -141,7 +141,9 @@ public class Login {
             if (u1.getUserPasswordID().getPassword().equals(decrypted)) {
                 switch (userFacade.user_status(u1)) {
                     case 1:
-                        Messages.addInfoMessage("Login ok!!", 1);
+                        /*start mohammed.ayad*/
+                        Messages.addInfoMessage("Login ok!!", 1,5);
+                        /*end mohammed.ayad*/
                         login = u1;
                         
                 smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
@@ -218,26 +220,38 @@ public class Login {
                + "/faces/Main.xhtml");
                         return "Login";
                     case 2:
-                        Messages.addInfoMessage("Login Error User Closed !!", 2);
+                        /*start mohammed.ayad*/
+                        Messages.addInfoMessage("Login Error User Closed !!", 2,5);
+                        /*end mohammed.ayad*/
                         return "Error";
                     case 3:
-                        Messages.addInfoMessage("Login Error User Locked !!", 2);
+                        /*start mohammed.ayad*/
+                        Messages.addInfoMessage("Login Error User Locked !!", 2,5);
+                        /*end mohammed.ayad*/
                         return "Error";
                     case 4:
-                        Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2);
+                        /*start mohammed.ayad*/
+                        Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2,5);
+                        /*end mohammed.ayad*/
                         return "Error";
                     default:
-                        Messages.addInfoMessage("Login Error Check status !!", 2);
+                        /*start mohammed.ayad*/
+                        Messages.addInfoMessage("Login Error Check status !!", 2,5);
+                        /*end mohammed.ayad*/
                         return "Error";
                 }
 
             } else {
-                Messages.addInfoMessage("Login Error Wrong password!!", 2);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage("Login Error Wrong password!!", 2,5);
+                /*end mohammed.ayad*/
                 return "Error";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Messages.addInfoMessage("Login Error!!", 2);
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage("Login Error!! "+e.getMessage(), 3,5);
+            /*end mohammed.ayad*/
             return "Error";
         }
 

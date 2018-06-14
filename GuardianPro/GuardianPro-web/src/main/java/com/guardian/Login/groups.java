@@ -90,12 +90,18 @@ public class groups implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace();
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 20);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
                 ec.redirect(ec.getRequestContextPath() + "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 20);
+                /*end mohammed.ayad*/
             }
         }
 
@@ -169,9 +175,9 @@ public class groups implements Serializable {
     public void remove(ActionEvent actionEvent) {
         try {
             groupsFacadeLocal.remove(selectGroup);
-            Messages.addInfoMessage("removed " + selectGroup.getDescription(), 1);
+            Messages.addInfoMessage("removed " + selectGroup.getDescription(), 1,20);
         } catch (Exception e) {
-            Messages.addInfoMessage("Not removed " + selectGroup.getDescription() + " return to Admin", 2);
+            Messages.addInfoMessage("Not removed " + selectGroup.getDescription() + " return to Admin "+e.getMessage(), 3,20);
         }
     }
 
@@ -188,19 +194,19 @@ public class groups implements Serializable {
         //////////////////////////
         groupsFacadeLocal.edit(group);
 
-        Messages.addInfoMessage("Edited " + ((Groups) event.getObject()).getDescription(), 1);
+        Messages.addInfoMessage("Edited " + ((Groups) event.getObject()).getDescription(), 1,20);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        Messages.addInfoMessage("Cancelled " + ((Groups) event.getObject()).getDescription(), 1);
+        Messages.addInfoMessage("Cancelled " + ((Groups) event.getObject()).getDescription(), 1,20);
     }
 
     public String ADD(ActionEvent actionEvent) {
 
         if (groupsFacadeLocal.input_find(group.getDescription())) {
-            Messages.addInfoMessage("Duplicated", 2);
+            Messages.addInfoMessage("Duplicated", 2,20);
         } else {
-            Messages.addInfoMessage("ADDED", 1);
+            Messages.addInfoMessage("ADDED", 1,20);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             group.setCreateDate(date);
             group.setUpdateDate(date);

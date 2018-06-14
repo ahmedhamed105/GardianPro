@@ -3,6 +3,7 @@ com\guardian\Login\Pterminal_group.class
 com\guardian\converter\Cterminal.class
 com\guardian\converter\Cterminalstatus.class
 com\guardian\Login\SobhyBean.class
+com\guardian\util\Constants.class
 com\guardian\converter\CappGroup.class
 com\guardian\Login\Messages.class
 com\guardian\converter\Cparts.class

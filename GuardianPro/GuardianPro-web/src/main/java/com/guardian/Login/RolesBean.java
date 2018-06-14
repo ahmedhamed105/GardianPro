@@ -87,6 +87,9 @@ public class RolesBean implements Serializable {
             }
 
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 11);
+            /*end mohammed.ayad*/
            
            // e.printStackTrace();
             try {
@@ -95,6 +98,9 @@ public class RolesBean implements Serializable {
                 ec.redirect(ec.getRequestContextPath() + "/faces/login.xhtml");
             } catch (IOException ex) {
                 // Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 11);
+                /*end mohammed.ayad*/
             }
         }
 
@@ -151,18 +157,18 @@ public class RolesBean implements Serializable {
     public void remove(ActionEvent actionEvent) {
         try {
             roleFacade.remove(selectRole);
-            Messages.addInfoMessage("removed " + selectRole.getDescription(), 1);
+            Messages.addInfoMessage("removed " + selectRole.getDescription(), 1,11);
         } catch (Exception e) {
-            Messages.addInfoMessage("Not removed " + selectRole.getDescription() + " return to Admin", 2);
+            Messages.addInfoMessage("Not removed " + selectRole.getDescription() + " return to Admin "+e.getMessage(), 3,11);
         }
     }
 
     public String ADD(ActionEvent actionEvent) {
 
         if (roleFacade.role_name_find(role.getName())) {
-            Messages.addInfoMessage("Duplicated", 2);
+            Messages.addInfoMessage("Duplicated", 2,11);
         } else {
-            Messages.addInfoMessage("ADDED", 1);
+            Messages.addInfoMessage("ADDED", 1,11);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             role.setCreateDate(date);
             role.setUpdateDate(date);
@@ -180,11 +186,11 @@ public class RolesBean implements Serializable {
         roleFacade.edit(role);
         roleHasComponents = roleHasComponentFacade.find_component_by_role(role);
 
-        Messages.addInfoMessage("Edited " + ((Role) event.getObject()).getDescription(), 1);
+        Messages.addInfoMessage("Edited " + ((Role) event.getObject()).getDescription(), 1,11);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        Messages.addInfoMessage("Cancelled " + ((Role) event.getObject()).getDescription(), 1);
+        Messages.addInfoMessage("Cancelled " + ((Role) event.getObject()).getDescription(), 1,11);
     }
 
     public void setActionlogs(List<ActionLog> actionlogs) {

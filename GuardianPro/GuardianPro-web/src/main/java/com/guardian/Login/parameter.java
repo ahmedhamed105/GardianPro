@@ -76,12 +76,18 @@ public class parameter {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 21);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 21);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -130,9 +136,9 @@ public class parameter {
          public void remove(ActionEvent actionEvent){
          try {
                    parameterFacade.remove(selectparmeter);
-             Messages.addInfoMessage("removed "+selectparmeter.getDisplayName(),1);
+             Messages.addInfoMessage("removed "+selectparmeter.getDisplayName(),1,21);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectparmeter.getDisplayName()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectparmeter.getDisplayName()+" return to Admin "+e.getMessage(),3,21);
          }
          
      
@@ -146,11 +152,11 @@ public class parameter {
             parmeter.setUpdateDate(date);
           parameterFacade.edit(parmeter);
           
-          Messages.addInfoMessage("Edited "+((Parameter) event.getObject()).getDisplayName(),1);
+          Messages.addInfoMessage("Edited "+((Parameter) event.getObject()).getDisplayName(),1,21);
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((Parameter) event.getObject()).getDisplayName(),1);
+          Messages.addInfoMessage("Cancelled "+((Parameter) event.getObject()).getDisplayName(),1,21);
     }
     
     
@@ -158,9 +164,9 @@ public class parameter {
      public String ADD(ActionEvent actionEvent){
          
       if(parameterFacade.para_find(parmeter.getDisplayName())){
-             Messages.addInfoMessage("Duplicated",2);
+             Messages.addInfoMessage("Duplicated",2,21);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,21);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             parmeter.setCreateDate(date);
             parmeter.setUpdateDate(date);

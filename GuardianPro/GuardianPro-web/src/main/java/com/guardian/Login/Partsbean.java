@@ -66,12 +66,18 @@ public class Partsbean {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 8);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 8);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -106,9 +112,13 @@ public class Partsbean {
           public void remove(ActionEvent actionEvent){
          try {
                    partsFacade.remove(selectpart);
-             Messages.addInfoMessage("removed "+selectpart.getPName(),1);
+                   /*start mohammed.ayad*/
+             Messages.addInfoMessage("removed "+selectpart.getPName(),1,8);
+             /*end mohammed.ayad*/
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectpart.getPName()+" return to Admin",2);
+             /*start mohammed.ayad*/
+              Messages.addInfoMessage("Not removed "+selectpart.getPName()+" return to Admin "+e.getMessage(),3,8);
+              /*end mohammed.ayad*/
          }
          
      
@@ -121,12 +131,15 @@ public class Partsbean {
           part=((Parts) event.getObject());
             part.setUpdateDate(date);
           partsFacade.edit(part);
-          
-          Messages.addInfoMessage("Edited "+((Parts) event.getObject()).getPName(),1);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((Parts) event.getObject()).getPName(),1,8);
+          /*end mohammed.ayad*/
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((Parts) event.getObject()).getPName(),1);
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((Parts) event.getObject()).getPName(),1,8);
+          /*end mohammed.ayad*/
     }
     
     
@@ -134,9 +147,13 @@ public class Partsbean {
      public String ADD(ActionEvent actionEvent){
          
       if(partsFacade.par_find(part.getPName())){
-             Messages.addInfoMessage("Duplicated",2);
+          /*start mohammed.ayad*/
+             Messages.addInfoMessage("Duplicated",2,8);
+             /*end mohammed.ayad*/
         }else{
-             Messages.addInfoMessage("ADDED",1);
+          /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,8);
+             /*end mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             part.setCreateDate(date);
             part.setUpdateDate(date);

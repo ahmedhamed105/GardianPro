@@ -119,6 +119,9 @@ public class TerminalTemp {
               e.printStackTrace();
                System.out.println("error");
                  DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Terminals.get(i).getTName(),0,Terminals.get(i).getId(),"GROUP"), root);
+                 /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 13);
+                /*end mohammed.ayad*/
           }
          
       
@@ -130,12 +133,18 @@ public class TerminalTemp {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 13);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 13);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -229,9 +238,9 @@ public class TerminalTemp {
          public String ADD(ActionEvent actionEvent){
          
       if(terminalTemplateFacade.Pterminal_find(terminal.getTName())){
-              Messages.addInfoMessage("Duplicated",2);
+              Messages.addInfoMessage("Duplicated",2,13);
      }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,13);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             terminal.setUserID(Login.login);
             terminal.setCreateDate(date);
@@ -252,7 +261,7 @@ public class TerminalTemp {
              TerminalHasParts a=new TerminalHasParts();
             a.setTerminaltemplateID(selectgroup);
             a.setDownloadmethodID(seledownload);
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,13);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             a.setCreateDate(date);
             a.setUpdateDate(date);
@@ -277,22 +286,22 @@ public class TerminalTemp {
                         for (TerminalHasParts terminalHasParts : b) {
                             try {
                             terminalHasPartsFacade.remove(terminalHasParts);
-                            Messages.addInfoMessage("removed "+terminalHasParts.getPartsID().getPName()+" from "+terminalHasParts.getTerminaltemplateID().getTName(),1);
+                            Messages.addInfoMessage("removed "+terminalHasParts.getPartsID().getPName()+" from "+terminalHasParts.getTerminaltemplateID().getTName(),1,13);
        
                             } catch (Exception e) {
-                                  Messages.addInfoMessage("NO parts Linked ",1);
+                                  Messages.addInfoMessage("NO parts Linked "+e.getMessage(),3,13);
                             }
                 
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         } 
                         
                         terminalTemplateFacade.remove(a);
-                          Messages.addInfoMessage("removed "+a.getTName(),1);
+                          Messages.addInfoMessage("removed "+a.getTName(),1,13);
        
                            
                         
           } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+               Messages.addInfoMessage("Problem in system "+e.getMessage(),3,13);
           }
                     
                    
@@ -310,12 +319,12 @@ public void remove(ActionEvent actionEvent){
                         for (TerminalHasParts terminalHasParts : b) {
                             
                        terminalHasPartsFacade.remove(terminalHasParts);
-                     Messages.addInfoMessage("removed "+terminalHasParts.getPartsID().getPName()+" from "+terminalHasParts.getTerminaltemplateID().getTName(),1);
+                     Messages.addInfoMessage("removed "+terminalHasParts.getPartsID().getPName()+" from "+terminalHasParts.getTerminaltemplateID().getTName(),1,13);
     
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         }
                            } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+               Messages.addInfoMessage("Problem in system "+e.getMessage(),3,13);
           }
                    
                     }else{
@@ -324,9 +333,9 @@ public void remove(ActionEvent actionEvent){
                  TerminalHasParts a=terminalHasPartsFacade.find(((PGroup_tree)selectdelte.getData()).getId());
                                
                    terminalHasPartsFacade.remove(a);
-             Messages.addInfoMessage("removed "+a.getPartsID().getPName()+" from "+a.getTerminaltemplateID().getTName(),1);
+             Messages.addInfoMessage("removed "+a.getPartsID().getPName()+" from "+a.getTerminaltemplateID().getTName(),1,13);
          } catch (Exception e) {
-                 Messages.addInfoMessage("not removed",1);
+                 Messages.addInfoMessage("not removed "+e.getMessage(),3,13);
     }
                     }
   

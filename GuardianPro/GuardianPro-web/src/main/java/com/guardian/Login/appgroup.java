@@ -99,6 +99,9 @@ public class appgroup {
               e.printStackTrace();
                System.out.println("error");
                  DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Apara.get(i).getGroupname(),0,Apara.get(i).getId(),"GROUP"), root);
+                 /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 18);
+                /*end mohammed.ayad*/
           }
          
       
@@ -110,12 +113,18 @@ public class appgroup {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 18);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 18);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -203,9 +212,9 @@ public class appgroup {
       public String ADD(ActionEvent actionEvent){
          
       if(applicationGroupFacade.Pgroup_find(appGroup.getGroupname())){
-              Messages.addInfoMessage("Duplicated",2);
+              Messages.addInfoMessage("Duplicated",2,18);
      }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,18);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             appGroup.setUserID(Login.login);
             appGroup.setCreateDate(date);
@@ -225,7 +234,7 @@ public class appgroup {
          for(int i=0;i<selapp.size();i++){
              ApplicationHasGroup a=new ApplicationHasGroup();
             a.setApplicationGroupID(selectgroup);
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,18);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             a.setCreateDate(date);
             a.setUpdateDate(date);
@@ -250,22 +259,22 @@ public class appgroup {
                         for (ApplicationHasGroup applicationHasGroup : b) {
                             try {
                             applicationHasGroupFacade.remove(applicationHasGroup);
-                            Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+                            Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1,18);
        
                             } catch (Exception e) {
-                                  Messages.addInfoMessage("NO app Linked ",1);
+                                  Messages.addInfoMessage("NO app Linked "+e.getMessage(),3,18);
                             }
                 
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         } 
                         
                         applicationGroupFacade.remove(a);
-                          Messages.addInfoMessage("removed "+a.getGroupname(),1);
+                          Messages.addInfoMessage("removed "+a.getGroupname(),1,18);
        
                            
                         
           } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+               Messages.addInfoMessage("Problem in system "+e.getMessage(),3,18);
           }
                     
                    
@@ -283,12 +292,12 @@ public void remove(ActionEvent actionEvent){
                         for (ApplicationHasGroup applicationHasGroup : b) {
                             
                        applicationHasGroupFacade.remove(applicationHasGroup);
-                     Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1);
+                     Messages.addInfoMessage("removed "+applicationHasGroup.getApplicationID().getAppName()+" from "+applicationHasGroup.getApplicationGroupID().getGroupname(),1,18);
     
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         }
                            } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+               Messages.addInfoMessage("Problem in system "+e.getMessage(),3,18);
           }
                    
                     }else{
@@ -297,9 +306,9 @@ public void remove(ActionEvent actionEvent){
                  ApplicationHasGroup a=applicationHasGroupFacade.find(((PGroup_tree)selectdelte.getData()).getId());
                                
                    applicationHasGroupFacade.remove(a);
-             Messages.addInfoMessage("removed "+a.getApplicationID().getAppName()+" from "+a.getApplicationGroupID().getGroupname(),1);
+             Messages.addInfoMessage("removed "+a.getApplicationID().getAppName()+" from "+a.getApplicationGroupID().getGroupname(),1,18);
          } catch (Exception e) {
-                 Messages.addInfoMessage("not removed",1);
+                 Messages.addInfoMessage("not removed "+e.getMessage(),3,18);
     }
                     }
   

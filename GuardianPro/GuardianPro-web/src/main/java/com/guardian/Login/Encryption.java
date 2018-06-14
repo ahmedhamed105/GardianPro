@@ -29,6 +29,9 @@ public class Encryption {
         return encryptedString;
     } catch (Exception e) {
         e.printStackTrace();
+        /*start mohammed.ayad*/
+        Messages.addInfoMessage(e.getMessage(), 3, 3);
+        /*end mohammed.ayad*/
     }
     return null;
 }
@@ -44,6 +47,9 @@ public class Encryption {
         return decryptedString;
     } catch (Exception e) {
         e.printStackTrace();
+        /*start mohammed.ayad*/
+        Messages.addInfoMessage(e.getMessage(), 3, 3);
+        /*end mohammed.ayad*/
     }
     return null;
 }
