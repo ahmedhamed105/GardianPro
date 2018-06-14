@@ -7,7 +7,6 @@ package com.guardian.Login;
 
 import Entities.ActionLog;
 import Entities.Component;
-import Entities.ParameterType;
 import Entities.Role;
 import Entities.RoleHasComponent;
 import Facades.ActionLogFacadeLocal;
@@ -17,15 +16,11 @@ import Facades.UserFacadeLocal;
 import com.guardian.util.ActionlogingUtil;
 import com.tutorialspoint.interceptor.LibraryBeanRemote;
 import java.io.IOException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -81,6 +76,7 @@ public class RolesBean implements Serializable {
                         + "/faces/login.xhtml");
 
             } else {
+                System.out.println("com.guardian.Login.RolesBean.init()");
                 Roles = roleFacade.findAll();
                 actionlogs = actionLoging.getListofLogs(Login.login, pagename);
                // System.out.println(Roles.get(0).getDescription());
