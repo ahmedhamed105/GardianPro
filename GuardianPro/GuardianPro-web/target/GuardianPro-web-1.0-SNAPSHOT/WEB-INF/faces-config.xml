@@ -199,4 +199,9 @@
         <managed-bean-class>com.guardian.Login.groups</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ComponentValue</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.ComponentValue</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

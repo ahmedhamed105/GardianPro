@@ -32,6 +32,7 @@ com\guardian\Login\RolesBean.class
 com\guardian\Login\parmetertype.class
 com\guardian\converter\Capp.class
 com\guardian\Login\Inputtype.class
+com\guardian\Login\ComponentValue.class
 com\guardian\converter\CParameter.class
 com\guardian\Login\ComponentsOfRole.class
 com\guardian\Login\appgroup.class

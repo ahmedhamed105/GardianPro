@@ -8,7 +8,7 @@
     <h:head>
         <title>#{menu.tittle()}</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{rolesBean.init('Roles.xhtml')}"/>
+            <f:event type="preRenderView" listener="#{ComponentValue.getValueById(24)}"/>
         <f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -156,7 +156,7 @@
                             <div class="box">
 
                                     <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(24)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 
@@ -207,7 +207,7 @@
                             <div class="box">
 
                                   <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(24)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 

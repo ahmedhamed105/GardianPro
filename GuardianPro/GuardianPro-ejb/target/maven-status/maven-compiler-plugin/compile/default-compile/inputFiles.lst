@@ -11,6 +11,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\SocialTypeFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReligionFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ActionLogFacadeLocal.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ComponentNameFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneDataFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacade.java
@@ -99,6 +100,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entitie
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalStatusFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\tutorialspoint\test\Book.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ComponentName.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserPasswordFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleFacade.java
@@ -132,6 +134,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\GroupHasParameter.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RoleHasComponentFacade.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\DownloadMethodFacade.java
+F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ComponentNameFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\InputType.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\UserStatusFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupsHasUserFacade.java

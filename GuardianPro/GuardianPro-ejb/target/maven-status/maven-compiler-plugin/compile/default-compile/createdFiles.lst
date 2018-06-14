@@ -50,6 +50,7 @@ Entities\ParameterValues_.class
 com\timer\schedual\ParserTimer.class
 Entities\Country_.class
 Facades\AccessoryGroupFacade.class
+Facades\ComponentNameFacadeLocal.class
 Facades\TgroupHasTerminalFacade.class
 Facades\CountryFacadeLocal.class
 Facades\ParameterGroupFacade.class
@@ -133,6 +134,7 @@ Entities\Application.class
 Facades\TerminalHasPartsFacadeLocal.class
 Facades\CityFacade.class
 Facades\LogScreenFacade.class
+Entities\ComponentName_.class
 Facades\Formatfacade.class
 Entities\NationalIdHasMaritalStatusHasAddress_.class
 Facades\ParameterTypeFacadeLocal.class
@@ -160,6 +162,7 @@ Entities\PhoneTypes.class
 Entities\Accessory.class
 Entities\TerminalTemplate.class
 Facades\TerminalGroupFacadeLocal.class
+Entities\ComponentName.class
 Entities\Distinct1_.class
 Entities\MilitaryStatus.class
 Entities\SocialDataPK_.class
@@ -284,6 +287,7 @@ Facades\FormatfacadeLocal.class
 Entities\Status.class
 Entities\EmailLog.class
 Entities\WebsiteData_.class
+Facades\ComponentNameFacade.class
 Entities\SocialType.class
 Facades\ConfigEmailFacade.class
 Facades\BirthDataFacade.class
