@@ -50,6 +50,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Timer;
 import javax.xml.parsers.DocumentBuilder;
@@ -158,7 +159,7 @@ public class BusinessTimer {
    List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
 
 
-//    @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
+   @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("XML Executing ...");
@@ -187,6 +188,7 @@ public class BusinessTimer {
                     String XMLfilename = null ;
                     int XMLlength=1;
                     String DLLfilename = null ;
+                     String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
        for(TgroupHasGparameter f:gp){
@@ -194,7 +196,7 @@ public class BusinessTimer {
         String xmlFilecontent =getXML(d);
         deletedir(d);
         createdir(d);
-         XMLfilename =   getxmlfilename(d, xmlFilecontent);
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
          f.setFilename(XMLfilename);
          f.setXMLupdate(0); 
         File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
@@ -210,23 +212,21 @@ public class BusinessTimer {
        }
        
        if(XMLfilename !=null ){
-             List<TgroupHasTerminal> tt=tgroupHasTerminalFacade.find_term_groups(d.getTerminalGroupID());
-       for(TgroupHasTerminal f:tt){
-           if(f.getXMLupdate()==1){
+           if(d.getXMLupdate()==1){
             DLLfilename = getdllfilename(d);
     String DLLcontent=getDLL(d, XMLfilename, XMLlength);
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
     FileUtils.write(f1, DLLcontent);
     saveDLL(d, DLLfilename);
-     f.setDLLname(DLLfilename);
-         f.setXMLupdate(0);
-         tgroupHasTerminalFacade.edit(f);
+     d.setDLLname(DLLfilename);
+         d.setXMLupdate(0);
+         tgroupHasTerminalFacade.edit(d);  
          break;
            }else{
-          DLLfilename=f.getDLLname();
+          DLLfilename=d.getDLLname();
            }
  
-       }
+       
        
         
        }
@@ -236,8 +236,11 @@ public class BusinessTimer {
              List<TgroupHasSoftware> ss=tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
        for(TgroupHasSoftware f:ss){
            if(f.getXMLupdate()==1){
-             saveapp(d);
+            saveapp(d);
+            APPfilename= f.getAPPname();
              break;
+           }else{
+           APPfilename=f.getAPPname();
            }
        }
       
@@ -497,15 +500,22 @@ public class BusinessTimer {
  
     
     
-    public boolean saveapp(TgroupHasTerminal d){
+    public String saveapp(TgroupHasTerminal d){
          Date now = new Date();
+         StringBuffer appnames=new StringBuffer();
     List<TgroupHasSoftware> groupApp = tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
                        System.out.println("com.guardian.Login.Terminalgroup.getXML() "+groupApp.size());
                          if ((groupApp != null) && (!groupApp.isEmpty())) {
 		
                                 for (TgroupHasSoftware ag : groupApp) {
+                                    
+                                    
           List<ApplicationHasGroup> appss=applicationHasGroupFacade.get_app_group(ag.getApplicationGroupID());
-			for (ApplicationHasGroup app : appss) {
+			
+              
+          for (ApplicationHasGroup app : appss) {
+          
+                            appnames.append(app.getApplicationID().getFilename()+";");
             deletefile(app.getApplicationID().getFilename());         
          FtpLog ftp=new FtpLog();
         ftp.setServerip(FTP_server);
@@ -522,7 +532,6 @@ public class BusinessTimer {
         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,5);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
-          return false;
         }else{
         System.out.println("Not Store file "+ftp_S);
         ftp=new FtpLog();
@@ -540,10 +549,8 @@ public class BusinessTimer {
         ftp_S=ftpMessagesFacade.Ftp_action(ftp,6);
         if(ftp_S){
         System.out.println("file copy tpm app Live "+ftp_S);
-        return true;
         }else{
         System.out.println("Not file copy tpm app Live "+ftp_S);
-        return false;
         }
         
         
@@ -554,11 +561,17 @@ public class BusinessTimer {
         
                                                 }			
         				
-                                    
+        ag.setAPPname(appnames.toString());
+         ag.setXMLupdate(0);
+          tgroupHasSoftwareFacade.edit(ag);
+          appnames=new StringBuffer();
                                 }
+                                
+                   return appnames.toString();
+                                
                          }
                          
-        return false;
+        return "";
     }
     
     public  String getXML(TgroupHasTerminal terminals){ 
