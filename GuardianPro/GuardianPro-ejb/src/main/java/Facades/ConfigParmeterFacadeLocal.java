@@ -32,4 +32,6 @@ public interface ConfigParmeterFacadeLocal {
     
     ConfigParmeter getparameter(String para);
     
+    public List<ConfigParmeter> findAllMessagesFormat(String... params);
+    
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Partsbean.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\PGroup_tree.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ComponentValue.java
@@ -40,3 +41,47 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\gua
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\application.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CterminalTemplate.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessory.java
+=======
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parameter.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ParameterGroups.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalgroup.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminalstatus.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\groups.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Pconfig.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\TerminalTemp.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CterminalTemplate.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparts.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\util\Constants.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Messages.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Profile.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\SobhyBean.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\PGroup_tree.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\parmetertype.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessory.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\appgroup.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cparmetertype.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\RolesOfGroup.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\accessgroup.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\ComponentsOfRole.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\menu.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Login.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessory.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Main.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\RolesBean.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Capp.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Terminalbean.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\util\ActionlogingUtil.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cinputtype.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CParameter.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Pterminal_group.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cterminal.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Action.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cdownload.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Cgroupparameter.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Partsbean.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\CappGroup.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\application.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Encryption.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\Login\Inputtype.java
+E:\3yad\private\projects\GardianPro\GardianPro\GuardianPro\GuardianPro-web\src\main\java\com\guardian\converter\Caccessorygroup.java
+>>>>>>> 93e6601f1c7700b2688df52c66cebeb6712c89b6

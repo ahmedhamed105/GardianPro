@@ -68,12 +68,18 @@ public class parmetertype {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+                Messages.addInfoMessage(e.getMessage(), 3, 22);
+                /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                Messages.addInfoMessage(ex.getMessage(), 3, 22);
+                /*end mohammed.ayad*/
             }
 }
    
@@ -114,9 +120,9 @@ public class parmetertype {
      public void remove(ActionEvent actionEvent){
          try {
                    parameterTypeFacade.remove(selectparmeter);
-             Messages.addInfoMessage("removed "+selectparmeter.getType(),1);
+             Messages.addInfoMessage("removed "+selectparmeter.getType(),1,22);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectparmeter.getType()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectparmeter.getType()+" return to Admin "+e.getMessage(),3,22);
          }
          
      
@@ -127,9 +133,9 @@ public class parmetertype {
      public String ADD(ActionEvent actionEvent){
          
         if(parameterTypeFacade.Paremter_find(para.getType())){
-               Messages.addInfoMessage("Duplicated",2);
+               Messages.addInfoMessage("Duplicated",2,22);
         }else{
-             Messages.addInfoMessage("ADDED",1);
+             Messages.addInfoMessage("ADDED",1,22);
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             para.setCreateDate(date);
             para.setUpdateDate(date);
@@ -146,11 +152,11 @@ public class parmetertype {
             para.setUpdateDate(date);
           parameterTypeFacade.edit(para);
           
-          Messages.addInfoMessage("Edited "+((ParameterType) event.getObject()).getType(),1);
+          Messages.addInfoMessage("Edited "+((ParameterType) event.getObject()).getType(),1,22);
     }
      
     public void onRowCancel(RowEditEvent event) {
-          Messages.addInfoMessage("Cancelled "+((ParameterType) event.getObject()).getType(),1);
+          Messages.addInfoMessage("Cancelled "+((ParameterType) event.getObject()).getType(),1,22);
     }
     
 }

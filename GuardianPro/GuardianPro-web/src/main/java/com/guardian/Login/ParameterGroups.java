@@ -129,6 +129,9 @@ public class ParameterGroups {
               e.printStackTrace();
                System.out.println("error");
                  DefaultTreeNode documents = new DefaultTreeNode(new PGroup_tree(Gpara.get(i).getGroupname(),0,Gpara.get(i).getId(),Gpara.get(i).getParametertypeID().getType()), root);
+                 /*start mohammed.ayad*/
+                 Messages.addInfoMessage(e.getMessage(), 3, 7);
+                 /*end mohammed.ayad*/
           }
          
       
@@ -140,12 +143,18 @@ public class ParameterGroups {
         }
         
         } catch (Exception e) {
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 7);
+            /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
                 ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+                /*start mohammed.ayad*/
+                 Messages.addInfoMessage(ex.getMessage(), 3, 7);
+                 /*end mohammed.ayad*/
             }
 }
    
@@ -222,7 +231,9 @@ public class ParameterGroups {
          for(int i=0;i<selparameter.size();i++){
   GroupHasParameter a=new GroupHasParameter();
   a.setParameterGroupID(selectgroup);
-             Messages.addInfoMessage("ADDED",1);
+            /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,7);
+             /*start mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             a.setCreateDate(date);
             a.setUpdateDate(date);
@@ -239,9 +250,13 @@ public class ParameterGroups {
        public String ADD(ActionEvent actionEvent){
          
       if(parameterGroupFacade.Pgroup_find(paraGroup.getGroupname())){
-              Messages.addInfoMessage("Duplicated",2);
+          /*start mohammed.ayad*/
+              Messages.addInfoMessage("Duplicated",2,7);
+              /*end mohammed.ayad*/
      }else{
-             Messages.addInfoMessage("ADDED",1);
+          /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,7);
+             /*end mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             paraGroup.setUserID(Login.login);
             paraGroup.setCreateDate(date);
@@ -263,22 +278,30 @@ public void removeGroup(ActionEvent actionEvent){
                         for (GroupHasParameter groupHasParameter : b) {
                             try {
                             groupHasParameterFacade.remove(groupHasParameter);
-                            Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1);
+                            /*start mohammed.ayad*/
+                            Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1,7);
+                            /*end mohammed.ayad*/
        
                             } catch (Exception e) {
-                                  Messages.addInfoMessage("NO parmeter Linked ",1);
+                                /*start mohammed.ayad*/
+                                  Messages.addInfoMessage("NO parmeter Linked "+e.getMessage(),3,7);
+                                 /*start mohammed.ayad*/
                             }
                 
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         } 
                         
                         parameterGroupFacade.remove(a);
-                          Messages.addInfoMessage("removed "+a.getGroupname(),1);
+                          /*start mohammed.ayad*/
+                          Messages.addInfoMessage("removed "+a.getGroupname(),1,7);
+                          /*end mohammed.ayad*/
        
                            
                         
           } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+              /*start mohammed.ayad*/
+               Messages.addInfoMessage("Problem in system  "+e.getMessage(),3,7);
+               /*end mohammed.ayad*/
           }
                     
                    
@@ -296,12 +319,16 @@ public void remove(ActionEvent actionEvent){
                         for (GroupHasParameter groupHasParameter : b) {
                             
                        groupHasParameterFacade.remove(groupHasParameter);
-                     Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1);
+                       /*start mohammed.ayad*/
+                     Messages.addInfoMessage("removed "+groupHasParameter.getParameterID().getDisplayName()+" from "+groupHasParameter.getParameterGroupID().getGroupname(),1,7);
+                     /*end mohammed.ayad*/
     
                         //    Messages.addInfoMessage("all para"+groupHasParameter.getId()+" group  removed",1);
                         }
                            } catch (Exception e) {
-               Messages.addInfoMessage("Problem in system  ",2);
+                               /*start mohammed.ayad*/
+               Messages.addInfoMessage("Problem in system  "+e.getMessage(),3,7);
+               /*end mohammed.ayad*/
           }
                    
                     }else{
@@ -310,9 +337,13 @@ public void remove(ActionEvent actionEvent){
                  GroupHasParameter a=groupHasParameterFacade.find(((PGroup_tree)selectdelte.getData()).getId());
                                
                    groupHasParameterFacade.remove(a);
-             Messages.addInfoMessage("removed "+a.getParameterID().getDisplayName()+" from "+a.getParameterGroupID().getGroupname(),1);
+                   /*start mohammed.ayad*/
+             Messages.addInfoMessage("removed "+a.getParameterID().getDisplayName()+" from "+a.getParameterGroupID().getGroupname(),1,7);
+             /*end mohammed.ayad*/
          } catch (Exception e) {
-                 Messages.addInfoMessage("not removed",1);
+             /*start mohammed.ayad*/
+                 Messages.addInfoMessage("not removed "+e.getMessage(),3,7);
+                 /*end mohammed.ayad*/
     }
                     }
   

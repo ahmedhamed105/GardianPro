@@ -37,10 +37,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name =ConfigParmeter.NAMED_QUERY_FIND_BY_PARAMETER , query = "SELECT c FROM ConfigParmeter c WHERE c.parameter = :parameter"),
     @NamedQuery(name = "ConfigParmeter.findByPValue", query = "SELECT c FROM ConfigParmeter c WHERE c.pValue = :pValue"),
     @NamedQuery(name = "ConfigParmeter.findByCreateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.createDate = :createDate"),
-    @NamedQuery(name = "ConfigParmeter.findByUpdateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.updateDate = :updateDate")})
+    @NamedQuery(name = "ConfigParmeter.findByUpdateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.updateDate = :updateDate"),
+    @NamedQuery(name = "ConfigParmeter.findMsgFormateParameter", query = "SELECT c FROM ConfigParmeter c WHERE c.parameter IN :parameterNames")})
 public class ConfigParmeter implements Serializable {
     /*start mohammed.ayad 8/6/2018*/
     public static final String NAMED_QUERY_FIND_BY_PARAMETER="ConfigParmeter.findByParameter";
+    public static final String NAMED_QUERY_FIND_MSG_FORMATE_PARAMETER="ConfigParmeter.findMsgFormateParameter";
     /*end mohammed.ayad 8/6/2018*/
     @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)

@@ -92,6 +92,9 @@ public class RolesOfGroup implements Serializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            /*start mohammed.ayad*/
+            Messages.addInfoMessage(e.getMessage(), 3, 12);
+            /*end mohammed.ayad*/
         }
     }
 
@@ -148,9 +151,9 @@ public class RolesOfGroup implements Serializable {
     public void remove(ActionEvent actionEvent){
          try {
                    roleHasGroupsFacade.remove(selectRoleHasGroups);
-             Messages.addInfoMessage("removed "+selectRoleHasGroups.getRoleprevilegeID(),1);
+             Messages.addInfoMessage("removed "+selectRoleHasGroups.getRoleprevilegeID(),1,12);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectRoleHasGroups.getRoleprevilegeID()+" return to Admin",2);
+              Messages.addInfoMessage("Not removed "+selectRoleHasGroups.getRoleprevilegeID()+" return to Admin "+e.getMessage(),3,12);
          }
      }
     

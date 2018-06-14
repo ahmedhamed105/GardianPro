@@ -191,18 +191,26 @@ public class ComponentsOfRole implements Serializable {
     public void remove(ActionEvent actionEvent){
          try {
                    //roleHasComponentFacade.remove(selectRole);
-             Messages.addInfoMessage("removed "+selectRole.getDescription(),1);
+             /*start mohammed.ayad*/
+             Messages.addInfoMessage("removed "+selectRole.getDescription(),1,2);
+             /*end mohammed.ayad*/
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectRole.getDescription()+" return to Admin",2);
+             /*start mohammed.ayad*/
+              Messages.addInfoMessage("Not removed "+selectRole.getDescription()+" return to Admin",3,2);
+              /*end mohammed.ayad*/
          }
      }
     
     public String ADD(ActionEvent actionEvent){
          
         if(roleFacade.role_name_find(role.getName())){
-               Messages.addInfoMessage("Duplicated",2);
+            /*start mohammed.ayad*/
+               Messages.addInfoMessage("Duplicated",2,2);
+               /*end mohammed.ayad*/
         }else{
-             Messages.addInfoMessage("ADDED",1);
+            /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,2);
+             /*end mohammed.ayad*/
             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
             role.setCreateDate(date);
             role.setUpdateDate(date);
