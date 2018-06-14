@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +37,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TgroupHasTerminal.findBygroup", query = "SELECT t FROM TgroupHasTerminal t WHERE t.terminalGroupID = :id"),
     @NamedQuery(name = "TgroupHasTerminal.findById", query = "SELECT t FROM TgroupHasTerminal t WHERE t.id = :id")})
 public class TgroupHasTerminal implements Serializable {
+
+    @Size(max = 45)
+    @Column(name = "DLL_name", length = 45)
+    private String dLLname;
 
     @Basic(optional = false)
     @NotNull
@@ -144,6 +149,14 @@ public class TgroupHasTerminal implements Serializable {
 
     public void setXMLupdate(int xMLupdate) {
         this.xMLupdate = xMLupdate;
+    }
+
+    public String getDLLname() {
+        return dLLname;
+    }
+
+    public void setDLLname(String dLLname) {
+        this.dLLname = dLLname;
     }
     
 }

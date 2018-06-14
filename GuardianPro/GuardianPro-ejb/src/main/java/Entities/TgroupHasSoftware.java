@@ -38,6 +38,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "TgroupHasSoftware.findBySDesc", query = "SELECT t FROM TgroupHasSoftware t WHERE t.sDesc = :sDesc")})
 public class TgroupHasSoftware implements Serializable {
 
+    @Size(max = 45)
+    @Column(name = "APP_name", length = 45)
+    private String aPPname;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "XML_update", nullable = false)
@@ -156,6 +160,14 @@ public class TgroupHasSoftware implements Serializable {
 
     public void setXMLupdate(int xMLupdate) {
         this.xMLupdate = xMLupdate;
+    }
+
+    public String getAPPname() {
+        return aPPname;
+    }
+
+    public void setAPPname(String aPPname) {
+        this.aPPname = aPPname;
     }
     
 }

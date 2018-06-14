@@ -184,22 +184,66 @@ public class BusinessTimer {
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
                         
-                   
+                    String XMLfilename = null ;
+                    int XMLlength=1;
+                    String DLLfilename = null ;
                 try {
-                    
-                String xmlFilecontent =getXML(d);
-    deletedir(d);
-    createdir(d);
-    String filename =   getxmlfilename(d, xmlFilecontent);
-    File f=new  File(FTP_LOCAL_DIR+filename);
-    FileUtils.write(f, xmlFilecontent);
-    saveXML(d,filename);
-    String DLLfilename = getdllfilename(d);
-    String DLLcontent=getDLL(d, filename, (int) f.length());
+        List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
+       for(TgroupHasGparameter f:gp){
+        if(f.getXMLupdate()==1){
+        String xmlFilecontent =getXML(d);
+        deletedir(d);
+        createdir(d);
+         XMLfilename =   getxmlfilename(d, xmlFilecontent);
+         f.setFilename(XMLfilename);
+         f.setXMLupdate(0); 
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+          f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+       FileUtils.write(f1, xmlFilecontent);
+        saveXML(d,XMLfilename);
+        break;
+        }else{
+        XMLfilename = f.getFilename();
+        XMLlength=f.getFileLength();
+        }
+       }
+       
+       if(XMLfilename !=null ){
+             List<TgroupHasTerminal> tt=tgroupHasTerminalFacade.find_term_groups(d.getTerminalGroupID());
+       for(TgroupHasTerminal f:tt){
+           if(f.getXMLupdate()==1){
+            DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
     FileUtils.write(f1, DLLcontent);
     saveDLL(d, DLLfilename);
-    saveapp(d);       
+     f.setDLLname(DLLfilename);
+         f.setXMLupdate(0);
+         tgroupHasTerminalFacade.edit(f);
+         break;
+           }else{
+          DLLfilename=f.getDLLname();
+           }
+ 
+       }
+       
+        
+       }
+       
+       
+       if(XMLfilename !=null && DLLfilename !=null){
+             List<TgroupHasSoftware> ss=tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
+       for(TgroupHasSoftware f:ss){
+           if(f.getXMLupdate()==1){
+             saveapp(d);
+             break;
+           }
+       }
+      
+       }
+        
+        
                   
                 } catch (Exception e) {
                     e.printStackTrace();

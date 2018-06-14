@@ -47,6 +47,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByUpdateDate", query = "SELECT u FROM User u WHERE u.updateDate = :updateDate")})
 public class User implements Serializable {
 
+    @OneToMany(mappedBy = "userId")
+    private Collection<TerminalParserLog> terminalParserLogCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ActionBar> actionBarCollection;
 
@@ -476,6 +479,15 @@ public class User implements Serializable {
 
     public void setActionBarCollection(Collection<ActionBar> actionBarCollection) {
         this.actionBarCollection = actionBarCollection;
+    }
+
+    @XmlTransient
+    public Collection<TerminalParserLog> getTerminalParserLogCollection() {
+        return terminalParserLogCollection;
+    }
+
+    public void setTerminalParserLogCollection(Collection<TerminalParserLog> terminalParserLogCollection) {
+        this.terminalParserLogCollection = terminalParserLogCollection;
     }
     
 }

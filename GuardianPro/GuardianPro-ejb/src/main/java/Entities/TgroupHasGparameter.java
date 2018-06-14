@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -42,6 +43,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TgroupHasGparameter.findByCreateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.createDate = :createDate"),
     @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {
+
+    @Column(name = "file_length")
+    private Integer fileLength;
+
+    @Size(max = 450)
+    @Column(name = "filename", length = 450)
+    private String filename;
 
     @Basic(optional = false)
     @NotNull
@@ -212,6 +220,22 @@ public class TgroupHasGparameter implements Serializable {
 
     public void setXMLupdate(int xMLupdate) {
         this.xMLupdate = xMLupdate;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public Integer getFileLength() {
+        return fileLength;
+    }
+
+    public void setFileLength(Integer fileLength) {
+        this.fileLength = fileLength;
     }
     
 }
