@@ -40,6 +40,11 @@ public class TgroupHasAccesory implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(name = "XML_update", nullable = false)
+    private int xMLupdate;
+
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "create_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
@@ -143,6 +148,14 @@ public class TgroupHasAccesory implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public int getXMLupdate() {
+        return xMLupdate;
+    }
+
+    public void setXMLupdate(int xMLupdate) {
+        this.xMLupdate = xMLupdate;
     }
     
 }

@@ -43,6 +43,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TgroupHasGparameter.findByUpdateDate", query = "SELECT t FROM TgroupHasGparameter t WHERE t.updateDate = :updateDate")})
 public class TgroupHasGparameter implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "XML_update", nullable = false)
+    private int xMLupdate;
+
     @Column(name = "terminal_id")
     private Integer terminalId;
     @Column(name = "ACC_id")
@@ -199,6 +204,14 @@ public class TgroupHasGparameter implements Serializable {
 
     public void setCardid(Integer cardid) {
         this.cardid = cardid;
+    }
+
+    public int getXMLupdate() {
+        return xMLupdate;
+    }
+
+    public void setXMLupdate(int xMLupdate) {
+        this.xMLupdate = xMLupdate;
     }
     
 }

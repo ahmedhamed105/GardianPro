@@ -52,6 +52,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Terminal.findByUpdateDate", query = "SELECT t FROM Terminal t WHERE t.updateDate = :updateDate")})
 public class Terminal implements Serializable {
 
+   
     @Column(name = "schedule_start")
     @Temporal(TemporalType.TIMESTAMP)
     private Date scheduleStart;
@@ -302,5 +303,6 @@ public class Terminal implements Serializable {
     public void setTerminalstatusID(TerminalStatus terminalstatusID) {
         this.terminalstatusID = terminalstatusID;
     }
-    
+
+   
 }

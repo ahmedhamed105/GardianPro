@@ -711,11 +711,13 @@ public String onFlowProcess(FlowEvent event) {
          try {
                
                  for(int i=0;i<selectTerminals.size();i++){
+                     Terminal terms= selectTerminals.get(i);
               TgroupHasTerminal a=new TgroupHasTerminal();
               a.setTerminalGroupID(seletermgroup);
               a.setTerminalID(selectTerminals.get(i)); 
               a.setCreateDate(date);
               a.setUpdateDate(date);
+              a.setXMLupdate(1);
               tgroupHasTerminalFacade.create(a);
                Messages.addInfoMessage("ADD "+selectTerminals.get(i).getTid()+" to "+seletermgroup.getGroupname(),1,15);
           }
@@ -794,6 +796,7 @@ public String onFlowProcess(FlowEvent event) {
               a.setApplicationGroupID(selectAppgroup.get(i));
                a.setCreateDate(date);
             a.setUpdateDate(date);
+              a.setXMLupdate(1);
               tgroupHasSoftwareFacade.create(a);
                    Messages.addInfoMessage("ADD "+selectAppgroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1,15);
          
@@ -866,6 +869,7 @@ public String onFlowProcess(FlowEvent event) {
               a.setAccessoryGroupID(selectAcessorygroup.get(i));
               a.setCreateDate(date);
             a.setUpdateDate(date);
+              a.setXMLupdate(1);
               tgroupHasAccesoryFacade.create(a);
            Messages.addInfoMessage("ADD "+selectAcessorygroup.get(i).getGroupname()+" to "+seletermgroup.getGroupname(),1,15);
          
