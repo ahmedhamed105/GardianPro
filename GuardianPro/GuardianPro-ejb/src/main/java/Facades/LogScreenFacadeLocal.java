@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.LogScreen;
+import Entities.User;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,6 @@ public interface LogScreenFacadeLocal {
     List<LogScreen> findRange(int[] range);
 
     int count();
+    public void createLogScreenObject(User user,int pageId,int transactionId,String messageLog);
     
 }

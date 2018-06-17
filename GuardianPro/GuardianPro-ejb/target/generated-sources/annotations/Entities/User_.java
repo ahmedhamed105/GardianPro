@@ -22,6 +22,7 @@ import Entities.PhoneDataCopy1;
 import Entities.ProfileData;
 import Entities.SocialData;
 import Entities.TerminalGroup;
+import Entities.TerminalParserLog;
 import Entities.TerminalTemplate;
 import Entities.UserPassword;
 import Entities.UserStatus;
@@ -32,7 +33,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-14T11:31:45")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-17T12:05:02")
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -57,6 +58,7 @@ public class User_ {
     public static volatile CollectionAttribute<User, ConfigEmail> configEmailCollection;
     public static volatile CollectionAttribute<User, EmailLog> emailLogCollection;
     public static volatile SingularAttribute<User, String> middlename;
+    public static volatile CollectionAttribute<User, TerminalParserLog> terminalParserLogCollection;
     public static volatile CollectionAttribute<User, BirthData> birthDataCollection;
     public static volatile CollectionAttribute<User, EmailSmsSend> emailSmsSendCollection;
     public static volatile SingularAttribute<User, String> lastname;

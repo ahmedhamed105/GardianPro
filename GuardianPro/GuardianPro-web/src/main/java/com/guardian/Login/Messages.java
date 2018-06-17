@@ -6,7 +6,9 @@
 package com.guardian.Login;
 
 import Entities.ConfigParmeter;
+import Entities.User;
 import Facades.ConfigParmeterFacadeLocal;
+import Facades.LogScreenFacadeLocal;
 import com.guardian.util.Constants;
 import java.util.List;
 import javax.ejb.EJB;
@@ -20,6 +22,7 @@ import javax.faces.context.FacesContext;
 public class Messages {
 
     private static List<ConfigParmeter> messagesFormate;
+    private static LogScreenFacadeLocal logScreenFacade;
 
     static {
 
@@ -31,6 +34,11 @@ public class Messages {
         } else {
             System.out.println("failed to load config Parmeter");
 
+        }
+        logScreenFacade = (LogScreenFacadeLocal) Constants.lookupEJB("LogScreenFacade");
+        if(logScreenFacade!=null){
+            System.out.println("success to load logScreenFacade");
+        
         }
 
     }
@@ -73,7 +81,9 @@ public class Messages {
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, null);
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
-
+        User user=Login.login;
+        System.out.println("user "+user.getId());
+        logScreenFacade.createLogScreenObject(user,pageId, type, summary);
     }
-
+   
 }

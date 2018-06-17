@@ -46,6 +46,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LogScreen.findBySeqno", query = "SELECT l FROM LogScreen l WHERE l.seqno = :seqno")})
 public class LogScreen implements Serializable {
 
+    @Column(name = "Seq_no")
+    private Integer seqno;
+    @JoinColumn(name = "page_id", referencedColumnName = "page_id")
+    @ManyToOne(optional = false)
+    private Pages pageId;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,10 +91,6 @@ public class LogScreen implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Seq_no", nullable = false)
-    private int seqno;
     @JoinColumn(name = "TRX_Type_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private TrxType tRXTypeID;
@@ -238,6 +240,14 @@ public class LogScreen implements Serializable {
     @Override
     public String toString() {
         return "Entities.LogScreen[ id=" + id + " ]";
+    }
+
+    public Pages getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(Pages pageId) {
+        this.pageId = pageId;
     }
     
 }

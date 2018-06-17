@@ -78,6 +78,7 @@ Facades\ActionBarFacadeLocal.class
 Facades\UserFacade.class
 Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
+Entities\Pages_.class
 Email\EmailUtils.class
 Facades\FtpLogFacade.class
 Entities\Country.class
@@ -175,6 +176,7 @@ Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Facades\AccessoryFacade.class
 Entities\FtpLog_.class
+Entities\Pages.class
 Entities\Role_.class
 Facades\LoginTypeFacade.class
 Entities\GroupsHasUser.class
