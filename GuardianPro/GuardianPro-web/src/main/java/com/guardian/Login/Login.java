@@ -167,7 +167,7 @@ public class Login {
 
                             for (GroupsHasUser groupsHasUser : groupsHasUsers) {
 
-                                groups.add((Groups) groupsFacade.find(groupsHasUser.getGroupsGroupid()));
+                                groups.add((Groups) groupsFacade.find(groupsHasUser.getGroupsID()));
                             }
                         }
                         if (groups != null) {
@@ -181,7 +181,7 @@ public class Login {
                         if (roleHasGroupses != null) {
                             for (RoleHasGroups rhg : roleHasGroupses) {
                                 if (rhg != null) {
-                                    Roles.add(roleFacade.find(rhg.getRoleprevilegeID()));
+                                    Roles.add(roleFacade.find(rhg.getRoleID()));
                                 }
                             }
                         }
@@ -196,7 +196,7 @@ public class Login {
 
                         if (roleHasGroupses != null) {
                             for (RoleHasComponent rhc : roleHasComponents) {
-                                components.add(componentFacade.find(rhc.getComponentcomponentID()));
+                                components.add(componentFacade.find(rhc.getComponentID()));
                             }
                         }
 
@@ -337,12 +337,12 @@ public class Login {
             componentEdit.put(component, true);
 
             for (RoleHasComponent comPriv : roleHasComponents) {
-                if (component.equals(comPriv.getComponentcomponentID())) {
-                    if (comPriv.getView().equalsIgnoreCase("true")) {
+                if (component.equals(comPriv.getComponentID())) {
+                    if (comPriv.getView()== true) {
                         componentView.replace(component, true);
                     }
 
-                    if (comPriv.getEdit().equalsIgnoreCase("true")) {
+                    if (comPriv.getEdit()== true) {
                         componentEdit.replace(component, false);
                     }
                 }

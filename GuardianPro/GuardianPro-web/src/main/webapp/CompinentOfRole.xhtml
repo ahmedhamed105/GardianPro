@@ -8,7 +8,7 @@
     <h:head>
         <title>#{menu.tittle()}#{menu.tittle()}</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{componentsOfRole.init('componentsOfRole.xhtml')}"/>
+            <f:event type="preRenderView" listener="#{compRole.init('componentsOfRole.xhtml')}"/>
         <f:event type="preRenderView" listener="#{menu.init()}"/>         
         <f:event type="preRenderView" listener="#{action.init()}"/>
         </f:metadata>
@@ -91,36 +91,36 @@
                                         <div class="form-group">
 
                                             <p:dataTable id="cars1" widgetVar="carsTable"
-                                                         emptyMessage="No Parmeter found with given criteria" var="rol" value="#{componentsOfRole.components}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         emptyMessage="No Parmeter found with given criteria" var="rol" value="#{compRole.roleHasComponents}" editable="true" style="margin-bottom:20px" rows="5"
                                                          paginator="true" 
                                                         
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15" selection="#{componentsOfRole.selectRole}" rowKey="#{rol.componentID}" > 
+                                                         rowsPerPageTemplate="5,10,15" selection="#{compRole.gocomp}" rowKey="#{rol.id}" > 
 
 
-                                                <p:ajax event="rowEdit" listener="#{componentsOfRole.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{componentsOfRole.onRowCancel}" update=":form:messages :form:cars1"  />
+                                                <p:ajax event="rowEdit" listener="#{compRole.onRowEdit}" update=":form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{compRole.onRowCancel}" update=":form:messages :form:cars1"  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
 
 
-                                                <p:column headerText="Type" sortBy="#{rol.name}"  >
+                                                <p:column headerText="Type" sortBy="#{rol.componentcomponentID.name}"  >
                                                 
-                                                        <h:outputText value="#{rol.name}" />
+                                                        <h:outputText value="#{rol.componentcomponentID.name}" />
                                                         
                                                 </p:column>
 
-                                                <p:column headerText="description" sortBy="#{rol.description}"  >
+                                                <p:column headerText="description" sortBy="#{rol.componentcomponentID.description}"  >
                                                  
-                                                       <h:outputText value="#{rol.description}" />
+                                                       <h:outputText value="#{rol.componentcomponentID.description}" />
                                                    
                                                 </p:column>
                                                 
                                                     
      <p:column headerText="View" sortBy="#{rol.view}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{rol.view}" /></f:facet>
+               <f:facet name="output"><h:selectBooleanCheckbox value="#{rol.view}" disabled="true" /></f:facet>
                <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.view}" /></f:facet>
            </p:cellEditor>
        </p:column>
@@ -128,33 +128,17 @@
                                                 
                                                     <p:column headerText="Edit" sortBy="#{rol.edit}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{rol.edit}" /></f:facet>
+               <f:facet name="output"><h:selectBooleanCheckbox value="#{rol.edit}" disabled="true" /></f:facet>
                <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.edit}" /></f:facet>
            </p:cellEditor>
        </p:column>
 
-                                                
-           
-
-                                                <p:column headerText="sub component"   >
-                                                     <h:commandLink action="CompinentOfRole.xhtml" value="Component" >
-                                                         <f:param name="componentId" value="#{rol.componentID}" />
-                                                         <f:param name="roleId" value="#{componentsOfRole.roleID}" />
-                                                     </h:commandLink>
-                                                </p:column>
                                                 
                                                 <p:column style="width:32px">
                                                     <p:rowEditor />
                                                 </p:column>
 
 
-                                                <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{rolesBean.remove(actionEvent)}"
-                                                                     
-                                                                     
-                                                                     
-                                                />  
-                                                </f:facet>
 
                                             </p:dataTable>
 

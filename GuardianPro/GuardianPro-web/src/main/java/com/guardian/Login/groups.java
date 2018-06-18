@@ -11,6 +11,7 @@ import Entities.Role;
 import Entities.RoleHasComponent;
 import Entities.RoleHasGroups;
 import Facades.GroupsFacadeLocal;
+import Facades.GroupsHasUserFacadeLocal;
 import Facades.RoleFacadeLocal;
 import Facades.RoleHasGroupsFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -50,6 +51,9 @@ public class groups implements Serializable {
 
     @EJB
     private GroupsFacadeLocal groupsFacadeLocal;
+    
+    @EJB
+    private GroupsHasUserFacadeLocal groupsHasUserFacade;
     
     
 
@@ -173,7 +177,10 @@ public class groups implements Serializable {
 
     
     public void remove(ActionEvent actionEvent) {
+        
+        
         try {
+            
             groupsFacadeLocal.remove(selectGroup);
             Messages.addInfoMessage("removed " + selectGroup.getDescription(), 1,20);
         } catch (Exception e) {
@@ -185,20 +192,16 @@ public class groups implements Serializable {
         date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         group = ((Groups) event.getObject());
         group.setUpdateDate(date);
-        ///////////////////////////get all roles of group
-        roleHasGroupses= roleHasGroupsFacade.find_role_by_group(group);
-        for (RoleHasGroups hasGroups : roleHasGroupses) {
-            roles.add(roleFacade.find(hasGroups.getRoleprevilegeID()));
-        }
         
-        //////////////////////////
+    
+      
         groupsFacadeLocal.edit(group);
 
-        Messages.addInfoMessage("Edited " + ((Groups) event.getObject()).getDescription(), 1,20);
+        Messages.addInfoMessage("Edited " + ((Groups) event.getObject()).getName(), 1,20);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        Messages.addInfoMessage("Cancelled " + ((Groups) event.getObject()).getDescription(), 1,20);
+        Messages.addInfoMessage("Cancelled " + ((Groups) event.getObject()).getName(), 1,20);
     }
 
     public String ADD(ActionEvent actionEvent) {

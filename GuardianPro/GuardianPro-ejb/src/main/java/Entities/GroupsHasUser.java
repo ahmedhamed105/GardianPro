@@ -25,22 +25,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "groups_has_user", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "GroupsHasUser.findAll", query = "SELECT g FROM GroupsHasUser g")
-    , @NamedQuery(name = "GroupsHasUser.findById", query = "SELECT g FROM GroupsHasUser g WHERE g.id = :id")
-    , @NamedQuery(name = "GroupsHasUser.findByUserid", query = "SELECT g FROM GroupsHasUser g WHERE g.userID = :id")
-    , @NamedQuery(name = "GroupsHasUser.findByCreateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.createDate = :createDate")
-    , @NamedQuery(name = "GroupsHasUser.findByUpdateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.updateDate = :updateDate")})
+    @NamedQuery(name = "GroupsHasUser.findAll", query = "SELECT g FROM GroupsHasUser g"),
+    @NamedQuery(name = "GroupsHasUser.findById", query = "SELECT g FROM GroupsHasUser g WHERE g.id = :id"),
+    @NamedQuery(name = "GroupsHasUser.findByUserid", query = "SELECT g FROM GroupsHasUser g WHERE g.userID = :id"),
+    @NamedQuery(name = "GroupsHasUser.findByCreateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.createDate = :createDate"),
+    @NamedQuery(name = "GroupsHasUser.findByUpdateDate", query = "SELECT g FROM GroupsHasUser g WHERE g.updateDate = :updateDate")})
 public class GroupsHasUser implements Serializable {
-
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
-    @ManyToOne(optional = false)
-    private User userID;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,9 +54,12 @@ public class GroupsHasUser implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Groups_Group_id", referencedColumnName = "Group_id", nullable = false)
+    @JoinColumn(name = "Groups_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Groups groupsGroupid;
+    private Groups groupsID;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private User userID;
 
     public GroupsHasUser() {
     }
@@ -99,12 +98,20 @@ public class GroupsHasUser implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Groups getGroupsGroupid() {
-        return groupsGroupid;
+    public Groups getGroupsID() {
+        return groupsID;
     }
 
-    public void setGroupsGroupid(Groups groupsGroupid) {
-        this.groupsGroupid = groupsGroupid;
+    public void setGroupsID(Groups groupsID) {
+        this.groupsID = groupsID;
+    }
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override
@@ -130,14 +137,6 @@ public class GroupsHasUser implements Serializable {
     @Override
     public String toString() {
         return "Entities.GroupsHasUser[ id=" + id + " ]";
-    }
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
     }
     
 }

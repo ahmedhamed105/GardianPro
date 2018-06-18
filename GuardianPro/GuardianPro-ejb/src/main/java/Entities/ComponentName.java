@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,20 +24,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "component_name", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ComponentName.findAll", query = "SELECT c FROM ComponentName c")
-    , @NamedQuery(name = "ComponentName.findById", query = "SELECT c FROM ComponentName c WHERE c.id = :id")
-    , @NamedQuery(name = "ComponentName.findByName", query = "SELECT c FROM ComponentName c WHERE c.name = :name")
-    , @NamedQuery(name = "ComponentName.findByValue", query = "SELECT c FROM ComponentName c WHERE c.value = :value")
-    , @NamedQuery(name = "ComponentName.findByDescription", query = "SELECT c FROM ComponentName c WHERE c.description = :description")
-    , @NamedQuery(name = "ComponentName.findByEdit", query = "SELECT c FROM ComponentName c WHERE c.edit = :edit")
-    , @NamedQuery(name = "ComponentName.findByCreateDate", query = "SELECT c FROM ComponentName c WHERE c.createDate = :createDate")
-    , @NamedQuery(name = "ComponentName.findByUpdateDate", query = "SELECT c FROM ComponentName c WHERE c.updateDate = :updateDate")})
+    @NamedQuery(name = "ComponentName.findAll", query = "SELECT c FROM ComponentName c"),
+    @NamedQuery(name = "ComponentName.findById", query = "SELECT c FROM ComponentName c WHERE c.id = :id"),
+    @NamedQuery(name = "ComponentName.findByName", query = "SELECT c FROM ComponentName c WHERE c.name = :name"),
+    @NamedQuery(name = "ComponentName.findByValue", query = "SELECT c FROM ComponentName c WHERE c.value = :value"),
+    @NamedQuery(name = "ComponentName.findByDescription", query = "SELECT c FROM ComponentName c WHERE c.description = :description"),
+    @NamedQuery(name = "ComponentName.findByEdit", query = "SELECT c FROM ComponentName c WHERE c.edit = :edit"),
+    @NamedQuery(name = "ComponentName.findByCreateDate", query = "SELECT c FROM ComponentName c WHERE c.createDate = :createDate"),
+    @NamedQuery(name = "ComponentName.findByUpdateDate", query = "SELECT c FROM ComponentName c WHERE c.updateDate = :updateDate")})
 public class ComponentName implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -65,6 +67,9 @@ public class ComponentName implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @JoinColumn(name = "component_component_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private Component componentcomponentID;
 
     public ComponentName() {
     }
@@ -133,6 +138,14 @@ public class ComponentName implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Component getComponentcomponentID() {
+        return componentcomponentID;
+    }
+
+    public void setComponentcomponentID(Component componentcomponentID) {
+        this.componentcomponentID = componentcomponentID;
     }
 
     @Override

@@ -204,4 +204,33 @@
         <managed-bean-class>com.guardian.Login.ComponentValue</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+       <managed-bean>
+        <managed-bean-name>componentsOfRole</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.ComponentsOfRole</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>compRole</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.compRole</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>Crgroup</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CRgroup</managed-bean-class>
+    
+        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>Croles</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CRoles</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>cUser</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CUser</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>rolesOfGroups</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.RolesOfGroups</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -5,40 +5,38 @@
  */
 package com.guardian.Login;
 
-import Entities.Component;
+import Entities.GroupHasParameter;
 import Entities.Groups;
+import Entities.GroupsHasUser;
 import Entities.Role;
-import Entities.RoleHasComponent;
 import Entities.RoleHasGroups;
+import Entities.User;
 import Facades.GroupsFacadeLocal;
+import Facades.GroupsHasUserFacadeLocal;
 import Facades.RoleFacadeLocal;
 import Facades.RoleHasGroupsFacadeLocal;
 import Facades.UserFacadeLocal;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Named;
 import org.primefaces.event.RowEditEvent;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
-@Named(value = "RolesOfGroup")
-@SessionScoped
-public class RolesOfGroup implements Serializable {
+public class RolesOfGroups {
 
-    public RolesOfGroup() {
-    }
+    @EJB
+    private GroupsHasUserFacadeLocal groupsHasUserFacade;
 
+    
     @EJB
     private RoleFacadeLocal roleFacade;
 
@@ -53,15 +51,27 @@ public class RolesOfGroup implements Serializable {
 
     List<Role> Roles = new ArrayList<Role>();
     List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
-    List<Groups> groups = new ArrayList<Groups>();
-
-    Groups selectGroup;
+    List<Groups> Groups = new ArrayList<Groups>();
+    List<User> Users = new ArrayList<User>();
+    Groups selectGroupA;
+    User selectuser;
+     List<Role> selectRole= new ArrayList<Role>();
+    
+    
+    RoleHasGroups selectGroup;
+    
+    
+    
     java.sql.Date date;
     String roleId;
     String groupId;
-    RoleHasGroups selectRoleHasGroups;
-
-    public void init(String PageName) {
+    /**
+     * Creates a new instance of RolesOfGroups
+     */
+    public RolesOfGroups() {
+    }
+    
+      public void init(String PageName) {
 
         try {
             if (Login.login == null /*|| Login.login.getId() == 0*/) {
@@ -82,11 +92,15 @@ public class RolesOfGroup implements Serializable {
 
                 System.out.println("role_ID v >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + roleId);
                 System.out.println("componentId >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + groupId);
-
-                Roles = roleFacade.findAll();
-                selectGroup = groupsFacade.find(Integer.parseInt(groupId));
-                roleHasGroupses = roleHasGroupsFacade.find_role_by_group(selectGroup);
-                
+              Groups=groupsFacade.findAll();
+                Users=userFacade.findAll();
+                  System.out.println("componentId >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + Users.size());
+            Roles = roleFacade.findAll();
+            Groups  GroupA = groupsFacade.find(Integer.parseInt(groupId));
+            roleHasGroupses = roleHasGroupsFacade.find_role_by_group(GroupA);
+              selectRole= new ArrayList<Role>();
+              selectGroupA=new Groups();
+              selectuser=new User();
                 
 
             }
@@ -97,6 +111,53 @@ public class RolesOfGroup implements Serializable {
             /*end mohammed.ayad*/
         }
     }
+
+    public List<Role> getSelectRole() {
+        return selectRole;
+    }
+
+    public void setSelectRole(List<Role> selectRole) {
+        this.selectRole = selectRole;
+    }
+
+ 
+    
+    
+
+    public List<Groups> getGroups() {
+        return Groups;
+    }
+
+    public void setGroups(List<Groups> Groups) {
+        this.Groups = Groups;
+    }
+
+    public List<User> getUsers() {
+        return Users;
+    }
+
+    public void setUsers(List<User> Users) {
+        this.Users = Users;
+    }
+
+    public Groups getSelectGroupA() {
+        return selectGroupA;
+    }
+
+    public void setSelectGroupA(Groups selectGroupA) {
+        this.selectGroupA = selectGroupA;
+    }
+
+    public User getSelectuser() {
+        return selectuser;
+    }
+
+    public void setSelectuser(User selectuser) {
+        this.selectuser = selectuser;
+    }
+    
+    
+    
 
     public List<Role> getRoles() {
         return Roles;
@@ -114,13 +175,7 @@ public class RolesOfGroup implements Serializable {
         this.roleHasGroupses = roleHasGroupses;
     }
 
-    public List<Groups> getGroups() {
-        return groups;
-    }
 
-    public void setGroups(List<Groups> groups) {
-        this.groups = groups;
-    }
 
     public Date getDate() {
         return date;
@@ -130,30 +185,26 @@ public class RolesOfGroup implements Serializable {
         this.date = date;
     }
 
-    public Groups getSelectGroup() {
+    public RoleHasGroups getSelectGroup() {
         return selectGroup;
     }
 
-    public void setSelectGroup(Groups selectGroup) {
+    public void setSelectGroup(RoleHasGroups selectGroup) {
         this.selectGroup = selectGroup;
     }
 
-    public RoleHasGroups getSelectRoleHasGroups() {
-        return selectRoleHasGroups;
-    }
 
-    public void setSelectRoleHasGroups(RoleHasGroups selectRoleHasGroups) {
-        this.selectRoleHasGroups = selectRoleHasGroups;
-    }
 
+   
     
     
     public void remove(ActionEvent actionEvent){
+        
          try {
-                   roleHasGroupsFacade.remove(selectRoleHasGroups);
-             Messages.addInfoMessage("removed "+selectRoleHasGroups.getRoleprevilegeID(),1,12);
+                   roleHasGroupsFacade.remove(selectGroup);
+             Messages.addInfoMessage("removed "+selectGroup.getRoleID(),1,12);
          } catch (Exception e) {
-              Messages.addInfoMessage("Not removed "+selectRoleHasGroups.getRoleprevilegeID()+" return to Admin "+e.getMessage(),3,12);
+              Messages.addInfoMessage("Not removed "+selectGroup.getRoleID()+" return to Admin "+e.getMessage(),3,12);
          }
      }
     
@@ -165,8 +216,8 @@ public class RolesOfGroup implements Serializable {
            if(roleHasGroup == null)
            {
                roleHasGroup = new RoleHasGroups();
-               roleHasGroup.setGroupsGroupid(group_object);
-               roleHasGroup.setRoleprevilegeID(role_object);
+               roleHasGroup.setGroupsID(group_object);
+               roleHasGroup.setRoleID(role_object);
                roleHasGroup.setCreateDate(date);
                roleHasGroup.setUpdateDate(date);
                
@@ -184,4 +235,36 @@ public class RolesOfGroup implements Serializable {
     public void onRowCancel(RowEditEvent event) {
          
     }
+    
+    
+          public String joingroup(ActionEvent actionEvent){
+                 date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+              
+         for(int i=0;i<selectRole.size();i++){
+             RoleHasGroups a=new RoleHasGroups();
+            a.setGroupsID(selectGroupA);
+            a.setRoleID(selectRole.get(i));
+            /*start mohammed.ayad*/
+             Messages.addInfoMessage("ADDED",1,7);
+             /*start mohammed.ayad*/
+
+            a.setCreateDate(date);
+            a.setUpdateDate(date);
+          roleHasGroupsFacade.create(a);      
+         }
+         
+              GroupsHasUser b=new GroupsHasUser();
+              b.setUserID(selectuser);
+              b.setGroupsID(selectGroupA);
+              b.setCreateDate(date);
+              b.setUpdateDate(date);
+              groupsHasUserFacade.create(b);
+              
+                Groups  GroupA = groupsFacade.find(Integer.parseInt(groupId));
+            roleHasGroupses = roleHasGroupsFacade.find_role_by_group(GroupA);
+       
+         
+      return "Login";
+     }
+    
 }

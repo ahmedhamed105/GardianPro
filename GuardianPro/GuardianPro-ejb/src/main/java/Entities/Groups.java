@@ -28,27 +28,27 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "groups", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Groups.findAll", query = "SELECT g FROM Groups g")
-    , @NamedQuery(name = "Groups.findByGroupid", query = "SELECT g FROM Groups g WHERE g.groupid = :groupid")
-    , @NamedQuery(name = "Groups.findByName", query = "SELECT g FROM Groups g WHERE g.name = :name")
-    , @NamedQuery(name = "Groups.findByADname", query = "SELECT g FROM Groups g WHERE g.aDname = :aDname")
-    , @NamedQuery(name = "Groups.findByDescription", query = "SELECT g FROM Groups g WHERE g.description = :description")
-    , @NamedQuery(name = "Groups.findByCreateDate", query = "SELECT g FROM Groups g WHERE g.createDate = :createDate")
-    , @NamedQuery(name = "Groups.findByUpdateDate", query = "SELECT g FROM Groups g WHERE g.updateDate = :updateDate")})
+    @NamedQuery(name = "Groups.findAll", query = "SELECT g FROM Groups g"),
+    @NamedQuery(name = "Groups.findById", query = "SELECT g FROM Groups g WHERE g.id = :id"),
+    @NamedQuery(name = "Groups.findByName", query = "SELECT g FROM Groups g WHERE g.name = :name"),
+    @NamedQuery(name = "Groups.findByADname", query = "SELECT g FROM Groups g WHERE g.aDname = :aDname"),
+    @NamedQuery(name = "Groups.findByDescription", query = "SELECT g FROM Groups g WHERE g.description = :description"),
+    @NamedQuery(name = "Groups.findByCreateDate", query = "SELECT g FROM Groups g WHERE g.createDate = :createDate"),
+    @NamedQuery(name = "Groups.findByUpdateDate", query = "SELECT g FROM Groups g WHERE g.updateDate = :updateDate")})
 public class Groups implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "Group_id", nullable = false)
-    private Integer groupid;
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -70,31 +70,31 @@ public class Groups implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupsGroupid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupsID")
     private Collection<RoleHasGroups> roleHasGroupsCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupsGroupid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "groupsID")
     private Collection<GroupsHasUser> groupsHasUserCollection;
 
     public Groups() {
     }
 
-    public Groups(Integer groupid) {
-        this.groupid = groupid;
+    public Groups(Integer id) {
+        this.id = id;
     }
 
-    public Groups(Integer groupid, String name, Date createDate, Date updateDate) {
-        this.groupid = groupid;
+    public Groups(Integer id, String name, Date createDate, Date updateDate) {
+        this.id = id;
         this.name = name;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public Integer getGroupid() {
-        return groupid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGroupid(Integer groupid) {
-        this.groupid = groupid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -158,7 +158,7 @@ public class Groups implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (groupid != null ? groupid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -169,7 +169,7 @@ public class Groups implements Serializable {
             return false;
         }
         Groups other = (Groups) object;
-        if ((this.groupid == null && other.groupid != null) || (this.groupid != null && !this.groupid.equals(other.groupid))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -177,7 +177,7 @@ public class Groups implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Groups[ groupid=" + groupid + " ]";
+        return "Entities.Groups[ id=" + id + " ]";
     }
     
 }

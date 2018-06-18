@@ -25,18 +25,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "role_has_groups", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "RoleHasGroups.findAll", query = "SELECT r FROM RoleHasGroups r")
-    , @NamedQuery(name = "RoleHasGroups.findById", query = "SELECT r FROM RoleHasGroups r WHERE r.id = :id")
-    , @NamedQuery(name = "RoleHasGroups.findByGroupsid", query = "SELECT r FROM RoleHasGroups r WHERE r.groupsGroupid = :id")
-    , @NamedQuery(name = "RoleHasGroups.findByGroupsidRoleid", query = "SELECT r FROM RoleHasGroups r WHERE r.groupsGroupid = :groupId AND r.roleprevilegeID = :roleId")
-    , @NamedQuery(name = "RoleHasGroups.findByCreateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "RoleHasGroups.findByUpdateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.updateDate = :updateDate")})
+    @NamedQuery(name = "RoleHasGroups.findAll", query = "SELECT r FROM RoleHasGroups r"),
+    @NamedQuery(name = "RoleHasGroups.findById", query = "SELECT r FROM RoleHasGroups r WHERE r.id = :id"),
+    @NamedQuery(name = "RoleHasGroups.findByGroupsid", query = "SELECT r FROM RoleHasGroups r WHERE r.groupsID = :id"),
+    @NamedQuery(name = "RoleHasGroups.findByCreateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "RoleHasGroups.findByUpdateDate", query = "SELECT r FROM RoleHasGroups r WHERE r.updateDate = :updateDate")})
 public class RoleHasGroups implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,12 +54,12 @@ public class RoleHasGroups implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Groups_Group_id", referencedColumnName = "Group_id", nullable = false)
+    @JoinColumn(name = "Groups_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Groups groupsGroupid;
-    @JoinColumn(name = "Role_previlege_ID", referencedColumnName = "previlege_ID", nullable = false)
+    private Groups groupsID;
+    @JoinColumn(name = "Role_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Role roleprevilegeID;
+    private Role roleID;
 
     public RoleHasGroups() {
     }
@@ -99,20 +98,20 @@ public class RoleHasGroups implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Groups getGroupsGroupid() {
-        return groupsGroupid;
+    public Groups getGroupsID() {
+        return groupsID;
     }
 
-    public void setGroupsGroupid(Groups groupsGroupid) {
-        this.groupsGroupid = groupsGroupid;
+    public void setGroupsID(Groups groupsID) {
+        this.groupsID = groupsID;
     }
 
-    public Role getRoleprevilegeID() {
-        return roleprevilegeID;
+    public Role getRoleID() {
+        return roleID;
     }
 
-    public void setRoleprevilegeID(Role roleprevilegeID) {
-        this.roleprevilegeID = roleprevilegeID;
+    public void setRoleID(Role roleID) {
+        this.roleID = roleID;
     }
 
     @Override

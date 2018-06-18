@@ -30,6 +30,8 @@ public class RoleFacade extends AbstractFacade<Role> implements RoleFacadeLocal 
         super(Role.class);
     }
     
+     
+    
     public boolean role_name_find(String name) {
   
        Query role_find = em.createNamedQuery("Role.findByName");
