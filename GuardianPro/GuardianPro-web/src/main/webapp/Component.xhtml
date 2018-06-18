@@ -8,7 +8,7 @@
     <h:head>
         <title>#{menu.tittle()}</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{groups.init()}"/>
+            <f:event type="preRenderView" listener="#{ComponentValue.init()}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>   
             <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
         <meta charset="utf-8"/>
@@ -82,14 +82,14 @@
                                         <p:messages id="messages" showDetail="true" closable="true" />
                                         <div class="form-group">
 
-                                            <p:dataTable id="cars1"  var="input" value="#{groups.groups}" editable="true" style="margin-bottom:20px" rows="5"
+                                            <p:dataTable id="cars1"  var="input" value="#{ComponentValue.componentNames}" editable="true" style="margin-bottom:20px" rows="5"
                                                          paginator="true"
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15"  selection="#{groups.selectGroup}" rowKey="#{input.groupid}"  >
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{input.id}"  >
 
 
-                                                <p:ajax event="rowEdit" listener="#{groups.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{groups.onRowCancel}" update=":form:messages :form:cars1" />
+                                                <p:ajax event="rowEdit" listener="#{ComponentValue.onRowEdit}" update=":form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{ComponentValue.onRowCancel}" update=":form:messages :form:cars1" />
 
 
 
@@ -101,26 +101,22 @@
                                                         <f:facet name="input"><p:inputText id="modelInput" value="#{input.name}" style="width:100%"/></f:facet>
                                                     </p:cellEditor>
                                                 </p:column>
+                                                <p:column headerText="Name" sortBy="#{input.value}" >
+                                                    <p:cellEditor>
+                                                        <f:facet name="output"><h:outputText value="#{input.value}" /></f:facet>
+                                                        <f:facet name="input"><p:inputText id="modelInput2" value="#{input.value}" style="width:100%"/></f:facet>
+                                                    </p:cellEditor>
+                                                </p:column>
 
                                                 <p:column headerText="AD Name" sortBy="#{input.description}" >
                                                     <p:cellEditor>
-                                                        <f:facet name="output"><h:outputText value="#{input.ADname}" /></f:facet>
-                                                        <f:facet name="input"><p:inputText id="modelInput1" value="#{input.ADname}" style="width:100%"/></f:facet>
-                                                    </p:cellEditor>
-                                                </p:column>
-
-                                                <p:column headerText="description" sortBy="#{input.description}" >
-                                                    <p:cellEditor>
                                                         <f:facet name="output"><h:outputText value="#{input.description}" /></f:facet>
-                                                        <f:facet name="input"><p:inputText id="modelInput2" value="#{input.description}" style="width:100%"/></f:facet>
+                                                        <f:facet name="input"><p:inputText id="modelInput1" value="#{input.description}" style="width:100%"/></f:facet>
                                                     </p:cellEditor>
                                                 </p:column>
 
-                                                <p:column headerText="Roles"   >
-                                                    <h:commandLink action="roleOfGroup.xhtml" value="Role" >
-                                                        <f:param name="groupId" value="#{input.groupid}" />
-                                                    </h:commandLink>
-                                                </p:column>
+                                              
+
 
                                                 <p:column style="width:32px">
                                                     <p:rowEditor />
