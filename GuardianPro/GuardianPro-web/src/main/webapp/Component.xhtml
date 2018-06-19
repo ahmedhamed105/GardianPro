@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}</title>
+        <title>#{menu.tittle(24)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{ComponentValue.init()}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>   
@@ -88,8 +88,8 @@
                                                          rowsPerPageTemplate="5,10,15"  rowKey="#{input.id}"  >
 
 
-                                                <p:ajax event="rowEdit" listener="#{ComponentValue.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{ComponentValue.onRowCancel}" update=":form:messages :form:cars1" />
+                                                <p:ajax event="rowEdit" listener="#{ComponentValue.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{ComponentValue.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1" />
 
 
 
@@ -122,7 +122,7 @@
                                                     <p:rowEditor />
                                                 </p:column>
 <!--                                                <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
                                                                      />  
                                                 </f:facet>-->
 
@@ -177,10 +177,13 @@
                                                 <p:column headerText="Date" sortBy="#{log.createDate}" >
                                                     <h:outputText value="#{log.createDate}" />
                                                 </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
                                                 
 
 <!--                                                <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
                                                                      />  
                                                 </f:facet>-->
 

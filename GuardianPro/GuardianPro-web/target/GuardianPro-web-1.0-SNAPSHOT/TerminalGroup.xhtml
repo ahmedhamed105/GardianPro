@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}</title>
+        <title>#{menu.tittle(15)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{terminalgroup.init()}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
@@ -97,7 +97,7 @@
 
                                             <br/>
                                             <br/>
-                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"
+                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"
                                                              rendered="#{login.isViewed('terminalgroup_edit_submit_view')}"
                                                              disabled="#{login.isViewed('terminalgroup_edit_submit_edit')}"
                                                              />  
@@ -147,8 +147,8 @@
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletermgroup}" rowKey="#{para.id}"> 
 
 
-                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTGroup}" update=":form111:messages111 :form111:GroupTerminal" />
-                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTGroup}" update=":form111:messages111 :form111:GroupTerminal"   />
+                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTGroup}" update=":formd1:carsd1 :form111:messages111 :form111:GroupTerminal" />
+                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTGroup}" update=":formd1:carsd1 :form111:messages111 :form111:GroupTerminal"   />
 
 
                                                         <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -175,7 +175,7 @@
 
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
+                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:GroupTerminal" action="#{terminalgroup.removeTGroup(actionEvent)}"/>  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
@@ -219,8 +219,8 @@
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasTerminal}" rowKey="#{para1.id}"> 
 
 
-                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditT}" update=":form111:messages111 :form111:GroupTerminal" />
-                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelT}" update=":form111:messages111 :form111:GroupTerminal"   />
+                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditT}" update=":formd1:carsd1 :form111:messages111 :form111:GroupTerminal" />
+                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelT}" update=":formd1:carsd1 :form111:messages111 :form111:GroupTerminal"   />
 
 
                                                         <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -326,11 +326,11 @@
 
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.removeT(actionEvent)}"/>  
+                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.removeT(actionEvent)}"/>  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.ADDT(actionEvent)}"/>  
+                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Terminalcar :form111:Aterminals" action="#{terminalgroup.ADDT(actionEvent)}"/>  
                                                         </f:facet>
 
                                                     </p:dataTable>
@@ -359,8 +359,8 @@
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasSoftware}" rowKey="#{para2.id}"> 
 
 
-                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTS}" update=":form111:messages111 :form111:Appscar" />
-                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTS}" update=":form111:messages111 :form111:Appscar"   />
+                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditTS}" update=":formd1:carsd1 :form111:messages111 :form111:Appscar" />
+                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelTS}" update=":formd1:carsd1 :form111:messages111 :form111:Appscar"   />
 
 
                                                         <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -390,14 +390,14 @@
 
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"
+                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"
                                                                              rendered="#{login.isViewed('termenalgroup_remove_view')}"
                                                                              disabled="#{login.isEdit('termenalgroup_remove_edit')}"
                                                                              />  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"
+                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"
                                                                              rendered="#{login.isViewed('termenalgroup_add_view')}"
                                                                              disabled="#{login.isEdit('termenalgroup_add_edit')}"
                                                                              />  
@@ -429,8 +429,8 @@
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasAccesory}" rowKey="#{para3.id}"> 
 
 
-                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditA}" update=":form111:messages111 :form111:accescar" />
-                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelA}" update=":form111:messages111 :form111:accescar"   />
+                                                        <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEditA}" update=":formd1:carsd1 :form111:messages111 :form111:accescar" />
+                                                        <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancelA}" update=":formd1:carsd1 :form111:messages111 :form111:accescar"   />
 
 
                                                         <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -460,13 +460,13 @@
 
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"
+                                                            <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"
                                                                              rendered="#{login.isViewed('termenalgroup_termenal_remove_view')}"
                                                                              disabled="#{login.isEdit('termenalgroup_termenal_remove_edit')}"/>  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
-                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"
+                                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"
                                                                              rendered="#{login.isViewed('termenalgroup_termenal_add_view')}"
                                                                              disabled="#{login.isEdit('termenalgroup_termenal_add_edit')}"
                                                                              />  
@@ -483,7 +483,7 @@
                                                     <h:panelGrid columns="4">
                                                         <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}" filterBy="#{node}"
                                                                 draggable="true" droppable="true" dragdropScope="demo">
-                                                            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
+                                                            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":formd1:carsd1 :form111:messages111 :form111:tree1 :form111:tree2" />
                                                             <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
                                                                 <h:outputText value="#{node.parameterGroup}" />   -   <h:outputText value="#{node.type}" />
                                                             </p:treeNode>
@@ -493,8 +493,8 @@
 
                                                         <p:tree id="tree2"  animate="true" value="#{terminalgroup.root2}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode2}" filterBy="#{node}"
                                                                 draggable="true" droppable="true" dragdropScope="demo">
-                                                            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":form111:messages111 :form111:tree1 :form111:tree2" />
-                                                            <p:ajax event="select" update=":form111:messages111 :form111:tree1 :form111:cars1" listener="#{terminalgroup.onNodeSelect}" />
+                                                            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":formd1:carsd1 :form111:messages111 :form111:tree1 :form111:tree2" />
+                                                            <p:ajax event="select" update=":formd1:carsd1 :form111:messages111 :form111:tree1 :form111:cars1" listener="#{terminalgroup.onNodeSelect}" />
                                                             <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
                                                                 <h:outputText value="#{node.parameterGroup}" />   -   <h:outputText value="#{node.type}" />
                                                             </p:treeNode>
@@ -507,8 +507,8 @@
                                                                      rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.seletParameterValues}" rowKey="#{para.id}"> 
 
 
-                                                            <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEdit}" update=":form111:messages111" />
-                                                            <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancel}" update=":form111:messages111"  />
+                                                            <p:ajax event="rowEdit" listener="#{terminalgroup.onRowEdit}" update=":formd1:carsd1 :form111:messages111" />
+                                                            <p:ajax event="rowEditCancel" listener="#{terminalgroup.onRowCancel}" update=":formd1:carsd1 :form111:messages111"  />
 
 
                                                             <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -534,7 +534,7 @@
 
 
                                                             <f:facet name="footer">
-                                                                <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form111:messages111 :form111:tree1 :form111:tree2" action="#{terminalgroup.removenode(actionEvent)}"/>  
+                                                                <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:tree1 :form111:tree2" action="#{terminalgroup.removenode(actionEvent)}"/>  
                                                             </f:facet>
 
 
@@ -601,51 +601,55 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-sm-3 col-xs-6">
+                        
+                    </div>
+                    
+                       <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(30)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(15)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
                                 <div class="box-body">
-                                    <ul class="timeline">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-                                        <!-- timeline time label -->
-                                        <li class="time-label">
-                                            <span class="bg-red">
-                                                10 Feb. 2014
-                                            </span>
-                                        </li>
-                                        <!-- /.timeline-label -->
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(15)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-                                                <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
+                                                
 
-                                                <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
-                                                </div>
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
 
-                                                <div class="timeline-footer">
-                                                    <a class="btn btn-primary btn-xs">log</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                    </ul>
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

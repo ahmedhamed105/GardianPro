@@ -63,7 +63,7 @@ public class ComponentValue {
         
         } catch (Exception e) {
             /*start mohammed.ayad*/
-                Messages.addInfoMessage(e.getMessage(), 3, 17);
+                Messages.addInfoMessage(e.getMessage(), 3, 24);
                 /*end mohammed.ayad*/
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -72,7 +72,7 @@ public class ComponentValue {
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/
-                Messages.addInfoMessage(ex.getMessage(), 3, 17);
+                Messages.addInfoMessage(ex.getMessage(), 3, 24);
                 /*end mohammed.ayad*/
             }
 }
