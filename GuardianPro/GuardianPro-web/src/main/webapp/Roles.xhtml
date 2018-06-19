@@ -95,7 +95,7 @@
                                                          paginator="true" 
 
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15" selection="#{rolesBean.selectRole}" rowKey="#{rol.previlegeID}" > 
+                                                         rowsPerPageTemplate="5,10,15" selection="#{rolesBean.selectRole}" rowKey="#{rol.id}" > 
 
 
                                                 <p:ajax event="rowEdit" listener="#{rolesBean.onRowEdit}" update=":form:messages :form:cars1" />
@@ -121,7 +121,7 @@
 
                                                 <p:column headerText="XML Header"   >
                                                     <h:commandLink action="CompinentOfRole.xhtml" value="Component" >
-                                                        <f:param name="roleId" value="#{rol.previlegeID}" />
+                                                        <f:param name="roleId" value="#{rol.id}" />
                                                         <f:param name="componentId" value="0" />
                                                     </h:commandLink>
                                                 </p:column>

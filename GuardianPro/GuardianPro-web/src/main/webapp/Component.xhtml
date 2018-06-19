@@ -65,12 +65,12 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
-                        <div class="col-md-6 col-sm-3 col-xs-6">
+                        <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">#{ComponentValue.getValueById(22)}</h3>
+                                    <h3 class="box-title">#{ComponentValue.getValueById(24)}</h3>
                                     <ui:include src="Actionbar.xhtml" />
                                 </div>
                                 <!-- /.box-header -->
@@ -101,14 +101,14 @@
                                                         <f:facet name="input"><p:inputText id="modelInput" value="#{input.name}" style="width:100%"/></f:facet>
                                                     </p:cellEditor>
                                                 </p:column>
-                                                <p:column headerText="Name" sortBy="#{input.value}" >
+                                                <p:column headerText="value" sortBy="#{input.value}" >
                                                     <p:cellEditor>
                                                         <f:facet name="output"><h:outputText value="#{input.value}" /></f:facet>
                                                         <f:facet name="input"><p:inputText id="modelInput2" value="#{input.value}" style="width:100%"/></f:facet>
                                                     </p:cellEditor>
                                                 </p:column>
 
-                                                <p:column headerText="AD Name" sortBy="#{input.description}" >
+                                                <p:column headerText="description" sortBy="#{input.description}" >
                                                     <p:cellEditor>
                                                         <f:facet name="output"><h:outputText value="#{input.description}" /></f:facet>
                                                         <f:facet name="input"><p:inputText id="modelInput1" value="#{input.description}" style="width:100%"/></f:facet>
@@ -140,66 +140,19 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-sm-3 col-xs-6">
-                            <!-- general form elements -->
-                            <div class="box">
-
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">#{ComponentValue.getValueById(23)}</h3>
-                                    <ui:include src="Actionbar.xhtml" />
-                                </div>
-                                <!-- /.box-header -->
-                                <!-- form start -->
-
-
-                                <div class="box-body">
-                                    <h:form id="form1" >
-                                        <p:messages id="messages1" showDetail="true" closable="true"/>
-                                        <div class="form-group">
-
-                                            <label for="Groups">Name</label>
-                                            <p:inputText class="form-control" id="Groups"  value="#{groups.group.name}" required="true" requiredMessage="please Enter Group Name"/>						
-                                            <p:message for="Groups" display="text"/>
-
-                                            <label for="GroupADName">AD Name</label>
-                                            <p:inputText class="form-control" id="GroupADName"  value="#{groups.group.ADname}" required="true" requiredMessage="please Enter Group AD Name"/>						
-                                            <p:message for="GroupADName" display="text"/>
-
-
-                                            <label for="Groupdescription">description</label>
-                                            <p:inputText class="form-control" id="Groupdescription"  value="#{groups.group.description}" required="true" requiredMessage="please Enter Group description"/>						
-                                            <p:message for="Groupdescription" display="text"/>
-
-                                            <br/>
-                                            <br/>
-                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{groups.ADD(actionEvent)}" 
-
-                                                             />  
-
-
-
-                                        </div>
-                                    </h:form>     
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer">
-                                </div>
-
-                                <!-- /.box -->
-                            </div>
-                        </div>
+                      
                     </div>
                     
                      
 
 
                     <div class="row">
-                        <div class="col-md-12 col-sm-6 col-xs-12">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">#{ComponentValue.getValueById(23)}</h3>
+                                    <h3 class="box-title">#{ComponentValue.getValueById(24)}</h3>
                                     <ui:include src="Actionbar.xhtml" />
                                 </div>
                                 <!-- /.box-header -->
@@ -207,37 +160,35 @@
 
 
                                 <div class="box-body">
-                                    <ul class="timeline">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-                                        <!-- timeline time label -->
-                                        <li class="time-label">
-                                            <span class="bg-red">
-                                                10 Feb. 2014
-                                            </span>
-                                        </li>
-                                        <!-- /.timeline-label -->
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(24)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-                                                <h3 class="timeline-header"><a href="#">Ahmed Mahmoud</a> ...</h3>
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                
 
-                                                <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
-                                                </div>
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
 
-                                                <div class="timeline-footer">
-                                                    <a class="btn btn-primary btn-xs">log</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                    </ul>
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

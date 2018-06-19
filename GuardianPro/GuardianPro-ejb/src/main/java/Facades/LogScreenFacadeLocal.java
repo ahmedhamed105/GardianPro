@@ -30,6 +30,9 @@ public interface LogScreenFacadeLocal {
     List<LogScreen> findRange(int[] range);
 
     int count();
-    public void createLogScreenObject(User user,int pageId,int transactionId,String messageLog);
+    
+    void createLogScreenObject(User user,int pageId,int transactionId,String messageLog);
+    
+    List<LogScreen> Select_log_User(User user,int pageId);
     
 }

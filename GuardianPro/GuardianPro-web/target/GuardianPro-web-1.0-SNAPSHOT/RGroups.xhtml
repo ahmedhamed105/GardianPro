@@ -85,7 +85,7 @@
                                             <p:dataTable id="cars1"  var="input" value="#{groups.groups}" editable="true" style="margin-bottom:20px" rows="5"
                                                          paginator="true"
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15"  selection="#{groups.selectGroup}" rowKey="#{input.groupid}"  >
+                                                         rowsPerPageTemplate="5,10,15"  selection="#{groups.selectGroup}" rowKey="#{input.id}"  >
 
 
                                                 <p:ajax event="rowEdit" listener="#{groups.onRowEdit}" update=":form:messages :form:cars1" />
@@ -118,7 +118,7 @@
 
                                                 <p:column headerText="Roles"   >
                                                     <h:commandLink action="roleOfGroup.xhtml" value="Role" >
-                                                        <f:param name="groupId" value="#{input.groupid}" />
+                                                        <f:param name="groupId" value="#{input.id}" />
                                                     </h:commandLink>
                                                 </p:column>
 

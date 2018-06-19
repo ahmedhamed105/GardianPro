@@ -233,4 +233,9 @@
         <managed-bean-class>com.guardian.Login.RolesOfGroups</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>log_display</managed-bean-name>
+        <managed-bean-class>com.guardian.Login.Log_display</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

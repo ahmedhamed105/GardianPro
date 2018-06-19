@@ -93,11 +93,11 @@ public class ComponentValue {
         Component.setUpdateDate(date);
         componentNameFacade.edit(Component);
 
-        Messages.addInfoMessage("Edited " + ((Role) event.getObject()).getName(), 1,11);
+        Messages.addInfoMessage("Edited " + ((ComponentName) event.getObject()).getName(), 1,24);
     }
 
     public void onRowCancel(RowEditEvent event) {
-        Messages.addInfoMessage("Cancelled " + ((ComponentName) event.getObject()).getName(), 1,11);
+        Messages.addInfoMessage("Cancelled " + ((ComponentName) event.getObject()).getName(), 1,24);
     }
     
     public String getValueById(int id){

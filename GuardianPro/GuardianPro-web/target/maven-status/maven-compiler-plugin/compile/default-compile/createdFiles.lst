@@ -44,3 +44,4 @@ com\guardian\Login\parameter.class
 com\guardian\converter\Cparmetertype.class
 com\guardian\converter\CRgroup.class
 com\guardian\converter\Caccessory.class
+com\guardian\Login\Log_display.class
