@@ -10,8 +10,12 @@ import Entities.ConfigParmeter;
 import Entities.EmailLog;
 import Entities.FtpLog;
 import Entities.Parts;
+import Entities.RParameter;
+import Entities.Reports;
 import Facades.ConfigEmailFacadeLocal;
 import Facades.ConfigParmeterFacadeLocal;
+import Facades.RParameterFacadeLocal;
+import Facades.ReportsFacadeLocal;
 import Facades.UserFacadeLocal;
 import static com.guardian.Login.application.generateRandom;
 import java.io.IOException;
@@ -41,7 +45,20 @@ public class Pconfig {
            @EJB
     private UserFacadeLocal userFacade;
            
+            @EJB
+    private RParameterFacadeLocal rParameterFacade;
+
+    @EJB
+    private ReportsFacadeLocal reportsFacade;
            
+                      List<Entities.Reports> Reports = new ArrayList<Entities.Reports>();
+         
+         Entities.Reports selectReports=new Entities.Reports();
+         
+         
+            List<Entities.RParameter> RParameter = new ArrayList<Entities.RParameter>();
+         
+         Entities.RParameter selectRParameter=new Entities.RParameter();
          
            List<Entities.ConfigParmeter> ConfigParmeter = new ArrayList<Entities.ConfigParmeter>();
          
@@ -59,6 +76,24 @@ public class Pconfig {
      */
     public Pconfig() {
     }
+
+    public List<Reports> getReports() {
+        return Reports;
+    }
+
+    public void setReports(List<Reports> Reports) {
+        this.Reports = Reports;
+    }
+
+    public List<RParameter> getRParameter() {
+        return RParameter;
+    }
+
+    public void setRParameter(List<RParameter> RParameter) {
+        this.RParameter = RParameter;
+    }
+    
+    
 
     public List<ConfigEmail> getConfigEmail() {
         return ConfigEmail;
@@ -96,6 +131,24 @@ public class Pconfig {
     public void setSelectconfig(ConfigParmeter selectconfig) {
         this.selectconfig = selectconfig;
     }
+
+    public Reports getSelectReports() {
+        return selectReports;
+    }
+
+    public void setSelectReports(Reports selectReports) {
+        this.selectReports = selectReports;
+    }
+
+    public RParameter getSelectRParameter() {
+        return selectRParameter;
+    }
+
+    public void setSelectRParameter(RParameter selectRParameter) {
+        this.selectRParameter = selectRParameter;
+    }
+    
+    
     
         public void init(){
              Login.login = userFacade.find(1);
@@ -109,6 +162,8 @@ public class Pconfig {
         }else{
          ConfigParmeter  = configParmeterFacade.findAll();
          ConfigEmail=configEmailFacade.findAll();
+         RParameter=rParameterFacade.findAll();
+         Reports=reportsFacade.findAll();
         
         }
         
@@ -128,6 +183,38 @@ public class Pconfig {
             }
 }
    
+    }
+        
+                 public void onRowEditrp(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          selectRParameter=((RParameter) event.getObject());
+            selectRParameter.setUpdateDate(date);
+          rParameterFacade.edit(selectRParameter);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((RParameter) event.getObject()).getRpara(),1,9);
+          /*end mohammed.ayad*/
+    }
+     
+    public void onRowCancelrp(RowEditEvent event) {
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((RParameter) event.getObject()).getRpara(),1,9);
+          /*end mohammed.ayad*/
+    }
+        
+            public void onRowEditr(RowEditEvent event) {
+          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          selectReports=((Reports) event.getObject());
+            selectReports.setUpdateDate(date);
+          reportsFacade.edit(selectReports);
+          /*start mohammed.ayad*/
+          Messages.addInfoMessage("Edited "+((Reports) event.getObject()).getReportname(),1,9);
+          /*end mohammed.ayad*/
+    }
+     
+    public void onRowCancelr(RowEditEvent event) {
+        /*start mohammed.ayad*/
+          Messages.addInfoMessage("Cancelled "+((Reports) event.getObject()).getReportname(),1,9);
+          /*end mohammed.ayad*/
     }
         
         

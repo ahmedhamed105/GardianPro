@@ -134,8 +134,150 @@
           <!-- /.box -->
             </div>
         </div>
-       
+            
+             <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                  <div class="box-header with-border">
+      <h3 class="box-title">#{ComponentValue.getValueById(69)}</h3>
+                                <ui:include src="Actionbar.xhtml" />
+  </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
         
+             
+              <div class="box-body">
+                   <h:form id="formr1">
+                  <p:messages id="messagesr1" showDetail="true" closable="true" />
+                <div class="form-group">
+                    
+                  <p:dataTable id="carsr1" widgetVar="carsTable"
+                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.reports}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectReports}" rowKey="#{para.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{pconfig.onRowEditr}" update=":formd1:carsd1 :formr1:messagesr1 :formr1:carsr1" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancelr}" update=":formd1:carsd1 :formr1:messagesr1 :formr1:carsr1"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+    <p:column headerText="report name" sortBy="#{para.reportname}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.reportname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr" value="#{para.reportname}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="report SQL" sortBy="#{para.reportSQL}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.reportSQL}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr1" value="#{para.reportSQL}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    <p:column headerText="report directory" sortBy="#{para.reportDIR}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.reportDIR}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr2" value="#{para.reportDIR}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+
+       
+    <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+   </p:dataTable>
+                  
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+        </div>
+            <div class="row">
+     
+            
+             <div class="col-md-6 col-sm-3 col-xs-6">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                  <div class="box-header with-border">
+      <h3 class="box-title">#{ComponentValue.getValueById(69)}</h3>
+                                <ui:include src="Actionbar.xhtml" />
+  </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                   <h:form id="formrp1">
+                  <p:messages id="messagesrp1" showDetail="true" closable="true" />
+                <div class="form-group">
+                    
+                  <p:dataTable id="carsrp1" widgetVar="carsTable"
+                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.RParameter}" editable="true" style="margin-bottom:20px" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectRParameter}" rowKey="#{para.id}"> 
+                      
+ 
+        <p:ajax event="rowEdit" listener="#{pconfig.onRowEditrp}" update=":formd1:carsd1 :formrp1:messagesrp1 :formrp1:carsrp1" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancelrp}" update=":formd1:carsd1 :formrp1:messagesrp1 :formrp1:carsrp1"  />
+       
+       
+    <p:column selectionMode="single" style="width:32px;text-align:center"/>
+  
+    
+    <p:column headerText="parmeter name" sortBy="#{para.rpara}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.rpara}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputrp" value="#{para.rpara}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    <p:column headerText="parmeter Value" sortBy="#{para.paravalue}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{para.paravalue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputrp1" value="#{para.paravalue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    <p:column headerText="report directory" sortBy="#{para.reportsID.reportname}"  >
+         <h:outputText value="#{para.reportsID.reportname}" />
+       </p:column>
+
+       
+    <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+    
+    
+   </p:dataTable>
+                  
+                  
+                </div>
+                   </h:form>     
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
         </div>
         
               <div class="row">
@@ -171,7 +313,7 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="part name" sortBy="#{parap.email}"  >
+    <p:column headerText="Emails" sortBy="#{parap.email}"  >
            <p:cellEditor>
                <f:facet name="output"><h:outputText value="#{parap.email}" /></f:facet>
                <f:facet name="input"><p:inputText id="modelInputp" value="#{parap.email}" style="width:100%" validatorMessage="please enter email corrct">
