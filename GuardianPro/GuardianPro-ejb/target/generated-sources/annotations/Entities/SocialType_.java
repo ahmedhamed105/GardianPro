@@ -7,7 +7,11 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-19T10:51:23")
+<<<<<<< HEAD
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-19T22:23:27")
+=======
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-19T13:19:55")
+>>>>>>> 89e242ba88a79831f0ebe27e9336a6565cd26116
 @StaticMetamodel(SocialType.class)
 public class SocialType_ { 
 

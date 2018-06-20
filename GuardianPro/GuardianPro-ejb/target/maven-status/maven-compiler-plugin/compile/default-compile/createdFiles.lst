@@ -73,6 +73,7 @@ Entities\WebsiteData.class
 Entities\NationalIdHasMaritalStatus1PK_.class
 Entities\MaritalStatus_.class
 Entities\AccessoryHasGroup_.class
+Facades\PagesFacade.class
 Email\Ftputils.class
 Facades\ActionBarFacadeLocal.class
 Facades\UserFacade.class
@@ -304,6 +305,7 @@ Facades\UserStatusFacadeLocal.class
 Entities\City.class
 Facades\EmailLogFacade.class
 Facades\TgroupHasAccesoryFacade.class
+Facades\PagesFacadeLocal.class
 Facades\TerminalTemplateFacadeLocal.class
 Facades\TgroupHasGparameterFacade.class
 Facades\TgroupHasTerminalFacadeLocal.class

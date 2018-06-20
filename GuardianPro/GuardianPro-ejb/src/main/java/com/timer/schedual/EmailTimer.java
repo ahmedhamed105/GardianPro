@@ -56,9 +56,12 @@ public class EmailTimer {
         System.out.println("Execution Time : " + new Date());
         
         List<EmailLog> emails=emailLogFacade.FindALL_notsend();
+        System.out.println("emails "+emails);
         if(emails != null){
         for(EmailLog email:emails){
+         System.out.println("email "+email.getEto());
          boolean send=   emailLogFacade.send_email(email);
+         System.out.println("send "+send);
              if(send){
                   Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                   email.setEsendnot(1);
