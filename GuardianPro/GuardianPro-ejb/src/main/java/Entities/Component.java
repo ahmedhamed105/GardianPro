@@ -21,7 +21,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,32 +28,29 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "component", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c")
-    , @NamedQuery(name = "Component.findByComponentID", query = "SELECT c FROM Component c WHERE c.componentID = :componentID")
-    , @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.name = :name")
-    , @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description")
-    , @NamedQuery(name = "Component.findByParentID", query = "SELECT c FROM Component c WHERE c.parentID = :parentID")
-    , @NamedQuery(name = "Component.findByType", query = "SELECT c FROM Component c WHERE c.type = :type")
-    , @NamedQuery(name = "Component.findByCreateDate", query = "SELECT c FROM Component c WHERE c.createDate = :createDate")
-    , @NamedQuery(name = "Component.findByUpdateDate", query = "SELECT c FROM Component c WHERE c.updateDate = :updateDate")})
+    @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c"),
+    @NamedQuery(name = "Component.findById", query = "SELECT c FROM Component c WHERE c.id = :id"),
+    @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.name = :name"),
+    @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description"),
+    @NamedQuery(name = "Component.findByParentID", query = "SELECT c FROM Component c WHERE c.parentID = :parentID"),
+    @NamedQuery(name = "Component.findByType", query = "SELECT c FROM Component c WHERE c.type = :type"),
+    @NamedQuery(name = "Component.findByCreateDate", query = "SELECT c FROM Component c WHERE c.createDate = :createDate"),
+    @NamedQuery(name = "Component.findByUpdateDate", query = "SELECT c FROM Component c WHERE c.updateDate = :updateDate"),
+    @NamedQuery(name = "Component.findByCname", query = "SELECT c FROM Component c WHERE c.cname = :cname")})
 public class Component implements Serializable {
-
-    @Size(max = 150)
-    @Column(name = "C_name", length = 150)
-    private String cname;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "component_ID", nullable = false)
-    private Integer componentID;
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Size(max = 45)
     @Column(name = "name", length = 45)
     private String name;
@@ -78,35 +74,34 @@ public class Component implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentcomponentID")
+    @Size(max = 150)
+    @Column(name = "C_name", length = 150)
+    private String cname;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentID")
     private Collection<RoleHasComponent> roleHasComponentCollection;
-    
-    @Transient
-    private boolean view;
-    
-    @Transient
-    private boolean edit;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentcomponentID")
+    private Collection<ComponentName> componentNameCollection;
 
     public Component() {
     }
 
-    public Component(Integer componentID) {
-        this.componentID = componentID;
+    public Component(Integer id) {
+        this.id = id;
     }
 
-    public Component(Integer componentID, String type, Date createDate, Date updateDate) {
-        this.componentID = componentID;
+    public Component(Integer id, String type, Date createDate, Date updateDate) {
+        this.id = id;
         this.type = type;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public Integer getComponentID() {
-        return componentID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setComponentID(Integer componentID) {
-        this.componentID = componentID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -157,24 +152,14 @@ public class Component implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public boolean isView() {
-        return view;
+    public String getCname() {
+        return cname;
     }
 
-    public void setView(boolean view) {
-        this.view = view;
+    public void setCname(String cname) {
+        this.cname = cname;
     }
 
-    public boolean isEdit() {
-        return edit;
-    }
-
-    public void setEdit(boolean edit) {
-        this.edit = edit;
-    }
-
-    
-    
     @XmlTransient
     public Collection<RoleHasComponent> getRoleHasComponentCollection() {
         return roleHasComponentCollection;
@@ -184,10 +169,19 @@ public class Component implements Serializable {
         this.roleHasComponentCollection = roleHasComponentCollection;
     }
 
+    @XmlTransient
+    public Collection<ComponentName> getComponentNameCollection() {
+        return componentNameCollection;
+    }
+
+    public void setComponentNameCollection(Collection<ComponentName> componentNameCollection) {
+        this.componentNameCollection = componentNameCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (componentID != null ? componentID.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -198,7 +192,7 @@ public class Component implements Serializable {
             return false;
         }
         Component other = (Component) object;
-        if ((this.componentID == null && other.componentID != null) || (this.componentID != null && !this.componentID.equals(other.componentID))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -206,15 +200,7 @@ public class Component implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Component[ componentID=" + componentID + " ]";
-    }
-
-    public String getCname() {
-        return cname;
-    }
-
-    public void setCname(String cname) {
-        this.cname = cname;
+        return "Entities.Component[ id=" + id + " ]";
     }
     
 }

@@ -21,25 +21,23 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "role_has_component", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "RoleHasComponent.findAll", query = "SELECT r FROM RoleHasComponent r")
-    , @NamedQuery(name = "RoleHasComponent.findById", query = "SELECT r FROM RoleHasComponent r WHERE r.id = :id")
-    , @NamedQuery(name = "RoleHasComponent.findByRole", query = "SELECT r FROM RoleHasComponent r WHERE r.roleprevilegeID = :id")
-    , @NamedQuery(name = "RoleHasComponent.findByRoleAndComponent", query = "SELECT r FROM RoleHasComponent r WHERE r.roleprevilegeID = :id AND r.componentcomponentID = :component")
-    , @NamedQuery(name = "RoleHasComponent.findByView", query = "SELECT r FROM RoleHasComponent r WHERE r.view = :view")
-    , @NamedQuery(name = "RoleHasComponent.findByEdit", query = "SELECT r FROM RoleHasComponent r WHERE r.edit = :edit")
-    , @NamedQuery(name = "RoleHasComponent.findByCreateDate", query = "SELECT r FROM RoleHasComponent r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "RoleHasComponent.findByUpdateDate", query = "SELECT r FROM RoleHasComponent r WHERE r.updateDate = :updateDate")})
+    @NamedQuery(name = "RoleHasComponent.findAll", query = "SELECT r FROM RoleHasComponent r"),
+    @NamedQuery(name = "RoleHasComponent.findById", query = "SELECT r FROM RoleHasComponent r WHERE r.id = :id"),
+    @NamedQuery(name = "RoleHasComponent.findByRole", query = "SELECT r FROM RoleHasComponent r WHERE r.roleID = :id"),
+    @NamedQuery(name = "RoleHasComponent.findByView", query = "SELECT r FROM RoleHasComponent r WHERE r.view = :view"),
+    @NamedQuery(name = "RoleHasComponent.findByEdit", query = "SELECT r FROM RoleHasComponent r WHERE r.edit = :edit"),
+    @NamedQuery(name = "RoleHasComponent.findByCreateDate", query = "SELECT r FROM RoleHasComponent r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "RoleHasComponent.findByUpdateDate", query = "SELECT r FROM RoleHasComponent r WHERE r.updateDate = :updateDate")})
 public class RoleHasComponent implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,14 +48,12 @@ public class RoleHasComponent implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "view", nullable = false, length = 45)
-    private String view;
+    @Column(name = "view", nullable = false)
+    private boolean view;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "edit", nullable = false, length = 45)
-    private String edit;
+    @Column(name = "edit", nullable = false)
+    private boolean edit;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -68,12 +64,12 @@ public class RoleHasComponent implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "Role_previlege_ID", referencedColumnName = "previlege_ID", nullable = false)
+    @JoinColumn(name = "Role_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Role roleprevilegeID;
-    @JoinColumn(name = "component_component_ID", referencedColumnName = "component_ID", nullable = false)
+    private Role roleID;
+    @JoinColumn(name = "component_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private Component componentcomponentID;
+    private Component componentID;
 
     public RoleHasComponent() {
     }
@@ -82,7 +78,7 @@ public class RoleHasComponent implements Serializable {
         this.id = id;
     }
 
-    public RoleHasComponent(Integer id, String view, String edit, Date createDate, Date updateDate) {
+    public RoleHasComponent(Integer id, boolean view, boolean edit, Date createDate, Date updateDate) {
         this.id = id;
         this.view = view;
         this.edit = edit;
@@ -98,19 +94,19 @@ public class RoleHasComponent implements Serializable {
         this.id = id;
     }
 
-    public String getView() {
+    public boolean getView() {
         return view;
     }
 
-    public void setView(String view) {
+    public void setView(boolean view) {
         this.view = view;
     }
 
-    public String getEdit() {
+    public boolean getEdit() {
         return edit;
     }
 
-    public void setEdit(String edit) {
+    public void setEdit(boolean edit) {
         this.edit = edit;
     }
 
@@ -130,20 +126,20 @@ public class RoleHasComponent implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Role getRoleprevilegeID() {
-        return roleprevilegeID;
+    public Role getRoleID() {
+        return roleID;
     }
 
-    public void setRoleprevilegeID(Role roleprevilegeID) {
-        this.roleprevilegeID = roleprevilegeID;
+    public void setRoleID(Role roleID) {
+        this.roleID = roleID;
     }
 
-    public Component getComponentcomponentID() {
-        return componentcomponentID;
+    public Component getComponentID() {
+        return componentID;
     }
 
-    public void setComponentcomponentID(Component componentcomponentID) {
-        this.componentcomponentID = componentcomponentID;
+    public void setComponentID(Component componentID) {
+        this.componentID = componentID;
     }
 
     @Override

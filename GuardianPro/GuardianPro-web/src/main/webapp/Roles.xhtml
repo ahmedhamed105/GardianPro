@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}</title>
+        <title>#{menu.tittle(11)}</title>
         <f:metadata>
                       <f:event type="preRenderView" listener="#{rolesBean.init('Roles.xhtml')}"/>
         <f:event type="preRenderView" listener="#{menu.init()}"/>  
@@ -74,7 +74,7 @@
                             <div class="box">
 
                                     <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(70)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 
@@ -95,11 +95,11 @@
                                                          paginator="true" 
 
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15" selection="#{rolesBean.selectRole}" rowKey="#{rol.previlegeID}" > 
+                                                         rowsPerPageTemplate="5,10,15" selection="#{rolesBean.selectRole}" rowKey="#{rol.id}" > 
 
 
-                                                <p:ajax event="rowEdit" listener="#{rolesBean.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{rolesBean.onRowCancel}" update=":form:messages :form:cars1"  />
+                                                <p:ajax event="rowEdit" listener="#{rolesBean.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{rolesBean.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1"  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -121,7 +121,7 @@
 
                                                 <p:column headerText="XML Header"   >
                                                     <h:commandLink action="CompinentOfRole.xhtml" value="Component" >
-                                                        <f:param name="roleId" value="#{rol.previlegeID}" />
+                                                        <f:param name="roleId" value="#{rol.id}" />
                                                         <f:param name="componentId" value="0" />
                                                     </h:commandLink>
                                                 </p:column>
@@ -134,7 +134,7 @@
 
 
                                                 <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{rolesBean.remove(actionEvent)}"
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{rolesBean.remove(actionEvent)}"
 
                                                                      />  
                                                 </f:facet>
@@ -183,7 +183,7 @@
 
                                             <br/>
                                             <br/>
-                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1 :form2:log123"  action="#{rolesBean.ADD(actionEvent)}"
+                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form1:messages1 :form:cars1 :form2:log123"  action="#{rolesBean.ADD(actionEvent)}"
 
 
                                                              />  
@@ -203,34 +203,53 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 col-xs-12">
+                   <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(24)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(11)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
-                                <h:form id="form2" >
-                                    <p:dataTable id ="log123" var="logs" value="#{rolesBean.actionlogs}" style="margin-bottom:20px" rows="5"
-                                                 paginator="true" >
-                                        <p:column headerText="Message">
-                                            <h:outputText value="#{logs.message}" />
-                                        </p:column>
+                                <div class="box-body">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-                                        <p:column headerText="Date">
-                                            <h:outputText value="#{logs.dateFormate}" />
-                                        </p:column>
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(11)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
 
-                                    </p:dataTable>
-                                </h:form>
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
+                                                
+
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
+
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
+                                </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">
                                 </div>

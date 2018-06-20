@@ -10,6 +10,7 @@ import Entities.Component;
 import Entities.Role;
 import Entities.RoleHasComponent;
 import Facades.ActionLogFacadeLocal;
+import Facades.ComponentFacadeLocal;
 import Facades.RoleFacadeLocal;
 import Facades.RoleHasComponentFacadeLocal;
 import Facades.UserFacadeLocal;
@@ -32,7 +33,10 @@ import org.primefaces.event.RowEditEvent;
  * @author ahmed.ibraheem
  */
 public class RolesBean implements Serializable {
-
+   @EJB
+    private ComponentFacadeLocal componentFacade;
+    
+    
     @EJB
     private RoleHasComponentFacadeLocal roleHasComponentFacade;
 
@@ -169,7 +173,19 @@ public class RolesBean implements Serializable {
             role.setCreateDate(date);
             role.setUpdateDate(date);
             roleFacade.create(role);
-            actionLoging.create(  ActionlogingUtil.addToLogging("Roles.xhtml", Login.login, "Role has been added sucessfully"+ role.getDescription()) );
+            role=roleFacade.find(role.getId());
+            List<Component> com=componentFacade.findAll();
+            for(Component c:com){
+                RoleHasComponent rc=new RoleHasComponent();
+                rc.setComponentID(c);
+                rc.setEdit(false);
+                rc.setView(false);
+                rc.setRoleID(role);
+                rc.setUpdateDate(date);
+                rc.setCreateDate(date);
+                roleHasComponentFacade.create(rc);
+            }
+            actionLoging.create(  ActionlogingUtil.addToLogging("Roles.xhtml", Login.login, "Role has been added sucessfully "+ role.getDescription()) );
         }
 
         return "Login";

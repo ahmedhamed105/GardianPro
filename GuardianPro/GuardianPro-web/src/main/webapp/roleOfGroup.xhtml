@@ -6,9 +6,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}#{menu.tittle()}</title>
+        <title>#{menu.tittle(12)}</title>
         <f:metadata>
-            <f:event type="preRenderView" listener="#{RolesOfGroup.init('RolesOfGroup.xhtml')}"/>
+            <f:event type="preRenderView" listener="#{rolesOfGroups.init('rolesOfGroups.xhtml')}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>         
             <f:event type="preRenderView" listener="#{action.init()}"/>
         </f:metadata>
@@ -54,12 +54,12 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        RolesOfGroup Page 
+                        Groups user  
                         <small>Version 1.0</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Parmeter</li>
+                        <li class="active">GroupsUser</li>
                     </ol>
                 </section>
 
@@ -83,77 +83,37 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="form" 
-
-
-                                            >
+                                    <h:form id="form">
                                         <p:messages id="messages" showDetail="true" closable="true" />
                                         <div class="form-group">
 
                                             <p:dataTable id="cars1" widgetVar="carsTable"
-                                                         emptyMessage="No Parmeter found with given criteria" var="rol" value="#{RolesOfGroup.roles}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         emptyMessage="No Role found with given criteria" var="rol" value="#{rolesOfGroups.roleHasGroupses}" editable="true" style="margin-bottom:20px" rows="5"
                                                          paginator="true" 
 
                                                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                         rowsPerPageTemplate="5,10,15" selection="#{RolesOfGroup.selectGroup}" rowKey="#{rol.previlegeID}" > 
+                                                         rowsPerPageTemplate="5,10,15" selection="#{rolesOfGroups.selectGroup}" rowKey="#{rol.id}" > 
 
-
-                                                <p:ajax event="rowEdit" listener="#{RolesOfGroup.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{RolesOfGroup.onRowCancel}" update=":form:messages :form:cars1"  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
 
 
-                                                <p:column headerText="Type" sortBy="#{rol.name}"  >
+                                                <p:column headerText="Role name" sortBy="#{rol.roleID.name}"  >
 
-                                                    <h:outputText value="#{rol.name}" />
-
-                                                </p:column>
-
-                                                <p:column headerText="description" sortBy="#{rol.description}"  >
-
-                                                    <h:outputText value="#{rol.description}" />
+                                                    <h:outputText value="#{rol.roleID.name}" />
 
                                                 </p:column>
 
+                                                <p:column headerText="Group name" sortBy="#{rol.groupsID.name}"  >
 
-                                                <p:column headerText="add" sortBy="#{rol.view}"  >
-                                                    <p:cellEditor>
-                                                        <f:facet name="output"><h:outputText value="#{rol.view}" /></f:facet>
-                                                        <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.view}" /></f:facet>
-                                                    </p:cellEditor>
-                                                </p:column>
+                                                    <h:outputText value="#{rol.groupsID.name}" />
 
-
-                                                <p:column headerText="Edit" sortBy="#{rol.edit}"  >
-                                                    <p:cellEditor>
-                                                        <f:facet name="output"><h:outputText value="#{rol.edit}" /></f:facet>
-                                                        <f:facet name="input"><h:selectBooleanCheckbox value="#{rol.edit}" /></f:facet>
-                                                    </p:cellEditor>
-                                                </p:column>
-
-
-
-
-                                                <p:column headerText="sub component"   >
-                                                    <h:commandLink action="CompinentOfRole.xhtml" value="Component" >
-                                                        <f:param name="componentId" value="#{rol.componentID}" />
-                                                        <f:param name="roleId" value="#{componentsOfRole.roleID}" />
-                                                    </h:commandLink>
-                                                </p:column>
-
-                                                <p:column style="width:32px">
-                                                    <p:rowEditor />
                                                 </p:column>
 
 
                                                 <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{rolesBean.remove(actionEvent)}"
-
-
-
-                                                                     />  
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{rolesOfGroups.remove(actionEvent)}" />  
                                                 </f:facet>
 
                                             </p:dataTable>
@@ -170,103 +130,117 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-sm-3 col-xs-6">
-                            <!-- general form elements -->
-                            <div class="box">
-
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(38)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-
-                                <!-- /.box-header -->
-                                <!-- form start 
-
-
-                                <div class="box-body" >
-                                    <h:form id="form1" 
-                                            
-                                            
-                                            >
-                                        <p:messages id="messages1" showDetail="true" closable="true"/>
-                                        <div class="form-group">
-
-                                            <label for="Para_type">Role Name</label>
-                                            <p:inputText class="form-control" id="Para_type"  value="#{rolesBean.role.name}" required="true" requiredMessage="please Enter Parmeter Type"/>						
-                                            <p:message for="Para_type" display="text"/>
-                                            <label for="XML_head">Role Description</label>
-                                            <p:inputText class="form-control" id="XML_head"  value="#{rolesBean.role.description}" required="true" requiredMessage="please Enter XML Header"/>						
-                                            <p:message for="XML_head" display="text"/>
-
-                                            <br/>
-                                            <br/>
-                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{rolesBean.ADD(actionEvent)}"
-                                                             
-                                                             
-                                                             />  
-
-
-
-                                        </div>
-                                    </h:form>     
-                                </div>
-                                -->
-                                <!-- /.box-body -->
-                                <div class="box-footer">
-                                </div>
-
-                                <!-- /.box -->
-                            </div>
-                        </div>
+                     
                     </div>
 
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 col-xs-12">
-                            <!-- general form elements -->
-                            <div class="box">
-
-                                  <div class="box-header with-border">
+        <div class="row">
+          <div class="col-md-12 col-sm-6 col-xs-12">
+                   <!-- general form elements -->
+          <div class="box">
+            
+                     <div class="box-header with-border">
       <h3 class="box-title">#{ComponentValue.getValueById(38)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
+              
+            <!-- /.box-header -->
+            <!-- form start -->
+        
+             
+              <div class="box-body">
+                  <h:form id="form3" >
+                  <p:messages id="messages3" showDetail="true" closable="true"/>
+                <div class="form-group">
+                    
+                            <label for="User">User Choose</label>   
+                            <h:selectOneMenu converter="#{cUser}" class="form-control select2" id="User" value="#{rolesOfGroups.selectuser}" required="true" requiredMessage="please Enter User">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{rolesOfGroups.users}" var="u" itemValue="#{u}" itemLabel="#{u.username}" />
+                 </h:selectOneMenu>
+                 <p:message for="User" display="text"/>
+                    
+                         <label for="parameterGroup">Group Choose</label>   
+                         <h:selectOneMenu converter="#{Crgroup}" class="form-control select2" id="parameterGroup" value="#{rolesOfGroups.selectGroupA}" required="true" requiredMessage="please Enter  Group">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{rolesOfGroups.groups}" var="c" itemValue="#{c}" itemLabel="#{c.name}" />
+                 </h:selectOneMenu>
+                 <p:message for="parameterGroup" display="text"/>
+                            
+                             <label for="advanced">Role Choose</label>  
+                             <p:selectManyMenu  id="advanced" value="#{rolesOfGroups.selectRole}" converter="#{Croles}"
+                                       var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter Roles">
+                                 <f:selectItems value="#{rolesOfGroups.roles}" var="f" itemLabel="#{f.name}" itemValue="#{f}" />
+ 
+            <p:column>
+                <h:outputText value="#{t.name}" />
+            </p:column>
+                     
+             </p:selectManyMenu>
+                    <p:message for="advanced" display="text"/>
+               
+                  <br/>
+                  <br/>
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form3:messages3 :form:cars1" action="#{rolesOfGroups.joingroup(actionEvent)}"/>  
+   
+                  
+                  
+                </div>
+                   </h:form>        
+              </div>
+              <!-- /.box-body -->
+                 <div class="box-footer">
+                </div>
+      
+          <!-- /.box -->
+            </div>
+        </div>
+         </div>
+          <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <!-- general form elements -->
+                            <div class="box">
 
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(12)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
                                 <div class="box-body">
-                                    <ul class="timeline">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-                                        <!-- timeline time label -->
-                                        <li class="time-label">
-                                            <span class="bg-red">
-                                                10 Feb. 2014
-                                            </span>
-                                        </li>
-                                        <!-- /.timeline-label -->
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(12)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-                                                <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
+                                                
 
-                                                <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
-                                                </div>
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
 
-                                                <div class="timeline-footer">
-                                                    <a class="btn btn-primary btn-xs">log</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                    </ul>
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

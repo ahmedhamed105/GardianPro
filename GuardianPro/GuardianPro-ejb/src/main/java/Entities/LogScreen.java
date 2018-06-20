@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "LogScreen.findAll", query = "SELECT l FROM LogScreen l"),
     @NamedQuery(name = "LogScreen.findById", query = "SELECT l FROM LogScreen l WHERE l.id = :id"),
+    @NamedQuery(name = "LogScreen.findBypageuser", query = "SELECT l FROM LogScreen l WHERE l.pageId = :id and l.userID = :id1"),
     @NamedQuery(name = "LogScreen.findByTable1", query = "SELECT l FROM LogScreen l WHERE l.table1 = :table1"),
     @NamedQuery(name = "LogScreen.findByTRXdesc", query = "SELECT l FROM LogScreen l WHERE l.tRXdesc = :tRXdesc"),
     @NamedQuery(name = "LogScreen.findByT2val", query = "SELECT l FROM LogScreen l WHERE l.t2val = :t2val"),

@@ -11,6 +11,7 @@ import Entities.MenuSub;
 import Facades.ComponentFacadeLocal;
 import Facades.MenuFacadeLocal;
 import Facades.MenuSubFacadeLocal;
+import Facades.PagesFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ import javax.servlet.http.HttpServletRequest;
 public class menu {
 
     @EJB
+    private PagesFacadeLocal pagesFacade;
+
+    @EJB
     private ComponentFacadeLocal componentFacade;
 
     @EJB
@@ -40,6 +44,8 @@ public class menu {
        @EJB
     private UserFacadeLocal userFacade;
     
+       
+       
     
     
     
@@ -125,34 +131,9 @@ public class menu {
      
       
       }
-      public String tittle(){
-        //  FacesContext ctx = FacesContext.getCurrentInstance();
-String path = ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getRequestURI();
-
-          String result="main";
-          String a=path.split("/")[path.split("/").length-1];
-          System.out.println("com.guardian.Login.menu.tittle() "+a);
-          
-          if ( menuFacade.get_name(a)==null) {
-              try {
-                  
-                    if ( menuSubFacade.get_name(a)==null) {
-                    result="main";
-                    }else{
-                    result=menuSubFacade.get_name(a);
-                    }
-              } catch (Exception e) {
-                /*start mohammed.ayad*/
-                Messages.addInfoMessage(e.getMessage(), 3, 23);
-                /*end mohammed.ayad*/
-                  result="main";
-              }
-           
-          }else{
-          result= menuFacade.get_name(a);
-          }
-
-     return result;
+      public String tittle(int page){
+ 
+     return pagesFacade.find(page).getPageName();
       }
     
     

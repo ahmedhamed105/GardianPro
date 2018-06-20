@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}</title>
+        <title>#{menu.tittle(21)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{parameter.init()}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
@@ -92,8 +92,8 @@
                                                          rowsPerPageTemplate="5,10,15" selection="#{parameter.selectparmeter}" rowKey="#{para.id}"> 
 
 
-                                                <p:ajax event="rowEdit" listener="#{parameter.onRowEdit}" update=":form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{parameter.onRowCancel}" update=":form:messages :form:cars1"  />
+                                                <p:ajax event="rowEdit" listener="#{parameter.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
+                                                <p:ajax event="rowEditCancel" listener="#{parameter.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1"  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -170,7 +170,7 @@
 
 
                                                 <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"
                                                                      disabled="#{login.isEdit('paramter_submit_editable')}"     rendered="#{login.isViewed('paramter_submit_viewable')}"
                                                                      />  
                                                 </f:facet>
@@ -251,7 +251,7 @@
 
                                             <br/>
                                             <br/>
-                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":form1:messages1 :form:cars1" action="#{parameter.ADD(actionEvent)}"
+                                            <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form1:messages1 :form:cars1" action="#{parameter.ADD(actionEvent)}"
                                                              disabled="#{login.isEdit('paramter_add_editable')}"     rendered="#{login.isViewed('paramter_add_viewable')}" 
                                                              />  
 
@@ -270,52 +270,52 @@
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-md-12 col-sm-6 col-xs-12">
+                     <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(21)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
                                 <div class="box-body">
-                                    <ul class="timeline">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-                                        <!-- timeline time label -->
-                                        <li class="time-label">
-                                            <span class="bg-red">
-                                                10 Feb. 2014
-                                            </span>
-                                        </li>
-                                        <!-- /.timeline-label -->
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(21)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
-                                        <!-- timeline item -->
-                                        <li>
-                                            <!-- timeline icon -->
-                                            <i class="fa fa-envelope bg-blue"></i>
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-                                                <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
+                                                
 
-                                                <div class="timeline-body">
-                                                    ...
-                                                    Content goes here
-                                                </div>
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
 
-                                                <div class="timeline-footer">
-                                                    <a class="btn btn-primary btn-xs">log</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- END timeline item -->
-                                    </ul>
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">

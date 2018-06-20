@@ -6,10 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}#{menu.tittle()}</title>
+        <title>#{menu.tittle(9)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{pconfig.init()}"/>
-<f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
+<f:event type="preRenderView" listener="#{menu.init()}"/>       
+<f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <!-- Tell the browser to be responsive to screen width -->
@@ -72,7 +73,7 @@
           <div class="box">
             
                   <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(69)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
               
@@ -92,8 +93,8 @@
                          rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectconfig}" rowKey="#{para.id}"> 
                       
  
-        <p:ajax event="rowEdit" listener="#{pconfig.onRowEdit}" update=":form:messages :form:cars1" />
-       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancel}" update=":form:messages :form:cars1"  />
+        <p:ajax event="rowEdit" listener="#{pconfig.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1"  />
        
        
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -143,7 +144,7 @@
           <div class="box">
             
                   <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(69)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
               
@@ -163,8 +164,8 @@
                          rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectEmail}" rowKey="#{parap.id}"> 
                       
  
-        <p:ajax event="rowEdit" listener="#{pconfig.onERowEdit}" update=":formp:messagesp :formp:cars1p" />
-       <p:ajax event="rowEditCancel" listener="#{pconfig.onERowCancel}" update=":formp:messagesp :formp:cars1p"  />
+        <p:ajax event="rowEdit" listener="#{pconfig.onERowEdit}" update=":formd1:carsd1 :formp:messagesp :formp:cars1p" />
+       <p:ajax event="rowEditCancel" listener="#{pconfig.onERowCancel}" update=":formd1:carsd1 :formp:messagesp :formp:cars1p"  />
        
        
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -205,7 +206,7 @@
           <div class="box">
             
                     <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(68)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
               
@@ -228,7 +229,7 @@
                
                   <br/>
                   <br/>
-                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" update=":form1:messages1 :formp:cars1p" action="#{pconfig.ADD(actionEvent)}"/>  
+                  <p:commandButton class="btn btn-primary" value="ADD" type="submit" update=":formd1:carsd1 :form1:messages1 :formp:cars1p" action="#{pconfig.ADD(actionEvent)}"/>  
    
                   
                   
@@ -247,61 +248,61 @@
         </div>
         </div>
         
-        <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-              <ul class="timeline">
+       <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <!-- general form elements -->
+                            <div class="box">
 
-    <!-- timeline time label -->
-    <li class="time-label">
-        <span class="bg-red">
-            10 Feb. 2014
-        </span>
-    </li>
-    <!-- /.timeline-label -->
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(9)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
 
-    <!-- timeline item -->
-    <li>
-        <!-- timeline icon -->
-        <i class="fa fa-envelope bg-blue"></i>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
 
-            <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
+                                <div class="box-body">
+                                    <h:form id="formd1">
+                                        <p:messages id="messagesd1" showDetail="true" closable="true" />
+                                        <div class="form-group">
 
-            <div class="timeline-body">
-                ...
-                Content goes here
-            </div>
+                                            <p:dataTable id="carsd1"  var="log" value="#{log_display.log(9)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
-            <div class="timeline-footer">
-                <a class="btn btn-primary btn-xs">log</a>
-            </div>
-        </div>
-    </li>
-    <!-- END timeline item -->
-</ul>
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-      </div>
+
+                                          
+                                                <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
+                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                </p:column>
+                                                <p:column headerText="Date" sortBy="#{log.createDate}" >
+                                                    <h:outputText value="#{log.createDate}" />
+                                                </p:column>
+                                                <p:column headerText="User" sortBy="#{log.userID.username}" >
+                                                    <h:outputText value="#{log.userID.username}" />
+                                                </p:column>
+                                                
+
+<!--                                                <f:facet name="footer">
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                     />  
+                                                </f:facet>-->
+
+                                            </p:dataTable>
+
+
+                                        </div>
+                                    </h:form>     
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                </div>
+
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
     
       <!-- /.row -->
     </section>

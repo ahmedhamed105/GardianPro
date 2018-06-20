@@ -28,29 +28,26 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.ibraheem
+ * @author ahmed.elemam
  */
 @Entity
 @Table(name = "role", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r")
-    , @NamedQuery(name = "Role.findByPrevilegeID", query = "SELECT r FROM Role r WHERE r.previlegeID = :previlegeID")
-    , @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name")
-    , @NamedQuery(name = "Role.findByDescription", query = "SELECT r FROM Role r WHERE r.description = :description")
-    , @NamedQuery(name = "Role.findByCreateDate", query = "SELECT r FROM Role r WHERE r.createDate = :createDate")
-    , @NamedQuery(name = "Role.findByUpdateDate", query = "SELECT r FROM Role r WHERE r.updateDate = :updateDate")})
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+    @NamedQuery(name = "Role.findById", query = "SELECT r FROM Role r WHERE r.id = :id"),
+    @NamedQuery(name = "Role.findByName", query = "SELECT r FROM Role r WHERE r.name = :name"),
+    @NamedQuery(name = "Role.findByDescription", query = "SELECT r FROM Role r WHERE r.description = :description"),
+    @NamedQuery(name = "Role.findByCreateDate", query = "SELECT r FROM Role r WHERE r.createDate = :createDate"),
+    @NamedQuery(name = "Role.findByUpdateDate", query = "SELECT r FROM Role r WHERE r.updateDate = :updateDate")})
 public class Role implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleprevilegeID")
-    private Collection<RoleHasGroups> roleHasGroupsCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "previlege_ID", nullable = false)
-    private Integer previlegeID;
+    @Column(name = "ID", nullable = false)
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -69,29 +66,31 @@ public class Role implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleprevilegeID")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleID")
     private Collection<RoleHasComponent> roleHasComponentCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleID")
+    private Collection<RoleHasGroups> roleHasGroupsCollection;
 
     public Role() {
     }
 
-    public Role(Integer previlegeID) {
-        this.previlegeID = previlegeID;
+    public Role(Integer id) {
+        this.id = id;
     }
 
-    public Role(Integer previlegeID, String name, Date createDate, Date updateDate) {
-        this.previlegeID = previlegeID;
+    public Role(Integer id, String name, Date createDate, Date updateDate) {
+        this.id = id;
         this.name = name;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public Integer getPrevilegeID() {
-        return previlegeID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPrevilegeID(Integer previlegeID) {
-        this.previlegeID = previlegeID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -135,10 +134,19 @@ public class Role implements Serializable {
         this.roleHasComponentCollection = roleHasComponentCollection;
     }
 
+    @XmlTransient
+    public Collection<RoleHasGroups> getRoleHasGroupsCollection() {
+        return roleHasGroupsCollection;
+    }
+
+    public void setRoleHasGroupsCollection(Collection<RoleHasGroups> roleHasGroupsCollection) {
+        this.roleHasGroupsCollection = roleHasGroupsCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (previlegeID != null ? previlegeID.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -149,7 +157,7 @@ public class Role implements Serializable {
             return false;
         }
         Role other = (Role) object;
-        if ((this.previlegeID == null && other.previlegeID != null) || (this.previlegeID != null && !this.previlegeID.equals(other.previlegeID))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -157,16 +165,7 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Role[ previlegeID=" + previlegeID + " ]";
-    }
-
-    @XmlTransient
-    public Collection<RoleHasGroups> getRoleHasGroupsCollection() {
-        return roleHasGroupsCollection;
-    }
-
-    public void setRoleHasGroupsCollection(Collection<RoleHasGroups> roleHasGroupsCollection) {
-        this.roleHasGroupsCollection = roleHasGroupsCollection;
+        return "Entities.Role[ id=" + id + " ]";
     }
     
 }
