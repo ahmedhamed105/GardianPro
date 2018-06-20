@@ -6,11 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle(9)}</title>
+        <title>#{menu.tittle(26)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{report.init()}"/>
 <f:event type="preRenderView" listener="#{menu.init()}"/>       
-<f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
+<f:event type="preRenderView" listener="#{action.init()}"/>
+        </f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <!-- Tell the browser to be responsive to screen width -->
@@ -93,13 +94,17 @@
                  <f:selectItems value="#{report.reportf}" var="c" itemValue="#{c}" itemLabel="#{c.reportname}" />
                  </h:selectOneMenu>
                  <p:message for="parameterGroup" display="text"/>
-                    
-                    <h:commandButton actionListener="#{report.PDF}" value="PDF"/>
-             <h:commandButton actionListener="#{report.DOCX}" value="Docx"/>
-              <h:commandButton actionListener="#{report.XLSX}" value="Xlsx"/>
-               <h:commandButton actionListener="#{report.ODT}" value="Odt"/>
-               <h:commandButton actionListener="#{report.PPT}" value="Ppt"/>
-            
+                   
+                 <br/>
+                  <br/>
+                   <br/>
+                   <p:panelGrid columns="5" style="width: 100%" >
+                   <h:commandButton actionListener="#{report.PDF}" value="PDF" class="btn btn-block btn-primary btn-lg"/>
+             <h:commandButton actionListener="#{report.DOCX}" value="Docx" class="btn btn-block btn-primary btn-lg"/>
+              <h:commandButton actionListener="#{report.XLSX}" value="Xlsx" class="btn btn-block btn-primary btn-lg"/>
+               <h:commandButton actionListener="#{report.ODT}" value="Odt" class="btn btn-block btn-primary btn-lg"/>
+               <h:commandButton actionListener="#{report.PPT}" value="Ppt" class="btn btn-block btn-primary btn-lg"/>
+                   </p:panelGrid>
                   
                   
                 </div>

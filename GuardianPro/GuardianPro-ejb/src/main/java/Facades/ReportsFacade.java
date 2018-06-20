@@ -33,10 +33,10 @@ public class ReportsFacade extends AbstractFacade<Reports> implements ReportsFac
     }
     
      @Override
-        public  List<Object> find_parameter(String jpl){ 
+        public  List<Object[]> find_parameter(String jpl){ 
            Query para_find = em.createNativeQuery(jpl);
         try {
-         List<Object>  parah = (List<Object>)  para_find.getResultList();
+         List<Object[]>  parah =  para_find.getResultList();
           //  System.out.println("ahmed hamed  "+parah.getGroupname());
          if(parah==null){
          return null;

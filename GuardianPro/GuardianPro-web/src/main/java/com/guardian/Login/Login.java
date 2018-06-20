@@ -167,13 +167,13 @@ public class Login {
 
                             for (GroupsHasUser groupsHasUser : groupsHasUsers) {
 
-                                groups.add((Groups) groupsFacade.find(groupsHasUser.getGroupsID()));
+                                groups.add(groupsHasUser.getGroupsID());
                             }
                         }
                         if (groups != null) {
                             for (Groups group : groups) {
                                 if (group != null) {
-                                    roleHasGroupses.add((RoleHasGroups) roleHasGroupsFacade.find_role_by_group(group));
+                                    roleHasGroupses.addAll((List<RoleHasGroups>) roleHasGroupsFacade.find_role_by_group(group));
                                 }
                             }
                         }
@@ -181,7 +181,7 @@ public class Login {
                         if (roleHasGroupses != null) {
                             for (RoleHasGroups rhg : roleHasGroupses) {
                                 if (rhg != null) {
-                                    Roles.add(roleFacade.find(rhg.getRoleID()));
+                                    Roles.add(rhg.getRoleID());
                                 }
                             }
                         }
@@ -189,14 +189,14 @@ public class Login {
                         if (Roles != null) {
                             for (Role role : Roles) {
                                 if (role != null) {
-                                    roleHasComponents.add((RoleHasComponent) roleHasComponentFacade.find_component_by_role(role));
+                                    roleHasComponents.addAll((List<RoleHasComponent>) roleHasComponentFacade.find_component_by_role(role));
                                 }
                             }
                         }
 
                         if (roleHasGroupses != null) {
                             for (RoleHasComponent rhc : roleHasComponents) {
-                                components.add(componentFacade.find(rhc.getComponentID()));
+                                components.add(rhc.getComponentID());
                             }
                         }
 
