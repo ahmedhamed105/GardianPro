@@ -246,8 +246,8 @@
 
                                                 <f:facet name="footer">
                                                     <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{terminalbean.remove(actionEvent)}"
-                                                                     rendered="#{login.isViewed('termenal_edit_submit_view')}"
-                                                                     disabled="#{login.isEdit('termenal_edit_submit_edit')}"
+                                                                     rendered="#{login.isViewed('termenal_edit_submit')}"
+                                                                     disabled="#{login.isEdit('termenal_edit_submit')}"
                                                                      />  
                                                 </f:facet>
 
@@ -287,7 +287,7 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="form2" rendered="#{login.isViewed('termenal_add_view')}">
+                                    <h:form id="form2" rendered="#{login.isViewed('termenal_add')}">
                                         <p:messages id="messages2" showDetail="true" closable="true"/>
                                         <div class="form-group">
 
@@ -380,8 +380,8 @@
                                             <br/>
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form2:messages2 :form:cars1"  action="#{terminalbean.Addterminal(actionEvent)}"
-                                                             rendered="#{login.isViewed('termenal_edit_submit_view')}"
-                                                             disabled="#{login.isEdit('termenal_edit_submit_edit')}"
+                                                             rendered="#{login.isViewed('termenal_edit_submit')}"
+                                                             disabled="#{login.isEdit('termenal_edit_submit')}"
                                                              />  
 
 
