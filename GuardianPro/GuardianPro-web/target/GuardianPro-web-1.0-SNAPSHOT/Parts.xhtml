@@ -82,7 +82,7 @@
         
              
               <div class="box-body">
-                  <h:form id="form" rendered="#{login.isViewed('parts_edit_view')}">
+                  <h:form id="form" rendered="#{login.isViewed('parts_edit')}">
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
@@ -122,7 +122,7 @@
     
       <f:facet name="footer">
           <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{parts.remove(actionEvent)}"
-                           rendered="#{login.isViewed('parts_edit_submit_view')}"
+                           rendered="#{login.isViewed('parts_edit_submit')}"
                            disabled="#{login.isEdit('parts_edit_submit')}"
                            />  
     </f:facet>
@@ -155,7 +155,7 @@
        
              
               <div class="box-body">
-                  <h:form id="form1" enctype="multipart/form-data" rendered="#{login.isViewed('parts_add_viewed')}">
+                  <h:form id="form1" enctype="multipart/form-data" rendered="#{login.isViewed('parts_add')}">
                   <p:messages id="messages1" showDetail="true" closable="true"/>
                 <div class="form-group">
                    
@@ -169,8 +169,8 @@
                   <br/>
                   <br/>
                   <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="false"  action="#{parts.ADD(actionEvent)}"
-                                   rendered="#{login.isViewed('parts_add_submit_viewed')}"
-                                   disabled="#{login.isEdit('parts_add_submit_edit')}"
+                                   rendered="#{login.isViewed('parts_add_submit')}"
+                                   disabled="#{login.isEdit('parts_add_submit')}"
                                    />  
    
                   

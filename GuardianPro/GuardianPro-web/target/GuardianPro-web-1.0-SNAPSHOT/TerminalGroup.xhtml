@@ -98,8 +98,8 @@
                                             <br/>
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"
-                                                             rendered="#{login.isViewed('terminalgroup_edit_submit_view')}"
-                                                             disabled="#{login.isViewed('terminalgroup_edit_submit_edit')}"
+                                                             rendered="#{login.isViewed('terminalgroup_edit_submit')}"
+                                                             disabled="#{login.isViewed('terminalgroup_edit_submit')}"
                                                              />  
 
 
@@ -391,15 +391,15 @@
 
                                                         <f:facet name="footer">
                                                             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.removeTS(actionEvent)}"
-                                                                             rendered="#{login.isViewed('termenalgroup_remove_view')}"
-                                                                             disabled="#{login.isEdit('termenalgroup_remove_edit')}"
+                                                                             rendered="#{login.isViewed('termenalgroup_remove')}"
+                                                                             disabled="#{login.isEdit('termenalgroup_remove')}"
                                                                              />  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
                                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:Appscar :form111:Wappgroup" action="#{terminalgroup.ADDTS(actionEvent)}"
-                                                                             rendered="#{login.isViewed('termenalgroup_add_view')}"
-                                                                             disabled="#{login.isEdit('termenalgroup_add_edit')}"
+                                                                             rendered="#{login.isViewed('termenalgroup_add')}"
+                                                                             disabled="#{login.isEdit('termenalgroup_add')}"
                                                                              />  
                                                         </f:facet>
 
@@ -461,14 +461,14 @@
 
                                                         <f:facet name="footer">
                                                             <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.removeA(actionEvent)}"
-                                                                             rendered="#{login.isViewed('termenalgroup_termenal_remove_view')}"
-                                                                             disabled="#{login.isEdit('termenalgroup_termenal_remove_edit')}"/>  
+                                                                             rendered="#{login.isViewed('termenalgroup_termenal_remove')}"
+                                                                             disabled="#{login.isEdit('termenalgroup_termenal_remove')}"/>  
                                                         </f:facet>
 
                                                         <f:facet name="footer">
                                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form111:messages111 :form111:accescar :form111:wacessorygroup" action="#{terminalgroup.ADDA(actionEvent)}"
-                                                                             rendered="#{login.isViewed('termenalgroup_termenal_add_view')}"
-                                                                             disabled="#{login.isEdit('termenalgroup_termenal_add_edit')}"
+                                                                             rendered="#{login.isViewed('termenalgroup_termenal_add')}"
+                                                                             disabled="#{login.isEdit('termenalgroup_termenal_add')}"
                                                                              />  
                                                         </f:facet>
 
