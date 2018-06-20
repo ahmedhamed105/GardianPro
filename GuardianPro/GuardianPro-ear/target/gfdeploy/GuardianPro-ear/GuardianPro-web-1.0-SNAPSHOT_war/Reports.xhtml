@@ -8,7 +8,11 @@
     <h:head>
         <title>#{menu.tittle(9)}</title>
         <f:metadata>
+<<<<<<< HEAD
             <f:event type="preRenderView" listener="#{pconfig.init()}"/>
+=======
+            <f:event type="preRenderView" listener="#{report.init()}"/>
+>>>>>>> 8ede2bea1d4f8153f539e1f72704b3cd6b7f78d5
 <f:event type="preRenderView" listener="#{menu.init()}"/>       
 <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
          <meta charset="utf-8"/>
@@ -53,12 +57,20 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
+<<<<<<< HEAD
         Config Page 
+=======
+       Report 
+>>>>>>> 8ede2bea1d4f8153f539e1f72704b3cd6b7f78d5
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+<<<<<<< HEAD
         <li class="active">Config</li>
+=======
+        <li class="active">Report</li>
+>>>>>>> 8ede2bea1d4f8153f539e1f72704b3cd6b7f78d5
       </ol>
     </section>
 
@@ -73,7 +85,11 @@
           <div class="box">
             
                   <div class="box-header with-border">
+<<<<<<< HEAD
       <h3 class="box-title">#{ComponentValue.getValueById(69)}</h3>
+=======
+      <h3 class="box-title">#{ComponentValue.getValueById(38)}</h3>
+>>>>>>> 8ede2bea1d4f8153f539e1f72704b3cd6b7f78d5
                                 <ui:include src="Actionbar.xhtml" />
   </div>
               
@@ -86,6 +102,17 @@
                   <p:messages id="messages" showDetail="true" closable="true" />
                 <div class="form-group">
                     
+<<<<<<< HEAD
+=======
+                    
+                           <label for="parameterGroup">Group Choose</label>   
+                           <h:selectOneMenu converter="#{creport}" class="form-control select2" id="parameterGroup" value="#{report.selectreportf}" required="true" requiredMessage="please Enter report">
+                 <f:selectItem itemLabel="Select One" itemValue="" />
+                 <f:selectItems value="#{report.reportf}" var="c" itemValue="#{c}" itemLabel="#{c.reportname}" />
+                 </h:selectOneMenu>
+                 <p:message for="parameterGroup" display="text"/>
+                    
+>>>>>>> 8ede2bea1d4f8153f539e1f72704b3cd6b7f78d5
                     <h:commandButton actionListener="#{report.PDF}" value="PDF"/>
              <h:commandButton actionListener="#{report.DOCX}" value="Docx"/>
               <h:commandButton actionListener="#{report.XLSX}" value="Xlsx"/>

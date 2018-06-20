@@ -1,3 +1,4 @@
+Entities\Reports_.class
 Entities\WebsiteDataHasUser_.class
 Facades\PhoneTypesFacadeLocal.class
 Entities\Parts_.class
@@ -16,6 +17,7 @@ Entities\TerminalStatus_.class
 Entities\TerminalGroup_.class
 Facades\TgroupHasGparameterFacadeLocal.class
 Facades\ConfigEmailFacadeLocal.class
+Facades\RParameterFacadeLocal.class
 Entities\Application_.class
 Entities\NationalIdHasMaritalStatus_.class
 Facades\ApplicationHasGroupFacadeLocal.class
@@ -115,6 +117,7 @@ Entities\NationalIdHasMaritalStatusHasAddress.class
 Facades\ApplicationGroupFacadeLocal.class
 Facades\BirthDataFacadeLocal.class
 Entities\NationalIdHasMaritalStatus1_.class
+Facades\ReportsFacadeLocal.class
 Entities\ProfileData.class
 Facades\TerminalParserLogFacadeLocal.class
 Entities\Component.class
@@ -176,6 +179,7 @@ Facades\UserFacadeLocal.class
 Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Facades\AccessoryFacade.class
+Facades\ReportsFacade.class
 Entities\FtpLog_.class
 Entities\Pages.class
 Entities\Role_.class
@@ -202,9 +206,11 @@ Facades\PgchildFacade.class
 Facades\InputTypeFacadeLocal.class
 Entities\TgroupHasParts_.class
 Facades\ApplicationHasGroupFacade.class
+Entities\Reports.class
 Entities\MenuSub_.class
 Entities\FtpMessages.class
 Facades\UserPasswordFacadeLocal.class
+Facades\RParameterFacade.class
 Entities\TgroupHasAccesory.class
 Entities\TerminalGroup.class
 Facades\ReligionFacade.class
@@ -239,6 +245,8 @@ Facades\RoleHasGroupsFacadeLocal.class
 Entities\TerminalParserLog_.class
 Entities\ParameterGroup.class
 Entities\SocialDataPK.class
+Entities\RParameter.class
+Entities\RParameter_.class
 Entities\SocialData_.class
 Facades\AccessoryHasGroupFacadeLocal.class
 Entities\ActionBar.class
