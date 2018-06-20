@@ -123,20 +123,21 @@ public class Report {
         List<Data_report> a=new ArrayList<Data_report>(); 
         Data_report r=new Data_report();
         List<Object> st=reportsFacade.find_parameter(selectreportf.getReportSQL()); 
+      //  List<Object> st=reportsFacade.find_parameter(selectreportf.getReportSQL()); 
         
         System.out.println(st);
         
        for(int i=0;i<st.size();i=i+5){
-           r.setField1(st.get(i));
-          r.setField2(st.get(i+1));
-            r.setField3(st.get(i+2));
-            r.setField4(st.get(i+3));
-             r.setField5(st.get(i+4));
+           r.setField1((String) st.get(i));
+          r.setField2((String) st.get(i+1));
+            r.setField3((String) st.get(i+2));
+            r.setField4((String) st.get(i+3));
+             r.setField5((String) st.get(i+4));
              a.add(r);
        
        }
         
-   
+  
               Map<String, Object> parameters = new HashMap<String, Object>();
               List<Entities.RParameter> pa=rParameterFacade.find_parameter(selectreportf);
               

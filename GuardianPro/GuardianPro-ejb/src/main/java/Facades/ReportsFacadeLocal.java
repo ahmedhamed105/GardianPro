@@ -32,4 +32,6 @@ public interface ReportsFacadeLocal {
     
     List<Object> find_parameter(String jpl);
     
+     List<Object> find_parameter_col(String jpl);
+    
 }

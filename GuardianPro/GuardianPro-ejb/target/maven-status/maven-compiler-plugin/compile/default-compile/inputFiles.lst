@@ -13,6 +13,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\MenuSub.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ActionLog.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LogScreenFacade.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\RParameter.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Email\returnvalues.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Email\EmailUtils.java
@@ -35,6 +36,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\FormatfacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\LoginWayFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NearPlacesFacade.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReportsFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\timer\schedual\ParserTimer.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\DownloadMethodFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ConfigParmeterFacadeLocal.java
@@ -90,6 +92,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Address.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\FtpLogFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\FtpMessagesFacade.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RParameterFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AbstractFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ConfigEmailFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Parameter.java
@@ -212,6 +215,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\tuto
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\NationalIdHasMaritalStatusFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalTemplateFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CountryFacadeLocal.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Reports.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\ActionBar.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\GroupHasParameter.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AccessoryGroupFacade.java
@@ -220,6 +224,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasGparameterFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\com\timer\schedual\BusinessTimer.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TgroupHasAccesory.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ReportsFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ComponentFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TgroupHasTerminalFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Accessory.java
@@ -231,6 +236,7 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\Application.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\TerminalStatus.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\WebsiteDataHasUser.java
+D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\RParameterFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\CityFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailSmsSendFacadeLocal.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\AddressFacadeLocal.java
