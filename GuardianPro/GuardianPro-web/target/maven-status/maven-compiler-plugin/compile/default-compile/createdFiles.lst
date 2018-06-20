@@ -33,6 +33,7 @@ com\guardian\util\Constants.class
 com\guardian\Login\Messages.class
 com\guardian\converter\Cparts.class
 com\guardian\converter\CRoles.class
+com\guardian\converter\Creport.class
 com\guardian\Login\accessgroup.class
 com\guardian\converter\CterminalTemplate.class
 com\guardian\util\ActionlogingUtil.class

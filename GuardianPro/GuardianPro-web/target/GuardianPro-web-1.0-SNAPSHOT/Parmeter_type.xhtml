@@ -81,7 +81,7 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="form" rendered="#{login.isEdit('paramter_type_remove_edit')}">
+                                    <h:form id="form" rendered="#{login.isEdit('paramter_type_remove')}">
                                         <p:messages id="messages" showDetail="true" closable="true" />
                                         <div class="form-group">
 
@@ -123,7 +123,7 @@
 
                                                 <f:facet name="footer">
                                                     <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{parmetertype.remove(actionEvent)}"
-                                                                     disabled = "#{login.isViewed('paramter_type_remove_view')}"
+                                                                     disabled = "#{login.isViewed('paramter_type_remove')}"
                                                                      
                                                 />  
                                                 </f:facet>
@@ -156,7 +156,7 @@
 
 
                                 <div class="box-body" >
-                                    <h:form id="form1" rendered="#{login.isEdit('paramter_type_add_edit')}">
+                                    <h:form id="form1" rendered="#{login.isEdit('paramter_type_add')}">
                                         <p:messages id="messages1" showDetail="true" closable="true"/>
                                         <div class="form-group">
 
@@ -170,7 +170,7 @@
                                             <br/>
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form1:messages1 :form:cars1" action="#{parmetertype.ADD(actionEvent)}"
-                                                             disabled = "#{login.isViewed('paramter_type_add_view')}"
+                                                             disabled = "#{login.isViewed('paramter_type_add')}"
                                                              />  
 
 

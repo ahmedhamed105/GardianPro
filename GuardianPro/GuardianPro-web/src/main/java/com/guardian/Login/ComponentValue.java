@@ -101,9 +101,13 @@ public class ComponentValue {
     }
     
     public String getValueById(int id){
-    
-        ComponentName cn= componentNameFacade.find(id);
+        try {
+            ComponentName cn= componentNameFacade.find(id);
         return cn.getValue();
+        } catch (Exception e) {
+            return "no name";
+        }
+        
     }
     
 }
