@@ -179,8 +179,13 @@ public class BusinessTimer {
                 FTP_APP_Live_DIR = configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue(); 
                 FTP_LOCAL_DIR = configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue(); 
                 FTP_XML_Live_DIR = configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue(); 
+                
+                
+                System.out.println("FTP_user "+FTP_user);
+                System.out.println("FTP_pass "+FTP_pass);
         
          groupHasTerminal=tgroupHasTerminalFacade.findAll();
+         System.out.println("groupHasTerminal "+groupHasTerminal);
             for(TgroupHasTerminal d:groupHasTerminal){
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
@@ -191,7 +196,9 @@ public class BusinessTimer {
                      String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
+        System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
+           System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
         String xmlFilecontent =getXML(d);
         deletedir(d);
