@@ -11,52 +11,53 @@ package com.guardian.Login;
  */
 public class Data_report {
     
-    String F1;
-    String F2;
-    String F3;
-    String F4;
-    String F5;
+    String field1;
+    String field2;
+    String field3;
+    String field4;
+    String field5;
 
-    public String getF1() {
-        return F1;
+    public String getField1() {
+        return field1;
     }
 
-    public void setF1(String F1) {
-        this.F1 = F1;
+    public void setField1(String field1) {
+        this.field1 = field1;
     }
 
-    public String getF2() {
-        return F2;
+    public String getField2() {
+        return field2;
     }
 
-    public void setF2(String F2) {
-        this.F2 = F2;
+    public void setField2(String field2) {
+        this.field2 = field2;
     }
 
-    public String getF3() {
-        return F3;
+    public String getField3() {
+        return field3;
     }
 
-    public void setF3(String F3) {
-        this.F3 = F3;
+    public void setField3(String field3) {
+        this.field3 = field3;
     }
 
-    public String getF4() {
-        return F4;
+    public String getField4() {
+        return field4;
     }
 
-    public void setF4(String F4) {
-        this.F4 = F4;
+    public void setField4(String field4) {
+        this.field4 = field4;
     }
 
-    public String getF5() {
-        return F5;
+    public String getField5() {
+        return field5;
     }
 
-    public void setF5(String F5) {
-        this.F5 = F5;
+    public void setField5(String field5) {
+        this.field5 = field5;
     }
-    
+
+  
     
     
     
