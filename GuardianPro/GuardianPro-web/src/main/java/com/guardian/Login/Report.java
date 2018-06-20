@@ -121,19 +121,51 @@ public class Report {
     public void initd() throws JRException{
     
         List<Data_report> a=new ArrayList<Data_report>(); 
-        Data_report r=new Data_report();
-        List<Object> st=reportsFacade.find_parameter(selectreportf.getReportSQL()); 
+     
+        List<Object[]> st=reportsFacade.find_parameter(selectreportf.getReportSQL()); 
       //  List<Object> st=reportsFacade.find_parameter(selectreportf.getReportSQL()); 
-        
-        System.out.println(st);
-        
-       for(int i=0;i<st.size();i=i+5){
-           r.setField1((String) st.get(i));
-          r.setField2((String) st.get(i+1));
-            r.setField3((String) st.get(i+2));
-            r.setField4((String) st.get(i+3));
-             r.setField5((String) st.get(i+4));
+      for (Object[] l: st) {
+       //   System.out.println("com.guardian.Login.Report.initd() "+l.length);
+          Data_report r=new Data_report();
+         if(l.length >= 1){
+          r.setField1((String) l[0]);
+         }
+          if(l.length >= 2){
+          r.setField2((String) l[1]);
+         }
+           if(l.length >= 3){
+          r.setField3((String) l[2]);
+         }
+            if(l.length >= 4){
+          r.setField4((String) l[3]);
+         }
+             if(l.length >= 5){
+          r.setField5((String) l[4]);
+         }
+              if(l.length >= 6){
+          r.setField6((String) l[5]);
+         }
+               if(l.length >= 7){
+          r.setField7((String) l[6]);
+         }
+                if(l.length >= 8){
+          r.setField8((String) l[7]);
+         }
+                 if(l.length >= 9){
+          r.setField9((String) l[8]);
+         }
+                  if(l.length >= 10){
+          r.setField10((String) l[9]);
+         }
+           
              a.add(r);
+          
+    }
+      //  List<String> st1=(List<String>) st.get(0);
+       
+       
+       for(int i=0;i<st.size();i=i+5){
+              
        
        }
         
@@ -144,6 +176,8 @@ public class Report {
               for(RParameter p:pa){
                parameters.put(p.getRpara(), p.getParavalue());
               }
+              
+              
               
 //               parameters.put("CHARACTER_ENCODING", "UTF-8");
 //               parameters.put("parameter1", "parameter1");
