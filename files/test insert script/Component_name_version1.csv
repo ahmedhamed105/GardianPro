@@ -1,0 +1,75 @@
+ID,name,Value,Description,Edit,create_date,update_date,component_component_ID
+24,accessory_Create,accessory_Create,accessory_Create,0,4/12/2018 23:48,4/12/2018 23:48,24
+25,accessory_Edit,accessory_Edit,accessory_Edit,0,4/12/2018 23:48,4/12/2018 23:48,25
+26,accessorygroup_edit,accessorygroup_edit,accessorygroup_edit,0,4/12/2018 23:48,4/12/2018 23:48,26
+27,accessorygroup_remove,accessorygroup_remove,accessorygroup_remove,0,4/12/2018 23:48,4/12/2018 23:48,27
+28,accessorygroup_submit,accessorygroup_submit,accessorygroup_submit,0,4/12/2018 23:48,4/12/2018 23:48,28
+29,accessorygroup_add_submit,accessorygroup_add_submit,accessorygroup_add_submit,0,4/12/2018 23:48,4/12/2018 23:48,29
+30,accessorygroup_select_one_menu,accessorygroup_select_one_menu,accessorygroup_select_one_menu,0,4/12/2018 23:48,4/12/2018 23:48,30
+31,accessorygroup__select_aplicatin,accessorygroup__select_aplicatin,accessorygroup__select_aplicatin,0,4/12/2018 23:48,4/12/2018 23:48,31
+32,accessorygroup__select_aplicatin_Group,accessorygroup__select_aplicatin_Group,accessorygroup__select_aplicatin_Group,0,4/12/2018 23:48,4/12/2018 23:48,32
+33,accessorygroup__select_aplicatin_Group_submit,accessorygroup__select_aplicatin_Group_submit,accessorygroup__select_aplicatin_Group_submit,0,4/12/2018 23:48,4/12/2018 23:48,33
+34,apps_view,apps_view,apps_view,0,4/12/2018 23:48,4/12/2018 23:48,34
+35,apps_multi_part,apps_multi_part,apps_multi_part,0,4/12/2018 23:48,4/12/2018 23:48,35
+36,app_group,app_group,app_group,0,4/12/2018 23:48,4/12/2018 23:48,36
+37,app_group_remove,app_group_remove,app_group_remove,0,4/12/2018 23:48,4/12/2018 23:48,37
+38,app_group_submit,app_group_submit,app_group_submit,0,4/12/2018 23:48,4/12/2018 23:48,38
+39,app_groups_add,app_groups_add,app_groups_add,0,4/12/2018 23:48,4/12/2018 23:48,39
+40,app_groups_select,app_groups_select,app_groups_select,0,4/12/2018 23:48,4/12/2018 23:48,40
+41,app_groups_select_submit,app_groups_select_submit,app_groups_select_submit,0,4/12/2018 23:48,4/12/2018 23:48,41
+42,groups_edit,groups_edit,groups_edit,0,4/12/2018 23:48,4/12/2018 23:48,42
+43,groups_add,groups_add,groups_add,0,4/12/2018 23:48,4/12/2018 23:48,43
+44,paramter_edit,paramter_edit,paramter_edit,0,4/12/2018 23:48,4/12/2018 23:48,44
+45,paramter_submit,paramter_submit,paramter_submit,0,4/12/2018 23:48,4/12/2018 23:48,45
+46,paramter_select,paramter_select,paramter_select,0,4/12/2018 23:48,4/12/2018 23:48,46
+47,paramter_add,paramter_add,paramter_add,0,4/12/2018 23:48,4/12/2018 23:48,47
+48,paramterGroup_form_edit,paramterGroup_form_edit,paramterGroup_form_edit,0,4/12/2018 23:48,4/12/2018 23:48,48
+49,paramtergroup_remove,paramtergroup_remove,paramtergroup_remove,0,4/12/2018 23:48,4/12/2018 23:48,49
+50,paramtergroup_removegroup,paramtergroup_removegroup,paramtergroup_removegroup,0,4/12/2018 23:48,4/12/2018 23:48,50
+51,paramtergroup_form_add,paramtergroup_form_add,paramtergroup_form_add,0,4/12/2018 23:48,4/12/2018 23:48,51
+52,paramtergroup_add,paramtergroup_add,paramtergroup_add,0,4/12/2018 23:48,4/12/2018 23:48,52
+53,paramtergroup_assign_group_form,paramtergroup_assign_group_form,paramtergroup_assign_group_form,0,4/12/2018 23:48,4/12/2018 23:48,53
+54,paramtergroup_assign,paramtergroup_assign,paramtergroup_assign,0,4/12/2018 23:48,4/12/2018 23:48,54
+55,paramter_type_remove,paramter_type_remove,paramter_type_remove,0,4/12/2018 23:48,4/12/2018 23:48,55
+56,paramter_type_add,paramter_type_add,paramter_type_add,0,4/12/2018 23:48,4/12/2018 23:48,56
+57,parts_edit,parts_edit,parts_edit,0,4/12/2018 23:48,4/12/2018 23:48,57
+58,parts_edit_submit,parts_edit_submit,parts_edit_submit,0,4/12/2018 23:48,4/12/2018 23:48,58
+59,parts_add,parts_add,parts_add,0,4/12/2018 23:48,4/12/2018 23:48,59
+60,parts_add_submit,parts_add_submit,parts_add_submit,0,4/12/2018 23:48,4/12/2018 23:48,60
+61,termenal_edit,termenal_edit,termenal_edit,0,4/12/2018 23:48,4/12/2018 23:48,61
+62,termenal_edit_submit,termenal_edit_submit,termenal_edit_submit,0,4/12/2018 23:48,4/12/2018 23:48,62
+63,termenal_add,termenal_add,termenal_add,0,4/12/2018 23:48,4/12/2018 23:48,63
+64,terminalgroup_edit_submit,terminalgroup_edit_submit,terminalgroup_edit_submit,0,4/12/2018 23:48,4/12/2018 23:48,64
+65,termenalgroup_add,termenalgroup_add,termenalgroup_add,0,4/12/2018 23:48,4/12/2018 23:48,65
+66,termenalgroup_termenal_remove,termenalgroup_termenal_remove,termenalgroup_termenal_remove,0,4/12/2018 23:48,4/12/2018 23:48,66
+67,termenalgroup_termenal_add,termenalgroup_termenal_add,termenalgroup_termenal_add,0,4/12/2018 23:48,4/12/2018 23:48,67
+68,TerminalGroup_log,TerminalGroup log,TerminalGroup log,0,4/12/2018 23:48,4/12/2018 23:48,68
+69,Terminal_log,Terminal log,Terminal log,0,4/12/2018 23:48,4/12/2018 23:48,69
+70,TerminalTemplate_log,TerminalTemplate log,TerminalTemplate log,0,4/12/2018 23:48,4/12/2018 23:48,70
+71,Appsgroup_log,Appsgroup log,Appsgroup log,0,4/12/2018 23:48,4/12/2018 23:48,71
+72,Parameter_log,Parameter log,Parameter log,0,4/12/2018 23:48,4/12/2018 23:48,72
+73,ParameterGroup_log,ParameterGroup log,ParameterGroup log,0,4/12/2018 23:48,4/12/2018 23:48,73
+74,Apps_log,Apps log,Apps log,0,4/12/2018 23:48,4/12/2018 23:48,74
+75,Accessorygroup_log,Accessorygroup log,Accessorygroup log,0,4/12/2018 23:48,4/12/2018 23:48,75
+76,accessory_log,accessory log,accessory log,0,4/12/2018 23:48,4/12/2018 23:48,76
+78,Config_log,Config log,Config log,0,4/12/2018 23:48,4/12/2018 23:48,78
+79,paramter_configration,paramter_configration,paramter_configration,0,4/12/2018 23:48,4/12/2018 23:48,79
+80,report_configration,report configration,report configration,0,4/12/2018 23:48,4/12/2018 23:48,80
+81,report_paramter_configration,report paramter configration,report paramter configration,0,4/12/2018 23:48,4/12/2018 23:48,81
+82,report_paramter_configration_add,report paramter configration_add,report paramter configration_add,0,4/12/2018 23:48,4/12/2018 23:48,82
+83,email_configration,email configration,email configration,0,4/12/2018 23:48,4/12/2018 23:48,83
+84,email_configration_add,email configration add,email configration add,0,4/12/2018 23:48,4/12/2018 23:48,84
+85,paramter_configration_add,paramter_configration_add,paramter_configration_add,0,4/12/2018 23:48,4/12/2018 23:48,85
+86,profile_list,profile list,profile list,0,4/12/2018 23:48,4/12/2018 23:48,86
+87,profile_add,profile add,profile add,0,4/12/2018 23:48,4/12/2018 23:48,87
+88,profile_log,profile_log,profile_log,0,4/12/2018 23:48,4/12/2018 23:48,88
+89,roles_edit,roles edit,roles edit,0,4/12/2018 23:48,4/12/2018 23:48,89
+90,roles_add,roles add,roles add,0,4/12/2018 23:48,4/12/2018 23:48,90
+91,roles_log,roles log,roles log,0,4/12/2018 23:48,4/12/2018 23:48,91
+92,RGroups_log,RGroups log,RGroups log,0,4/12/2018 23:48,4/12/2018 23:48,92
+93,component_edit,component edit,component edit,0,4/12/2018 23:48,4/12/2018 23:48,93
+95,component_log,component_log,component_log,0,4/12/2018 23:48,4/12/2018 23:48,95
+97,reports_edit,reports Edit,reports Edit,0,4/12/2018 23:48,4/12/2018 23:48,97
+98,apps_edit,apps edit,apps_edit,,,,
+99,apps_add,apps add,apps_add,,,,
+100,apps_group_log,apps group log,apps_group_log,,,,

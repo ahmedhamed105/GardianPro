@@ -66,3 +66,33 @@ ID,name,Description,Parent_ID,Type,create_date,update_date,C_name
 65,termenalgroup_add,termenalgroup_add,22,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
 66,termenalgroup_termenal_remove,termenalgroup_termenal_remove,22,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
 67,termenalgroup_termenal_add,termenalgroup_termenal_add,22,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+68,TerminalGroup_log,"TerminalGroup log",22,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+69,Terminal_log,"Terminal log",21,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+70,TerminalTemplate_log,"TerminalTemplate log",23,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+71,Appsgroup_log,"Appsgroup log",5,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+72,Parameter_log,"Parameter log",14,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+73,ParameterGroup_log,"ParameterGroup log",15,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+74,Apps_log,"Apps log",4,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+75,Accessorygroup_log,"Accessorygroup log",2,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+76,accessory_log,"accessory log",1,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+77,admin,Admin,0,Screen,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+78,Config_log,"Config log",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+79,paramter_configration,paramter_configration,8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+80,report_configration,"report configration",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+81,report_paramter_configration,"report paramter configration",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+82,report_paramter_configration_add,"report paramter configration_add",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+83,email_configration,"email configration",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+84,email_configration_add,"email configration add",8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+85,paramter_configration_add,paramter_configration_add,8,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+86,profile_list,"profile list",18,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+87,profile_add,"profile add",18,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+88,profile_log,profile_log,18,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+89,roles_edit,"roles edit",19,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+90,roles_add,"roles add",19,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+91,roles_log,"roles log",19,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+92,RGroups_log,"RGroups log",9,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+93,component_edit,"component edit",94,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+94,component,component,0,Screen,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+95,component_log,component_log,94,component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+96,reports,reports,0,Screen,"2018-04-12 23:48:54","2018-04-12 23:48:54",a
+97,reports_edit,"reports Edit",96,Component,"2018-04-12 23:48:54","2018-04-12 23:48:54",a

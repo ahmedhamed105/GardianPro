@@ -6,20 +6,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-<<<<<<< HEAD
-        <title>#{menu.tittle(9)}</title>
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{report.init()}"/>
-<f:event type="preRenderView" listener="#{menu.init()}"/>       
-<f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
-=======
         <title>#{menu.tittle(26)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{report.init()}"/>
 <f:event type="preRenderView" listener="#{menu.init()}"/>       
 <f:event type="preRenderView" listener="#{action.init()}"/>
         </f:metadata>
->>>>>>> 887e6a35bd5d4a81775fa6602c1005645cde4f19
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <!-- Tell the browser to be responsive to screen width -->
@@ -82,7 +74,7 @@
           <div class="box">
             
                   <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(38)}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(97)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
               
@@ -102,15 +94,6 @@
                  <f:selectItems value="#{report.reportf}" var="c" itemValue="#{c}" itemLabel="#{c.reportname}" />
                  </h:selectOneMenu>
                  <p:message for="parameterGroup" display="text"/>
-<<<<<<< HEAD
-                    
-                    <h:commandButton actionListener="#{report.PDF}" value="PDF"/>
-             <h:commandButton actionListener="#{report.DOCX}" value="Docx"/>
-              <h:commandButton actionListener="#{report.XLSX}" value="Xlsx"/>
-               <h:commandButton actionListener="#{report.ODT}" value="Odt"/>
-               <h:commandButton actionListener="#{report.PPT}" value="Ppt"/>
-            
-=======
                    
                  <br/>
                   <br/>
@@ -122,7 +105,6 @@
                <h:commandButton actionListener="#{report.ODT}" value="Odt" class="btn btn-block btn-primary btn-lg"/>
                <h:commandButton actionListener="#{report.PPT}" value="Ppt" class="btn btn-block btn-primary btn-lg"/>
                    </p:panelGrid>
->>>>>>> 887e6a35bd5d4a81775fa6602c1005645cde4f19
                   
                   
                 </div>
