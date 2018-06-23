@@ -9,6 +9,7 @@ import Entities.FtpLog;
 import Entities.FtpMessages;
 import java.util.List;
 import javax.ejb.Local;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -30,7 +31,11 @@ public interface FtpMessagesFacadeLocal {
     List<FtpMessages> findRange(int[] range);
 
     int count();
+    
+    public FTPClient Ftp_open(FtpLog ftp);
+    
+    public boolean Ftp_Close(FTPClient ftpClient);
 
-    public boolean Ftp_action(FtpLog ftp,int type);
+    public boolean Ftp_action(FtpLog ftp,int type,FTPClient ftpClient);
     
 }
