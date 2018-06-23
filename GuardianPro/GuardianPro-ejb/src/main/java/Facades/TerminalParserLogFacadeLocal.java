@@ -6,7 +6,9 @@
 package Facades;
 
 import Entities.ConfigParmeter;
+import Entities.TerminalHasParts;
 import Entities.TerminalParserLog;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,6 +17,20 @@ import javax.ejb.Local;
  */
 @Local
 public interface TerminalParserLogFacadeLocal {
+    
+      void create(TerminalParserLog terminalParserLog);
+
+    void edit(TerminalParserLog terminalParserLog);
+
+    void remove(TerminalParserLog terminalParserLog);
+
+    TerminalParserLog find(Object id);
+
+    List<TerminalParserLog> findAll();
+
+    List<TerminalParserLog> findRange(int[] range);
+
+    int count();
 
     public void saveNewTerminalLog(TerminalParserLog parserLog);
 

@@ -6,7 +6,9 @@
 package com.guardian.Login;
 
 import Entities.LogScreen;
+import Entities.TerminalParserLog;
 import Facades.LogScreenFacadeLocal;
+import Facades.TerminalParserLogFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -17,7 +19,12 @@ import javax.ejb.EJB;
 public class Log_display {
 
     @EJB
+    private TerminalParserLogFacadeLocal terminalParserLogFacade;
+
+    @EJB
     private LogScreenFacadeLocal logScreenFacade;
+    
+    
     
     
 
@@ -31,6 +38,20 @@ public class Log_display {
         
       return logScreenFacade.Select_log_User(Login.login, page);
     
+    
+    }
+    
+     public List<LogScreen> ALL(int pa){
+        
+      return logScreenFacade.findAll();
+    
+    
+    }
+     
+     
+          public List<TerminalParserLog> ALLdownload(int pa){
+        
+           return terminalParserLogFacade.findAll();
     
     }
     

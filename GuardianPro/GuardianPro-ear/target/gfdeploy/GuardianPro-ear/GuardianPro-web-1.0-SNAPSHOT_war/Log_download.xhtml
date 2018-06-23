@@ -53,7 +53,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Log Page 
+      Download  Log Page 
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
@@ -81,21 +81,20 @@
                                 <!-- form start -->
 
 
-                               <h:form id="form2" >
-                                   <p:dataTable id ="log123" var="logs" value="#{log_display.ALL(0)}" style="margin-bottom:20px" rows="5"
+                                <h:form id="form2" >
+                                    <p:dataTable id ="log123" var="logs" value="#{log_display.ALLdownload(0)}" style="margin-bottom:20px" rows="5"
                                                  paginator="true" >
                                         <p:column headerText="Message">
-                                            <h:outputText value="#{logs.TRXdesc}" />
+                                            <h:outputText value="#{logs.tid}" />
                                         </p:column>
 
                                         <p:column headerText="Date">
-                                            <h:outputText value="#{logs.createDate}" />
+                                            <h:outputText value="#{logs.dt}" />
                                         </p:column>
-                                       
-                                          <p:column headerText="User">
-                                              <h:outputText value="#{logs.userID.username}" />
+                                        
+                                            <p:column headerText="Version">
+                                                <h:outputText value="#{logs.ver}" />
                                         </p:column>
-
 
                                     </p:dataTable>
                                 </h:form>
