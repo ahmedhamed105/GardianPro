@@ -264,9 +264,12 @@ public class BusinessTimer {
                     e.printStackTrace();
                 }
                 
-                closeftp();
+                   if(!closeftp())
+                      email("FTP ERROR","username or password is Wrong");
                 
-               }
+               }else{
+               email("FTP ERROR","username or password is Wrong");
+   }
                
                }else if(d.getTerminalID().getTerminalstatusID().getId()== 2){
                    

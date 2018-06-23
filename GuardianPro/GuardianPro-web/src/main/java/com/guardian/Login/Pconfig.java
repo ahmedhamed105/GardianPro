@@ -8,7 +8,6 @@ package com.guardian.Login;
 import Entities.ConfigEmail;
 import Entities.ConfigParmeter;
 import Entities.EmailLog;
-import Entities.FtpLog;
 import Entities.Parts;
 import Entities.RParameter;
 import Entities.Reports;

@@ -5,14 +5,13 @@
  */
 package com.guardian.Login;
 
+import Email.FTPLog;
 import Entities.Application;
 import Entities.ConfigParmeter;
 import Entities.EmailLog;
-import Entities.FtpLog;
 import Facades.ApplicationFacadeLocal;
 import Facades.ConfigParmeterFacadeLocal;
 import Facades.EmailLogFacadeLocal;
-import Facades.FtpLogFacadeLocal;
 import Facades.FtpMessagesFacadeLocal;
 import Facades.UserFacadeLocal;
 import static com.guardian.Login.Login.smtp_host;
@@ -24,6 +23,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -32,6 +32,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.apache.commons.net.ftp.FTPClient;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -47,8 +48,7 @@ public class application {
      @EJB
     private FtpMessagesFacadeLocal ftpMessagesFacade;
 
-    @EJB
-    private FtpLogFacadeLocal ftpLogFacade;
+   
 
     @EJB
     private ConfigParmeterFacadeLocal configParmeterFacade;
@@ -214,10 +214,11 @@ public class application {
                     
 File d=new File(path.getPValue()+"/"+filename_ext);
                           try {
-                               FtpLog ftp=new FtpLog();
+                              
+                               FTPLog ftp=new FTPLog();
+        ftp.setfPort(Login.FTP_port);
+        ftp.setfUsername(Login.FTP_user);
         ftp.setServerip(Login.FTP_server);
-        ftp.setFPort(Login.FTP_port);
-        ftp.setFUsername(Login.FTP_user);
         ftp.setFpassword(Login.FTP_pass);
         ftp.setLocalDIR(path.getPValue()+"/");
         ftp.setFilename(filename_ext);
@@ -225,14 +226,24 @@ File d=new File(path.getPValue()+"/"+filename_ext);
         ftp.setUpdateDate(date);
         ftp.setCreateDate(date);
         ftp.setUserID(Login.login);
-        ftpLogFacade.create(ftp);
+        
+        FTPClient ftpclien=ftpMessagesFacade.Ftp_open(ftp);                      
+                              
+                                if(ftpclien !=null){
+       
       //  ftp=ftpLogFacade.find(ftp.getId());
-         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
         }else{
         System.out.println("Not Store file "+ftp_S);
         }
+                           if(!ftpMessagesFacade.Ftp_Close(ftpclien, Login.login))
+                      email("APP FTP ERROR","username or password is Wrong");
+                
+               }else{
+               email("APP FTP ERROR","username or password is Wrong");
+   }
                         
          } catch (Exception e) {
                  /*start mohammed.ayad*/
@@ -308,5 +319,23 @@ File d=new File(path.getPValue()+"/"+filename_ext);
          
      
      }
+          
+            public  void email(String text,String subject){
+         Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        	EmailLog email=new EmailLog();
+                email.setEhost(Login.smtp_host);
+                email.setEfrom(Login.smtp_from);
+                email.setEpassword(Login.smtp_password);
+                email.setEto(Login.smtp_to);
+                email.setEsubject(text);
+                email.setEtext(subject);
+                email.setEPort("587");
+                email.setETls(1);
+                email.setUserID(Login.login);
+                email.setEsendnot(0);
+                email.setUpdateDate(date);
+                email.setCreateDate(date);
+                emailLogFacade.create(email);
+      }  
     
 }
