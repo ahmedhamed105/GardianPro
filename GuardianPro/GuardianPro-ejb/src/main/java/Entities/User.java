@@ -48,6 +48,9 @@ import javax.xml.bind.annotation.XmlTransient;
 public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
+    private Collection<FtpMessages> ftpMessagesCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<Reports> reportsCollection;
 
     @OneToMany(mappedBy = "userId")
@@ -62,8 +65,7 @@ public class User implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<ConfigEmail> configEmailCollection;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
-    private Collection<FtpLog> ftpLogCollection;
+   
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userID")
     private Collection<EmailLog> emailLogCollection;
@@ -448,14 +450,7 @@ public class User implements Serializable {
         this.emailLogCollection = emailLogCollection;
     }
 
-    @XmlTransient
-    public Collection<FtpLog> getFtpLogCollection() {
-        return ftpLogCollection;
-    }
-
-    public void setFtpLogCollection(Collection<FtpLog> ftpLogCollection) {
-        this.ftpLogCollection = ftpLogCollection;
-    }
+   
 
     @XmlTransient
     public Collection<ConfigEmail> getConfigEmailCollection() {
@@ -500,6 +495,15 @@ public class User implements Serializable {
 
     public void setReportsCollection(Collection<Reports> reportsCollection) {
         this.reportsCollection = reportsCollection;
+    }
+
+    @XmlTransient
+    public Collection<FtpMessages> getFtpMessagesCollection() {
+        return ftpMessagesCollection;
+    }
+
+    public void setFtpMessagesCollection(Collection<FtpMessages> ftpMessagesCollection) {
+        this.ftpMessagesCollection = ftpMessagesCollection;
     }
     
 }

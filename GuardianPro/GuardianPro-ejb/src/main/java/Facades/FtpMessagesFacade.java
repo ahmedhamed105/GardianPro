@@ -5,10 +5,11 @@
  */
 package Facades;
 
+import Email.FTPLog;
 import Email.Ftputils;
 import Email.returnvalues;
-import Entities.FtpLog;
 import Entities.FtpMessages;
+import Entities.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
@@ -45,7 +46,7 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
     
     
      @Override
-    public FTPClient Ftp_open(FtpLog ftp){
+    public FTPClient Ftp_open(FTPLog ftp){
      Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         FTPClient ftpClient = new FTPClient();
     
@@ -53,9 +54,10 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
 
         try {
 
-        ftpClient.connect(ftp.getServerip(), Integer.parseInt(ftp.getFPort()));
+        ftpClient.connect(ftp.getServerip(), Integer.parseInt(ftp.getfPort()));
         mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
         mes.setFmessages(Ftputils.showServerReply(ftpClient));
         create(mes);
@@ -64,7 +66,8 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
             System.out.println("Server reply code: " + replyCode);
             if (!FTPReply.isPositiveCompletion(replyCode)) {
                   mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
          mes.setFmessages("Operation failed. Server reply code: " + replyCode);
             create(mes);
@@ -72,13 +75,14 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
                 return null;
             }
 //
-            boolean success = ftpClient.login(ftp.getFUsername(), ftp.getFpassword());
+            boolean success = ftpClient.login(ftp.getfUsername(), ftp.getFpassword());
             
             
             if(success){
               System.out.println("login status: " + success);
              mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
         mes.setFmessages(Ftputils.showServerReply(ftpClient));
             create(mes);
@@ -87,7 +91,8 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
             }else{
               System.out.println("login status: " + success);
              mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+       mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
         mes.setFmessages(Ftputils.showServerReply(ftpClient));
             create(mes);
@@ -98,7 +103,8 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
           
         } catch (IOException ex) {
               mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+       mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
       mes.setFmessages("Oops! Something wrong happened" +ex.getMessage());
             create(mes);      
@@ -110,7 +116,7 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
     }
     
      @Override
-    public boolean Ftp_action(FtpLog ftp,int type,FTPClient ftpClient){
+    public boolean Ftp_action(FTPLog ftp,int type,FTPClient ftpClient){
        
        
           //  Ftputils.showServerReply(ftpClient);
@@ -121,7 +127,8 @@ try {
  Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
      
       FtpMessages  mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+         mes.setFTPLogID(0);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages("LOGGED IN SERVER");
             create(mes);
@@ -133,7 +140,8 @@ try {
                 if(type == 1){
                    val=  Ftputils.storeNewFile(ftpClient, new File(ftp.getLocalDIR()+ftp.getFilename()),ftp.getFtpDir());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(1);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -142,7 +150,8 @@ try {
                 // create DIR
                       val=  Ftputils.createNewDirectory(ftpClient,ftp.getFtpDir());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(2);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -151,7 +160,8 @@ try {
                 //delete Exis tDirectory
                       val=  Ftputils.deleteExistDirectory(ftpClient,ftp.getFtpDir());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(3);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -160,7 +170,8 @@ try {
                 //delete Exis file
                       val=  Ftputils.deleteExistFile(ftpClient,ftp.getFtpDir()+ftp.getFilename());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+        mes.setFTPLogID(4);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -168,7 +179,8 @@ try {
                 }else if(type == 5){
                val=  Ftputils.checkFileExists(ftpClient,ftp.getFtpDir()+ftp.getFilename());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+      mes.setFTPLogID(5);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -176,7 +188,8 @@ try {
                 }else if(type == 6){
                val=  Ftputils.CopyfileFTP(ftpClient,ftp.getFtpDir(),ftp.getFilename(),ftp.getLocalDIR());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+      mes.setFTPLogID(6);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -184,7 +197,8 @@ try {
                 }else if(type == 7){
                val=  Ftputils.checkFileExists(ftpClient,ftp.getFtpDir());
                mes=new FtpMessages();
-        mes.setFTPLogID(ftp);
+       mes.setFTPLogID(7);
+        mes.setUserID(ftp.getUserID());
         mes.setCreateDate(date);
        mes.setFmessages(val.getMessage());
             create(mes);
@@ -202,13 +216,28 @@ try {
     }
 
     @Override
-    public boolean Ftp_Close(FTPClient ftpClient){
+    public boolean Ftp_Close(FTPClient ftpClient,User userID){
+       
+   
+          Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         try {
+   
             ftpClient.logout();
             ftpClient.disconnect();
+                FtpMessages  mes=new FtpMessages();
+         mes.setFTPLogID(100);
+        mes.setUserID(userID);
+        mes.setCreateDate(date);
+       mes.setFmessages("disconnect FTP session");
+            create(mes);
            return true;
         } catch (IOException ex) {
-            Logger.getLogger(FtpMessagesFacade.class.getName()).log(Level.SEVERE, null, ex);
+             FtpMessages  mes=new FtpMessages();
+         mes.setFTPLogID(100);
+        mes.setUserID(userID);
+        mes.setCreateDate(date);
+       mes.setFmessages("Error disconnect FTP session "+ex.getMessage());
+            create(mes);
              return false;
         }
     }
