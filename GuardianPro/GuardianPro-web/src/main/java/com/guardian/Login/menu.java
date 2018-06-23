@@ -133,7 +133,10 @@ public class menu {
       }
       public String tittle(int page){
  
-     return pagesFacade.find(page).getPageName();
+      String pageName=pagesFacade.find(page).getPageName();
+          System.out.println("pageName "+pageName);
+      
+      return pageName;
       }
     
     
