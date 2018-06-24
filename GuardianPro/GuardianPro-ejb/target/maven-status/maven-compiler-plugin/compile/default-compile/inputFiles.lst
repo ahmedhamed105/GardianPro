@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ApplicationHasGroupFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Email\FTPLog.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\PhoneTypesFacadeLocal.java
@@ -243,6 +244,8 @@ D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ParameterValuesFacade.java
 D:\GuadianPro\Core\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalTemplateFacadeLocal.java
 =======
+=======
+>>>>>>> 467d26f1c9de3514e99add70e4e3b9fda8d925b1
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Entities\DownloadMethod.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\EmailLogFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacade.java
@@ -486,4 +489,7 @@ F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\GroupHasParameterFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\ApplicationHasGroupFacadeLocal.java
 F:\FIB\Git\My Works\GardianPro\GuardianPro\GuardianPro-ejb\src\main\java\Facades\TerminalTemplateFacadeLocal.java
+<<<<<<< HEAD
+>>>>>>> 467d26f1c9de3514e99add70e4e3b9fda8d925b1
+=======
 >>>>>>> 467d26f1c9de3514e99add70e4e3b9fda8d925b1
