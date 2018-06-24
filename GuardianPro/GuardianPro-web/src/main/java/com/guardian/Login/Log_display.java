@@ -5,8 +5,12 @@
  */
 package com.guardian.Login;
 
+import Entities.EmailHistory;
+import Entities.FtpMessages;
 import Entities.LogScreen;
 import Entities.TerminalParserLog;
+import Facades.EmailHistoryFacadeLocal;
+import Facades.FtpMessagesFacadeLocal;
 import Facades.LogScreenFacadeLocal;
 import Facades.TerminalParserLogFacadeLocal;
 import java.util.List;
@@ -23,6 +27,12 @@ public class Log_display {
 
     @EJB
     private LogScreenFacadeLocal logScreenFacade;
+    
+       @EJB
+    private EmailHistoryFacadeLocal emailHistoryFacade;
+       
+        @EJB
+    private FtpMessagesFacadeLocal ftpMessagesFacade;
     
     
     
@@ -55,4 +65,16 @@ public class Log_display {
     
     }
     
+          
+                 public List<EmailHistory> email(int pa){
+        
+           return emailHistoryFacade.findAll();
+    
+    }
+                 
+    public List<FtpMessages> ftp(int pa){
+        
+           return ftpMessagesFacade.findAll();
+    
+    }
 }

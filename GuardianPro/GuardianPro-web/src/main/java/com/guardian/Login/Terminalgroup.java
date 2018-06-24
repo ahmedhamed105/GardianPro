@@ -516,7 +516,7 @@ public class Terminalgroup {
            Terminals.remove(tgroupHasTerminal.getTerminalID());
            }
            
-            email("open Terminal Group", "SPECTRA TMS APP");     
+        //    email("open Terminal Group", "SPECTRA TMS APP");     
            
            
                 paragroup=parameterGroupFacade.findAll();
