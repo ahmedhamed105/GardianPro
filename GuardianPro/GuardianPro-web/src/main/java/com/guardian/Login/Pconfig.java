@@ -7,8 +7,6 @@ package com.guardian.Login;
 
 import Entities.ConfigEmail;
 import Entities.ConfigParmeter;
-import Entities.EmailLog;
-import Entities.Parts;
 import Entities.RParameter;
 import Entities.Reports;
 import Facades.ConfigEmailFacadeLocal;
@@ -16,7 +14,6 @@ import Facades.ConfigParmeterFacadeLocal;
 import Facades.RParameterFacadeLocal;
 import Facades.ReportsFacadeLocal;
 import Facades.UserFacadeLocal;
-import static com.guardian.Login.application.generateRandom;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,9 +56,9 @@ public class Pconfig {
          
          Entities.RParameter selectRParameter=new Entities.RParameter();
          
-           List<Entities.ConfigParmeter> ConfigParmeter = new ArrayList<Entities.ConfigParmeter>();
+           List<Entities.ConfigParmeter> ConfigParmeterh = new ArrayList<Entities.ConfigParmeter>();
          
-         Entities.ConfigParmeter selectconfig=new Entities.ConfigParmeter();
+         Entities.ConfigParmeter selectconfigh=new Entities.ConfigParmeter();
          
          
                     List<Entities.ConfigEmail> ConfigEmail = new ArrayList<Entities.ConfigEmail>();
@@ -73,6 +70,7 @@ public class Pconfig {
     /**
      * Creates a new instance of Pconfig
      */
+          
     public Pconfig() {
     }
 
@@ -113,23 +111,26 @@ public class Pconfig {
     
     
 
-    public List<ConfigParmeter> getConfigParmeter() {
-        return ConfigParmeter;
+
+    public ConfigParmeter getSelectconfigh() {
+        return selectconfigh;
     }
 
-    public void setConfigParmeter(List<ConfigParmeter> ConfigParmeter) {
-        this.ConfigParmeter = ConfigParmeter;
+    public void setSelectconfigh(ConfigParmeter selectconfigh) {
+        this.selectconfigh = selectconfigh;
+    }
+
+    public List<ConfigParmeter> getConfigParmeterh() {
+        return ConfigParmeterh;
+    }
+
+    public void setConfigParmeterh(List<ConfigParmeter> ConfigParmeterh) {
+        this.ConfigParmeterh = ConfigParmeterh;
     }
 
    
 
-    public ConfigParmeter getSelectconfig() {
-        return selectconfig;
-    }
-
-    public void setSelectconfig(ConfigParmeter selectconfig) {
-        this.selectconfig = selectconfig;
-    }
+  
 
     public Reports getSelectReports() {
         return selectReports;
@@ -159,7 +160,7 @@ public class Pconfig {
             + "/faces/login.xhtml");
 
         }else{
-         ConfigParmeter  = configParmeterFacade.findAll();
+         ConfigParmeterh  = configParmeterFacade.findAll();
          ConfigEmail=configEmailFacade.findAll();
          RParameter=rParameterFacade.findAll();
          Reports=reportsFacade.findAll();
@@ -217,17 +218,22 @@ public class Pconfig {
     }
         
         
-          public void onRowEdit(RowEditEvent event) {
+          public void onRowEditdf(RowEditEvent event) {
+        
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-          selectconfig=((ConfigParmeter) event.getObject());
-            selectconfig.setUpdateDate(date);
-          configParmeterFacade.edit(selectconfig);
+          selectconfigh=((ConfigParmeter) event.getObject());        
+          if(selectconfigh.getEncryption()== 1){
+         selectconfigh.setPValue(Encryption.encrypt(selectconfigh.getPValue()));
+          }
+            selectconfigh.setUpdateDate(date);
+          configParmeterFacade.edit(selectconfigh);
           /*start mohammed.ayad*/
           Messages.addInfoMessage("Edited "+((ConfigParmeter) event.getObject()).getParameter(),1,9);
           /*end mohammed.ayad*/
     }
+          
      
-    public void onRowCancel(RowEditEvent event) {
+    public void onRowCanceldf(RowEditEvent event) {
         /*start mohammed.ayad*/
           Messages.addInfoMessage("Cancelled "+((ConfigParmeter) event.getObject()).getParameter(),1,9);
           /*end mohammed.ayad*/

@@ -83,35 +83,43 @@
         
              
               <div class="box-body">
-                   <h:form id="form">
-                  <p:messages id="messages" showDetail="true" closable="true" />
+                   <h:form id="form4">
+                  <p:messages id="messages4" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                  <p:dataTable id="cars1" widgetVar="carsTable"
-                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.configParmeter}" editable="true" style="margin-bottom:20px" rows="5"
+                           <p:dataTable id="carsrc1" widgetVar="carsTablek"
+                                        emptyMessage="No report found with given criteria" var="paraw" value="#{pconfig.configParmeterh}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectconfig}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectconfigh}" rowKey="#{paraw.id}"> 
                       
  
-        <p:ajax event="rowEdit" listener="#{pconfig.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
-       <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1"  />
+                      <p:ajax event="rowEdit" listener="#{pconfig.onRowEditdf}" update=":formd1:carsd1 :form4:messages4 :form4:carsrc1" />
+                      <p:ajax event="rowEditCancel" listener="#{pconfig.onRowCanceldf}" update=":formd1:carsd1 :form4:messages4 :form4:carsrc1"  />
        
        
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="Config name" sortBy="#{para.parameter}"  >
+    <p:column headerText="Config name" sortBy="#{paraw.parameter}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.parameter}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput" value="#{para.parameter}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{paraw.parameter}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput" value="#{paraw.parameter}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
     
-    <p:column headerText="Config Value" sortBy="#{para.PValue}"  >
+    <p:column headerText="Config Value" sortBy="#{paraw.PValue}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.PValue}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInput1" value="#{para.PValue}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{paraw.PValue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInput1" value="#{paraw.PValue}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+    
+    
+    <p:column headerText="Config encryption" sortBy="#{paraw.encryption}"  >
+           <p:cellEditor>
+               <f:facet name="output"><h:outputText value="#{paraw.encryption}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputbn2" value="#{paraw.encryption}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
      
@@ -154,11 +162,11 @@
                   <p:messages id="messagesr1" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                  <p:dataTable id="carsr1" widgetVar="carsTable"
-                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.reports}" editable="true" style="margin-bottom:20px" rows="5"
+                  <p:dataTable id="carsr1" widgetVar="carsTable2"
+                               emptyMessage="No report found with given criteria" var="para1" value="#{pconfig.reports}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectReports}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectReports}" rowKey="#{para1.id}"> 
                       
  
         <p:ajax event="rowEdit" listener="#{pconfig.onRowEditr}" update=":formd1:carsd1 :formr1:messagesr1 :formr1:carsr1" />
@@ -168,23 +176,23 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="report name" sortBy="#{para.reportname}"  >
+    <p:column headerText="report name" sortBy="#{para1.reportname}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.reportname}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInputr" value="#{para.reportname}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para1.reportname}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr" value="#{para1.reportname}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
     
-    <p:column headerText="report SQL" sortBy="#{para.reportSQL}"  >
+    <p:column headerText="report SQL" sortBy="#{para1.reportSQL}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.reportSQL}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInputr1" value="#{para.reportSQL}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para1.reportSQL}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr1" value="#{para1.reportSQL}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
-    <p:column headerText="report directory" sortBy="#{para.reportDIR}"  >
+    <p:column headerText="report directory" sortBy="#{para1.reportDIR}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.reportDIR}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInputr2" value="#{para.reportDIR}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para1.reportDIR}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputr2" value="#{para1.reportDIR}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
 
@@ -229,11 +237,11 @@
                   <p:messages id="messagesrp1" showDetail="true" closable="true" />
                 <div class="form-group">
                     
-                  <p:dataTable id="carsrp1" widgetVar="carsTable"
-                               emptyMessage="No Part found with given criteria" var="para" value="#{pconfig.RParameter}" editable="true" style="margin-bottom:20px" rows="5"
+                  <p:dataTable id="carsrp1" widgetVar="carsTable3"
+                               emptyMessage="No Part found with given criteria" var="para2" value="#{pconfig.RParameter}" editable="true" style="margin-bottom:20px" rows="5"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectRParameter}" rowKey="#{para.id}"> 
+                         rowsPerPageTemplate="5,10,15" selection="#{pconfig.selectRParameter}" rowKey="#{para2.id}"> 
                       
  
         <p:ajax event="rowEdit" listener="#{pconfig.onRowEditrp}" update=":formd1:carsd1 :formrp1:messagesrp1 :formrp1:carsrp1" />
@@ -243,21 +251,21 @@
     <p:column selectionMode="single" style="width:32px;text-align:center"/>
   
     
-    <p:column headerText="parmeter name" sortBy="#{para.rpara}"  >
+    <p:column headerText="parmeter name" sortBy="#{para2.rpara}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.rpara}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInputrp" value="#{para.rpara}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para2.rpara}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputrp" value="#{para2.rpara}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
     
-    <p:column headerText="parmeter Value" sortBy="#{para.paravalue}"  >
+    <p:column headerText="parmeter Value" sortBy="#{para2.paravalue}"  >
            <p:cellEditor>
-               <f:facet name="output"><h:outputText value="#{para.paravalue}" /></f:facet>
-               <f:facet name="input"><p:inputText id="modelInputrp1" value="#{para.paravalue}" style="width:100%"/></f:facet>
+               <f:facet name="output"><h:outputText value="#{para2.paravalue}" /></f:facet>
+               <f:facet name="input"><p:inputText id="modelInputrp1" value="#{para2.paravalue}" style="width:100%"/></f:facet>
            </p:cellEditor>
        </p:column>
-    <p:column headerText="report directory" sortBy="#{para.reportsID.reportname}"  >
-         <h:outputText value="#{para.reportsID.reportname}" />
+    <p:column headerText="report directory" sortBy="#{para2.reportsID.reportname}"  >
+         <h:outputText value="#{para2.reportsID.reportname}" />
        </p:column>
 
        

@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,32 +17,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author ahmed.elemam
  */
 @Entity
-@Table(name = "config_email", catalog = "guardianpro", schema = "")
+@Table(name = "email_history", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ConfigEmail.findAll", query = "SELECT c FROM ConfigEmail c"),
-    @NamedQuery(name = "ConfigEmail.findById", query = "SELECT c FROM ConfigEmail c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfigEmail.findByEmail", query = "SELECT c FROM ConfigEmail c WHERE c.email = :email"),
-    @NamedQuery(name = "ConfigEmail.findByCreateDate", query = "SELECT c FROM ConfigEmail c WHERE c.createDate = :createDate"),
-    @NamedQuery(name = "ConfigEmail.findByUpdateDate", query = "SELECT c FROM ConfigEmail c WHERE c.updateDate = :updateDate")})
-public class ConfigEmail implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "configemailID")
-    private Collection<EmailHistory> emailHistoryCollection;
+    @NamedQuery(name = "EmailHistory.findAll", query = "SELECT e FROM EmailHistory e"),
+    @NamedQuery(name = "EmailHistory.findById", query = "SELECT e FROM EmailHistory e WHERE e.id = :id"),
+    @NamedQuery(name = "EmailHistory.findByEmail", query = "SELECT e FROM EmailHistory e WHERE e.email = :email"),
+    @NamedQuery(name = "EmailHistory.findByCreateDate", query = "SELECT e FROM EmailHistory e WHERE e.createDate = :createDate"),
+    @NamedQuery(name = "EmailHistory.findByUpdateDate", query = "SELECT e FROM EmailHistory e WHERE e.updateDate = :updateDate"),
+    @NamedQuery(name = "EmailHistory.findByEsendnot", query = "SELECT e FROM EmailHistory e WHERE e.esendnot = :esendnot")})
+public class EmailHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,10 +47,8 @@ public class ConfigEmail implements Serializable {
     @Column(name = "ID", nullable = false)
     private Integer id;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 450)
-    @Column(name = "email", nullable = false, length = 450)
+    @Size(max = 45)
+    @Column(name = "Email", length = 45)
     private String email;
     @Basic(optional = false)
     @NotNull
@@ -68,22 +60,29 @@ public class ConfigEmail implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "E_send_not", nullable = false)
+    private int esendnot;
+    @JoinColumn(name = "Config_email_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private User userID;
+    private ConfigEmail configemailID;
+    @JoinColumn(name = "Email_log_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private EmailLog emaillogID;
 
-    public ConfigEmail() {
+    public EmailHistory() {
     }
 
-    public ConfigEmail(Integer id) {
+    public EmailHistory(Integer id) {
         this.id = id;
     }
 
-    public ConfigEmail(Integer id, String email, Date createDate, Date updateDate) {
+    public EmailHistory(Integer id, Date createDate, Date updateDate, int esendnot) {
         this.id = id;
-        this.email = email;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.esendnot = esendnot;
     }
 
     public Integer getId() {
@@ -118,12 +117,28 @@ public class ConfigEmail implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public User getUserID() {
-        return userID;
+    public int getEsendnot() {
+        return esendnot;
     }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
+    public void setEsendnot(int esendnot) {
+        this.esendnot = esendnot;
+    }
+
+    public ConfigEmail getConfigemailID() {
+        return configemailID;
+    }
+
+    public void setConfigemailID(ConfigEmail configemailID) {
+        this.configemailID = configemailID;
+    }
+
+    public EmailLog getEmaillogID() {
+        return emaillogID;
+    }
+
+    public void setEmaillogID(EmailLog emaillogID) {
+        this.emaillogID = emaillogID;
     }
 
     @Override
@@ -136,10 +151,10 @@ public class ConfigEmail implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfigEmail)) {
+        if (!(object instanceof EmailHistory)) {
             return false;
         }
-        ConfigEmail other = (ConfigEmail) object;
+        EmailHistory other = (EmailHistory) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -148,16 +163,7 @@ public class ConfigEmail implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.ConfigEmail[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Collection<EmailHistory> getEmailHistoryCollection() {
-        return emailHistoryCollection;
-    }
-
-    public void setEmailHistoryCollection(Collection<EmailHistory> emailHistoryCollection) {
-        this.emailHistoryCollection = emailHistoryCollection;
+        return "Entities.EmailHistory[ id=" + id + " ]";
     }
     
 }
