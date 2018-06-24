@@ -254,26 +254,16 @@ File d=new File(path.getPValue()+"/"+filename_ext);
 		String text="Not able to Store tms file in FTP";
          date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
-                email.setEhost(Login.smtp_host);
-                email.setEfrom(Login.smtp_from);
-                email.setEpassword(Login.smtp_password);
                 email.setEto(Login.smtp_to);
                 email.setEsubject(subject);
                 email.setEtext(text);
-                email.setEPort(Login.smtp_port);
-                email.setETls(Login.smtp_TLS);
                 email.setUserID(Login.login);
                 email.setEsendnot(0);
                 email.setUpdateDate(date);
                 email.setCreateDate(date);
                 emailLogFacade.create(email);
-             boolean send= emailLogFacade.send_email(email);            
-             if(send){
-                  email.setEsendnot(1);
-                  emailLogFacade.edit(email);
-             }
              
-              System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
+      //        System.out.println("com.guardian.Login.Terminalgroup.getXML() "+send);
                               
                               
                        
@@ -323,14 +313,9 @@ File d=new File(path.getPValue()+"/"+filename_ext);
             public  void email(String text,String subject){
          Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
-                email.setEhost(Login.smtp_host);
-                email.setEfrom(Login.smtp_from);
-                email.setEpassword(Login.smtp_password);
                 email.setEto(Login.smtp_to);
                 email.setEsubject(text);
                 email.setEtext(subject);
-                email.setEPort("587");
-                email.setETls(1);
                 email.setUserID(Login.login);
                 email.setEsendnot(0);
                 email.setUpdateDate(date);

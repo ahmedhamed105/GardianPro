@@ -5,7 +5,7 @@
  */
 package Facades;
 
-import Entities.EmailLog;
+import Entities.EmailHistory;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,23 +14,20 @@ import javax.ejb.Local;
  * @author ahmed.elemam
  */
 @Local
-public interface EmailLogFacadeLocal {
+public interface EmailHistoryFacadeLocal {
 
-    void create(EmailLog emailLog);
+    void create(EmailHistory emailHistory);
 
-    void edit(EmailLog emailLog);
+    void edit(EmailHistory emailHistory);
 
-    void remove(EmailLog emailLog);
+    void remove(EmailHistory emailHistory);
 
-    EmailLog find(Object id);
+    EmailHistory find(Object id);
 
-    List<EmailLog> findAll();
+    List<EmailHistory> findAll();
 
-    List<EmailLog> findRange(int[] range);
+    List<EmailHistory> findRange(int[] range);
 
     int count();
-    
-    
-    List<EmailLog> FindALL_notsend();
     
 }

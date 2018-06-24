@@ -5,7 +5,7 @@
  */
 package Facades;
 
-import Email.EmailUtils;
+
 import Entities.EmailLog;
 import Entities.User;
 import java.util.List;
@@ -33,17 +33,7 @@ public class EmailLogFacade extends AbstractFacade<EmailLog> implements EmailLog
         super(EmailLog.class);
     }
     
-    @Override
-    public boolean send_email(EmailLog em) {
-        try {
-           EmailUtils.send(em);  
-           return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-                return false;
-        }
-       
-    }
+
     
     
      @Override

@@ -1256,14 +1256,9 @@ public class BusinessTimer {
       public void email(String text,String subject){
          Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
-                email.setEhost(smtp_host);
-                email.setEfrom(smtp_from);
-                email.setEpassword(smtp_password);
                 email.setEto(smtp_to);
                 email.setEsubject(text);
                 email.setEtext(subject);
-                email.setEPort("587");
-                email.setETls(1);
                 email.setUserID(login);
                 email.setEsendnot(0);
                 email.setUpdateDate(date);

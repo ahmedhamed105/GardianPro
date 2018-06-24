@@ -27,6 +27,7 @@ Facades\FtpMessagesFacade.class
 Facades\PartsFacadeLocal.class
 Facades\TerminalParserLogFacade.class
 Entities\ActionLog.class
+Entities\EmailHistory.class
 Entities\City_.class
 Email\returnvalues.class
 Facades\ReligionFacadeLocal.class
@@ -41,6 +42,7 @@ Facades\RoleHasComponentFacade.class
 Entities\Religion.class
 Entities\GroupHasParameter_.class
 Entities\ConfigEmail.class
+Facades\EmailHistoryFacadeLocal.class
 Entities\DownloadMethod_.class
 Facades\PhoneTypesFacade.class
 Facades\NearPlacesFacade.class
@@ -83,7 +85,6 @@ Facades\UserFacade.class
 Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
 Entities\Pages_.class
-Email\EmailUtils.class
 Entities\Country.class
 Entities\TerminalTemplate_.class
 Facades\GroupHasParameterFacade.class
@@ -100,7 +101,6 @@ Entities\GroupHasParameter.class
 Entities\TrxType.class
 Facades\TerminalHasPartsFacade.class
 Entities\Groups_.class
-Email\EmailUtils$1.class
 Entities\MenuSub.class
 Facades\LogScreenFacadeLocal.class
 Facades\RoleHasComponentFacadeLocal.class
@@ -157,6 +157,7 @@ Facades\TrxTypeFacadeLocal.class
 Facades\TgroupHasSoftwareFacade.class
 Entities\ActionBar_.class
 Entities\TgroupHasTerminal.class
+Entities\EmailHistory_.class
 Entities\ParameterGroup_.class
 Facades\AccessoryFacadeLocal.class
 Entities\NationalId.class
@@ -168,6 +169,7 @@ Entities\TerminalTemplate.class
 Facades\TerminalGroupFacadeLocal.class
 Entities\ComponentName.class
 Entities\Distinct1_.class
+Facades\EmailHistoryFacade.class
 Entities\MilitaryStatus.class
 Entities\SocialDataPK_.class
 Facades\TgroupHasAccesoryFacadeLocal.class
@@ -306,6 +308,7 @@ Facades\ParameterGroupFacadeLocal.class
 Facades\TerminalTemplateFacade.class
 Facades\NationalIdHasMaritalStatusFacadeLocal.class
 Entities\PhoneData_.class
+com\timer\schedual\EmailTimer$1.class
 Facades\ParameterValuesFacadeLocal.class
 Facades\UserStatusFacadeLocal.class
 Entities\City.class
