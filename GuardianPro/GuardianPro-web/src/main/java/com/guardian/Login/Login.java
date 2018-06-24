@@ -147,17 +147,49 @@ public class Login {
                         login = u1;
                         
                 smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+                if(configParmeterFacade.getparameter("smtp_host").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_host").getPValue());
+                }
 		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+                   if(configParmeterFacade.getparameter("smtp_from").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_from").getPValue());
+                }
 		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
-		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+		   if(configParmeterFacade.getparameter("smtp_password").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_password").getPValue());
+                }
+                smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                  if(configParmeterFacade.getparameter("smtp_to").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_to").getPValue());
+                }
                 smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                  if(configParmeterFacade.getparameter("smtp_port").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_port").getPValue());
+                } 
                 smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                   if(configParmeterFacade.getparameter("smtp_TLS").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_TLS").getPValue());
+                }
                 FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                  if(configParmeterFacade.getparameter("FTP_server").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("FTP_server").getPValue());
+                }
                 FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                   if(configParmeterFacade.getparameter("FTP_port").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("FTP_port").getPValue());
+                }
                 FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                   if(configParmeterFacade.getparameter("FTP_user").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("FTP_user").getPValue());
+                }
                 FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                  if(configParmeterFacade.getparameter("FTP_pass").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("FTP_pass").getPValue());
+                }
                 FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
-
+                         if(configParmeterFacade.getparameter("FTP_APP_DIR").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("FTP_APP_DIR").getPValue());
+                }
                         //ahmed.ibraheem
                         // Load All Rolls
                 
