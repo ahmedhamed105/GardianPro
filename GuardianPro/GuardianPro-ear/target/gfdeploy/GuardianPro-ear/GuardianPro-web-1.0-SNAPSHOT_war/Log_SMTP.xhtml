@@ -82,22 +82,33 @@
 
 
                                 <h:form id="form2" >
-                                    <p:dataTable id ="log123" var="logs" value="#{log_display.email(0)}" style="margin-bottom:20px" rows="5"
-                                                 paginator="true" >
-                                        <p:column headerText="Message">
+                                    <p:dataTable id ="log123" var="logs" widgetVar="carsTable" value="#{log_display.email(0)}" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{logs.id}" filteredValue="#{log_display.emailHistoryFilter}" >
+                                        
+                                        
+                                         <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+                                 
+                                        <p:column headerText="Message" sortBy="#{logs.email}"  filterBy="#{logs.email}" filterMatchMode="contains">
                                             <h:outputText value="#{logs.email}" />
                                         </p:column>
 
-                                        <p:column headerText="Date">
+                                        <p:column headerText="Subject" sortBy="#{logs.emaillogID.esubject}" filterBy="#{logs.emaillogID.esubject}" filterMatchMode="contains">
                                             <h:outputText value="#{logs.emaillogID.esubject}" />
                                         </p:column>
                                         
-                                            <p:column headerText="Version">
+                                            <p:column headerText="Date" sortBy="#{logs.updateDate}" filterBy="#{logs.updateDate}" filterMatchMode="contains">
                                                 <h:outputText value="#{logs.updateDate}" />
                                         </p:column>
 
-                                             <p:column headerText="Status">
-                                                 <h:outputText value="#{logs.esendnot eq '1'? 'Sent' : 'Not sent'}"/>
+                                             <p:column headerText="Status" filterBy="#{logs.esendnot eq '1'? 'Sent' : 'Not sent'}" filterMatchMode="contains">
+                                                 <h:outputText value="#{logs.esendnot eq '1'? 'Sent' : 'Not sent'}" />
                                         </p:column>
                                     </p:dataTable>
                                 </h:form>

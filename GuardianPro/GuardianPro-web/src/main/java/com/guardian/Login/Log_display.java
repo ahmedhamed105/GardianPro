@@ -7,12 +7,14 @@ package com.guardian.Login;
 
 import Entities.EmailHistory;
 import Entities.FtpMessages;
+import Entities.Groups;
 import Entities.LogScreen;
 import Entities.TerminalParserLog;
 import Facades.EmailHistoryFacadeLocal;
 import Facades.FtpMessagesFacadeLocal;
 import Facades.LogScreenFacadeLocal;
 import Facades.TerminalParserLogFacadeLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -34,15 +36,36 @@ public class Log_display {
         @EJB
     private FtpMessagesFacadeLocal ftpMessagesFacade;
     
+      private List<EmailHistory> EmailHistoryFilter = new ArrayList<>();
+      
     
-    
-    
+   private List<FtpMessages> FtpMessagesFilter = new ArrayList<>(); 
 
     /**
      * Creates a new instance of Log_display
      */
     public Log_display() {
     }
+
+    public List<FtpMessages> getFtpMessagesFilter() {
+        return FtpMessagesFilter;
+    }
+
+    public void setFtpMessagesFilter(List<FtpMessages> FtpMessagesFilter) {
+        this.FtpMessagesFilter = FtpMessagesFilter;
+    }
+    
+    
+
+    public List<EmailHistory> getEmailHistoryFilter() {
+        return EmailHistoryFilter;
+    }
+
+    public void setEmailHistoryFilter(List<EmailHistory> EmailHistoryFilter) {
+        this.EmailHistoryFilter = EmailHistoryFilter;
+    }
+    
+    
     
     public List<LogScreen> log(int page){
         

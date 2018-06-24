@@ -82,13 +82,21 @@
 
 
                                 <h:form id="form2" >
-                                    <p:dataTable id ="log123" var="logs" value="#{log_display.ftp(0)}" style="margin-bottom:20px" rows="5"
-                                                 paginator="true" >
-                                        <p:column headerText="Message">
+                                     <p:dataTable id ="log123" var="logs" value="#{log_display.ftp(0)}" widgetVar="carsTable" editable="true" style="margin-bottom:20px" rows="5"
+                                                         paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                         rowsPerPageTemplate="5,10,15"  rowKey="#{logs.id}" filteredValue="#{log_display.ftpMessagesFilter}"  >
+                                       <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+                                       </f:facet>
+                                         <p:column headerText="Message" sortBy="#{logs.fmessages}" filterBy="#{logs.fmessages}" filterMatchMode="contains">
                                             <h:outputText value="#{logs.fmessages}" />
                                         </p:column>
 
-                                        <p:column headerText="Date">
+                                        <p:column headerText="Date" sortBy="#{logs.createDate}" filterBy="#{logs.createDate}" filterMatchMode="contains">
                                             <h:outputText value="#{logs.createDate}" />
                                         </p:column>
                                         
