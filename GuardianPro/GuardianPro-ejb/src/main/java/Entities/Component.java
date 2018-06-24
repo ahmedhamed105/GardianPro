@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,32 +15,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author ahmed.elemam
+ * @author ahmed.ibraheem
  */
 @Entity
 @Table(name = "component", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c"),
-    @NamedQuery(name = "Component.findById", query = "SELECT c FROM Component c WHERE c.id = :id"),
-    @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.name = :name"),
-    @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description"),
-    @NamedQuery(name = "Component.findByParentID", query = "SELECT c FROM Component c WHERE c.parentID = :parentID"),
-    @NamedQuery(name = "Component.findByType", query = "SELECT c FROM Component c WHERE c.type = :type"),
-    @NamedQuery(name = "Component.findByCreateDate", query = "SELECT c FROM Component c WHERE c.createDate = :createDate"),
-    @NamedQuery(name = "Component.findByUpdateDate", query = "SELECT c FROM Component c WHERE c.updateDate = :updateDate"),
-    @NamedQuery(name = "Component.findByCname", query = "SELECT c FROM Component c WHERE c.cname = :cname")})
+    @NamedQuery(name = "Component.findAll", query = "SELECT c FROM Component c")
+    , @NamedQuery(name = "Component.findById", query = "SELECT c FROM Component c WHERE c.id = :id")
+    , @NamedQuery(name = "Component.findByName", query = "SELECT c FROM Component c WHERE c.name = :name")
+    , @NamedQuery(name = "Component.findByDescription", query = "SELECT c FROM Component c WHERE c.description = :description")
+    , @NamedQuery(name = "Component.findByParentID", query = "SELECT c FROM Component c WHERE c.parentID = :parentID")
+    , @NamedQuery(name = "Component.findByType", query = "SELECT c FROM Component c WHERE c.type = :type")
+    , @NamedQuery(name = "Component.findByCreateDate", query = "SELECT c FROM Component c WHERE c.createDate = :createDate")
+    , @NamedQuery(name = "Component.findByUpdateDate", query = "SELECT c FROM Component c WHERE c.updateDate = :updateDate")
+    , @NamedQuery(name = "Component.findByCname", query = "SELECT c FROM Component c WHERE c.cname = :cname")})
 public class Component implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,10 +73,6 @@ public class Component implements Serializable {
     @Size(max = 150)
     @Column(name = "C_name", length = 150)
     private String cname;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentID")
-    private Collection<RoleHasComponent> roleHasComponentCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componentcomponentID")
-    private Collection<ComponentName> componentNameCollection;
 
     public Component() {
     }
@@ -158,24 +150,6 @@ public class Component implements Serializable {
 
     public void setCname(String cname) {
         this.cname = cname;
-    }
-
-    @XmlTransient
-    public Collection<RoleHasComponent> getRoleHasComponentCollection() {
-        return roleHasComponentCollection;
-    }
-
-    public void setRoleHasComponentCollection(Collection<RoleHasComponent> roleHasComponentCollection) {
-        this.roleHasComponentCollection = roleHasComponentCollection;
-    }
-
-    @XmlTransient
-    public Collection<ComponentName> getComponentNameCollection() {
-        return componentNameCollection;
-    }
-
-    public void setComponentNameCollection(Collection<ComponentName> componentNameCollection) {
-        this.componentNameCollection = componentNameCollection;
     }
 
     @Override

@@ -1,0 +1,91 @@
+ID,Name,Value,Description,Edit,create_date,update_date,component_component_ID
+24,accessory_Create,accessory_Create,accessory_Create,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",24
+25,accessory_Edit,accessory_Edit,accessory_Edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",25
+26,accessorygroup_edit,accessorygroup_edit,accessorygroup_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",26
+27,accessorygroup_remove,accessorygroup_remove,accessorygroup_remove,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",27
+28,accessorygroup_submit,accessorygroup_submit,accessorygroup_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",28
+29,accessorygroup_add_submit,accessorygroup_add_submit,accessorygroup_add_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",29
+30,accessorygroup_select_one_menu,accessorygroup_select_one_menu,accessorygroup_select_one_menu,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",30
+31,accessorygroup__select_aplicatin,accessorygroup__select_aplicatin,accessorygroup__select_aplicatin,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",31
+32,accessorygroup__select_aplicatin_Group,accessorygroup__select_aplicatin_Group,accessorygroup__select_aplicatin_Group,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",32
+33,accessorygroup__select_aplicatin_Group_submit,accessorygroup__select_aplicatin_Group_submit,accessorygroup__select_aplicatin_Group_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",33
+34,apps_view,apps_view,apps_view,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",34
+35,apps_multi_part,apps_multi_part,apps_multi_part,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",35
+36,app_group,app_group,app_group,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",36
+37,app_group_remove,app_group_remove,app_group_remove,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",37
+38,app_group_submit,app_group_submit,app_group_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",38
+39,app_groups_add,app_groups_add,app_groups_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",39
+40,app_groups_select,app_groups_select,app_groups_select,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",40
+41,app_groups_select_submit,app_groups_select_submit,app_groups_select_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",41
+42,groups_edit,groups_edit,groups_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",42
+43,groups_add,groups_add,groups_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",43
+44,paramter_edit,paramter_edit,paramter_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",44
+45,paramter_submit,paramter_submit,paramter_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",45
+46,paramter_select,paramter_select,paramter_select,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",46
+47,paramter_add,paramter_add,paramter_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",47
+48,paramterGroup_form_edit,paramterGroup_form_edit,paramterGroup_form_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",48
+49,paramtergroup_remove,paramtergroup_remove,paramtergroup_remove,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",49
+50,paramtergroup_removegroup,paramtergroup_removegroup,paramtergroup_removegroup,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",50
+51,paramtergroup_form_add,paramtergroup_form_add,paramtergroup_form_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",51
+52,paramtergroup_add,paramtergroup_add,paramtergroup_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",52
+53,paramtergroup_assign_group_form,paramtergroup_assign_group_form,paramtergroup_assign_group_form,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",53
+54,paramtergroup_assign,paramtergroup_assign,paramtergroup_assign,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",54
+55,paramter_type_remove,paramter_type_remove,paramter_type_remove,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",55
+56,paramter_type_add,paramter_type_add,paramter_type_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",56
+57,parts_edit,parts_edit,parts_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",57
+58,parts_edit_submit,parts_edit_submit,parts_edit_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",58
+59,parts_add,parts_add,parts_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",59
+60,parts_add_submit,parts_add_submit,parts_add_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",60
+61,termenal_edit,termenal_edit,termenal_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",61
+62,termenal_edit_submit,termenal_edit_submit,termenal_edit_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",62
+63,termenal_add,termenal_add,termenal_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",63
+64,terminalgroup_edit_submit,terminalgroup_edit_submit,terminalgroup_edit_submit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",64
+65,termenalgroup_add,termenalgroup_add,termenalgroup_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",65
+66,termenalgroup_termenal_remove,termenalgroup_termenal_remove,termenalgroup_termenal_remove,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",66
+67,termenalgroup_termenal_add,termenalgroup_termenal_add,termenalgroup_termenal_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",67
+68,TerminalGroup_log,"TerminalGroup log","TerminalGroup log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",68
+69,Terminal_log,"Terminal log","Terminal log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",69
+70,TerminalTemplate_log,"TerminalTemplate log","TerminalTemplate log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",70
+71,Appsgroup_log,"Appsgroup log","Appsgroup log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",71
+72,Parameter_log,"Parameter log","Parameter log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",72
+73,ParameterGroup_log,"ParameterGroup log","ParameterGroup log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",73
+74,Apps_log,"Apps log","Apps log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",74
+75,Accessorygroup_log,"Accessorygroup log","Accessorygroup log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",75
+76,accessory_log,"accessory log","accessory log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",76
+78,Config_log,"Config log","Config log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",78
+79,paramter_configration,paramter_configration,paramter_configration,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",79
+80,report_configration,"report configration","report configration",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",80
+81,report_paramter_configration,"report paramter configration","report paramter configration",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",81
+82,report_paramter_configration_add,"report paramter configration_add","report paramter configration_add",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",82
+83,email_configration,"email configration","email configration",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",83
+84,email_configration_add,"email configration add","email configration add",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",84
+85,paramter_configration_add,paramter_configration_add,paramter_configration_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",85
+86,profile_list,"profile list","profile list",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",86
+87,profile_add,"profile add","profile add",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",87
+88,profile_log,profile_log,profile_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",88
+89,roles_edit,"roles edit","roles edit",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",89
+90,roles_add,"roles add","roles add",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",90
+91,roles_log,"roles log","roles log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",91
+92,RGroups_log,"RGroups log","RGroups log",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",92
+93,component_edit,"component edit","component edit",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",93
+95,component_log,component_log,component_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",95
+97,reports_edit,"reports Edit","reports Edit",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",97
+98,apps_edit,"apps edit",apps_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",98
+99,apps_add,"apps add",apps_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",99
+100,apps_group_log,"apps group log",apps_group_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",100
+101,component_of_role_edit,"component of roles edit",component_of_role_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",101
+102,component_of_role_log,"component of roles log",component_of_role_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",102
+103,config_edit,"config edit",config_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",103
+104,config_add,"config add",config_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",104
+105,config_list,"config List",config_list,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",105
+106,paramter_group_log,"paramter group log",paramter_group_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",106
+107,parts_log,"parts log",parts_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",107
+108,group_log,"group log",group_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",108
+109,TerminalTemplate_edit,"TerminalTemplate edit",TerminalTemplate_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",109
+110,TerminalTemplate_add,"TerminalTemplate add",TerminalTemplate_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",110
+111,TerminalTemplate_select,TerminalTemplate_select,TerminalTemplate_select,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",111
+112,input_type_edit,"input_type edit","input_type edit",0,"2018-04-12 23:48:54","2018-04-12 23:48:54",112
+113,input_type_add,input_type_add,input_type_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",113
+114,input_type_log,input_type_log,input_type_add,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",114
+115,role_of_component_edit,"role_of_component edit",role_of_component_edit,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",115
+116,role_of_component_log,role_of_component_log,role_of_component_log,0,"2018-04-12 23:48:54","2018-04-12 23:48:54",116
