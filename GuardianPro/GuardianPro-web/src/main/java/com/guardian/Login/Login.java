@@ -39,8 +39,8 @@ import javax.faces.event.ActionEvent;
 @ManagedBean
 @SessionScoped
 public class Login {
-    
-     @EJB
+
+    @EJB
     private ConfigParmeterFacadeLocal configParmeterFacade;
 
     @EJB
@@ -70,7 +70,7 @@ public class Login {
     List<Component> components = new ArrayList<Component>();
     List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
     List<RoleHasComponent> roleHasComponents = new ArrayList<RoleHasComponent>();
-    List<Component> allComponent = new ArrayList<Component>();
+    List<Component> allComponent;
     Map<Component, Boolean> componentView = new HashMap<Component, Boolean>();
     Map<Component, Boolean> componentEdit = new HashMap<Component, Boolean>();
     List<Integer> componentID = new ArrayList<Integer>();
@@ -79,25 +79,24 @@ public class Login {
     String username;
     String password;
     static User login = new User();
-    
-                static String smtp_host="smtp.gmail.com"; //SMTP Server
-		static String smtp_from="ahmed2000105@gmail.com";//from account
-		static String smtp_password="P@ssw0rd0109045227";     //password from account
-		static String smtp_to="ahmed.hamed0@me.com";//recipient account
-                static String smtp_port="587";//recipient account
-                static int smtp_TLS=1;//recipient account
-                static String FTP_server = "localhost";
-                static String FTP_port = "21";
-                static String FTP_user = "ahmed";
-                static String FTP_pass = "123456";  
-                static String FTP_APP_DIR = "\\APPLICATION\\"; 
 
+    static String smtp_host = "smtp.gmail.com"; //SMTP Server
+    static String smtp_from = "ahmed2000105@gmail.com";//from account
+    static String smtp_password = "P@ssw0rd0109045227";     //password from account
+    static String smtp_to = "ahmed.hamed0@me.com";//recipient account
+    static String smtp_port = "587";//recipient account
+    static int smtp_TLS = 1;//recipient account
+    static String FTP_server = "localhost";
+    static String FTP_port = "21";
+    static String FTP_user = "ahmed";
+    static String FTP_pass = "123456";
+    static String FTP_APP_DIR = "\\APPLICATION\\";
 
     /**
      * Creates a new instance of Login
      */
     public Login() {
-
+        loadViewEdit();
     }
 
     public User getLogin() {
@@ -136,32 +135,30 @@ public class Login {
 
         try {
             User u1 = userFacade.search_username(username).get(0);
-            
-              String decrypted = Encryption.encrypt(password);
+
+            String decrypted = Encryption.encrypt(password);
             if (u1.getUserPasswordID().getPassword().equals(decrypted)) {
                 switch (userFacade.user_status(u1)) {
                     case 1:
                         /*start mohammed.ayad*/
-                        Messages.addInfoMessage("Login ok!!", 1,5);
+                        Messages.addInfoMessage("Login ok!!", 1, 5);
                         /*end mohammed.ayad*/
                         login = u1;
-                        
-                smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
-		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
-		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
-		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
-                smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
-                smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
-                FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
-                FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
-                FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
-                FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
-                FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
+
+                        smtp_host = configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+                        smtp_from = configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+                        smtp_password = configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
+                        smtp_to = configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                        smtp_port = configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                        smtp_TLS = Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                        FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                        FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                        FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                        FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();
+                        FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue();
 
                         //ahmed.ibraheem
                         // Load All Rolls
-                
-               
                         groupsHasUsers = groupsHasUserFacade.find_groups_by_user(u1);
                         if (groupsHasUsers != null) {
 
@@ -215,42 +212,42 @@ public class Login {
                         loadViewEdit();
                         //ahmed.ibraheem
                         // Load All Rolls
-       ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-       ec.redirect(ec.getRequestContextPath()
-               + "/faces/Main.xhtml");
+                        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                        ec.redirect(ec.getRequestContextPath()
+                                + "/faces/Main.xhtml");
                         return "Login";
                     case 2:
                         /*start mohammed.ayad*/
-                        Messages.addInfoMessage("Login Error User Closed !!", 2,5);
+                        Messages.addInfoMessage("Login Error User Closed !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     case 3:
                         /*start mohammed.ayad*/
-                        Messages.addInfoMessage("Login Error User Locked !!", 2,5);
+                        Messages.addInfoMessage("Login Error User Locked !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     case 4:
                         /*start mohammed.ayad*/
-                        Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2,5);
+                        Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     default:
                         /*start mohammed.ayad*/
-                        Messages.addInfoMessage("Login Error Check status !!", 2,5);
+                        Messages.addInfoMessage("Login Error Check status !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                 }
 
             } else {
                 /*start mohammed.ayad*/
-                Messages.addInfoMessage("Login Error Wrong password!!", 2,5);
+                Messages.addInfoMessage("Login Error Wrong password!!", 2, 5);
                 /*end mohammed.ayad*/
                 return "Error";
             }
         } catch (Exception e) {
             e.printStackTrace();
             /*start mohammed.ayad*/
-            Messages.addInfoMessage("Login Error!! "+e.getMessage(), 3,5);
+            Messages.addInfoMessage("Login Error!! " + e.getMessage(), 3, 5);
             /*end mohammed.ayad*/
             return "Error";
         }
@@ -329,8 +326,8 @@ public class Login {
         this.componentEdit = componentEdit;
     }
 
-    public void loadViewEdit() {
-        List<Component> allComponent = new ArrayList<Component>();
+    public List<Component> loadViewEdit() {
+        allComponent = new ArrayList<Component>();
         allComponent = componentFacade.findAll();
         for (Component component : allComponent) {
             componentView.put(component, false);
@@ -338,44 +335,47 @@ public class Login {
 
             for (RoleHasComponent comPriv : roleHasComponents) {
                 if (component.equals(comPriv.getComponentID())) {
-                    if (comPriv.getView()== true) {
+                    if (comPriv.getView() == true) {
                         componentView.replace(component, true);
                     }
 
-                    if (comPriv.getEdit()== true) {
+                    if (comPriv.getEdit() == true) {
                         componentEdit.replace(component, false);
                     }
                 }
             }
         }
+        return allComponent;
     }
-    
-    public boolean isViewed(String componentName){
+
+    public boolean isViewed(String componentName) {
+     List<Component>  allComponent1= loadViewEdit();
         Component component = null;
-        for (Component com : allComponent) {
+        for (Component com : allComponent1) {
             if (com.getName().equalsIgnoreCase(componentName)) {
-                component= com;
+                component = com;
             }
         }
-        if (component!=null) {
+        if (component != null) {
             return componentView.get(component);
-        }
-        else
+        } else {
             return false;
+        }
     }
-    
-    public boolean isEdit(String componentName){
+
+    public boolean isEdit(String componentName) {
+        loadViewEdit();
         Component component = null;
         for (Component com : allComponent) {
             if (com.getName().equalsIgnoreCase(componentName)) {
-                component= com;
+                component = com;
             }
         }
-        if (component!=null) {
+        if (component != null) {
             return componentEdit.get(component);
-        }
-        else
+        } else {
             return true;
+        }
     }
-    
+
 }
