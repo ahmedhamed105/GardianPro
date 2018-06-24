@@ -5,10 +5,12 @@
  */
 package Facades;
 
-import Entities.FtpLog;
+import Email.FTPLog;
 import Entities.FtpMessages;
+import Entities.User;
 import java.util.List;
 import javax.ejb.Local;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -30,7 +32,11 @@ public interface FtpMessagesFacadeLocal {
     List<FtpMessages> findRange(int[] range);
 
     int count();
+    
+    public FTPClient Ftp_open(FTPLog ftp);
+    
+    public boolean Ftp_Close(FTPClient ftpClient,User userID);
 
-    public boolean Ftp_action(FtpLog ftp,int type);
+    public boolean Ftp_action(FTPLog ftp,int type,FTPClient ftpClient);
     
 }

@@ -6,11 +6,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>#{menu.tittle()}</title>
+        <title>#{menu.tittle(21)}</title>
         <f:metadata>
             <f:event type="preRenderView" listener="#{main.init()}"/>
             <f:event type="preRenderView" listener="#{menu.init()}"/>
-<f:event type="preRenderView" listener="#{menu.init()}"/>            <f:event type="preRenderView" listener="#{action.init()}"/></f:metadata>
+</f:metadata>
          <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <!-- Tell the browser to be responsive to screen width -->
@@ -53,12 +53,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Parmeter Page 
+        Log Page
         <small>Version 1.0</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">accessory</li>
+        <li class="active">Log</li>
       </ol>
     </section>
 
@@ -81,15 +81,19 @@
                                 <!-- form start -->
 
 
-                                <h:form id="form2" >
-                                    <p:dataTable id ="log123" var="logs" value="#{rolesBean.actionlogs}" style="margin-bottom:20px" rows="5"
+                               <h:form id="form2" >
+                                   <p:dataTable id ="log123" var="logs" value="#{log_display.ALL(0)}" style="margin-bottom:20px" rows="5"
                                                  paginator="true" >
                                         <p:column headerText="Message">
-                                            <h:outputText value="#{logs.message}" />
+                                            <h:outputText value="#{logs.TRXdesc}" />
                                         </p:column>
 
                                         <p:column headerText="Date">
-                                            <h:outputText value="#{logs.dateFormate}" />
+                                            <h:outputText value="#{logs.createDate}" />
+                                        </p:column>
+                                       
+                                          <p:column headerText="User">
+                                              <h:outputText value="#{logs.userID.username}" />
                                         </p:column>
 
 
@@ -106,180 +110,7 @@
       <!-- /.row -->
       
       
-      <div class="row">
-              <ui:repeat value="#{action.actionBar}" var="car1">
-                       <h:panelGroup rendered="#{car1.name eq 'Terminal Group'}">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-     
-          <div class="small-box bg-aqua-gradient">
-            <div class="inner">
-                <h3>#{main.get_size(car1.name)}</h3>
-
-              <p>#{car1.name}</p>
-            </div>
-              <div class="icon">
-              <i class="fa fa-group"></i>
-            </div>
-          
-            
-            <a href="#{car1.link}" class="small-box-footer">
-              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-           
-        </div>
-                              </h:panelGroup>
-                  <h:panelGroup rendered="#{car1.name eq 'Parmeter Group'}">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-     
-          <div class="small-box bg-green">
-            <div class="inner">
-                <h3>#{main.get_size(car1.name)}</h3>
-
-              <p>#{car1.name}</p>
-            </div>
-              <div class="icon">
-              <i class="fa fa-university"></i>
-            </div>
-          
-            
-            <a href="#{car1.link}" class="small-box-footer">
-              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-           
-        </div>
-                              </h:panelGroup>
-                   <h:panelGroup rendered="#{car1.name eq 'Parameter'}">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-     
-          <div class="small-box bg-yellow">
-            <div class="inner">
-                <h3>#{main.get_size(car1.name)}</h3>
-
-              <p>#{car1.name}</p>
-            </div>
-              <div class="icon">
-              <i class="fa fa-usb"></i>
-            </div>
-          
-            
-            <a href="#{car1.link}" class="small-box-footer">
-              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-           
-        </div>
-                              </h:panelGroup>
-                  <h:panelGroup rendered="#{car1.name eq 'Terminal'}">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-     
-          <div class="small-box bg-navy">
-            <div class="inner">
-                <h3>#{main.get_size(car1.name)}</h3>
-
-              <p>#{car1.name}</p>
-            </div>
-              <div class="icon">
-              <i class="fa fa-magic"></i>
-            </div>
-          
-            
-            <a href="#{car1.link}" class="small-box-footer">
-              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-           
-        </div>
-                              </h:panelGroup>
-                    <h:panelGroup rendered="#{car1.name ne 'Parameter' and  car1.name ne 'Parmeter Group' and  car1.name ne 'Terminal Group' and car1.name ne 'Terminal'}">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-     
-          <div class="small-box bg-gray">
-            <div class="inner">
-                <h3>#{main.get_size(car1.name)}</h3>
-
-              <p>#{car1.name}</p>
-            </div>
-              <div class="icon">
-              <i class="fa fa-pause"></i>
-            </div>
-          
-            
-            <a href="#{car1.link}" class="small-box-footer">
-              more  #{car1.name}<i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-           
-        </div>
-                              </h:panelGroup>
-              </ui:repeat>
-          
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
-        
-        
-        <div class="row">
-          <div class="col-md-12 col-sm-6 col-xs-12">
-                   <!-- general form elements -->
-          <div class="box">
-            
-                 <div class="box-header with-border">
-      <h3 class="box-title">#{menu.comname('accessorygroup_edit')}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
-              
-            <!-- /.box-header -->
-            <!-- form start -->
-        
-             
-              <div class="box-body">
-              <ul class="timeline">
-
-    <!-- timeline time label -->
-    <li class="time-label">
-        <span class="bg-red">
-            10 Feb. 2014
-        </span>
-    </li>
-    <!-- /.timeline-label -->
-
-    <!-- timeline item -->
-    <li>
-        <!-- timeline icon -->
-        <i class="fa fa-envelope bg-blue"></i>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-            <h3 class="timeline-header"><a href="#">Ahmed hamed</a> ...</h3>
-
-            <div class="timeline-body">
-                ...
-                Content goes here
-            </div>
-
-            <div class="timeline-footer">
-                <a class="btn btn-primary btn-xs">log</a>
-            </div>
-        </div>
-    </li>
-    <!-- END timeline item -->
-</ul>
-              </div>
-              <!-- /.box-body -->
-                 <div class="box-footer">
-                </div>
-      
-          <!-- /.box -->
-            </div>
-        </div>
-      </div>
+ 
     
       <!-- /.row -->
     </section>

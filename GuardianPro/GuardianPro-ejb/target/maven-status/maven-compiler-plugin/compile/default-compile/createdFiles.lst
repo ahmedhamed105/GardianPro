@@ -61,6 +61,7 @@ Entities\PhoneData.class
 Facades\AddressFacade.class
 Facades\GroupsFacade.class
 Entities\NationalIdHasMaritalStatus1PK.class
+Email\FTPLog.class
 Facades\ConfigParmeterFacadeLocal.class
 Entities\PasswordHistory_.class
 Entities\Role.class
@@ -83,7 +84,6 @@ Facades\RoleFacadeLocal.class
 Facades\UserPasswordFacade.class
 Entities\Pages_.class
 Email\EmailUtils.class
-Facades\FtpLogFacade.class
 Entities\Country.class
 Entities\TerminalTemplate_.class
 Facades\GroupHasParameterFacade.class
@@ -154,7 +154,6 @@ Entities\ConfigEmail_.class
 Entities\EmailSmsSend.class
 Facades\NearPlacesFacadeLocal.class
 Facades\TrxTypeFacadeLocal.class
-Facades\FtpLogFacadeLocal.class
 Facades\TgroupHasSoftwareFacade.class
 Entities\ActionBar_.class
 Entities\TgroupHasTerminal.class
@@ -180,7 +179,6 @@ Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Facades\AccessoryFacade.class
 Facades\ReportsFacade.class
-Entities\FtpLog_.class
 Entities\Pages.class
 Entities\Role_.class
 Facades\LoginTypeFacade.class
@@ -269,7 +267,6 @@ Entities\TgroupHasSoftware_.class
 Facades\TerminalFacadeLocal.class
 Facades\WebsiteDataFacadeLocal.class
 Facades\WebsiteDataHasUserFacade.class
-Entities\FtpLog.class
 Facades\LoginTypeFacadeLocal.class
 Facades\PasswordHistoryFacade.class
 Entities\Parameter_.class

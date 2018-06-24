@@ -82,4 +82,7 @@ public class LogScreenFacade extends AbstractFacade<LogScreen> implements LogScr
      
     }
     
+    
+    
+    
 }

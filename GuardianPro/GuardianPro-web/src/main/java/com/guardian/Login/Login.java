@@ -144,6 +144,7 @@ public class Login {
                         Messages.addInfoMessage("Login ok!!", 1, 5);
                         /*end mohammed.ayad*/
                         login = u1;
+<<<<<<< HEAD
 
                         smtp_host = configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
                         smtp_from = configParmeterFacade.getparameter("smtp_from").getPValue();//from account
@@ -157,6 +158,53 @@ public class Login {
                         FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();
                         FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue();
 
+=======
+                        
+                smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+                if(configParmeterFacade.getparameter("smtp_host").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_host").getPValue());
+                }
+		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+                   if(configParmeterFacade.getparameter("smtp_from").getEncryption()==1){
+                smtp_from=Encryption.decrypt(configParmeterFacade.getparameter("smtp_from").getPValue());
+                }
+		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
+		   if(configParmeterFacade.getparameter("smtp_password").getEncryption()==1){
+                smtp_password=Encryption.decrypt(configParmeterFacade.getparameter("smtp_password").getPValue());
+                }
+                smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                  if(configParmeterFacade.getparameter("smtp_to").getEncryption()==1){
+                smtp_to=Encryption.decrypt(configParmeterFacade.getparameter("smtp_to").getPValue());
+                }
+                smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                  if(configParmeterFacade.getparameter("smtp_port").getEncryption()==1){
+                smtp_port=Encryption.decrypt(configParmeterFacade.getparameter("smtp_port").getPValue());
+                } 
+                smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                   if(configParmeterFacade.getparameter("smtp_TLS").getEncryption()==1){
+                smtp_TLS=Integer.parseInt(Encryption.decrypt(configParmeterFacade.getparameter("smtp_TLS").getPValue()));
+                }
+                FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                  if(configParmeterFacade.getparameter("FTP_server").getEncryption()==1){
+                FTP_server=Encryption.decrypt(configParmeterFacade.getparameter("FTP_server").getPValue());
+                }
+                FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                   if(configParmeterFacade.getparameter("FTP_port").getEncryption()==1){
+                FTP_port=Encryption.decrypt(configParmeterFacade.getparameter("FTP_port").getPValue());
+                }
+                FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                   if(configParmeterFacade.getparameter("FTP_user").getEncryption()==1){
+                FTP_user=Encryption.decrypt(configParmeterFacade.getparameter("FTP_user").getPValue());
+                }
+                FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                  if(configParmeterFacade.getparameter("FTP_pass").getEncryption()==1){
+                FTP_pass=Encryption.decrypt(configParmeterFacade.getparameter("FTP_pass").getPValue());
+                }
+                FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
+                         if(configParmeterFacade.getparameter("FTP_APP_DIR").getEncryption()==1){
+                FTP_APP_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_APP_DIR").getPValue());
+                }
+>>>>>>> d7d730de1d1aceb5dd3634a4b6a1bb7e6b874a60
                         //ahmed.ibraheem
                         // Load All Rolls
                         groupsHasUsers = groupsHasUserFacade.find_groups_by_user(u1);

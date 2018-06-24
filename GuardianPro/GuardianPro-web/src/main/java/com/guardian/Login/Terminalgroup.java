@@ -13,7 +13,6 @@ import Entities.ApplicationGroup;
 import Entities.ApplicationHasGroup;
 import Entities.Application_;
 import Entities.EmailLog;
-import Entities.FtpLog;
 
 import Entities.GroupHasParameter;
 import Entities.Parameter;
@@ -33,7 +32,6 @@ import Facades.AccessoryHasGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
 import Facades.ApplicationHasGroupFacadeLocal;
 import Facades.EmailLogFacadeLocal;
-import Facades.FtpLogFacadeLocal;
 import Facades.FtpMessagesFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
@@ -104,8 +102,7 @@ public class Terminalgroup {
     @EJB
     private FtpMessagesFacadeLocal ftpMessagesFacade;
 
-    @EJB
-    private FtpLogFacadeLocal ftpLogFacade;
+   
     
     
 
@@ -1834,7 +1831,7 @@ public String onFlowProcess(FlowEvent event) {
     }
     
     
-  public void email(String text,String subject){
+  public  void email(String text,String subject){
          Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
                 email.setEhost(Login.smtp_host);

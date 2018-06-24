@@ -40,6 +40,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ConfigParmeter.findByUpdateDate", query = "SELECT c FROM ConfigParmeter c WHERE c.updateDate = :updateDate"),
     @NamedQuery(name = "ConfigParmeter.findMsgFormateParameter", query = "SELECT c FROM ConfigParmeter c WHERE c.parameter IN :parameterNames")})
 public class ConfigParmeter implements Serializable {
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Encryption", nullable = false)
+    private int encryption;
     /*start mohammed.ayad 8/6/2018*/
     public static final String NAMED_QUERY_FIND_BY_PARAMETER="ConfigParmeter.findByParameter";
     public static final String NAMED_QUERY_FIND_MSG_FORMATE_PARAMETER="ConfigParmeter.findMsgFormateParameter";
@@ -161,6 +166,14 @@ public class ConfigParmeter implements Serializable {
 
     public void setUserID(User userID) {
         this.userID = userID;
+    }
+
+    public int getEncryption() {
+        return encryption;
+    }
+
+    public void setEncryption(int encryption) {
+        this.encryption = encryption;
     }
     
 }

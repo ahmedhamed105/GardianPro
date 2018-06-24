@@ -4,10 +4,11 @@
  */
 package com.timer.schedual;
 
+import Email.Encryption;
+import Email.FTPLog;
 import Entities.AccessoryHasGroup;
 import Entities.ApplicationHasGroup;
 import Entities.EmailLog;
-import Entities.FtpLog;
 import Entities.ParameterValues;
 import Entities.Pgchild;
 import Entities.TerminalHasParts;
@@ -22,7 +23,6 @@ import Facades.ApplicationGroupFacadeLocal;
 import Facades.ApplicationHasGroupFacadeLocal;
 import Facades.ConfigParmeterFacadeLocal;
 import Facades.EmailLogFacadeLocal;
-import Facades.FtpLogFacadeLocal;
 import Facades.FtpMessagesFacadeLocal;
 import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
@@ -64,6 +64,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.net.ftp.FTPClient;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -123,8 +124,7 @@ public class BusinessTimer {
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
     @EJB
     private FtpMessagesFacadeLocal ftpMessagesFacade;
-    @EJB
-    private FtpLogFacadeLocal ftpLogFacade;
+
     @EJB
     private EmailLogFacadeLocal emailLogFacade;
      @EJB
@@ -154,6 +154,7 @@ public class BusinessTimer {
                 static String FTP_LOCAL_DIR = "C:\\"; 
                 static String FTP_XML_Live_DIR = "\\POS\\"; 
                 static User login;
+                static FTPClient ftpclien;
                 
                 
    List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
@@ -165,31 +166,76 @@ public class BusinessTimer {
         System.out.println("XML Executing ...");
         
             smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+              if(configParmeterFacade.getparameter("smtp_host").getEncryption()==1){
+                smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_host").getPValue());
+                }
 		smtp_from=configParmeterFacade.getparameter("smtp_from").getPValue();//from account
+                if(configParmeterFacade.getparameter("smtp_from").getEncryption()==1){
+                smtp_from=Encryption.decrypt(configParmeterFacade.getparameter("smtp_from").getPValue());
+                }
 		smtp_password=configParmeterFacade.getparameter("smtp_password").getPValue();     //password from account
-		smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+		 if(configParmeterFacade.getparameter("smtp_password").getEncryption()==1){
+                smtp_password=Encryption.decrypt(configParmeterFacade.getparameter("smtp_password").getPValue());
+                }
+                smtp_to=configParmeterFacade.getparameter("smtp_to").getPValue();//recipient account
+                 if(configParmeterFacade.getparameter("smtp_to").getEncryption()==1){
+                smtp_to=Encryption.decrypt(configParmeterFacade.getparameter("smtp_to").getPValue());
+                }
                 smtp_port=configParmeterFacade.getparameter("smtp_port").getPValue();//recipient account
+                 if(configParmeterFacade.getparameter("smtp_port").getEncryption()==1){
+                smtp_port=Encryption.decrypt(configParmeterFacade.getparameter("smtp_port").getPValue());
+                }
                 smtp_TLS=Integer.parseInt(configParmeterFacade.getparameter("smtp_TLS").getPValue());//recipient account
+                 if(configParmeterFacade.getparameter("smtp_TLS").getEncryption()==1){
+                smtp_TLS=Integer.parseInt(Encryption.decrypt(configParmeterFacade.getparameter("smtp_TLS").getPValue()));
+                }
                 FTP_server = configParmeterFacade.getparameter("FTP_server").getPValue();
+                 if(configParmeterFacade.getparameter("FTP_server").getEncryption()==1){
+                FTP_server=Encryption.decrypt(configParmeterFacade.getparameter("FTP_server").getPValue());
+                }
                 FTP_port = configParmeterFacade.getparameter("FTP_port").getPValue();
+                 if(configParmeterFacade.getparameter("FTP_port").getEncryption()==1){
+                FTP_port=Encryption.decrypt(configParmeterFacade.getparameter("FTP_port").getPValue());
+                }
                 FTP_user = configParmeterFacade.getparameter("FTP_user").getPValue();
+                 if(configParmeterFacade.getparameter("FTP_user").getEncryption()==1){
+                FTP_user=Encryption.decrypt(configParmeterFacade.getparameter("FTP_user").getPValue());
+                }
                 FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();  
+                 if(configParmeterFacade.getparameter("FTP_pass").getEncryption()==1){
+                FTP_pass=Encryption.decrypt(configParmeterFacade.getparameter("FTP_pass").getPValue());
+                }
                 FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue(); 
-                
+                 if(configParmeterFacade.getparameter("FTP_APP_DIR").getEncryption()==1){
+                FTP_APP_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_APP_DIR").getPValue());
+                }
                 FTP_APP_Live_DIR = configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue(); 
+                 if(configParmeterFacade.getparameter("FTP_APP_Live_DIR").getEncryption()==1){
+                FTP_APP_Live_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_APP_Live_DIR").getPValue());
+                }
                 FTP_LOCAL_DIR = configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue(); 
+                 if(configParmeterFacade.getparameter("FTP_LOCAL_DIR").getEncryption()==1){
+                FTP_LOCAL_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_LOCAL_DIR").getPValue());
+                }
                 FTP_XML_Live_DIR = configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue(); 
-                
+                if(configParmeterFacade.getparameter("FTP_XML_Live_DIR").getEncryption()==1){
+                FTP_XML_Live_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue());
+                } 
                 
                 System.out.println("FTP_user "+FTP_user);
                 System.out.println("FTP_pass "+FTP_pass);
+                
+                
+             
         
          groupHasTerminal=tgroupHasTerminalFacade.findAll();
          System.out.println("groupHasTerminal "+groupHasTerminal);
             for(TgroupHasTerminal d:groupHasTerminal){
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
-                        
+                   
+                      if(openftp()){
+           
                     String XMLfilename = null ;
                     int XMLlength=1;
                     String DLLfilename = null ;
@@ -258,6 +304,13 @@ public class BusinessTimer {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                
+                   if(!closeftp())
+                      email("FTP ERROR","username or password is Wrong");
+                
+               }else{
+               email("FTP ERROR","username or password is Wrong");
+   }
                
                }else if(d.getTerminalID().getTerminalstatusID().getId()== 2){
                    
@@ -267,27 +320,83 @@ public class BusinessTimer {
                     
                     if (date2.before(now) && date1.after(now)) {
                         
-
-                    
- try {
-      
+   if(openftp()){
+           
+                    String XMLfilename = null ;
+                    int XMLlength=1;
+                    String DLLfilename = null ;
+                     String APPfilename = null ;
+                try {
+        List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
+        System.out.println("TgroupHasGparameter "+ gp);
+       for(TgroupHasGparameter f:gp){
+           System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
+        if(f.getXMLupdate()==1){
         String xmlFilecontent =getXML(d);
-    deletedir(d);
-    createdir(d);
-    String filename =   getxmlfilename(d, xmlFilecontent);
-    File f=new  File(FTP_LOCAL_DIR+filename);
-    FileUtils.write(f, xmlFilecontent);
-    saveXML(d,filename);
-    String DLLfilename = getdllfilename(d);
-    String DLLcontent=getDLL(d, filename, (int) f.length());
+        deletedir(d);
+        createdir(d);
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
+         f.setFilename(XMLfilename);
+         f.setXMLupdate(0); 
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+          f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+       FileUtils.write(f1, xmlFilecontent);
+        saveXML(d,XMLfilename);
+        break;
+        }else{
+        XMLfilename = f.getFilename();
+        XMLlength=f.getFileLength();
+        }
+       }
+       
+       if(XMLfilename !=null ){
+           if(d.getXMLupdate()==1){
+            DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
     FileUtils.write(f1, DLLcontent);
     saveDLL(d, DLLfilename);
-    saveapp(d);
-     
+     d.setDLLname(DLLfilename);
+         d.setXMLupdate(0);
+         tgroupHasTerminalFacade.edit(d);  
+         break;
+           }else{
+          DLLfilename=d.getDLLname();
+           }
+ 
+       
+       
+        
+       }
+       
+       
+       if(XMLfilename !=null && DLLfilename !=null){
+             List<TgroupHasSoftware> ss=tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
+       for(TgroupHasSoftware f:ss){
+           if(f.getXMLupdate()==1){
+            saveapp(d);
+            APPfilename= f.getAPPname();
+             break;
+           }else{
+           APPfilename=f.getAPPname();
+           }
+       }
+      
+       }
+        
+        
+                  
                 } catch (Exception e) {
-                    e.printStackTrace();
+                     email("FTP Exporting","XML exporting");
                 }
+                
+                if(!closeftp())
+                      email("FTP ERROR","username or password is Wrong");
+                
+               }else{
+               email("FTP ERROR","username or password is Wrong");
+   }
   
   
                     }else{
@@ -318,12 +427,42 @@ public class BusinessTimer {
    
     }
     
+    
+      public boolean openftp(){
+           Date now = new Date();
+           FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);    
+        ftp.setServerip(FTP_server);
+        ftp.setFpassword(FTP_pass);
+        ftp.setLocalDIR("//");
+        ftp.setFilename("");
+        ftp.setFtpDir("");
+        ftp.setUpdateDate(now);
+        ftp.setCreateDate(now);
+        ftp.setUserID(login);
+        
+        ftpclien=ftpMessagesFacade.Ftp_open(ftp);
+        
+      if(ftpclien == null)
+      return false;
+      else
+      return true; 
+      
+      }
+      
+      
+       public boolean closeftp(){     
+        return  ftpMessagesFacade.Ftp_Close(ftpclien,login);
+  
+      }
+    
     public boolean deletedir(TgroupHasTerminal d){
          Date now = new Date();
-          FtpLog ftp=new FtpLog();
+          FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);    
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename("");
@@ -331,8 +470,7 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,3);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,3,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -345,10 +483,10 @@ public class BusinessTimer {
     }
     public boolean createdir(TgroupHasTerminal d){
          Date now = new Date();
-          FtpLog ftp=new FtpLog();
+         FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename("");
@@ -356,16 +494,15 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return false;
         }else{
-           ftp=new FtpLog();
+             ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename("");
@@ -373,8 +510,7 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-         ftp_S=ftpMessagesFacade.Ftp_action(ftp,2);
+            ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -391,10 +527,11 @@ public class BusinessTimer {
     
     public boolean saveXML(TgroupHasTerminal d,String filename){
          Date now = new Date();
-          FtpLog ftp=new FtpLog();
+         FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
@@ -402,16 +539,17 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7);
+      
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return false;
         }else{
-           ftp=new FtpLog();
+            ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+   
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
@@ -419,8 +557,8 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-         ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+ 
+        ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -436,10 +574,11 @@ public class BusinessTimer {
     
      public boolean saveDLL(TgroupHasTerminal d,String filename){
          Date now = new Date();
-          FtpLog ftp=new FtpLog();
+        FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
@@ -447,16 +586,17 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7);
+    
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return false;
         }else{
-           ftp=new FtpLog();
+           ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+ 
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
@@ -464,8 +604,8 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-         ftp_S=ftpMessagesFacade.Ftp_action(ftp,1);
+     
+         ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -481,10 +621,11 @@ public class BusinessTimer {
     
         public boolean deletefile(String filename){
          Date now = new Date();
-          FtpLog ftp=new FtpLog();
+         FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename(filename);
@@ -492,8 +633,8 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,4);
+     
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,4,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -524,10 +665,11 @@ public class BusinessTimer {
           
                             appnames.append(app.getApplicationID().getFilename()+";");
             deletefile(app.getApplicationID().getFilename());         
-         FtpLog ftp=new FtpLog();
+           FTPLog ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+ 
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename(app.getApplicationID().getFilename());
@@ -535,16 +677,17 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,5);
+    
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,5,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
         }else{
         System.out.println("Not Store file "+ftp_S);
-        ftp=new FtpLog();
+        ftp=new FTPLog();
+        ftp.setfPort(FTP_port);
+        ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
-        ftp.setFPort(FTP_port);
-        ftp.setFUsername(FTP_user);
+     
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_APP_Live_DIR);
         ftp.setFilename(app.getApplicationID().getFilename());
@@ -552,8 +695,8 @@ public class BusinessTimer {
         ftp.setUpdateDate(now);
         ftp.setCreateDate(now);
         ftp.setUserID(login);
-        ftpLogFacade.create(ftp);
-        ftp_S=ftpMessagesFacade.Ftp_action(ftp,6);
+ 
+        ftp_S=ftpMessagesFacade.Ftp_action(ftp,6,ftpclien);
         if(ftp_S){
         System.out.println("file copy tpm app Live "+ftp_S);
         }else{

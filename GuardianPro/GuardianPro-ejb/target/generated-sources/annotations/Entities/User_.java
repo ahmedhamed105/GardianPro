@@ -9,7 +9,7 @@ import Entities.ConfigEmail;
 import Entities.ConfigParmeter;
 import Entities.EmailLog;
 import Entities.EmailSmsSend;
-import Entities.FtpLog;
+import Entities.FtpMessages;
 import Entities.GroupsHasUser;
 import Entities.LogScreen;
 import Entities.LoginWay;
@@ -34,7 +34,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-21T11:09:26")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-24T11:09:07")
 @StaticMetamodel(User.class)
 public class User_ { 
 
@@ -44,7 +44,6 @@ public class User_ {
     public static volatile CollectionAttribute<User, PhoneData> phoneDataCollection;
     public static volatile CollectionAttribute<User, Reports> reportsCollection;
     public static volatile CollectionAttribute<User, SocialData> socialDataCollection;
-    public static volatile CollectionAttribute<User, FtpLog> ftpLogCollection;
     public static volatile CollectionAttribute<User, TerminalGroup> terminalGroupCollection;
     public static volatile CollectionAttribute<User, AccessoryGroup> accessoryGroupCollection;
     public static volatile CollectionAttribute<User, ActionBar> actionBarCollection;
@@ -57,6 +56,7 @@ public class User_ {
     public static volatile SingularAttribute<User, Date> createDate;
     public static volatile SingularAttribute<User, UserPassword> userPasswordID;
     public static volatile CollectionAttribute<User, LoginWay> loginWayCollection;
+    public static volatile CollectionAttribute<User, FtpMessages> ftpMessagesCollection;
     public static volatile CollectionAttribute<User, ConfigEmail> configEmailCollection;
     public static volatile CollectionAttribute<User, EmailLog> emailLogCollection;
     public static volatile SingularAttribute<User, String> middlename;

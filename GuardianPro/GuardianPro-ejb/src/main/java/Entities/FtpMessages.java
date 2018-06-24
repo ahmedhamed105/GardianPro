@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "FtpMessages.findAll", query = "SELECT f FROM FtpMessages f"),
     @NamedQuery(name = "FtpMessages.findById", query = "SELECT f FROM FtpMessages f WHERE f.id = :id"),
     @NamedQuery(name = "FtpMessages.findByFmessages", query = "SELECT f FROM FtpMessages f WHERE f.fmessages = :fmessages"),
-    @NamedQuery(name = "FtpMessages.findByCreateDate", query = "SELECT f FROM FtpMessages f WHERE f.createDate = :createDate")})
+    @NamedQuery(name = "FtpMessages.findByCreateDate", query = "SELECT f FROM FtpMessages f WHERE f.createDate = :createDate"),
+    @NamedQuery(name = "FtpMessages.findByFTPLogID", query = "SELECT f FROM FtpMessages f WHERE f.fTPLogID = :fTPLogID")})
 public class FtpMessages implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,9 +55,13 @@ public class FtpMessages implements Serializable {
     @Column(name = "create_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
-    @JoinColumn(name = "FTP_Log_ID", referencedColumnName = "ID", nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "FTP_Log_ID", nullable = false)
+    private int fTPLogID;
+    @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
-    private FtpLog fTPLogID;
+    private User userID;
 
     public FtpMessages() {
     }
@@ -65,10 +70,11 @@ public class FtpMessages implements Serializable {
         this.id = id;
     }
 
-    public FtpMessages(Integer id, String fmessages, Date createDate) {
+    public FtpMessages(Integer id, String fmessages, Date createDate, int fTPLogID) {
         this.id = id;
         this.fmessages = fmessages;
         this.createDate = createDate;
+        this.fTPLogID = fTPLogID;
     }
 
     public Integer getId() {
@@ -95,12 +101,20 @@ public class FtpMessages implements Serializable {
         this.createDate = createDate;
     }
 
-    public FtpLog getFTPLogID() {
+    public int getFTPLogID() {
         return fTPLogID;
     }
 
-    public void setFTPLogID(FtpLog fTPLogID) {
+    public void setFTPLogID(int fTPLogID) {
         this.fTPLogID = fTPLogID;
+    }
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
     }
 
     @Override
