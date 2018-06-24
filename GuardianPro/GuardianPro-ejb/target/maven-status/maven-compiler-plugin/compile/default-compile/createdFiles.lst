@@ -179,6 +179,7 @@ Facades\ArmyAreaFacadeLocal.class
 Facades\SocialTypeFacade.class
 Facades\AccessoryFacade.class
 Facades\ReportsFacade.class
+Email\Encryption.class
 Entities\Pages.class
 Entities\Role_.class
 Facades\LoginTypeFacade.class

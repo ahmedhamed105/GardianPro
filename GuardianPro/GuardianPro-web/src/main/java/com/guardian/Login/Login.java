@@ -70,7 +70,7 @@ public class Login {
     List<Component> components = new ArrayList<Component>();
     List<RoleHasGroups> roleHasGroupses = new ArrayList<RoleHasGroups>();
     List<RoleHasComponent> roleHasComponents = new ArrayList<RoleHasComponent>();
-    List<Component> allComponent;
+    List<Component> allComponent = new ArrayList<Component>();
     Map<Component, Boolean> componentView = new HashMap<Component, Boolean>();
     Map<Component, Boolean> componentEdit = new HashMap<Component, Boolean>();
     List<Integer> componentID = new ArrayList<Integer>();
@@ -96,7 +96,7 @@ public class Login {
      * Creates a new instance of Login
      */
     public Login() {
-        loadViewEdit();
+ //       loadViewEdit();
     }
 
     public User getLogin() {
@@ -144,7 +144,7 @@ public class Login {
                         Messages.addInfoMessage("Login ok!!", 1, 5);
                         /*end mohammed.ayad*/
                         login = u1;
-<<<<<<< HEAD
+
 
                         smtp_host = configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
                         smtp_from = configParmeterFacade.getparameter("smtp_from").getPValue();//from account
@@ -158,7 +158,7 @@ public class Login {
                         FTP_pass = configParmeterFacade.getparameter("FTP_pass").getPValue();
                         FTP_APP_DIR = configParmeterFacade.getparameter("FTP_APP_DIR").getPValue();
 
-=======
+
                         
                 smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
                 if(configParmeterFacade.getparameter("smtp_host").getEncryption()==1){
@@ -204,7 +204,6 @@ public class Login {
                          if(configParmeterFacade.getparameter("FTP_APP_DIR").getEncryption()==1){
                 FTP_APP_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_APP_DIR").getPValue());
                 }
->>>>>>> d7d730de1d1aceb5dd3634a4b6a1bb7e6b874a60
                         //ahmed.ibraheem
                         // Load All Rolls
                         groupsHasUsers = groupsHasUserFacade.find_groups_by_user(u1);
@@ -375,8 +374,11 @@ public class Login {
     }
 
     public List<Component> loadViewEdit() {
-        allComponent = new ArrayList<Component>();
+       allComponent = new ArrayList<Component>();
+        System.out.println("com.guardian.Login.Login.loadViewEdit() "+componentFacade.find(1));
         allComponent = componentFacade.findAll();
+        
+         
         for (Component component : allComponent) {
             componentView.put(component, false);
             componentEdit.put(component, true);
