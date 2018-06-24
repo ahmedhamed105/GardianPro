@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "EmailHistory.findById", query = "SELECT e FROM EmailHistory e WHERE e.id = :id"),
     @NamedQuery(name = "EmailHistory.findByEmail", query = "SELECT e FROM EmailHistory e WHERE e.email = :email"),
     @NamedQuery(name = "EmailHistory.findByCreateDate", query = "SELECT e FROM EmailHistory e WHERE e.createDate = :createDate"),
-    @NamedQuery(name = "EmailHistory.findByUpdateDate", query = "SELECT e FROM EmailHistory e WHERE e.updateDate = :updateDate")})
+    @NamedQuery(name = "EmailHistory.findByUpdateDate", query = "SELECT e FROM EmailHistory e WHERE e.updateDate = :updateDate"),
+    @NamedQuery(name = "EmailHistory.findByEsendnot", query = "SELECT e FROM EmailHistory e WHERE e.esendnot = :esendnot")})
 public class EmailHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,6 +60,13 @@ public class EmailHistory implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "E_send_not", nullable = false)
+    private int esendnot;
+    @JoinColumn(name = "Config_email_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private ConfigEmail configemailID;
     @JoinColumn(name = "Email_log_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private EmailLog emaillogID;
@@ -70,10 +78,11 @@ public class EmailHistory implements Serializable {
         this.id = id;
     }
 
-    public EmailHistory(Integer id, Date createDate, Date updateDate) {
+    public EmailHistory(Integer id, Date createDate, Date updateDate, int esendnot) {
         this.id = id;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.esendnot = esendnot;
     }
 
     public Integer getId() {
@@ -106,6 +115,22 @@ public class EmailHistory implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public int getEsendnot() {
+        return esendnot;
+    }
+
+    public void setEsendnot(int esendnot) {
+        this.esendnot = esendnot;
+    }
+
+    public ConfigEmail getConfigemailID() {
+        return configemailID;
+    }
+
+    public void setConfigemailID(ConfigEmail configemailID) {
+        this.configemailID = configemailID;
     }
 
     public EmailLog getEmaillogID() {

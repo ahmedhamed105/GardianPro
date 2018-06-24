@@ -6,8 +6,10 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +42,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ConfigEmail.findByCreateDate", query = "SELECT c FROM ConfigEmail c WHERE c.createDate = :createDate"),
     @NamedQuery(name = "ConfigEmail.findByUpdateDate", query = "SELECT c FROM ConfigEmail c WHERE c.updateDate = :updateDate")})
 public class ConfigEmail implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "configemailID")
+    private Collection<EmailHistory> emailHistoryCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -142,6 +149,15 @@ public class ConfigEmail implements Serializable {
     @Override
     public String toString() {
         return "Entities.ConfigEmail[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<EmailHistory> getEmailHistoryCollection() {
+        return emailHistoryCollection;
+    }
+
+    public void setEmailHistoryCollection(Collection<EmailHistory> emailHistoryCollection) {
+        this.emailHistoryCollection = emailHistoryCollection;
     }
     
 }

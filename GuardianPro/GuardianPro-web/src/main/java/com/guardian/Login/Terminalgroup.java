@@ -1836,11 +1836,9 @@ public String onFlowProcess(FlowEvent event) {
   public  void email(String text,String subject){
          Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         	EmailLog email=new EmailLog();
-                email.setEto(Login.smtp_to);
                 email.setEsubject(text);
                 email.setEtext(subject);
                 email.setUserID(Login.login);
-                email.setEsendnot(0);
                 email.setUpdateDate(date);
                 email.setCreateDate(date);
                 emailLogFacade.create(email);

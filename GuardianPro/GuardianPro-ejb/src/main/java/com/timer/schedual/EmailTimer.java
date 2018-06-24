@@ -157,40 +157,67 @@ public class EmailTimer {
                 if(configParmeterFacade.getparameter("FTP_XML_Live_DIR").getEncryption()==1){
                 FTP_XML_Live_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue());
                 } 
+                
+                
+              Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());   
         
         
-        List<EmailLog> emails=emailLogFacade.FindALL_notsend();
+        List<EmailLog> emails=emailLogFacade.findAll();
         System.out.println("emails "+emails);
         if(emails != null){
         for(EmailLog email:emails){
             
-            
-            
-             List<ConfigEmail> senders=configEmailFacade.findAll();
-              for(ConfigEmail send:senders){
+            if(email.getPending() == 0){
+              List<ConfigEmail> senders=configEmailFacade.findAll();
+              
+              if(senders !=null){
                   
-      
-           boolean sendok = send(send.getEmail(),email.getEsubject(),email.getEtext());  
-  
-         System.out.println("send "+sendok);
-             if(sendok){
-                  Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-                  email.setEsendnot(1);
-                  email.setUpdateDate(date);
-                  emailLogFacade.edit(email);
+                    for(ConfigEmail send:senders){
+                      
                   EmailHistory history=new EmailHistory();
                   history.setEmail(send.getEmail());
                   history.setEmaillogID(email);
+                  history.setEsendnot(0);
+                  history.setConfigemailID(send);
                   history.setCreateDate(date);
                   history.setUpdateDate(date);
                   emailHistoryFacade.create(history);
-             }
               
+              }
+                    
+                       email.setPending(1);
+                  email.setUpdateDate(date);
+                  emailLogFacade.edit(email);
+              
+              }
+               
+            }
+    
+        }
+       
+        
+        
+          List<EmailHistory> Hemails=emailHistoryFacade.findAll();
+        System.out.println("emails "+Hemails);
+        if(Hemails != null){
+        for(EmailHistory email:Hemails){
+     
+            if(email.getEsendnot() == 0){
+              boolean sendok = send(email.getConfigemailID().getEmail(),email.getEmaillogID().getEsubject(),email.getEmaillogID().getEtext());  
+  
+         System.out.println("send "+sendok);
+             if(sendok){       
+                  email.setEsendnot(1);
+                  email.setUpdateDate(date);
+                  emailHistoryFacade.edit(email);
+             }
+            }
+    
               }
        
         }
+        
         }
-       
 
     }
 

@@ -38,16 +38,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "EmailLog.findAll", query = "SELECT e FROM EmailLog e"),
     @NamedQuery(name = "EmailLog.findById", query = "SELECT e FROM EmailLog e WHERE e.id = :id"),
-    @NamedQuery(name = "EmailLog.findByEto", query = "SELECT e FROM EmailLog e WHERE e.eto = :eto"),
     @NamedQuery(name = "EmailLog.findByEsubject", query = "SELECT e FROM EmailLog e WHERE e.esubject = :esubject"),
     @NamedQuery(name = "EmailLog.findByEtext", query = "SELECT e FROM EmailLog e WHERE e.etext = :etext"),
-    @NamedQuery(name = "EmailLog.findByEsendnot", query = "SELECT e FROM EmailLog e WHERE e.esendnot = :esendnot"),
     @NamedQuery(name = "EmailLog.findByCreateDate", query = "SELECT e FROM EmailLog e WHERE e.createDate = :createDate"),
     @NamedQuery(name = "EmailLog.findByUpdateDate", query = "SELECT e FROM EmailLog e WHERE e.updateDate = :updateDate")})
 public class EmailLog implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "emaillogID")
-    private Collection<EmailHistory> emailHistoryCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "Pending", nullable = false)
+    private int pending;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,11 +58,6 @@ public class EmailLog implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "E_to", nullable = false, length = 45)
-    private String eto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "E_subject", nullable = false, length = 45)
     private String esubject;
     @Basic(optional = false)
@@ -70,10 +65,6 @@ public class EmailLog implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "E_text", nullable = false, length = 45)
     private String etext;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "E_send_not", nullable = false)
-    private int esendnot;
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -87,6 +78,8 @@ public class EmailLog implements Serializable {
     @JoinColumn(name = "User_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private User userID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "emaillogID")
+    private Collection<EmailHistory> emailHistoryCollection;
 
     public EmailLog() {
     }
@@ -95,12 +88,10 @@ public class EmailLog implements Serializable {
         this.id = id;
     }
 
-    public EmailLog(Integer id, String eto, String esubject, String etext, int esendnot, Date createDate, Date updateDate) {
+    public EmailLog(Integer id, String esubject, String etext, Date createDate, Date updateDate) {
         this.id = id;
-        this.eto = eto;
         this.esubject = esubject;
         this.etext = etext;
-        this.esendnot = esendnot;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
@@ -111,14 +102,6 @@ public class EmailLog implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getEto() {
-        return eto;
-    }
-
-    public void setEto(String eto) {
-        this.eto = eto;
     }
 
     public String getEsubject() {
@@ -135,14 +118,6 @@ public class EmailLog implements Serializable {
 
     public void setEtext(String etext) {
         this.etext = etext;
-    }
-
-    public int getEsendnot() {
-        return esendnot;
-    }
-
-    public void setEsendnot(int esendnot) {
-        this.esendnot = esendnot;
     }
 
     public Date getCreateDate() {
@@ -167,6 +142,15 @@ public class EmailLog implements Serializable {
 
     public void setUserID(User userID) {
         this.userID = userID;
+    }
+
+    @XmlTransient
+    public Collection<EmailHistory> getEmailHistoryCollection() {
+        return emailHistoryCollection;
+    }
+
+    public void setEmailHistoryCollection(Collection<EmailHistory> emailHistoryCollection) {
+        this.emailHistoryCollection = emailHistoryCollection;
     }
 
     @Override
@@ -194,13 +178,12 @@ public class EmailLog implements Serializable {
         return "Entities.EmailLog[ id=" + id + " ]";
     }
 
-    @XmlTransient
-    public Collection<EmailHistory> getEmailHistoryCollection() {
-        return emailHistoryCollection;
+    public int getPending() {
+        return pending;
     }
 
-    public void setEmailHistoryCollection(Collection<EmailHistory> emailHistoryCollection) {
-        this.emailHistoryCollection = emailHistoryCollection;
+    public void setPending(int pending) {
+        this.pending = pending;
     }
     
 }
