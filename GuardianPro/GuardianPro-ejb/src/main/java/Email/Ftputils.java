@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 /**
@@ -179,6 +180,39 @@ public class Ftputils {
         val.setMessage(buf.toString());
         return val;
 }
+        
+        
+        
+            public static returnvalues deleteExistFileFolder(FTPClient ftpClient, String path) {
+        boolean dirFlag = false;
+           StringBuilder buf=new StringBuilder();
+        returnvalues val=new returnvalues();
+        try {
+            FTPFile[] subFiles = ftpClient.listFiles(path);
+            
+            for(FTPFile f:subFiles){
+             dirFlag = ftpClient.deleteFile(path+"//"+f.getName());
+                System.out.format("delete exist File: %s", path+"//"+f.getName());
+                  if (dirFlag) {
+                buf.append(" Successfully deleted file: " + path+"//"+f.getName());
+                System.out.println("Successfully deleted file: " + path+"//"+f.getName());
+            } else {
+                buf.append(" Failed to delete file. See server's reply.");
+                System.out.println("Failed to delete file. See server's reply.");
+            }
+            }
+
+            buf.append(showServerReply(ftpClient));
+          
+
+        } catch (IOException ex) {
+             buf.append(ex.getMessage());
+            System.err.println(ex);
+        }
+          val.setStatus(dirFlag);
+        val.setMessage(buf.toString());
+        return val;
+    }
     
     
      
