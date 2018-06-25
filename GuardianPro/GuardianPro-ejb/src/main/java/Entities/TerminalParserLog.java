@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TerminalParserLog.findByMode", query = "SELECT t FROM TerminalParserLog t WHERE t.mode = :mode")
     , @NamedQuery(name = "TerminalParserLog.findByErr", query = "SELECT t FROM TerminalParserLog t WHERE t.err = :err")})
 public class TerminalParserLog implements Serializable {
-
+    
+    public static final String NAMED_QUERY_FIND_BY_TID="TerminalParserLog.findByTid";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

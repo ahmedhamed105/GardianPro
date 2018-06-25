@@ -94,7 +94,11 @@ public class EmailTimer {
     
 
 
+<<<<<<< HEAD
+//    @Schedule(hour = "*", minute = "*/2", second = "*", persistent = false)
+=======
     @Schedule(hour = "*", minute = "*/10", persistent = false)
+>>>>>>> 7769c4066c4317af6967d8a93f4b99fb8d6dadca
     public void execute(Timer timer) {
 
         System.out.println("Email Executing ...");
