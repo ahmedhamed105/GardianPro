@@ -204,6 +204,16 @@ try {
             create(mes);
                 
                 }
+                else if(type == 8){
+               val=   Ftputils.deleteExistFileFolder(ftpClient,ftp.getFtpDir());
+               mes=new FtpMessages();
+       mes.setFTPLogID(8);
+        mes.setUserID(ftp.getUserID());
+        mes.setCreateDate(date);
+       mes.setFmessages(val.getMessage());
+            create(mes);
+                
+                }
                 
     return val.isStatus();
           

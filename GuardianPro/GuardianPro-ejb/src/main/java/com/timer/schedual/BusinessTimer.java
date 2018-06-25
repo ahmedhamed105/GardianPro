@@ -155,6 +155,10 @@ public class BusinessTimer {
                 static String FTP_XML_Live_DIR = "\\POS\\"; 
                 static User login;
                 static FTPClient ftpclien;
+                boolean ftp_open=false;  
+                 boolean xml_export=false;   
+                  boolean app_export=false;   
+                int ftp_status=0; 
                 
                 
    List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
@@ -224,17 +228,55 @@ public class BusinessTimer {
                 
                 System.out.println("FTP_user "+FTP_user);
                 System.out.println("FTP_pass "+FTP_pass);
+         try {
+             ftp_open =openftp();
+       } catch (Exception e) {
+            email("FTP ERROR","username or password is Wrong");
+       }
+              
+                
+                if(ftp_status == 0){
+                
+           
+                if(ftp_open){
+                    try {
+                         if(!check_exist_DIR(FTP_APP_DIR)){
+                        create_DIR_FTP(FTP_APP_DIR);
+                    }
+                    if(!check_exist_DIR(FTP_XML_Live_DIR)){
+                        create_DIR_FTP(FTP_XML_Live_DIR);
+                    }
+                    if(!check_exist_DIR(FTP_APP_Live_DIR)){
+                        create_DIR_FTP(FTP_APP_Live_DIR);
+                    }
+                    
+                    ftp_status=1;
+                    } catch (Exception e) {    
+                              email("FTP ERROR","Error to create DIR");
+                                ftp_status=0;
+                    }
+                   
+                }else{
+                 email("FTP ERROR","username or password is Wrong");
+                  ftp_status=0;
+                }
+                }
+                if(ftp_status == 1){
                 
                 
-             
+               
         
          groupHasTerminal=tgroupHasTerminalFacade.findAll();
-         System.out.println("groupHasTerminal "+groupHasTerminal);
+       //  System.out.println("groupHasTerminal "+groupHasTerminal);
+                    if (groupHasTerminal !=null) {
+                        
+                 
+       
             for(TgroupHasTerminal d:groupHasTerminal){
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
                    
-                      if(openftp()){
+                      if(ftp_open){
            
                     String XMLfilename = null ;
                     int XMLlength=1;
@@ -242,46 +284,45 @@ public class BusinessTimer {
                      String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
-        System.out.println("TgroupHasGparameter "+ gp);
+      List<TgroupHasGparameter> update_gb=new ArrayList<>();
+
+//  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
-           System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
+         //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
-        String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
-         XMLfilename = getxmlfilename(d, xmlFilecontent);
-         f.setFilename(XMLfilename);
-         f.setXMLupdate(0); 
-        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
-          f.setFileLength((int) f1.length());
-         tgroupHasGparameterFacade.edit(f);
-       FileUtils.write(f1, xmlFilecontent);
-        saveXML(d,XMLfilename);
-        break;
+            xml_export=true;   
+        update_gb.add(f);
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
         }
        }
        
-       if(XMLfilename !=null ){
-           if(d.getXMLupdate()==1){
-            DLLfilename = getdllfilename(d);
-    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
-    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
-    FileUtils.write(f1, DLLcontent);
-    saveDLL(d, DLLfilename);
-     d.setDLLname(DLLfilename);
-         d.setXMLupdate(0);
-         tgroupHasTerminalFacade.edit(d);  
-         break;
-           }else{
-          DLLfilename=d.getDLLname();
-           }
- 
-       
-       
+       if(xml_export){
+             String xmlFilecontent =getXML(d);
+            if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                System.out.println("Create XML DIR");
+                        createdir(d);
+            }else{
+                 System.out.println("Delete XML DIR");
+                deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
+            }
+     
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+         FileUtils.write(f1, xmlFilecontent);
+         
+            for(TgroupHasGparameter f:update_gb){
+             f.setFilename(XMLfilename);
+             f.setXMLupdate(0); 
+             f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+            }
+      
+        saveXML(d,XMLfilename);
         
+          update_gb.clear();
+          
        }
        
        
@@ -290,6 +331,7 @@ public class BusinessTimer {
        for(TgroupHasSoftware f:ss){
            if(f.getXMLupdate()==1){
             saveapp(d);
+            app_export=true;
             APPfilename= f.getAPPname();
              break;
            }else{
@@ -298,19 +340,41 @@ public class BusinessTimer {
        }
       
        }
+       
+         if(XMLfilename !=null ){
+           if(xml_export || app_export){
+            DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
+    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
+    FileUtils.write(f1, DLLcontent);
+    saveDLL(d, DLLfilename);
+     d.setDLLname(DLLfilename);
+         d.setXMLupdate(0);
+         tgroupHasTerminalFacade.edit(d);  
+          xml_export=false;
+          app_export=false;
+         break;
+           }else{
+          DLLfilename=d.getDLLname();
+           }
+        
+       }
         
         
                   
                 } catch (Exception e) {
                     e.printStackTrace();
+                    email("FTP Exporting","XML exporting ERROR :  "+e.getMessage());
                 }
                 
                    if(!closeftp())
-                      email("FTP ERROR","username or password is Wrong");
+                      email("FTP ERROR","FTP disconnect Error");
+                   
+                     ftp_open=false;
                 
                }else{
                email("FTP ERROR","username or password is Wrong");
-   }
+                    }
                
                }else if(d.getTerminalID().getTerminalstatusID().getId()== 2){
                    
@@ -320,7 +384,7 @@ public class BusinessTimer {
                     
                     if (date2.before(now) && date1.after(now)) {
                         
-   if(openftp()){
+   if(ftp_open){
            
                     String XMLfilename = null ;
                     int XMLlength=1;
@@ -328,26 +392,42 @@ public class BusinessTimer {
                      String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
-        System.out.println("TgroupHasGparameter "+ gp);
+     List<TgroupHasGparameter> update_gb=new ArrayList<>();
+
+//  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
-           System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
+         //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
-        String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
-         XMLfilename = getxmlfilename(d, xmlFilecontent);
-         f.setFilename(XMLfilename);
-         f.setXMLupdate(0); 
-        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
-          f.setFileLength((int) f1.length());
-         tgroupHasGparameterFacade.edit(f);
-       FileUtils.write(f1, xmlFilecontent);
-        saveXML(d,XMLfilename);
-        break;
+            xml_export=true;   
+             update_gb.add(f);
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
         }
+       }
+       
+       if(xml_export){
+             String xmlFilecontent =getXML(d);
+              if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                        createdir(d);
+            }else{
+                deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
+            }
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+         FileUtils.write(f1, xmlFilecontent);
+         
+            for(TgroupHasGparameter f:update_gb){
+             f.setFilename(XMLfilename);
+             f.setXMLupdate(0); 
+             f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+            }
+      
+        saveXML(d,XMLfilename);
+        
+        update_gb.clear();
+           xml_export=false;
        }
        
        if(XMLfilename !=null ){
@@ -388,11 +468,14 @@ public class BusinessTimer {
         
                   
                 } catch (Exception e) {
-                     email("FTP Exporting","XML exporting");
+                      e.printStackTrace();
+                     email("FTP Exporting","XML exporting ERROR :  "+e.getMessage());
                 }
                 
                 if(!closeftp())
-                      email("FTP ERROR","username or password is Wrong");
+                      email("FTP ERROR","FTP disconnect Error");
+                
+                ftp_open=false;
                 
                }else{
                email("FTP ERROR","username or password is Wrong");
@@ -406,11 +489,12 @@ public class BusinessTimer {
                
                }
                 
-                
-               
+                 }
+                  
            
             }
-        
+            
+             }
 
         System.out.println("Execution Time : " + new Date());
      
@@ -456,21 +540,13 @@ public class BusinessTimer {
         return  ftpMessagesFacade.Ftp_Close(ftpclien,login);
   
       }
-    
-    public boolean deletedir(TgroupHasTerminal d){
+       
+        public boolean deleteALLfilesdir(String DIR){
          Date now = new Date();
           FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);    
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
+        ftp.setFtpDir(DIR);
         ftp.setUserID(login);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,3,ftpclien);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,8,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
@@ -481,44 +557,20 @@ public class BusinessTimer {
     
  
     }
+    
+  
     public boolean createdir(TgroupHasTerminal d){
-         Date now = new Date();
-         FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
+       
+        FTPLog  ftp=new FTPLog();
+        ftp.setFtpDir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
         ftp.setUserID(login);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-          return false;
-        }else{
-             ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
-        ftp.setUserID(login);
-            ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
+        boolean    ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
         }else{
         return false;
-        
-        }
-        
+
         }
     
  
@@ -526,46 +578,20 @@ public class BusinessTimer {
     
     
     public boolean saveXML(TgroupHasTerminal d,String filename){
-         Date now = new Date();
+        
          FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-
-        ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//"+filename);
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
-        ftp.setUserID(login);
-      
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-          return false;
-        }else{
-            ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-   
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR(FTP_LOCAL_DIR);
-        ftp.setFilename(filename);
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//");
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
+        ftp.setFtpDir(FTP_XML_Live_DIR+d.getTerminalID().getTid()+"\\");
         ftp.setUserID(login);
  
-        ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
+       boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
         }else{
         return false;
-        
-        }
+   
         
         }
     
@@ -669,7 +695,6 @@ public class BusinessTimer {
         ftp.setfPort(FTP_port);
         ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
- 
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename(app.getApplicationID().getFilename());
@@ -1266,4 +1291,36 @@ public class BusinessTimer {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+      
+      
+        public  boolean check_exist_DIR(String DirPath){
+        
+        FTPLog ftp=new FTPLog();
+        ftp.setFtpDir(DirPath);
+         ftp.setUserID(login);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
+        if(ftp_S){
+          return false;
+        }else{
+         return true;
+        }
+        
+        }
+        
+        
+         public  boolean create_DIR_FTP(String DirPath){
+        
+          FTPLog  ftp=new FTPLog();
+        ftp.setFtpDir(DirPath);
+        ftp.setUserID(login);
+         boolean  ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
+        if(ftp_S){
+          return true;
+        }else{
+        return false;
+        
+        }
+        
+        }
+      
 }

@@ -100,7 +100,7 @@
                                             <br/>
                                             <p:commandButton class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form111:GroupTerminal"  action="#{terminalgroup.Addgroup(actionEvent)}"
                                                              rendered="#{login.isViewed('terminalgroup_edit_submit')}"
-                                                             disabled="#{login.isViewed('terminalgroup_edit_submit')}"
+                                                             disabled="#{login.isEdit('terminalgroup_edit_submit')}"
                                                              />  
 
 
