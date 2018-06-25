@@ -1,6 +1,0 @@
-#surefire
-#Mon Jun 25 14:30:24 EET 2018
-maven.ext.class.path=C\:\\Program Files (x86)\\NetBeans 8.1\\java\\maven-nblib\\netbeans-eventspy.jar
-user.dir=D\:\\GuadianPro\\Core\\GardianPro\\GuardianPro\\GuardianPro-web
-localRepository=C\:\\Users\\ahmed.elemam\\.m2\\repository
-basedir=D\:\\GuadianPro\\Core\\GardianPro\\GuardianPro\\GuardianPro-web
