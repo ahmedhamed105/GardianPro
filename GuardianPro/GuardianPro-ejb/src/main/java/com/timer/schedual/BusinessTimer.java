@@ -155,7 +155,8 @@ public class BusinessTimer {
                 static String FTP_XML_Live_DIR = "\\POS\\"; 
                 static User login;
                 static FTPClient ftpclien;
-                boolean ftp_open=false;   
+                boolean ftp_open=false;  
+                 boolean xml_export=false;   
                 int ftp_status=0; 
                 
                 
@@ -278,26 +279,39 @@ public class BusinessTimer {
                      String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
-      //  System.out.println("TgroupHasGparameter "+ gp);
+      List<TgroupHasGparameter> update_gb=new ArrayList<>();
+
+//  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
          //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
-        String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
-         XMLfilename = getxmlfilename(d, xmlFilecontent);
-         f.setFilename(XMLfilename);
-         f.setXMLupdate(0); 
-        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
-          f.setFileLength((int) f1.length());
-         tgroupHasGparameterFacade.edit(f);
-       FileUtils.write(f1, xmlFilecontent);
-        saveXML(d,XMLfilename);
+            xml_export=true;   
         break;
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
         }
+       }
+       
+       if(xml_export){
+             String xmlFilecontent =getXML(d);
+        deletedir(d);
+        createdir(d);
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+         FileUtils.write(f1, xmlFilecontent);
+         
+            for(TgroupHasGparameter f:update_gb){
+             f.setFilename(XMLfilename);
+             f.setXMLupdate(0); 
+             f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+            }
+      
+        saveXML(d,XMLfilename);
+        
+          update_gb.clear();
+           xml_export=false;
        }
        
        if(XMLfilename !=null ){
@@ -367,26 +381,38 @@ public class BusinessTimer {
                      String APPfilename = null ;
                 try {
         List<TgroupHasGparameter> gp=tgroupHasGparameterFacade.find_term_groups(d.getTerminalGroupID());
-        System.out.println("TgroupHasGparameter "+ gp);
+     List<TgroupHasGparameter> update_gb=new ArrayList<>();
+
+//  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
-           System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
+         //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
-        String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
-         XMLfilename = getxmlfilename(d, xmlFilecontent);
-         f.setFilename(XMLfilename);
-         f.setXMLupdate(0); 
-        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
-          f.setFileLength((int) f1.length());
-         tgroupHasGparameterFacade.edit(f);
-       FileUtils.write(f1, xmlFilecontent);
-        saveXML(d,XMLfilename);
-        break;
+            xml_export=true;   
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
         }
+       }
+       
+       if(xml_export){
+             String xmlFilecontent =getXML(d);
+        deletedir(d);
+        createdir(d);
+         XMLfilename = getxmlfilename(d, xmlFilecontent);
+        File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
+         FileUtils.write(f1, xmlFilecontent);
+         
+            for(TgroupHasGparameter f:update_gb){
+             f.setFilename(XMLfilename);
+             f.setXMLupdate(0); 
+             f.setFileLength((int) f1.length());
+         tgroupHasGparameterFacade.edit(f);
+            }
+      
+        saveXML(d,XMLfilename);
+        
+        update_gb.clear();
+           xml_export=false;
        }
        
        if(XMLfilename !=null ){
