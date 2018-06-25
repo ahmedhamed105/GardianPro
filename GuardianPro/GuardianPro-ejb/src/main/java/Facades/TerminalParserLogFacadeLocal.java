@@ -36,5 +36,6 @@ public interface TerminalParserLogFacadeLocal {
 
     public ConfigParmeter loadTimerParserParametes(String parameterName,String parameterValue);
     public void refresh(ConfigParmeter configParmeter);
+    public boolean isTerminalLogExist(String terminalTid);
 
 }

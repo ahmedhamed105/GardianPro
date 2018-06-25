@@ -60,4 +60,16 @@ public class TerminalParserLogFacade extends AbstractFacade<TerminalParserLog> i
     public void refresh(ConfigParmeter configParmeter) {
         em.refresh(configParmeter);
     }
+
+    @Override
+    public boolean isTerminalLogExist(String terminalTid) {
+        try {
+            TypedQuery<TerminalParserLog> query = em.createNamedQuery(TerminalParserLog.NAMED_QUERY_FIND_BY_TID, TerminalParserLog.class);
+            query.setParameter("tid", terminalTid);
+            TerminalParserLog result = query.getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }
