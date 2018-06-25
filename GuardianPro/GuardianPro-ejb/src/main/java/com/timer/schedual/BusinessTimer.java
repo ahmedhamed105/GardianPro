@@ -295,8 +295,12 @@ public class BusinessTimer {
        
        if(xml_export){
              String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
+            if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                        createdir(d);
+            }else{
+                deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
+            }
+     
          XMLfilename = getxmlfilename(d, xmlFilecontent);
         File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
          FileUtils.write(f1, xmlFilecontent);
@@ -396,8 +400,11 @@ public class BusinessTimer {
        
        if(xml_export){
              String xmlFilecontent =getXML(d);
-        deletedir(d);
-        createdir(d);
+              if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                        createdir(d);
+            }else{
+                deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
+            }
          XMLfilename = getxmlfilename(d, xmlFilecontent);
         File f1=new  File(FTP_LOCAL_DIR+XMLfilename);
          FileUtils.write(f1, xmlFilecontent);
@@ -525,6 +532,23 @@ public class BusinessTimer {
         return  ftpMessagesFacade.Ftp_Close(ftpclien,login);
   
       }
+       
+        public boolean deleteALLfilesdir(String DIR){
+         Date now = new Date();
+          FTPLog ftp=new FTPLog();
+        ftp.setFtpDir(DIR);
+        ftp.setUserID(login);
+        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,8,ftpclien);
+        if(ftp_S){
+        System.out.println("Store file "+ftp_S);
+          return true;
+        }else{
+        return false;
+        }
+        
+    
+ 
+    }
     
     public boolean deletedir(TgroupHasTerminal d){
          Date now = new Date();
@@ -738,7 +762,6 @@ public class BusinessTimer {
         ftp.setfPort(FTP_port);
         ftp.setfUsername(FTP_user);
         ftp.setServerip(FTP_server);
- 
         ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR("//");
         ftp.setFilename(app.getApplicationID().getFilename());
@@ -1341,7 +1364,7 @@ public class BusinessTimer {
         
         FTPLog ftp=new FTPLog();
         ftp.setFtpDir(DirPath);
-    
+         ftp.setUserID(login);
         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
           return true;
@@ -1356,7 +1379,7 @@ public class BusinessTimer {
         
           FTPLog  ftp=new FTPLog();
         ftp.setFtpDir(DirPath);
- 
+        ftp.setUserID(login);
          boolean  ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
         if(ftp_S){
           return true;
