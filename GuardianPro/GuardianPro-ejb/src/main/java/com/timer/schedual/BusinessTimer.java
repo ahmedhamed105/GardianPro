@@ -227,8 +227,12 @@ public class BusinessTimer {
                 
                 System.out.println("FTP_user "+FTP_user);
                 System.out.println("FTP_pass "+FTP_pass);
-         
-                ftp_open =openftp();
+         try {
+             ftp_open =openftp();
+       } catch (Exception e) {
+            email("FTP ERROR","username or password is Wrong");
+       }
+              
                 
                 if(ftp_status == 0){
                 
