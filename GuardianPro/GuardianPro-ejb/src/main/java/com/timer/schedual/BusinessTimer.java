@@ -157,6 +157,7 @@ public class BusinessTimer {
                 static FTPClient ftpclien;
                 boolean ftp_open=false;  
                  boolean xml_export=false;   
+                  boolean app_export=false;   
                 int ftp_status=0; 
                 
                 
@@ -330,6 +331,7 @@ public class BusinessTimer {
        for(TgroupHasSoftware f:ss){
            if(f.getXMLupdate()==1){
             saveapp(d);
+            app_export=true;
             APPfilename= f.getAPPname();
              break;
            }else{
@@ -340,7 +342,7 @@ public class BusinessTimer {
        }
        
          if(XMLfilename !=null ){
-           if(xml_export){
+           if(xml_export || app_export){
             DLLfilename = getdllfilename(d);
     String DLLcontent=getDLL(d, XMLfilename, XMLlength);
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
@@ -350,6 +352,7 @@ public class BusinessTimer {
          d.setXMLupdate(0);
          tgroupHasTerminalFacade.edit(d);  
           xml_export=false;
+          app_export=false;
          break;
            }else{
           DLLfilename=d.getDLLname();
