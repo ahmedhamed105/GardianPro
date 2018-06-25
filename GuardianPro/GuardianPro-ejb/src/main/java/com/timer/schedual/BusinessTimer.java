@@ -286,7 +286,7 @@ public class BusinessTimer {
          //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
             xml_export=true;   
-        break;
+        update_gb.add(f);
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
@@ -296,8 +296,10 @@ public class BusinessTimer {
        if(xml_export){
              String xmlFilecontent =getXML(d);
             if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                System.out.println("Create XML DIR");
                         createdir(d);
             }else{
+                 System.out.println("Delete XML DIR");
                 deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
             }
      
@@ -315,27 +317,7 @@ public class BusinessTimer {
         saveXML(d,XMLfilename);
         
           update_gb.clear();
-           xml_export=false;
-       }
-       
-       if(XMLfilename !=null ){
-           if(d.getXMLupdate()==1){
-            DLLfilename = getdllfilename(d);
-    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
-    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
-    FileUtils.write(f1, DLLcontent);
-    saveDLL(d, DLLfilename);
-     d.setDLLname(DLLfilename);
-         d.setXMLupdate(0);
-         tgroupHasTerminalFacade.edit(d);  
-         break;
-           }else{
-          DLLfilename=d.getDLLname();
-           }
- 
-       
-       
-        
+          
        }
        
        
@@ -351,6 +333,24 @@ public class BusinessTimer {
            }
        }
       
+       }
+       
+         if(XMLfilename !=null ){
+           if(xml_export){
+            DLLfilename = getdllfilename(d);
+    String DLLcontent=getDLL(d, XMLfilename, XMLlength);
+    File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
+    FileUtils.write(f1, DLLcontent);
+    saveDLL(d, DLLfilename);
+     d.setDLLname(DLLfilename);
+         d.setXMLupdate(0);
+         tgroupHasTerminalFacade.edit(d);  
+          xml_export=false;
+         break;
+           }else{
+          DLLfilename=d.getDLLname();
+           }
+        
        }
         
         
@@ -392,6 +392,7 @@ public class BusinessTimer {
          //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
         if(f.getXMLupdate()==1){
             xml_export=true;   
+             update_gb.add(f);
         }else{
         XMLfilename = f.getFilename();
         XMLlength=f.getFileLength();
@@ -550,68 +551,19 @@ public class BusinessTimer {
  
     }
     
-    public boolean deletedir(TgroupHasTerminal d){
-         Date now = new Date();
-          FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);    
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
-        ftp.setUserID(login);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,3,ftpclien);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-          return true;
-        }else{
-        return false;
-        }
-        
-    
- 
-    }
+  
     public boolean createdir(TgroupHasTerminal d){
-         Date now = new Date();
-         FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
+       
+        FTPLog  ftp=new FTPLog();
+        ftp.setFtpDir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
         ftp.setUserID(login);
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-          return false;
-        }else{
-             ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR("//");
-        ftp.setFilename("");
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid());
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
-        ftp.setUserID(login);
-            ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
+        boolean    ftp_S=ftpMessagesFacade.Ftp_action(ftp,2,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
         }else{
         return false;
-        
-        }
-        
+
         }
     
  
@@ -619,46 +571,20 @@ public class BusinessTimer {
     
     
     public boolean saveXML(TgroupHasTerminal d,String filename){
-         Date now = new Date();
+        
          FTPLog ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-
-        ftp.setFpassword(FTP_pass);
         ftp.setLocalDIR(FTP_LOCAL_DIR);
         ftp.setFilename(filename);
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//"+filename);
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
-        ftp.setUserID(login);
-      
-        boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
-        if(ftp_S){
-        System.out.println("Store file "+ftp_S);
-          return false;
-        }else{
-            ftp=new FTPLog();
-        ftp.setfPort(FTP_port);
-        ftp.setfUsername(FTP_user);
-        ftp.setServerip(FTP_server);
-   
-        ftp.setFpassword(FTP_pass);
-        ftp.setLocalDIR(FTP_LOCAL_DIR);
-        ftp.setFilename(filename);
-        ftp.setFtpDir(FTP_XML_Live_DIR+"//"+d.getTerminalID().getTid()+"//");
-        ftp.setUpdateDate(now);
-        ftp.setCreateDate(now);
+        ftp.setFtpDir(FTP_XML_Live_DIR+d.getTerminalID().getTid()+"\\");
         ftp.setUserID(login);
  
-        ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
+       boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,1,ftpclien);
         if(ftp_S){
         System.out.println("Store file "+ftp_S);
           return true;
         }else{
         return false;
-        
-        }
+   
         
         }
     
@@ -1367,9 +1293,9 @@ public class BusinessTimer {
          ftp.setUserID(login);
         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
-          return true;
+          return false;
         }else{
-         return false;
+         return true;
         }
         
         }
