@@ -373,9 +373,9 @@ public class Login {
         this.componentEdit = componentEdit;
     }
 
-    public List<Component> loadViewEdit() {
+    public void loadViewEdit() {
        allComponent = new ArrayList<Component>();
-        System.out.println("com.guardian.Login.Login.loadViewEdit() "+componentFacade.find(1));
+        System.out.println("com.guardian.Login.Login.loadViewEdit() "+componentFacade.find(64));
         allComponent = componentFacade.findAll();
         
          
@@ -395,13 +395,13 @@ public class Login {
                 }
             }
         }
-        return allComponent;
+        //return allComponent;
     }
 
     public boolean isViewed(String componentName) {
-     List<Component>  allComponent1= loadViewEdit();
+     //List<Component>  allComponent1= loadViewEdit();
         Component component = null;
-        for (Component com : allComponent1) {
+        for (Component com : allComponent) {
             if (com.getName().equalsIgnoreCase(componentName)) {
                 component = com;
             }
@@ -414,7 +414,7 @@ public class Login {
     }
 
     public boolean isEdit(String componentName) {
-        loadViewEdit();
+     //   loadViewEdit();
         Component component = null;
         for (Component com : allComponent) {
             if (com.getName().equalsIgnoreCase(componentName)) {

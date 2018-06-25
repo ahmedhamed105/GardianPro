@@ -1,0 +1,83 @@
+Terminal Group
+
+1-add button still not appear
+2-when press next button without choose terminal group no thing happens, we must show error message
+
+
+Terminal 
+
+1-add button not appear
+
+terminal Template
+1-add new template successufully
+2-can't add parts
+
+parts and parts group two pages with same url and content
+1-no buttons appears 
+
+parametersGroups
+1-edit title
+2-no buttons appears 
+
+parametersGroup
+1-edit title
+2-no buttons appears
+
+application group
+1-edit title
+2-no buttons appears
+
+application group
+1-edit title
+2-no buttons appears
+
+accessory group
+1-edit title
+2-no buttons appears
+
+accessory
+1-test add and remove
+2-edite title
+
+
+config
+1-can't edit
+
+Main
+1-edite title
+
+config
+1-edite title
+
+user
+1-test add
+2-password should be hidden
+3-edit title
+
+role
+1-test add
+2-an error happened while 
+3-edit title
+
+groups
+1-test add
+2-edit title
+
+Component 
+1-edit title
+2-no buttons appear
+
+
+Log Page
+1-page take id with 21 and this parameter id
+2-there is a letere appear in page
+
+
+Log download
+1-page take id with 21 and this parameter id
+2-there is a letere appear in page
+
+Report 
+1-edit title
+2-can't choose group
+
