@@ -153,6 +153,8 @@ public class BusinessTimer {
                 static String FTP_APP_Live_DIR = "\\APP\\"; 
                 static String FTP_LOCAL_DIR = "C:\\"; 
                 static String FTP_XML_Live_DIR = "\\POS\\"; 
+               static String  FTP_Mirror_Live= "\\MIRROR\\";
+              static String   TERMINAL_LOG_FILE_PATH="\\LOG\\";
                 static User login;
                 static FTPClient ftpclien;
                 boolean ftp_open=false;  
@@ -164,7 +166,7 @@ public class BusinessTimer {
    List<TgroupHasTerminal> groupHasTerminal= new ArrayList<TgroupHasTerminal>();
 
 
-//   @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
+   @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("XML Executing ...");
@@ -226,8 +228,20 @@ public class BusinessTimer {
                 FTP_XML_Live_DIR=Encryption.decrypt(configParmeterFacade.getparameter("FTP_XML_Live_DIR").getPValue());
                 } 
                 
-                System.out.println("FTP_user "+FTP_user);
-                System.out.println("FTP_pass "+FTP_pass);
+                   FTP_Mirror_Live = configParmeterFacade.getparameter("FTP_Mirror_Live").getPValue(); 
+                if(configParmeterFacade.getparameter("FTP_Mirror_Live").getEncryption()==1){
+                FTP_Mirror_Live=Encryption.decrypt(configParmeterFacade.getparameter("FTP_Mirror_Live").getPValue());
+                } 
+                
+                      TERMINAL_LOG_FILE_PATH = configParmeterFacade.getparameter("TERMINAL_LOG_FILE_PATH").getPValue(); 
+                if(configParmeterFacade.getparameter("TERMINAL_LOG_FILE_PATH").getEncryption()==1){
+                TERMINAL_LOG_FILE_PATH=Encryption.decrypt(configParmeterFacade.getparameter("TERMINAL_LOG_FILE_PATH").getPValue());
+                } 
+                
+          
+                
+           //     System.out.println("FTP_user "+FTP_user);
+          //      System.out.println("FTP_pass "+FTP_pass);
          try {
              ftp_open =openftp();
        } catch (Exception e) {
@@ -248,6 +262,14 @@ public class BusinessTimer {
                     }
                     if(!check_exist_DIR(FTP_APP_Live_DIR)){
                         create_DIR_FTP(FTP_APP_Live_DIR);
+                    }
+                  //      System.out.println(FTP_Mirror_Live);
+                    if(!check_exist_DIR(FTP_Mirror_Live)){
+                        create_DIR_FTP(FTP_Mirror_Live);
+                    }                  
+                 //     System.out.println(TERMINAL_LOG_FILE_PATH);
+                     if(!check_exist_DIR(TERMINAL_LOG_FILE_PATH)){
+                        create_DIR_FTP(TERMINAL_LOG_FILE_PATH);
                     }
                     
                     ftp_status=1;
@@ -1300,9 +1322,9 @@ public class BusinessTimer {
          ftp.setUserID(login);
         boolean ftp_S=ftpMessagesFacade.Ftp_action(ftp,7,ftpclien);
         if(ftp_S){
-          return false;
+          return true;
         }else{
-         return true;
+         return false;
         }
         
         }
