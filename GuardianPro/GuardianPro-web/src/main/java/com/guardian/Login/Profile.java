@@ -122,7 +122,7 @@ public class Profile {
            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
        ec.redirect(ec.getRequestContextPath()
-               + "/faces/login.xhtml");
+               + "/faces/index.xhtml");
 
            }else{
             input_User  = userFacade.findAll();
@@ -136,7 +136,7 @@ public class Profile {
                try {
                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
-                   ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                   ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
                } catch (IOException ex) {
                    Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                    /*start mohammed.ayad*/

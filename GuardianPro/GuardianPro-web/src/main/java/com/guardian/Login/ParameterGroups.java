@@ -103,7 +103,7 @@ public class ParameterGroups {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
     ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+            + "/faces/index.xhtml");
 
         }else{
             selectgroup=new ParameterGroup();
@@ -149,7 +149,7 @@ public class ParameterGroups {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/

@@ -56,7 +56,7 @@ public class Inputtype {
            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
        ec.redirect(ec.getRequestContextPath()
-               + "/faces/login.xhtml");
+               + "/faces/index.xhtml");
 
            }else{
             input_types  = inputTypeFacade.findAll();
@@ -70,7 +70,7 @@ public class Inputtype {
                try {
                    ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
-                   ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                   ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
                } catch (IOException ex) {
                    Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                    /*start mohammed.ayad*/

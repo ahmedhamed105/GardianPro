@@ -81,7 +81,7 @@ public class accessgroup {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
     ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+            + "/faces/index.xhtml");
 
         }else{
             selectgroup=new AccessoryGroup();
@@ -124,7 +124,7 @@ public class accessgroup {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 Messages.addInfoMessage(ex.getMessage(), 3, 16);

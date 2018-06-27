@@ -96,7 +96,12 @@
                     <a href="profile.xhtml" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                    <a href="index.xhtml" class="btn btn-default btn-flat">Sign out</a>
+                    <h:form>
+                        <h:commandLink class="btn btn-default btn-flat" value="signout" action="#{login.logout(actionEvent)}"/>
+                           
+                    </h:form>
+                
+                 
                 </div>
               </li>
             </ul>

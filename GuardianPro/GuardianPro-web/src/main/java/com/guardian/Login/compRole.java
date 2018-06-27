@@ -65,7 +65,7 @@ public class compRole {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 System.out.println("bbbbbbbbbbbbnullll");
                 ec.redirect(ec.getRequestContextPath()
-                        + "/faces/login.xhtml");
+                        + "/faces/index.xhtml");
 
                
                 
