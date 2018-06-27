@@ -22,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -175,6 +176,13 @@ public class parameter {
          
       return "Login";
      }
+     
+       public void updateText(ValueChangeEvent event){
+           
+           String  input = event.getNewValue().toString();
+        Messages.addInfoMessage(input,1,21);
+       
+       }
        
     
 }

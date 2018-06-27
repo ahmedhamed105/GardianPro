@@ -220,9 +220,11 @@
                                             <p:message for="displayName" display="text"/>
 
                                             <label for="inputLength">input Length</label>
-                                            <p:inputText class="form-control" id="inputLength" converterMessage="please enter Number "  value="#{parameter.parmeter.inputLength}" required="true" requiredMessage="please Enter input Length">
+                                            <h:inputText class="form-control" id="inputLength" converterMessage="please enter Number "  value="#{parameter.parmeter.inputLength}" required="true" requiredMessage="please Enter input Length">
                                                 <f:convertNumber integerOnly="true" type="number" />
-                                            </p:inputText>						
+                                                 <f:ajax event="valueChange" execute="@this"   render="@form" />
+                                              
+                                            </h:inputText>						
                                             <p:message for="inputLength" display="text"/>
 
                                             <label for="inputtypeID">Input Type</label>  
@@ -240,7 +242,7 @@
                                             </div>
 
                                             <label for="defaultvalue">default value</label>
-                                            <p:inputText class="form-control" id="defaultvalue"  maxlength="#{para.inputLength}" value="#{parameter.parmeter.defaultvalue}" >
+                                            <p:inputText class="form-control" id="defaultvalue"  maxlength="#{parameter.parmeter.inputLength}" value="#{parameter.parmeter.defaultvalue}" >
                                             </p:inputText>
 
                                             <label for="note">note</label>
