@@ -940,6 +940,7 @@ public String onFlowProcess(FlowEvent event) {
             TgroupHasGparameter a=new TgroupHasGparameter();
             a.setTerminalGroupID(seletermgroup);
             a.setParameterGroupID(selectparagroup.get(i));
+            a.setXMLupdate(1);
             a.setCreateDate(date);
             a.setUpdateDate(date);
             tgroupHasGparameterFacade.create(a);
@@ -1034,6 +1035,7 @@ public String onFlowProcess(FlowEvent event) {
             TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
+            tg.setXMLupdate(1);
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
@@ -1065,6 +1067,7 @@ public String onFlowProcess(FlowEvent event) {
              TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
+            tg.setXMLupdate(1);
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
@@ -1093,6 +1096,7 @@ public String onFlowProcess(FlowEvent event) {
             TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
+            tg.setXMLupdate(1);
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);
@@ -1122,6 +1126,7 @@ public String onFlowProcess(FlowEvent event) {
             TgroupHasGparameter tg=new TgroupHasGparameter();
             tg.setParameterGroupID(a1);
             tg.setTerminalGroupID(seletermgroup);
+            tg.setXMLupdate(1);
             tg.setCreateDate(date);
             tg.setUpdateDate(date);
             tgroupHasGparameterFacade.create(tg);

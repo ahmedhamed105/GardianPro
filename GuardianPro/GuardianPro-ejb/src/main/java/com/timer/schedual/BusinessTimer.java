@@ -328,7 +328,8 @@ public class BusinessTimer {
        
        if(xml_export){
              String xmlFilecontent =getXML(d);
-            if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+            if(check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+                
                 System.out.println("Create XML DIR");
                         createdir(d);
             }else{
@@ -436,7 +437,7 @@ public class BusinessTimer {
        
        if(xml_export){
              String xmlFilecontent =getXML(d);
-              if(!check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
+              if(check_exist_DIR(FTP_XML_Live_DIR+d.getTerminalID().getTid())){
                         createdir(d);
             }else{
                 deleteALLfilesdir(FTP_XML_Live_DIR+d.getTerminalID().getTid());
