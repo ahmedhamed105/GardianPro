@@ -242,14 +242,16 @@ public class BusinessTimer {
                 
            //     System.out.println("FTP_user "+FTP_user);
           //      System.out.println("FTP_pass "+FTP_pass);
-         try {
+       
+              
+                
+                if(ftp_status == 0){
+                    
+                      try {
              ftp_open =openftp();
        } catch (Exception e) {
             email("FTP ERROR","username or password is Wrong");
        }
-              
-                
-                if(ftp_status == 0){
                 
            
                 if(ftp_open){
@@ -285,9 +287,13 @@ public class BusinessTimer {
                 }
                 if(ftp_status == 1){
                 
-                
-               
-        
+                if(!ftp_open){
+        try {
+             ftp_open =openftp();
+       } catch (Exception e) {
+            email("FTP ERROR","username or password is Wrong");
+       }
+                }
          groupHasTerminal=tgroupHasTerminalFacade.findAll();
        //  System.out.println("groupHasTerminal "+groupHasTerminal);
                     if (groupHasTerminal !=null) {

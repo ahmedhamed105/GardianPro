@@ -74,7 +74,7 @@ public class groups implements Serializable {
 
     public void init() {
         System.out.println("com.guardian.Login.Groups1.init()");
-        Login.login = userFacade.find(1);
+        //Login.login = userFacade.find(1);
         
         System.out.println("com.guardian.Login.Groups1.init()");
         try {

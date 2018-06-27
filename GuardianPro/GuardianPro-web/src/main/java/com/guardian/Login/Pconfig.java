@@ -151,7 +151,7 @@ public class Pconfig {
     
     
         public void init(){
-             Login.login = userFacade.find(1);
+             //Login.login = userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
