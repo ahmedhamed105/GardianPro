@@ -74,7 +74,7 @@ public class groups implements Serializable {
 
     public void init() {
         System.out.println("com.guardian.Login.Groups1.init()");
-        Login.login = userFacade.find(1);
+        //Login.login = userFacade.find(1);
         
         System.out.println("com.guardian.Login.Groups1.init()");
         try {
@@ -82,7 +82,7 @@ public class groups implements Serializable {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
                 ec.redirect(ec.getRequestContextPath()
-                        + "/faces/login.xhtml");
+                        + "/faces/index.xhtml");
 
                
                 
@@ -100,7 +100,7 @@ public class groups implements Serializable {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
-                ec.redirect(ec.getRequestContextPath() + "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/

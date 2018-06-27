@@ -82,7 +82,7 @@ public class Messages {
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
         User user=Login.login;
-        System.out.println("user "+user.getId());
+//        System.out.println("user "+user.getId());
         logScreenFacade.createLogScreenObject(user,pageId, type, summary);
     }
    

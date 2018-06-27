@@ -76,13 +76,13 @@ public class menu {
     }
     
       public void init(){
-             Login.login = userFacade.find(1);
+             //Login.login = userFacade.find(1);
+//             System.out.println(Login.login.getUsername());
         try {
         if(Login.login==null || Login.login.getId() == 0){
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-
-    ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+//        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+//            
+//    ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
 
         }else{
          menus  = menuFacade.findAll();
@@ -93,16 +93,16 @@ public class menu {
             /*start mohammed.ayad*/
             Messages.addInfoMessage(e.getMessage(), 3, 23);
             /*end mohammed.ayad*/
-            try {
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
-            } catch (IOException ex) {
-                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
-                /*start mohammed.ayad*/
-                Messages.addInfoMessage(ex.getMessage(), 3, 23);
-                /*end mohammed.ayad*/
-            }
+//            try {
+//                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+//               // System.out.println(ec.getRequestContextPath()+ "/faces/index.xhtml");
+//                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
+//            } catch (IOException ex) {
+//                Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
+//                /*start mohammed.ayad*/
+//                Messages.addInfoMessage(ex.getMessage(), 3, 23);
+//                /*end mohammed.ayad*/
+//            }
 }
    
     }

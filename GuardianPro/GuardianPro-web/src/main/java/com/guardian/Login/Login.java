@@ -130,6 +130,11 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public String logout(ActionEvent actionEvent) {
+    login=null;
+    return "index.xhtml";
+    }
 
     public String Login_submit(ActionEvent actionEvent) {
 

@@ -22,6 +22,21 @@
         <param-value>.xhtml</param-value>
     </context-param>
     
+     <context-param>
+        <description>Use this to suppress Facelets error page</description>
+        <param-name>org.apache.myfaces.ERROR_HANDLING</param-name>
+        <param-value>false</param-value>
+    </context-param>
+     <error-page>
+        <error-code>500</error-code>
+        <location>/Error.xhtml</location>
+    </error-page>
+    <!-- if required page not available -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error.xhtml</location>
+    </error-page>
+    
  <filter>
     <filter-name>PrimeFaces FileUpload Filter</filter-name>
     <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>

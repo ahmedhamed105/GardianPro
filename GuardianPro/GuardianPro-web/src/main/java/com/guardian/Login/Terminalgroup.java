@@ -498,7 +498,7 @@ public class Terminalgroup {
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
     ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+            + "/faces/index.xhtml");
 
         }else{
         //  parmeter_types = parameterTypeFacade.findAll();
@@ -542,7 +542,7 @@ public class Terminalgroup {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/

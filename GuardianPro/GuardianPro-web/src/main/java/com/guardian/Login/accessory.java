@@ -51,13 +51,13 @@ public class accessory {
     
     
       public void init(){
-             Login.login = userFacade.find(1);
+             //Login.login = userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
     ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+            + "/faces/index.xhtml");
 
         }else{
          Accessories  = accessoryFacade.findAll();    
@@ -70,7 +70,7 @@ public class accessory {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/

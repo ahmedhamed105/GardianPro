@@ -78,7 +78,7 @@ public class RolesOfGroups {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 System.out.println("bbbbbbbbbbbbnullll");
                 ec.redirect(ec.getRequestContextPath()
-                        + "/faces/login.xhtml");
+                        + "/faces/index.xhtml");
             } else {
 
                 FacesContext fc = FacesContext.getCurrentInstance();

@@ -22,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.RowEditEvent;
 
 /**
@@ -61,13 +62,13 @@ public class parameter {
     
     
       public void init(){
-             Login.login = userFacade.find(1);
+             //Login.login = userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 
     ec.redirect(ec.getRequestContextPath()
-            + "/faces/login.xhtml");
+            + "/faces/index.xhtml");
 
         }else{
          parmeters  = parameterFacade.findAll();
@@ -82,7 +83,7 @@ public class parameter {
             try {
                 ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                 
-                ec.redirect(ec.getRequestContextPath()+ "/faces/login.xhtml");
+                ec.redirect(ec.getRequestContextPath()+ "/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(parmetertype.class.getName()).log(Level.SEVERE, null, ex);
                 /*start mohammed.ayad*/
@@ -175,6 +176,13 @@ public class parameter {
          
       return "Login";
      }
+     
+       public void updateText(ValueChangeEvent event){
+           
+           String  input = event.getNewValue().toString();
+        Messages.addInfoMessage(input,1,21);
+       
+       }
        
     
 }
