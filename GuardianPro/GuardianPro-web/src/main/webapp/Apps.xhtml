@@ -151,7 +151,7 @@
                   <p:inputText class="form-control" id="appName"  value="#{app.app.appName}" required="true" requiredMessage="please Enter application name"/>						
                   <p:message for="appName" display="text"/>
                   <label for="appDir">Application File </label>
-                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" />
+                  <p:fileUpload id="appDir"  value="#{app.file}"  mode="simple" required="true" requiredMessage="please Enter application File"/>
                   <p:message for="appDir" display="text"/>
                
                   <br/>

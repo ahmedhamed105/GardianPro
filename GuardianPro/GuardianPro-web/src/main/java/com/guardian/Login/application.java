@@ -197,11 +197,21 @@ public class application {
    
 
          public String ADD(){
+             if(file == null ){
+             return null;
+             }
                             date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
                 
               try {
-             String filename = file.getFileName(); 
-            String extension = filename.substring(filename.lastIndexOf('.'), filename.length());
+                  String filename;
+                  String extension = null;
+                  try {
+                     filename = file.getFileName(); 
+                      extension= filename.substring(filename.lastIndexOf('.'), filename.length());   
+                  } catch (Exception e) {
+                       return null;
+                  }
+            
                   System.out.println(extension);
                   if(extension.toUpperCase().trim().equals(".TMS")){
                       System.out.println("ahmed "+app.getAppName());
@@ -295,10 +305,11 @@ File d=new File(path.getPValue()+"/"+filename_ext);
             /*start mohammed.ayad*/
                 Messages.addInfoMessage(e.getMessage(), 3, 19);
                 /*end mohammed.ayad*/
+                  return null;
         }
            
 
-      return "Login";
+        return null;
      }
          
          
