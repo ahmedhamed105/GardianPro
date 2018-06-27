@@ -188,7 +188,7 @@
                     
                       <label for="appGroup">Group Choose</label>   
                     <h:selectOneMenu converter="#{cappGroup}" class="form-control select2" id="appGroup" value="#{appgroup.selectgroup}" required="true" requiredMessage="please Enter application Group"
-                                     disabled="#{login.isEdit('ap_groups_select')}" 
+                                     disabled="#{login.isEdit('app_groups_select')}" 
                                      >
                  <f:selectItem itemLabel="Select One" itemValue="" />
                  <f:selectItems value="#{appgroup.apara}" var="c" itemValue="#{c}" itemLabel="#{c.groupname}" />
@@ -198,7 +198,7 @@
                              <label for="advanced">application Choose</label>  
                              <p:selectManyMenu  id="advanced" value="#{appgroup.selapp}" converter="#{capp}"
                                        var="t" filter="true" filterMatchMode="contains" showCheckbox="true" required="true" requiredMessage="please Enter application"
-                                       disabled="#{login.isEdit('app_groups_select_editable')}" 
+                                       disabled="#{login.isEdit('app_groups_select')}" 
                                        >
                                  <f:selectItems value="#{appgroup.app}" var="f" itemLabel="#{f.appName}" itemValue="#{f}" />
  
