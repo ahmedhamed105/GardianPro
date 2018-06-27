@@ -83,7 +83,10 @@ public class Messages {
         }
         User user=Login.login;
 //        System.out.println("user "+user.getId());
-        logScreenFacade.createLogScreenObject(user,pageId, type, summary);
+if(user!=null){
+logScreenFacade.createLogScreenObject(user,pageId, type, summary);
+}
+        
     }
    
 }

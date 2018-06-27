@@ -240,12 +240,27 @@ File d=new File(path.getPValue()+"/"+filename_ext);
         }
                            if(!ftpMessagesFacade.Ftp_Close(ftpclien, Login.login))
                       email("APP FTP ERROR","username or password is Wrong");
+                           
+                           
+                                
+                      Messages.addInfoMessage("ADDED",1,19);
+            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+            app.setAppDir("\\APPLICATION\\"+filename_ext);
+            app.setFilename(filename_ext);
+            app.setAppSize((int) file.getSize());
+            app.setCreateDate(date);
+            app.setUpdateDate(date);
+            app.setAPPlength((int) d.length());
+          applicationFacade.create(app);
+                           
                 
                }else{
                email("APP FTP ERROR","username or password is Wrong");
    }
                         
          } catch (Exception e) {
+             
+             e.printStackTrace();
                  /*start mohammed.ayad*/
                 Messages.addInfoMessage(e.getMessage(), 3, 19);
                 /*end mohammed.ayad*/             
@@ -269,16 +284,7 @@ File d=new File(path.getPValue()+"/"+filename_ext);
         
        
                     
-               
-                      Messages.addInfoMessage("ADDED",1,19);
-            date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            app.setAppDir("\\APPLICATION\\"+filename_ext);
-            app.setFilename(filename_ext);
-            app.setAppSize((int) file.getSize());
-            app.setCreateDate(date);
-            app.setUpdateDate(date);
-            app.setAPPlength((int) d.length());
-          applicationFacade.create(app);
+          
                       }
                   }else{
                   Messages.addInfoMessage("Please Check File Type",2,19);
