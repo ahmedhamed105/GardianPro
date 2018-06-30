@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "LogScreen.findAll", query = "SELECT l FROM LogScreen l"),
     @NamedQuery(name = "LogScreen.findById", query = "SELECT l FROM LogScreen l WHERE l.id = :id"),
-    @NamedQuery(name = "LogScreen.findBypageuser", query = "SELECT l FROM LogScreen l WHERE l.pageId = :id and l.userID = :id1"),
+        @NamedQuery(name = "LogScreen.findBypageuser", query = "SELECT l FROM LogScreen l WHERE l.pageId = :id and l.userID = :id1"),
     @NamedQuery(name = "LogScreen.findByTable1", query = "SELECT l FROM LogScreen l WHERE l.table1 = :table1"),
     @NamedQuery(name = "LogScreen.findByTRXdesc", query = "SELECT l FROM LogScreen l WHERE l.tRXdesc = :tRXdesc"),
     @NamedQuery(name = "LogScreen.findByT2val", query = "SELECT l FROM LogScreen l WHERE l.t2val = :t2val"),
@@ -46,12 +46,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "LogScreen.findByUpdateDate", query = "SELECT l FROM LogScreen l WHERE l.updateDate = :updateDate"),
     @NamedQuery(name = "LogScreen.findBySeqno", query = "SELECT l FROM LogScreen l WHERE l.seqno = :seqno")})
 public class LogScreen implements Serializable {
-
-    @Column(name = "Seq_no")
-    private Integer seqno;
-    @JoinColumn(name = "page_id", referencedColumnName = "page_id")
-    @ManyToOne(optional = false)
-    private Pages pageId;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -92,6 +86,11 @@ public class LogScreen implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+    @Column(name = "Seq_no")
+    private Integer seqno;
+    @JoinColumn(name = "page_id", referencedColumnName = "page_id", nullable = false)
+    @ManyToOne(optional = false)
+    private Pages pageId;
     @JoinColumn(name = "TRX_Type_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)
     private TrxType tRXTypeID;
@@ -106,12 +105,11 @@ public class LogScreen implements Serializable {
         this.id = id;
     }
 
-    public LogScreen(Integer id, String tRXdesc, Date createDate, Date updateDate, int seqno) {
+    public LogScreen(Integer id, String tRXdesc, Date createDate, Date updateDate) {
         this.id = id;
         this.tRXdesc = tRXdesc;
         this.createDate = createDate;
         this.updateDate = updateDate;
-        this.seqno = seqno;
     }
 
     public Integer getId() {
@@ -194,12 +192,20 @@ public class LogScreen implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public int getSeqno() {
+    public Integer getSeqno() {
         return seqno;
     }
 
-    public void setSeqno(int seqno) {
+    public void setSeqno(Integer seqno) {
         this.seqno = seqno;
+    }
+
+    public Pages getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(Pages pageId) {
+        this.pageId = pageId;
     }
 
     public TrxType getTRXTypeID() {
@@ -241,14 +247,6 @@ public class LogScreen implements Serializable {
     @Override
     public String toString() {
         return "Entities.LogScreen[ id=" + id + " ]";
-    }
-
-    public Pages getPageId() {
-        return pageId;
-    }
-
-    public void setPageId(Pages pageId) {
-        this.pageId = pageId;
     }
     
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.guardian.Login;
+import javax.servlet.http.HttpSession;
 
 import Entities.AccessoryGroup;
 import Entities.Parameter;
@@ -133,7 +134,19 @@ public class Main {
     
     
     
-    public void init(){
+     public void init(){ FacesContext facesContext = FacesContext.getCurrentInstance();
+HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+if(session==null){
+                 try {
+                     Login.login=null;
+                     ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                     
+                     ec.redirect(ec.getRequestContextPath()
+                             + "/faces/index.xhtml");
+                 } catch (IOException ex) {
+                     Logger.getLogger(accessgroup.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+}
              //Login.login = userFacade.find(1);
         try {
         if(Login.login==null || Login.login.getId() == 0){

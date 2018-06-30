@@ -11,6 +11,7 @@ com\guardian\Login\TerminalTemp.class
 com\guardian\Login\Main.class
 com\guardian\Login\RolesOfGroups.class
 com\guardian\Login\groups.class
+com\guardian\util\SessionTimeoutListener.class
 com\guardian\Login\compRole.class
 com\guardian\Login\Partsbean.class
 com\guardian\converter\Caccessorygroup.class

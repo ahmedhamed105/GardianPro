@@ -253,4 +253,9 @@
         <managed-bean-class>com.guardian.Login.Log</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+        
+         <lifecycle>
+        <phase-listener>com.guardian.util.SessionTimeoutListener</phase-listener>
+    </lifecycle>
+      
 </faces-config>

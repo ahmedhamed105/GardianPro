@@ -18,7 +18,6 @@ import Facades.UserFacadeLocal;
 import com.guardian.util.Constants;
 import java.util.Date;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 

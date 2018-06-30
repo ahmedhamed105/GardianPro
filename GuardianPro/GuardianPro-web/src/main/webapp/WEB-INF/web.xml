@@ -5,11 +5,17 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
     <session-config>
+           <!-- Session idle timeout in min. -->
         <session-timeout>
-            30
+            10
         </session-timeout>
         
     </session-config>
+    
+    <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/index.xhtml</location>
+</error-page>
     
 
 <welcome-file-list>

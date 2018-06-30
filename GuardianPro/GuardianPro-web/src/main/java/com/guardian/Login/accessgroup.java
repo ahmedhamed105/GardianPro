@@ -8,9 +8,6 @@ package com.guardian.Login;
 import Entities.Accessory;
 import Entities.AccessoryGroup;
 import Entities.AccessoryHasGroup;
-import Entities.Application;
-import Entities.ApplicationGroup;
-import Entities.ApplicationHasGroup;
 import Facades.AccessoryFacadeLocal;
 import Facades.AccessoryGroupFacadeLocal;
 import Facades.AccessoryHasGroupFacadeLocal;
@@ -25,6 +22,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -74,8 +72,24 @@ public class accessgroup {
     public accessgroup() {
     }
     
-     public void init(){
+      public void init(){
              //Login.login = userFacade.find(1);
+             
+             
+
+FacesContext facesContext = FacesContext.getCurrentInstance();
+HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+if(session==null){
+                 try {
+                     Login.login=null;
+                     ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                     
+                     ec.redirect(ec.getRequestContextPath()
+                             + "/faces/index.xhtml");
+                 } catch (IOException ex) {
+                     Logger.getLogger(accessgroup.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+}
         try {
         if(Login.login==null || Login.login.getId() == 0){
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();

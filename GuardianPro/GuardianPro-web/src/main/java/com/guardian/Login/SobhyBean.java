@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.guardian.Login;
+package com.guardian.Login;import javax.servlet.http.HttpSession;
 
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;

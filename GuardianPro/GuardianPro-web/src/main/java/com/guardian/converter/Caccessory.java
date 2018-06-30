@@ -8,18 +8,21 @@ package com.guardian.converter;
 import Entities.Accessory;
 import Entities.Application;
 import Facades.AccessoryFacadeLocal;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
 
 /**
  *
  * @author ahmed.elemam
  */
-public class Caccessory implements Converter{
+@FacesConverter(value = "caccessory")
+public class Caccessory implements Converter, Serializable {
     
         @EJB
     private AccessoryFacadeLocal accessoryFacade;

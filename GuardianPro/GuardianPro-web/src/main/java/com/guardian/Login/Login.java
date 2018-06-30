@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.guardian.Login;
+import javax.servlet.http.HttpSession;
 
 import Entities.Component;
 import Entities.Groups;
@@ -20,10 +21,13 @@ import Facades.RoleFacadeLocal;
 import Facades.RoleHasComponentFacadeLocal;
 import Facades.RoleHasGroupsFacadeLocal;
 import Facades.UserFacadeLocal;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -78,7 +82,7 @@ public class Login {
     boolean remeber;
     String username;
     String password;
-    static User login = new User();
+    static User login = null;
 
     static String smtp_host = "smtp.gmail.com"; //SMTP Server
     static String smtp_from = "ahmed2000105@gmail.com";//from account
@@ -98,6 +102,26 @@ public class Login {
     public Login() {
  //       loadViewEdit();
     }
+    
+     public void init(){
+           Login.login = null;
+             
+             
+
+FacesContext facesContext = FacesContext.getCurrentInstance();
+HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+if(session==null){
+                 try {
+                     Login.login=null;
+                     ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+                     
+                     ec.redirect(ec.getRequestContextPath()
+                             + "/faces/index.xhtml");
+                 } catch (IOException ex) {
+                     Logger.getLogger(accessgroup.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+}
+     }
 
     public User getLogin() {
         return login;
@@ -138,6 +162,7 @@ public class Login {
 
     public String Login_submit(ActionEvent actionEvent) {
 
+          login = null;
         try {
             User u1 = userFacade.search_username(username).get(0);
 
@@ -145,10 +170,12 @@ public class Login {
             if (u1.getUserPasswordID().getPassword().equals(decrypted)) {
                 switch (userFacade.user_status(u1)) {
                     case 1:
+                        
+                          login = u1;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login ok!!", 1, 5);
                         /*end mohammed.ayad*/
-                        login = u1;
+                      
 
 
                         smtp_host = configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
@@ -269,21 +296,25 @@ public class Login {
                                 + "/faces/Main.xhtml");
                         return "Login";
                     case 2:
+                        login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User Closed !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     case 3:
+                          login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User Locked !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     case 4:
+                          login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2, 5);
                         /*end mohammed.ayad*/
                         return "Error";
                     default:
+                          login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error Check status !!", 2, 5);
                         /*end mohammed.ayad*/
@@ -291,13 +322,15 @@ public class Login {
                 }
 
             } else {
+                  login = null;
                 /*start mohammed.ayad*/
                 Messages.addInfoMessage("Login Error Wrong password!!", 2, 5);
                 /*end mohammed.ayad*/
                 return "Error";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+              login = null;
+           // e.printStackTrace();
             /*start mohammed.ayad*/
             Messages.addInfoMessage("Login Error!! " + e.getMessage(), 3, 5);
             /*end mohammed.ayad*/
@@ -432,5 +465,19 @@ public class Login {
             return true;
         }
     }
+    
+    
+
+
+public void activeListener() {
+        try {
+            login=null;
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            
+            ec.redirect(ec.getRequestContextPath() + "/faces/index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
 }
