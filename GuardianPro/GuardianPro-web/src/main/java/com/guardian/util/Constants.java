@@ -19,9 +19,9 @@ public class Constants {
     public static final String JNDI_GLOBAL_PREFIX = "java:global"
             .concat(JNDI_GLOBAL_SEPARATOR);
     	
-  //  public static final String JNDI_GLOBAL_APP_NAME = JNDI_GLOBAL_PREFIX.concat("GuardianPro-ear").concat(JNDI_GLOBAL_SEPARATOR);
-        public static final String JNDI_GLOBAL_APP_NAME = JNDI_GLOBAL_PREFIX
-            .concat("GuardianPro-ear-1.0-SNAPSHOT").concat(JNDI_GLOBAL_SEPARATOR);
+    public static final String JNDI_GLOBAL_APP_NAME = JNDI_GLOBAL_PREFIX.concat("GuardianPro-ear").concat(JNDI_GLOBAL_SEPARATOR);
+//        public static final String JNDI_GLOBAL_APP_NAME = JNDI_GLOBAL_PREFIX
+//            .concat("GuardianPro-ear-1.0-SNAPSHOT").concat(JNDI_GLOBAL_SEPARATOR);
     public static final String JNDI_GLOBAL_BUSINESS_MODULE_NAME = JNDI_GLOBAL_APP_NAME
             .concat("GuardianPro-ejb-1.0-SNAPSHOT").concat(JNDI_GLOBAL_SEPARATOR);
 

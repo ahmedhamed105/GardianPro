@@ -1,91 +1,23 @@
-98,apps_edit,apps edit,4,Component,,
-99,apps_add,apps add,4,Component,,
-100,apps_group_log,apps group log,5,Component,,
-101,component_of_role_edit,component of roles edit,7,Component,,
-102,component_of_role_log,component of roles log,7,Component,,
-103,config_edit,config edit,8,Component,,
-104,config_add,config add,8,Component,,
-105,config_list,config List,8,Component,,
-106,paramter_group_log,paramter group log,15,Component,,
-107,parts_log,parts log,17,Component,,
-108,group_log,group log,9,Component,,
-109,TerminalTemplate_edit,TerminalTemplate edit,23,Component,,
-110,TerminalTemplate_add,TerminalTemplate add,23,Component,,
-111,TerminalTemplate_select,TerminalTemplate_select,23,Component,,
-112,input_type_edit,input_type edit,11,Component,,
-113,input_type_add,input_type_add,11,Component,,
-114,input_type_log,input_type_log,11,Component,,
-115,role_of_component_edit,role_of_component edit,7,Component,,
-116,role_of_component_log,role_of_component_log,7,Component,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
+1,accessory.xhtml,accessory.xhtml,accessory.xhtml,0,,,1
+2,Accessorygroup.xhtml,Accessorygroup.xhtml,Accessorygroup.xhtml,0,,,2
+3,Actionbar.xhtml,Actionbar.xhtml,Actionbar.xhtml,0,,,3
+4,Apps.xhtml,Apps.xhtml,Apps.xhtml,0,,,4
+5,Appsgroup.xhtml,Appsgroup.xhtml,Appsgroup.xhtml,0,,,5
+6,bower_components,bower_components,bower_components,0,,,6
+7,CompinentOfRole.xhtml,CompinentOfRole.xhtml,CompinentOfRole.xhtml,0,,,7
+8,Config.xhtml,Config.xhtml,Config.xhtml,0,,,8
+9,Groups.xhtml,Groups.xhtml,Groups.xhtml,0,,,9
+10,index.xhtml,index.xhtml,index.xhtml,0,,,10
+11,input_type.xhtml,input_type.xhtml,input_type.xhtml,0,,,11
+12,login.xhtml,login.xhtml,login.xhtml,0,,,12
+13,Main.xhtml,Main.xhtml,Main.xhtml,0,,,13
+14,Parameter.xhtml,Parameter.xhtml,Parameter.xhtml,0,,,14
+15,ParameterGroup.xhtml,ParameterGroup.xhtml,ParameterGroup.xhtml,0,,,15
+16,Parmeter_type.xhtml,Parmeter_type.xhtml,Parmeter_type.xhtml,0,,,16
+17,Parts.xhtml,Parts.xhtml,Parts.xhtml,0,,,17
+18,profile.xhtml,profile.xhtml,profile.xhtml,0,,,18
+19,Roles.xhtml,Roles.xhtml,Roles.xhtml,0,,,19
+20,Slider.xhtml,Slider.xhtml,Slider.xhtml,0,,,20
+21,Terminal.xhtml,Terminal.xhtml,Terminal.xhtml,0,,,21
+22,TerminalGroup.xhtml,TerminalGroup.xhtml,TerminalGroup.xhtml,0,,,22
+23,TerminalTemplate.xhtml,TerminalTemplate.xhtml,TerminalTemplate.xhtml,0,,,23

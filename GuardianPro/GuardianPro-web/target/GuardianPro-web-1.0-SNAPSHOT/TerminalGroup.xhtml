@@ -15,7 +15,7 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
 
-        
+
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
         <!-- Font Awesome -->
@@ -44,7 +44,7 @@
         <div class="wrapper">
 
             <!-- Main Header -->
-          <ui:include src="Header.xhtml" />
+            <ui:include src="Header.xhtml" />
             <!-- Left side column. contains the logo and sidebar -->
             <ui:include src="Slider.xhtml" />
 
@@ -75,10 +75,10 @@
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(28)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(65)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
 
                                 <!-- /.box-header -->
                                 <!--form start--> 
@@ -124,10 +124,10 @@
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(28)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(122)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
 
                                 <!-- /.box-header -->
                                 <!-- form start -->
@@ -574,25 +574,25 @@
 
                     <div class="row">
 
- <div class="col-md-6 col-sm-3 col-xs-6">
+                        <div class="col-md-6 col-sm-3 col-xs-6">
                             <!-- general form elements -->
                             <div class="box">
 
-                                  <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(30)}</h3>
-                                <ui:include src="Actionbar.xhtml" />
-  </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">#{ComponentValue.getValueById(123)}</h3>
+                                    <ui:include src="Actionbar.xhtml" />
+                                </div>
 
                                 <!-- /.box-header -->
                                 <!-- form start -->
 
 
                                 <div class="box-body">
-                                      <h:form id="form122">
-                                          <p:editor value="#{terminalgroup.eportedxml}"  >
-                                     
-                                    </p:editor>
-                                      </h:form>
+                                    <h:form id="form122">
+                                        <p:editor value="#{terminalgroup.eportedxml}"  >
+
+                                        </p:editor>
+                                    </h:form>
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">
@@ -602,16 +602,16 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
-                    
-                       <div class="row">
-                          <div class="col-md-12 col-sm-6 col-xs-12">
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6 col-xs-12">
                             <!-- general form elements -->
                             <div class="box">
 
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">#{ComponentValue.getValueById(75)}</h3>
+                                    <h3 class="box-title">#{ComponentValue.getValueById(124)}</h3>
                                     <ui:include src="Actionbar.xhtml" />
                                 </div>
                                 <!-- /.box-header -->
@@ -629,9 +629,9 @@
                                                          rowsPerPageTemplate="5,10,15"  rowKey="#{log.id}"  >
 
 
-                                          
+
                                                 <p:column headerText="Log" sortBy="#{log.TRXdesc}" >
-                                                   <h:outputText value="#{log.TRXdesc}" />
+                                                    <h:outputText value="#{log.TRXdesc}" />
                                                 </p:column>
                                                 <p:column headerText="Date" sortBy="#{log.createDate}" >
                                                     <h:outputText value="#{log.createDate}" />
@@ -639,12 +639,12 @@
                                                 <p:column headerText="User" sortBy="#{log.userID.username}" >
                                                     <h:outputText value="#{log.userID.username}" />
                                                 </p:column>
-                                                
 
-<!--                                                <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
-                                                                     />  
-                                                </f:facet>-->
+
+                                                <!--                                                <f:facet name="footer">
+                                                                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{groups.remove(actionEvent)}" 
+                                                                                                                     />  
+                                                                                                </f:facet>-->
 
                                             </p:dataTable>
 
@@ -667,12 +667,12 @@
             </div>
             <!-- /.content-wrapper -->
 
-     <!-- Main Footer -->
-  <ui:include src="Footer.xhtml" />
+            <!-- Main Footer -->
+            <ui:include src="Footer.xhtml" />
 
-  <!-- Control Sidebar -->
-  
-  <ui:include src="Leftslider.xhtml" />
+            <!-- Control Sidebar -->
+
+            <ui:include src="Leftslider.xhtml" />
             <!-- /.control-sidebar -->
             <!-- Add the sidebar's background. This div must be placed
             immediately after the control sidebar -->

@@ -1,0 +1,15 @@
+1,HomePage,HomePage,HomePage,0,,,13
+2,TerminalGroup,TerminalGroup,TerminalGroup,0,,,22
+3,ParmeterGroup,ParmeterGroup,ParmeterGroup,0,,,15
+4,ApplicationGroup,ApplicationGroup,ApplicationGroup,0,,,5
+5,AccessoryGroup,AccessoryGroup,AccessoryGroup,0,,,2
+6,Parmeter,Parmeter,Parmeter,0,,,14
+7,Application,Application,Application,0,,,4
+8,Terminal,Terminal,Terminal,0,,,21
+9,TerminalTemplate,TerminalTemplate,TerminalTemplate,0,,,23
+10,Parts,Parts,Parts,0,,,17
+11,Accessory,Accessory,Accessory,0,,,1
+12,Config,Config,Config,0,,,8
+13,Users,Users,Users,0,,,18
+14,Roles,Roles,Roles,0,,,19
+15,Groups,Groups,Groups,0,,,9
