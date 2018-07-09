@@ -56,7 +56,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#{car.link}">#{car.name}</a></li>
-                                <ui:repeat value="#{menu.sub_menu(car)}" var="car1" >
+                                <ui:repeat value="#{menu.sub_menu(car)}" var="car1"  rendered="#{login.isViewed(car.link)}">
                                     <li><a href="#{car1.link}">#{car1.name}</a></li>
                                 </ui:repeat>
                             </ul>
