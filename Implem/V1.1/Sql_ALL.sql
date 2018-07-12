@@ -986,7 +986,8 @@ CREATE TABLE IF NOT EXISTS `GuardianPro`.`Role_has_component` (
     REFERENCES `GuardianPro`.`component` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = dec8;
 
 
 -- -----------------------------------------------------
@@ -2080,6 +2081,15 @@ INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`,
 INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (119, 'report_paramter', 'report_paramter', 8, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
 INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (120, 'email_edit', 'email_edit', 8, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
 INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (121, 'email_add', 'email_add', 8, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (122, 'termenalgroup_Edit', 'termenalgroup Edit', 22, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (123, 'termenalgroup_select', 'termenalgroup Select', 22, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (124, 'termenalgroup_Log', 'termenalgroup Log', 22, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (125, 'Main_Log', 'Main Log', 13, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (126, 'Terminal_Graphical_Digram', 'Terminal Graphical Digram', 13, 'Component', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (127, 'Log_download.xhtml', 'Log_download.xhtml', 0, 'Screen', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (128, 'Log_SMTP.xhtml', 'Log_SMTP.xhtml', 0, 'Screen', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (129, 'Log_ftp.xhtml', 'Log_ftp.xhtml', 0, 'Screen', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
+INSERT INTO `GuardianPro`.`component` (`ID`, `name`, `Description`, `Parent_ID`, `Type`, `create_date`, `update_date`, `C_name`) VALUES (130, 'Log.xhtml', 'Log.xhtml', 0, 'Screen', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 'a');
 
 COMMIT;
 
@@ -2206,6 +2216,39 @@ INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_da
 INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (95, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 95);
 INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (96, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 96);
 INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (97, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 97);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (98, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 98);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (99, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 99);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (100, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 100);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (101, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 101);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (102, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 102);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (103, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 103);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (104, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 104);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (105, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 105);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (106, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 106);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (107, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 107);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (108, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 108);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (109, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 109);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (110, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 110);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (111, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 111);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (112, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 112);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (113, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 113);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (114, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 114);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (115, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 115);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (116, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 116);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (117, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 117);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (118, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 118);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (119, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 119);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (120, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 120);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (121, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 121);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (122, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 122);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (123, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 123);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (124, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 124);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (125, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 125);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (126, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 126);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (127, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 127);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (128, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 128);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (129, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 129);
+INSERT INTO `GuardianPro`.`Role_has_component` (`ID`, `view`, `edit`, `create_date`, `update_date`, `Role_ID`, `component_ID`) VALUES (130, 1, 1, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 130);
 
 COMMIT;
 
@@ -2493,6 +2536,26 @@ INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`
 INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (119, 'report_paramter', 'report paramter', 'report_paramter', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 119);
 INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (120, 'email_edit', 'email edit', 'email_edit', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 120);
 INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (121, 'email_add', 'email add', 'email_add', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 121);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (122, 'termenalgroup_Edit', 'termenalgroup Edit', 'termenalgroup_Edit', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 122);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (123, 'termenalgroup_Select', 'termenalgroup Select', 'termenalgroup_Select', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 123);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (124, 'termenalgroup_Log', 'termenalgroup Log', 'termenalgroup_Log', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 124);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (1, 'HomePage', 'HomePage', 'HomePage', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 13);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (2, 'TerminalGroup', 'TerminalGroup', 'TerminalGroup', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 22);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (3, 'ParmeterGroup', 'ParmeterGroup', 'ParmeterGroup', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 15);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (4, 'ApplicationGroup', 'ApplicationGroup', 'ApplicationGroup', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 5);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (5, 'AccessoryGroup', 'AccessoryGroup', 'AccessoryGroup', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 2);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (6, 'Parmeter', 'Parmeter', 'Parmeter', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 14);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (7, 'Application', 'Application', 'Application', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 4);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (8, 'Terminal', 'Terminal', 'Terminal', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 21);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (9, 'TerminalTemplate', 'TerminalTemplate', 'TerminalTemplate', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 23);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (10, 'Parts', 'Parts', 'Parts', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 17);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (11, 'Accessory', 'Accessory', 'Accessory', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (12, 'Config', 'Config', 'Config', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 8);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (13, 'Users', 'Users', 'Users', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 18);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (14, 'Roles', 'Roles', 'Roles', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 19);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (15, 'Groups', 'Groups', 'Groups', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 9);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (125, 'Main_logs', 'Main_logs', 'Main Logs', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 125);
+INSERT INTO `GuardianPro`.`Component_name` (`ID`, `Name`, `Value`, `Description`, `Edit`, `create_date`, `update_date`, `component_component_ID`) VALUES (126, 'Main_Graphical_Digram', 'Main_Graphical_Digram', 'Main Graphical Digram', 0, '2018-04-12 23:48:54', '2018-04-12 23:48:54', 126);
 
 COMMIT;
 
