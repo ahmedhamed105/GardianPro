@@ -17,7 +17,6 @@
 *.ear
 *.zip
 *.tar.gz
-*.rar
 *netbeans_automatic_build
 *nb-configuration.xml
 
