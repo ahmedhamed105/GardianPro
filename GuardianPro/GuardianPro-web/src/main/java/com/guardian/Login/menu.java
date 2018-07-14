@@ -41,11 +41,10 @@ public class menu {
     @EJB
     private MenuFacadeLocal menuFacade;
     
-       @EJB
+    @EJB
     private UserFacadeLocal userFacade;
-    
-       
-       
+
+  
     
     
     
@@ -146,13 +145,10 @@ if(session==null){
       public String tittle(int page){
  
       String pageName=pagesFacade.find(page).getPageName();
-          System.out.println("pageName "+pageName);
+         // System.out.println("pageName "+pageName);
+          if(pageName==null || pageName.isEmpty())
+              return "Empty Page Name";
       
       return pageName;
-      }
-    
-    
-    
-    
-    
+      } 
 }
