@@ -1795,7 +1795,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `GuardianPro`;
-INSERT INTO `GuardianPro`.`User` (`ID`, `First_Name`, `Middle_name`, `Last_name`, `Username`, `create_date`, `update_date`, `User_Password_ID`) VALUES (1, 'ahmed', 'ahmed', 'ahmed', 'ahmed', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1);
+INSERT INTO `GuardianPro`.`User` (`ID`, `First_Name`, `Middle_name`, `Last_name`, `Username`, `create_date`, `update_date`, `User_Password_ID`) VALUES (1, 'SPECTRA', 'SPECTRA', 'SPECTRA', 'SPECTRA', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1);
 
 COMMIT;
 
@@ -2267,7 +2267,7 @@ INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `creat
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (7, 'smtp_TLS', '1', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 0, 1);
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (8, 'FTP_server', 'localhost', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 0, 1);
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (9, 'FTP_port', '21', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 0, 1);
-INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (10, 'FTP_user', 'ahmed', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 0, 1);
+INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (10, 'FTP_user', 'SPECTRA', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 0, 1);
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (11, 'FTP_pass', 'D4ej0Wr9fhZ6xoT2yZ6tNQ==', '2018-04-12 23:48:54', '2018-04-12 23:48:54', 1, 1);
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (13, 'TIMER_PARSER_FLAG', 'false', '2018-06-08 23:48:54', '2018-06-08 23:48:54', 0, 1);
 INSERT INTO `GuardianPro`.`Config_parmeter` (`ID`, `Parameter`, `PValue`, `create_date`, `update_date`, `Encryption`, `User_ID`) VALUES (14, 'TERMINAL_LOG_FILE_PATH', '\\\\LOG\\\\', '2018-06-08 23:48:54', '2018-06-08 23:48:54', 0, 1);
@@ -2327,7 +2327,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `GuardianPro`;
-INSERT INTO `GuardianPro`.`Terminal` (`ID`, `TID`, `Owner_Name`, `Merchant_Name`, `Shop_Name`, `Address`, `Contact_person`, `Tel_No`, `officeContact`, `officeTelNo`, `POS_SerialNo`, `Terminal_template_ID`, `create_date`, `update_date`, `Terminal_status_ID`, `schedule_start`, `schedule_end`) VALUES (1, '40000001', 'hamed', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2K264587', 1, '2018-05-23 22:26:38', '2018-05-23 22:26:38', 1, NULL, NULL);
+INSERT INTO `GuardianPro`.`Terminal` (`ID`, `TID`, `Owner_Name`, `Merchant_Name`, `Shop_Name`, `Address`, `Contact_person`, `Tel_No`, `officeContact`, `officeTelNo`, `POS_SerialNo`, `Terminal_template_ID`, `create_date`, `update_date`, `Terminal_status_ID`, `schedule_start`, `schedule_end`) VALUES (1, '40000001', 'SPECTRA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2K264587', 1, '2018-05-23 22:26:38', '2018-05-23 22:26:38', 1, NULL, NULL);
 
 COMMIT;
 
@@ -2337,7 +2337,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `GuardianPro`;
-INSERT INTO `GuardianPro`.`Terminal_Group` (`ID`, `Group_name`, `Group_desc`, `User_ID`, `create_date`, `update_date`) VALUES (1, 'hamed', NULL, 1, '2018-05-23 22:21:25', '2018-05-23 22:21:25');
+INSERT INTO `GuardianPro`.`Terminal_Group` (`ID`, `Group_name`, `Group_desc`, `User_ID`, `create_date`, `update_date`) VALUES (1, 'SPECTRA', NULL, 1, '2018-05-23 22:21:25', '2018-05-23 22:21:25');
 
 COMMIT;
 
