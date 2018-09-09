@@ -101,7 +101,7 @@ public class FtpMessagesFacade extends AbstractFacade<FtpMessages> implements Ft
             
             }
           
-        } catch (IOException ex) {
+        } catch (Exception ex) {
               mes=new FtpMessages();
        mes.setFTPLogID(0);
         mes.setUserID(ftp.getUserID());
