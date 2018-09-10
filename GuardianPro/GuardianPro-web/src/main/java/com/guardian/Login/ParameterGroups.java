@@ -134,7 +134,8 @@ if(session==null){
          
               for(int j=0;j<para.size();j++){
                    System.out.println("para "+para.get(j).getParameterID().getDisplayName());
-             DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),para.get(j).getParameterID().getDefaultvalue()), documents);
+            // DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),para.get(j).getParameterID().getDefaultvalue()), documents);
+          DefaultTreeNode documentss = new DefaultTreeNode(new PGroup_tree(para.get(j).getParameterID().getDisplayName(),1,para.get(j).getId(),"default"), documents);
         
               }
           } catch (Exception e) {

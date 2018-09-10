@@ -8,11 +8,17 @@ package com.guardian.Login;import javax.servlet.http.HttpSession;
 import Entities.InputType;
 import Entities.Parameter;
 import Entities.ParameterType;
+import Entities.Parameter_;
+import Entities.ParamterDefault;
+import Entities.ParamterFieldType;
 import Facades.InputTypeFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterTypeFacadeLocal;
+import Facades.ParamterDefaultFacadeLocal;
+import Facades.ParamterFieldTypeFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -22,6 +28,7 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.RowEditEvent;
 
@@ -39,20 +46,36 @@ public class parameter {
         
          @EJB
     private InputTypeFacadeLocal inputTypeFacade;
+         
+          @EJB
+    private ParamterFieldTypeFacadeLocal ParamterFieldTypeFacade;
+          
+           @EJB
+    private ParamterDefaultFacadeLocal ParamterDefaultFacade;
    
+         
         
         
          List<Parameter> parmeters = new ArrayList<Parameter>();
          
          List<InputType> input_types = new ArrayList<InputType>();
          
-      
+          List<ParamterFieldType> parameter_types = new ArrayList<ParamterFieldType>();
+          
+          
+          ParamterDefault defaultv=new ParamterDefault();
+     
+           
          
          Parameter parmeter=new Parameter();
          
          Parameter selectparmeter=new Parameter();
          
           java.sql.Date date ;
+          
+          String defvalue =new String() ;
+          
+          boolean defvalue1 = false ;
 
     /**
      * Creates a new instance of parameter
@@ -85,6 +108,9 @@ if(session==null){
         }else{
          parmeters  = parameterFacade.findAll();
          input_types = inputTypeFacade.findAll();
+         parameter_types=ParamterFieldTypeFacade.findAll();
+         
+          
         
         }
         
@@ -105,6 +131,46 @@ if(session==null){
 }
    
     }
+
+    public String getDefvalue() {
+        return defvalue;
+    }
+
+    public void setDefvalue(String defvalue) {
+        this.defvalue = defvalue;
+    }
+
+    public boolean isDefvalue1() {
+        return defvalue1;
+    }
+
+    public void setDefvalue1(boolean defvalue1) {
+        this.defvalue1 = defvalue1;
+    }
+
+
+
+    public ParamterDefault getDefaultv() {
+        return defaultv;
+    }
+
+    public void setDefaultv(ParamterDefault defaultv) {
+        this.defaultv = defaultv;
+    }
+
+
+       
+       
+       
+
+    public List<ParamterFieldType> getParameter_types() {
+        return parameter_types;
+    }
+
+    public void setParameter_types(List<ParamterFieldType> parameter_types) {
+        this.parameter_types = parameter_types;
+    }
+       
 
     public List<Parameter> getParmeters() {
         return parmeters;
@@ -137,9 +203,124 @@ if(session==null){
     public void setInput_types(List<InputType> input_types) {
         this.input_types = input_types;
     }
-
+    
+   
+    
   
     
+  
+   public String Adefault(ActionEvent actionEvent){
+   
+          //  date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+          //  defaultv.setCreateDate(date);
+          //  defaultv.setUpdateDate(date);    
+        
+              System.out.println("ahmed "+parmeter.getId());
+              System.out.println("ahmed "+parmeter.getParamtertypeID().getId());
+          if(parmeter.getParamtertypeID().getId() == 1){
+              
+               List<ParamterDefault> a=new ArrayList<ParamterDefault>();
+         
+                a=  ParamterDefaultFacade.get_default(parmeter);
+                int y=0;
+                for(ParamterDefault b :a){
+                System.out.println("ahmed "+b.getParameterID().getParamtertypeID().getId());
+                if(b.getParameterID().getParamtertypeID().getId() == 1){
+                y++;
+                }
+                }
+               
+                if(y==1){
+                    y=0;
+                 Messages.addInfoMessage("please deleted and add again",1,21);
+               return "Login";
+                }
+                
+                
+           defaultv.setPvalues(String.valueOf(defvalue));
+          }else if(parmeter.getParamtertypeID().getId() == 2){
+               List<ParamterDefault> a=new ArrayList<ParamterDefault>();
+        
+                a=  ParamterDefaultFacade.get_default(parmeter);
+                int y=0;
+                for(ParamterDefault b :a){
+                if(b.getParameterID().getParamtertypeID().getId() == 2){
+                      y=0;
+                y++;
+                }
+                }
+                
+                if(y==1){
+                 Messages.addInfoMessage("please deleted and add again",1,21);
+      return "Login";
+                }
+         defaultv.setPvalues(String.valueOf(defvalue1));
+          }else if(parmeter.getParamtertypeID().getId() == 3){
+         defaultv.setPvalues(String.valueOf(defvalue));
+          }
+          
+         
+          defaultv.setParameterID(parmeter);
+          ParamterDefaultFacade.create(defaultv);
+        
+          Messages.addInfoMessage("ADDED",1,21);
+      return "Login";
+     }
+   
+     public String Rdefault(AjaxBehaviorEvent actionEvent){
+         
+          ParamterDefaultFacade.remove(defaultv);
+        
+           Messages.addInfoMessage("Removed Value",1,21);
+      return "Login";
+     }
+    
+    
+      public List<ParamterDefault> return_default(Parameter para){
+          List<ParamterDefault> a=new ArrayList<ParamterDefault>();
+         try {
+                a=  ParamterDefaultFacade.get_default(para);
+        
+               
+          //   Messages.addInfoMessage("removed "+selectparmeter.getDisplayName(),1,21);
+         } catch (Exception e) {
+             e.printStackTrace();
+          //    Messages.addInfoMessage("Not removed "+selectparmeter.getDisplayName()+" return to Admin "+e.getMessage(),3,21);
+         }
+                      return a;  
+     
+     }
+      
+      
+          public boolean ret_defaultC(Parameter para){
+          List<ParamterDefault> a=new ArrayList<ParamterDefault>();
+         try {
+                a=  ParamterDefaultFacade.get_default(para);
+        if(a.get(0).getPvalues().toLowerCase().trim().equals("true")){
+          return true; 
+        }
+               
+          //   Messages.addInfoMessage("removed "+selectparmeter.getDisplayName(),1,21);
+         } catch (Exception e) {
+          //    Messages.addInfoMessage("Not removed "+selectparmeter.getDisplayName()+" return to Admin "+e.getMessage(),3,21);
+         }
+                      return false;  
+     
+     }
+          
+                public String ret_defaultT(Parameter para){
+          List<ParamterDefault> a=new ArrayList<ParamterDefault>();
+         try {
+                a=  ParamterDefaultFacade.get_default(para);
+           return a.get(0).getPvalues();
+               
+          //   Messages.addInfoMessage("removed "+selectparmeter.getDisplayName(),1,21);
+         } catch (Exception e) {
+          //    Messages.addInfoMessage("Not removed "+selectparmeter.getDisplayName()+" return to Admin "+e.getMessage(),3,21);
+         }
+                      return "";  
+     
+     }
     
     
     

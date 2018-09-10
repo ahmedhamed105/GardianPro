@@ -47,15 +47,18 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parameter.findByUpdateDate", query = "SELECT p FROM Parameter p WHERE p.updateDate = :updateDate")})
 public class Parameter implements Serializable {
 
+    @JoinColumn(name = "Paramter_type_ID", referencedColumnName = "ID", nullable = false)
+    @ManyToOne(optional = false)
+    private ParamterFieldType paramtertypeID;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "Allow_Null", nullable = false)
     private boolean allowNull;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
+    private Collection<ParamterDefault> paramterDefaultCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parameterID")
     private Collection<ParameterValues> parameterValuesCollection;
-    @Size(max = 500)
-    @Column(name = "Default_value", length = 500)
-    private String defaultvalue;
    
     private static final long serialVersionUID = 1L;
     @Id
@@ -221,13 +224,7 @@ public class Parameter implements Serializable {
 
    
 
-    public String getDefaultvalue() {
-        return defaultvalue;
-    }
 
-    public void setDefaultvalue(String defaultvalue) {
-        this.defaultvalue = defaultvalue;
-    }
 
 
     @XmlTransient
@@ -237,6 +234,27 @@ public class Parameter implements Serializable {
 
     public void setParameterValuesCollection(Collection<ParameterValues> parameterValuesCollection) {
         this.parameterValuesCollection = parameterValuesCollection;
+    }
+
+
+
+
+    @XmlTransient
+    public Collection<ParamterDefault> getParamterDefaultCollection() {
+        return paramterDefaultCollection;
+    }
+
+    public void setParamterDefaultCollection(Collection<ParamterDefault> paramterDefaultCollection) {
+        this.paramterDefaultCollection = paramterDefaultCollection;
+    }
+
+
+    public ParamterFieldType getParamtertypeID() {
+        return paramtertypeID;
+    }
+
+    public void setParamtertypeID(ParamterFieldType paramtertypeID) {
+        this.paramtertypeID = paramtertypeID;
     }
 
 

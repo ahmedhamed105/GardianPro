@@ -6,10 +6,8 @@
 package Entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,23 +30,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "parameter_type", catalog = "guardianpro", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ParameterType.findAll", query = "SELECT p FROM ParameterType p"),
-    @NamedQuery(name = "ParameterType.findById", query = "SELECT p FROM ParameterType p WHERE p.id = :id"),
-    @NamedQuery(name = "ParameterType.findByType", query = "SELECT p FROM ParameterType p WHERE p.type = :type"),
-    @NamedQuery(name = "ParameterType.findByCreateDate", query = "SELECT p FROM ParameterType p WHERE p.createDate = :createDate"),
-    @NamedQuery(name = "ParameterType.findByUpdateDate", query = "SELECT p FROM ParameterType p WHERE p.updateDate = :updateDate")})
+    @NamedQuery(name = "ParameterType.findAll", query = "SELECT p FROM ParameterType p")
+    , @NamedQuery(name = "ParameterType.findById", query = "SELECT p FROM ParameterType p WHERE p.id = :id")
+    , @NamedQuery(name = "ParameterType.findByType", query = "SELECT p FROM ParameterType p WHERE p.type = :type")
+    , @NamedQuery(name = "ParameterType.findByCreateDate", query = "SELECT p FROM ParameterType p WHERE p.createDate = :createDate")
+    , @NamedQuery(name = "ParameterType.findByUpdateDate", query = "SELECT p FROM ParameterType p WHERE p.updateDate = :updateDate")
+    , @NamedQuery(name = "ParameterType.findByXMLheader", query = "SELECT p FROM ParameterType p WHERE p.xMLheader = :xMLheader")})
 public class ParameterType implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parametertypeID")
-    private Collection<ParameterGroup> parameterGroupCollection;
-
-
-
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 150)
-    @Column(name = "XML_header", nullable = false, length = 150)
-    private String xMLheader;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,7 +59,11 @@ public class ParameterType implements Serializable {
     @Column(name = "update_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
-    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 150)
+    @Column(name = "XML_header", nullable = false, length = 150)
+    private String xMLheader;
 
     public ParameterType() {
     }
@@ -82,11 +72,12 @@ public class ParameterType implements Serializable {
         this.id = id;
     }
 
-    public ParameterType(Integer id, String type, Date createDate, Date updateDate) {
+    public ParameterType(Integer id, String type, Date createDate, Date updateDate, String xMLheader) {
         this.id = id;
         this.type = type;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.xMLheader = xMLheader;
     }
 
     public Integer getId() {
@@ -121,7 +112,13 @@ public class ParameterType implements Serializable {
         this.updateDate = updateDate;
     }
 
-  
+    public String getXMLheader() {
+        return xMLheader;
+    }
+
+    public void setXMLheader(String xMLheader) {
+        this.xMLheader = xMLheader;
+    }
 
     @Override
     public int hashCode() {
@@ -147,27 +144,5 @@ public class ParameterType implements Serializable {
     public String toString() {
         return "Entities.ParameterType[ id=" + id + " ]";
     }
-
-    public String getXMLheader() {
-        return xMLheader;
-    }
-
-    public void setXMLheader(String xMLheader) {
-        this.xMLheader = xMLheader;
-    }
-
-    @XmlTransient
-    public Collection<ParameterGroup> getParameterGroupCollection() {
-        return parameterGroupCollection;
-    }
-
-    public void setParameterGroupCollection(Collection<ParameterGroup> parameterGroupCollection) {
-        this.parameterGroupCollection = parameterGroupCollection;
-    }
-
-   
-  
-
-    
     
 }

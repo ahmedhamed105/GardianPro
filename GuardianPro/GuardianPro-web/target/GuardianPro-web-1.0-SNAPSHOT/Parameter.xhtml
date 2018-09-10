@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>#{menu.tittle(21)}</title>
         <f:metadata>
@@ -93,8 +94,8 @@
                                                          rowsPerPageTemplate="5,10,15" selection="#{parameter.selectparmeter}" rowKey="#{para.id}"> 
 
 
-                                                <p:ajax event="rowEdit" listener="#{parameter.onRowEdit}" update=":formd1:carsd1 :form:messages :form:cars1" />
-                                                <p:ajax event="rowEditCancel" listener="#{parameter.onRowCancel}" update=":formd1:carsd1 :form:messages :form:cars1"  />
+                                                <p:ajax event="rowEdit" listener="#{parameter.onRowEdit}" update=":form:messages :form:cars1 :formd1:carsd1 " />
+                                                <p:ajax event="rowEditCancel" listener="#{parameter.onRowCancel}" update=":form:messages :form:cars1 :formd1:carsd1 "  />
 
 
                                                 <p:column selectionMode="single" style="width:32px;text-align:center"/>
@@ -149,17 +150,65 @@
                                                     </p:cellEditor>
                                                 </p:column>
 
-                                                <p:column headerText="default value" sortBy="#{para.defaultvalue}"  >
-                                                    <p:cellEditor>
-                                                        <f:facet name="output"><h:outputText value="#{para.defaultvalue}" /></f:facet>
-                                                        <f:facet name="input"><p:inputText id="modelInput2s" maxlength="#{para.inputLength}" value="#{para.defaultvalue}" style="width:100%"/></f:facet>
-                                                    </p:cellEditor>
-                                                </p:column>
+                                             
                                                 <p:column headerText="Note" sortBy="#{para.note}"  >
                                                     <p:cellEditor>
                                                         <f:facet name="output"><h:outputText value="#{para.note}" /></f:facet>
                                                         <f:facet name="input"><p:inputText id="modelInput2" value="#{para.note}" style="width:100%"/></f:facet>
                                                     </p:cellEditor>
+                                                </p:column>
+                                                
+                                                
+                                                <p:column headerText="Paramter type" sortBy="#{para.paramtertypeID.ptypec}"  >
+                                                    <p:cellEditor>
+                                                        <f:facet name="output"><h:outputText value="#{para.paramtertypeID.ptypec}" /></f:facet>
+                                                        <f:facet name="input">
+                                                            <h:selectOneMenu converter="#{cparameterfieldtype}" class="form-control select2"  value="#{para.paramtertypeID}" required="true" requiredMessage="please Enter parameter type">
+                                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                                <f:selectItems value="#{parameter.parameter_types}" var="c" itemValue="#{c}" itemLabel="#{c.ptypec}" />
+                                                            </h:selectOneMenu> 
+                                                      
+                                                        
+                                                        </f:facet>
+                                                    </p:cellEditor>
+                                                </p:column>
+                                                
+                                                   <p:column headerText="Paramter Values"  >   
+                                                       
+                                                          <p:cellEditor>
+                                                              <f:facet name="output">
+                                                                  <h:panelGroup rendered="#{para.paramtertypeID.id eq 1}">
+                                                                      <h:outputText  value="#{parameter.ret_defaultT(para)}" />
+                                                                  </h:panelGroup>
+                                                                  <h:panelGroup rendered="#{para.paramtertypeID.id eq 2}">  
+                                                                      <p:selectBooleanCheckbox value="#{parameter.ret_defaultC(para)}" disabled="true" />
+                                                             </h:panelGroup>
+                                                                  <h:panelGroup rendered="#{para.paramtertypeID.id eq 3}">
+                                                                     
+                                                        <h:selectOneMenu converter="#{CparamterDefault}"  class="form-control select2" >
+                                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                                <f:selectItems value="#{parameter.return_default(para)}" var="c" itemValue="#{c}" itemLabel="#{c.pvalues}" />
+                                                            </h:selectOneMenu> 
+                                                                  </h:panelGroup>
+                                                              </f:facet>
+                                                              <f:facet name="input">
+                                                           <h:panelGroup rendered="#{para.paramtertypeID.id eq 1}">
+                                                                      <h:outputText  value="#{parameter.ret_defaultT(para)}" />
+                                                                  </h:panelGroup>
+                                                                  <h:panelGroup rendered="#{para.paramtertypeID.id eq 2}">  
+                                                                      <p:selectBooleanCheckbox value="#{parameter.ret_defaultC(para)}"  />
+                                                             </h:panelGroup>
+                                                                  <h:panelGroup rendered="#{para.paramtertypeID.id eq 3}">
+                                                                     
+                                                        <h:selectOneMenu converter="#{CparamterDefault}"  class="form-control select2" >
+                                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                                <f:selectItems value="#{parameter.return_default(para)}" var="c" itemValue="#{c}" itemLabel="#{c.pvalues}" />
+                                                            </h:selectOneMenu> 
+                                                                  </h:panelGroup>
+                                                        
+                                                        </f:facet>
+                                                    </p:cellEditor>
+                                                        
                                                 </p:column>
 
 
@@ -171,7 +220,7 @@
 
 
                                                 <f:facet name="footer">
-                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":formd1:carsd1 :form:messages :form:cars1" action="#{parameter.remove(actionEvent)}"
+                                                    <p:commandButton class="btn btn-primary" value="remove" type="submit" ajax="true" update=":form:messages :form:cars1 :formd1:carsd1" action="#{parameter.remove(actionEvent)}"
                                                                      disabled="#{login.isEdit('paramter_submit')}"     rendered="#{login.isViewed('paramter_submit')}"
                                                                      />  
                                                 </f:facet>
@@ -195,7 +244,7 @@
                             <div class="box">
 
                                   <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(47)}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(127)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 
@@ -241,9 +290,7 @@
                                                 </label>
                                             </div>
 
-                                            <label for="defaultvalue">default value</label>
-                                            <p:inputText class="form-control" id="defaultvalue"  maxlength="#{parameter.parmeter.inputLength}" value="#{parameter.parmeter.defaultvalue}" >
-                                            </p:inputText>
+                                           
 
                                             <label for="note">note</label>
                                             <p:inputText class="form-control" id="note"  value="#{parameter.parmeter.note}" >
@@ -271,7 +318,134 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
+                    <div class="row">
+                   <div class="col-md-4 col-sm-2 col-xs-4">
+                            <!-- general form elements -->
+                            <div class="box">
 
+                                  <div class="box-header with-border">
+      <h3 class="box-title">#{ComponentValue.getValueById(47)}</h3>
+                                <ui:include src="Actionbar.xhtml" />
+  </div>
+
+                                <!-- /.box-header -->
+                                <!-- form start -->
+
+
+                                <div class="box-body">
+                                    <h:form id="formva1" rendered="#{login.isViewed('paramter_select')}">
+                                        <p:messages id="messagesv1" showDetail="true" closable="true"/>
+                                        <div class="form-group">
+                                            
+                                            
+                                            <label for="parametervla">Parameter</label>  
+                                            
+                                            <h:selectOneMenu converter="#{CParameter}" class="form-control select2" id="parametervla" value="#{parameter.parmeter}" required="true" converterMessage="please Enter parameter" requiredMessage="please Enter parameter" >
+                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                <f:selectItems value="#{parameter.parmeters}" var="c" itemValue="#{c}" itemLabel="#{c.displayName}" />      
+                                                <p:ajax event="change" update="@form"/>
+                                            </h:selectOneMenu>
+                                                    <p:message for="parametervla" display="text"/>
+                                                    
+                                    
+                                            <br/>
+                                                    
+                                                       
+                                            <p:inputText  id="pvalues"  rendered="#{parameter.parmeter.paramtertypeID.id eq 1}" class="form-control"  value="#{parameter.defvalue}"  />
+                                            <p:selectBooleanCheckbox id="pvalues2"  rendered="#{parameter.parmeter.paramtertypeID.id eq 2}" value="#{parameter.defvalue1}" />
+                                    <p:inputText id="pvalues1"   rendered="#{parameter.parmeter.paramtertypeID.id eq 3}" class="form-control" value="#{parameter.defvalue}" />
+                                      
+                                           
+                                           
+                                                <br/>
+                                            <br/>
+                                                <p:commandButton  class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :formva1:messagesv1 :form:cars1" action="#{parameter.Adefault(actionEvent)}"
+                                                             disabled="#{login.isEdit('paramter_add')}"
+                                                             />  
+                                            
+                                             
+   <br/>
+                                            <br/>
+                                 
+                                                  
+
+                                         
+                                         
+
+  
+
+                                        </div>
+                                    </h:form>     
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                </div>
+
+                                <!-- /.box -->
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-2 col-xs-4">
+                            <!-- general form elements -->
+                            <div class="box">
+
+                                  <div class="box-header with-border">
+      <h3 class="box-title">#{ComponentValue.getValueById(47)}</h3>
+                                <ui:include src="Actionbar.xhtml" />
+  </div>
+
+                                <!-- /.box-header -->
+                                <!-- form start -->
+
+
+                                <div class="box-body">
+                                    <h:form id="formv1" rendered="#{login.isViewed('paramter_select')}">
+                                        <p:messages id="messagesv1" showDetail="true" closable="true"/>
+                                        <div class="form-group">
+                                            
+                                            
+                                            <label for="parametervla">Parameter</label>  
+                                            
+                                            <h:selectOneMenu converter="#{CParameter}" class="form-control select2" id="parametervla" value="#{parameter.parmeter}" required="true" converterMessage="please Enter parameter" requiredMessage="please Enter parameter" >
+                                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                                <f:selectItems value="#{parameter.parmeters}" var="c" itemValue="#{c}" itemLabel="#{c.displayName}" />      
+                                                <p:ajax event="change" update="CparamterDefault"/>
+                                            </h:selectOneMenu>
+                                                    <p:message for="parametervla" display="text"/>
+                                                    
+                                    
+                                            <br/>
+                                                    
+                                                      <label for="CparamterDefault" >Default value to Delete</label>  
+                                                      <h:selectOneMenu  converter="#{cparamterDefault}"  id="CparamterDefault"  class="form-control select2" value="#{parameter.defaultv}">
+                                            <f:selectItem itemLabel="Select One" itemValue="" />
+                                  <f:selectItems value="#{parameter.return_default(parameter.parmeter)}" var="p" itemValue="#{p}" itemLabel="#{p.pvalues}" />
+                                                        </h:selectOneMenu> 
+                                <p:message for="CparamterDefault" display="text" />
+                                   <br/>
+                                   <p:commandButton  class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":formd1:carsd1 :formv1:messagesv1 :form:cars1" action="#{parameter.Rdefault(actionEvent)}" disabled="#{login.isEdit('paramter_add')}"
+                                                             />  
+                                 
+                                                  
+
+                                         
+                                         
+
+  
+
+                                        </div>
+                                    </h:form>     
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                </div>
+
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                    </div>
 
                      <div class="row">
                           <div class="col-md-12 col-sm-6 col-xs-12">

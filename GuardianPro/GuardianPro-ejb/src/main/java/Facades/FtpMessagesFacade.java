@@ -12,6 +12,7 @@ import Entities.FtpMessages;
 import Entities.User;
 import java.io.File;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;

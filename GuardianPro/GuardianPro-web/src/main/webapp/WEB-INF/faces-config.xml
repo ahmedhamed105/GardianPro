@@ -257,5 +257,14 @@
          <lifecycle>
         <phase-listener>com.guardian.util.SessionTimeoutListener</phase-listener>
     </lifecycle>
-      
+    <managed-bean>
+        <managed-bean-name>cparameterfieldtype</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.Cparameterfieldtype</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cparamterDefault</managed-bean-name>
+        <managed-bean-class>com.guardian.converter.CparamterDefault</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
