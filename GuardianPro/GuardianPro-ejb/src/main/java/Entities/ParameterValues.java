@@ -41,7 +41,7 @@ public class ParameterValues implements Serializable {
     @Column(name = "ID", nullable = false)
     private Integer id;
     @Size(max = 500)
-    @Column(name = "Value", length = 500)
+    @Column(name = "P_value", length = 500)
     private String value;
     @JoinColumn(name = "Parameter_ID", referencedColumnName = "ID", nullable = false)
     @ManyToOne(optional = false)

@@ -7,18 +7,14 @@ package com.guardian.Login;import javax.servlet.http.HttpSession;
 
 import Entities.InputType;
 import Entities.Parameter;
-import Entities.ParameterType;
-import Entities.Parameter_;
 import Entities.ParamterDefault;
 import Entities.ParamterFieldType;
 import Facades.InputTypeFacadeLocal;
 import Facades.ParameterFacadeLocal;
-import Facades.ParameterTypeFacadeLocal;
 import Facades.ParamterDefaultFacadeLocal;
 import Facades.ParamterFieldTypeFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -28,7 +24,6 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import org.primefaces.event.RowEditEvent;
 
@@ -84,7 +79,9 @@ public class parameter {
     }
     
     
-       public void init(){ FacesContext facesContext = FacesContext.getCurrentInstance();
+       public void init(){ 
+           
+           FacesContext facesContext = FacesContext.getCurrentInstance();
 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 if(session==null){
                  try {
@@ -204,70 +201,70 @@ if(session==null){
         this.input_types = input_types;
     }
     
+ 
+   public void accdefault(ActionEvent actionEvent){
    
-    
-  
-    
-  
-   public String Adefault(ActionEvent actionEvent){
-   
-          //  date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-          //  defaultv.setCreateDate(date);
-          //  defaultv.setUpdateDate(date);    
-        
-              System.out.println("ahmed "+parmeter.getId());
-              System.out.println("ahmed "+parmeter.getParamtertypeID().getId());
-          if(parmeter.getParamtertypeID().getId() == 1){
-              
-               List<ParamterDefault> a=new ArrayList<ParamterDefault>();
-         
-                a=  ParamterDefaultFacade.get_default(parmeter);
-                int y=0;
-                for(ParamterDefault b :a){
-                System.out.println("ahmed "+b.getParameterID().getParamtertypeID().getId());
+   date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+                 int y=0;
+                 int y1=0;
+                 int add=0;
+           
+                List<ParamterDefault> a=  ParamterDefaultFacade.get_default(parmeter);
+                
+                 for(ParamterDefault b :a){
+                     
                 if(b.getParameterID().getParamtertypeID().getId() == 1){
                 y++;
+                }else if(b.getParameterID().getParamtertypeID().getId() == 2){       
+                y1++;
                 }
                 }
-               
-                if(y==1){
-                    y=0;
-                 Messages.addInfoMessage("please deleted and add again",1,21);
-               return "Login";
+             
+                // System.out.println();
+              System.out.println("y "+y);
+              System.out.println("y1 "+y1);
+          if(null != parmeter.getParamtertypeID().getId())
+            switch (parmeter.getParamtertypeID().getId()) {
+            case 1:
+                if(y>=1){              
+                    Messages.addInfoMessage("please deleted and add again",1,21);        
+                }else{
+            parmeter.setDefaultvalue(String.valueOf(defvalue));
+           parameterFacade.edit(parmeter);
+                    defaultv.setPvalues(String.valueOf(defvalue));
+                    add=1;
                 }
-                
-                
-           defaultv.setPvalues(String.valueOf(defvalue));
-          }else if(parmeter.getParamtertypeID().getId() == 2){
-               List<ParamterDefault> a=new ArrayList<ParamterDefault>();
-        
-                a=  ParamterDefaultFacade.get_default(parmeter);
-                int y=0;
-                for(ParamterDefault b :a){
-                if(b.getParameterID().getParamtertypeID().getId() == 2){
-                      y=0;
-                y++;
+                break;
+            case 2:
+                if(y1 >= 1){
+                    Messages.addInfoMessage("please deleted and add again",1,21);
+                }else{
+                     parmeter.setDefaultvalue(String.valueOf(defvalue));
+                      parmeter.setUpdateDate(date);
+                      parameterFacade.edit(parmeter);
+                    defaultv.setPvalues(String.valueOf(defvalue1));
+                     add=1;
                 }
-                }
-                
-                if(y==1){
-                 Messages.addInfoMessage("please deleted and add again",1,21);
-      return "Login";
-                }
-         defaultv.setPvalues(String.valueOf(defvalue1));
-          }else if(parmeter.getParamtertypeID().getId() == 3){
-         defaultv.setPvalues(String.valueOf(defvalue));
-          }
-          
-         
+                break;
+            case 3:
+                defaultv.setPvalues(String.valueOf(defvalue));
+                 parmeter.setDefaultvalue(String.valueOf(defvalue));
+                  parmeter.setUpdateDate(date);
+        parameterFacade.edit(parmeter);
+         add=1;
+                break;
+            default:
+                break;
+        }
+          if(add==1){
           defaultv.setParameterID(parmeter);
           ParamterDefaultFacade.create(defaultv);
-        
-          Messages.addInfoMessage("ADDED",1,21);
-      return "Login";
+           Messages.addInfoMessage("ADDED",1,21);
+          }
+    
      }
    
-     public String Rdefault(AjaxBehaviorEvent actionEvent){
+     public String Rdefault(ActionEvent actionEvent){
          
           ParamterDefaultFacade.remove(defaultv);
         
@@ -290,7 +287,7 @@ if(session==null){
                       return a;  
      
      }
-      
+     
       
           public boolean ret_defaultC(Parameter para){
           List<ParamterDefault> a=new ArrayList<ParamterDefault>();

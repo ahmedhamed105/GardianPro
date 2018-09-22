@@ -18,6 +18,7 @@ import Entities.GroupHasParameter;
 import Entities.Parameter;
 import Entities.ParameterGroup;
 import Entities.ParameterValues;
+import Entities.ParamterDefault;
 import Entities.Pgchild;
 import Entities.Terminal;
 import Entities.TerminalGroup;
@@ -37,6 +38,7 @@ import Facades.GroupHasParameterFacadeLocal;
 import Facades.ParameterFacadeLocal;
 import Facades.ParameterGroupFacadeLocal;
 import Facades.ParameterValuesFacadeLocal;
+import Facades.ParamterDefaultFacadeLocal;
 import Facades.PgchildFacadeLocal;
 import Facades.TerminalFacadeLocal;
 import Facades.TerminalGroupFacadeLocal;
@@ -104,6 +106,8 @@ public class Terminalgroup {
 
    
     
+           @EJB
+    private ParamterDefaultFacadeLocal ParamterDefaultFacade;
     
 
     @EJB
@@ -160,6 +164,10 @@ public class Terminalgroup {
           
           String eportedxml;
           
+         String defvalue =new String() ;
+          
+          boolean defvalue1 = false ;
+          
           
              private TreeNode root1;
      
@@ -172,7 +180,6 @@ public class Terminalgroup {
     PGroup_tree selectxa;
     PGroup_tree selectparent;
     List<TreeNode> childs;
-    
     
         List<ParameterValues> TParameterValues= new ArrayList<ParameterValues>();
         ParameterValues seletParameterValues=new ParameterValues();
@@ -244,7 +251,26 @@ public class Terminalgroup {
      * Creates a new instance of Terminalgroup
      */
     public Terminalgroup() {
+            }
+
+      public String getDefvalue() {
+        return defvalue;
     }
+
+    public void setDefvalue(String defvalue) {
+        this.defvalue = defvalue;
+    }
+
+    public boolean isDefvalue1() {
+        return defvalue1;
+    }
+
+    public void setDefvalue1(boolean defvalue1) {
+        this.defvalue1 = defvalue1;
+    }
+    
+    
+    
 
     public String getEportedxml() {
         return eportedxml;
@@ -485,13 +511,22 @@ public class Terminalgroup {
     public void setSelectedNode2(TreeNode selectedNode2) {
         this.selectedNode2 = selectedNode2;
     }
+
+ 
+
+ 
+
+ 
+
+
     
     
     
     
     
     
-        public void init(){ FacesContext facesContext = FacesContext.getCurrentInstance();
+        public void init(){
+            FacesContext facesContext = FacesContext.getCurrentInstance();
 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 if(session==null){
                  try {
@@ -1063,7 +1098,7 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-            //    tg3.setValue(cd.getParameterID().getDefaultvalue());
+               tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
@@ -1097,10 +1132,11 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-//                tg3.setValue(cd.getParameterID().getDefaultvalue());
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
+           
          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged 2 " + a1.getParametertypeID().getType(), "Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         }else if(a1.getParametertypeID().getId()== 3 && b1.getParametertypeID().getId()== 2){
@@ -1126,7 +1162,7 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-        //        tg3.setValue(cd.getParameterID().getDefaultvalue());
+                tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
             
@@ -1156,10 +1192,10 @@ public String onFlowProcess(FlowEvent event) {
                 ParameterValues tg3=new ParameterValues();
                 tg3.setTgrouphasGparameterID(tg);
                 tg3.setParameterID(cd.getParameterID());
-//                tg3.setValue(cd.getParameterID().getDefaultvalue());
+               tg3.setValue(cd.getParameterID().getDefaultvalue());
                 parameterValuesFacade.create(tg3);
             }
-            
+           
          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Dragged 2 " + a1.getParametertypeID().getType(), "Dropped on " + b1.getParametertypeID().getType() + " at " + dropIndex);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
@@ -1289,9 +1325,25 @@ public String onFlowProcess(FlowEvent event) {
         
         }
      }
+    
+    
+     public List<String> getdefval(Parameter para) {
+         
+         List<String> defval=new ArrayList<>();
+         
+              List<ParamterDefault>  def= ParamterDefaultFacade.get_default(para);
+                System.out.println("com.guardian.Login.Terminalgroup.onNodeSelect() "+def.size());
+                for(ParamterDefault f:def){
+                    defval.add(f.getPvalues());
+                } 
+                
+                return defval;
+     }
      
      
        public void onNodeSelect(NodeSelectEvent event) {
+           
+                  System.out.println("onNodeSelect");
            PGroup_tree xa=(PGroup_tree)event.getTreeNode().getData();
             selectxa=xa;   
             selectparent=(PGroup_tree)event.getTreeNode().getParent().getData();  
@@ -1299,16 +1351,20 @@ public String onFlowProcess(FlowEvent event) {
          TgroupHasGparameter xb=  tgroupHasGparameterFacade.find(xa.getCount());
            TParameterValues=parameterValuesFacade.ParameterValues_find(xb);
 
+
     }
        
        
         public void removenode(ActionEvent actionEvent){
             if(selectxa !=null){
                 
+                 
                  if(!childs.isEmpty()){
                          Messages.addInfoMessage("please remove Child First",2,15);
   
                     }else{
+                     
+              
                     
                      TgroupHasGparameter parent=  tgroupHasGparameterFacade.find(selectparent.getCount());
                     TgroupHasGparameter child=  tgroupHasGparameterFacade.find(selectxa.getCount());
@@ -1342,8 +1398,28 @@ public String onFlowProcess(FlowEvent event) {
        
        
             public void onRowEdit(RowEditEvent event) {
+                
+                  System.out.println("edit ");
+               
           date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
           seletParameterValues=((ParameterValues) event.getObject());
+          if(null== seletParameterValues.getParameterID().getParamtertypeID().getId()){
+              seletParameterValues.setValue(String.valueOf(defvalue));
+          }else switch (seletParameterValues.getParameterID().getParamtertypeID().getId()) {
+            case 2:
+                seletParameterValues.setValue(String.valueOf(defvalue1));
+                break;
+            case 3:
+              
+                  seletParameterValues.setValue(String.valueOf(defvalue));
+                break;
+            default:
+                seletParameterValues.setValue(String.valueOf(defvalue));
+                break;
+        }
+          
+         
+          
            // seletParameterValues.setUpdateDate(date);
           parameterValuesFacade.edit(seletParameterValues);
           

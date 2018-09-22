@@ -214,7 +214,7 @@
 
 
                                                     <p:dataTable id="Terminalcar" widgetVar="carsTable"
-                                                                 emptyMessage="No Parmeter found with given criteria" var="para1" value="#{terminalgroup.groupHasTerminal}" editable="true" style="margin-bottom:20px" rows="5"
+                                                                 emptyMessage="No Terminal found with given criteria" var="para1" value="#{terminalgroup.groupHasTerminal}" editable="true" style="margin-bottom:20px" rows="5"
                                                                  paginator="true"
                                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasTerminal}" rowKey="#{para1.id}"> 
@@ -354,7 +354,7 @@
 
 
                                                     <p:dataTable id="Appscar" widgetVar="carsTable"
-                                                                 emptyMessage="No Parmeter found with given criteria" var="para2" value="#{terminalgroup.groupHasSoftware}" editable="true" style="margin-bottom:20px" rows="5"
+                                                                 emptyMessage="No application found with given criteria" var="para2" value="#{terminalgroup.groupHasSoftware}" editable="true" style="margin-bottom:20px" rows="5"
                                                                  paginator="true"
                                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasSoftware}" rowKey="#{para2.id}"> 
@@ -424,7 +424,7 @@
 
 
                                                     <p:dataTable id="accescar" widgetVar="carsTable"
-                                                                 emptyMessage="No Parmeter found with given criteria" var="para3" value="#{terminalgroup.groupHasAccesory}" editable="true" style="margin-bottom:20px" rows="5"
+                                                                 emptyMessage="No accssory found with given criteria" var="para3" value="#{terminalgroup.groupHasAccesory}" editable="true" style="margin-bottom:20px" rows="5"
                                                                  paginator="true"
                                                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                                                  rowsPerPageTemplate="5,10,15" selection="#{terminalgroup.selegroupHasAccesory}" rowKey="#{para3.id}"> 
@@ -523,11 +523,27 @@
 
                                                             <p:column headerText="Value" sortBy="#{para.value}"  >
                                                                 <p:cellEditor>
-                                                                    <f:facet name="output"><h:outputText value="#{para.value}" /></f:facet>
-                                                                    <f:facet name="input"><p:inputText id="modelInput1" value="#{para.value}" style="width:100%" maxlength="#{para.parameterID.inputLength}"/></f:facet>
+                                                                    <f:facet name="output">
+                                                                        <p:outputLabel    rendered="#{para.parameterID.paramtertypeID.id eq 1}" value="#{para.value}"  />
+                                                                         <p:selectBooleanCheckbox   rendered="#{para.parameterID.paramtertypeID.id eq 2}"  value="#{para.value}" disabled="true"/>
+                                                                        <p:outputLabel   rendered="#{para.parameterID.paramtertypeID.id eq 3}"   value="#{para.value}" />
+                                      
+                                                                        
+                                                                    </f:facet>
+                                                                    <f:facet name="input">
+                                                                       
+                                                                         <p:inputText  id="pvalues" rendered="#{para.parameterID.paramtertypeID.id eq 1}" maxlength="#{para.parameterID.inputLength}"   value="#{terminalgroup.defvalue}"  />
+                                                                         <h:selectBooleanCheckbox   id="pvalues2" rendered="#{para.parameterID.paramtertypeID.id eq 2}"  value="#{terminalgroup.defvalue1}" />
+                                                                       
+                                                                         <h:selectOneMenu id="pvalues1" class="select2" rendered="#{para.parameterID.paramtertypeID.id eq 3}"  value="#{terminalgroup.defvalue}">
+                                            <f:selectItem itemLabel="Select One" itemValue="" />
+                                            <f:selectItems value="#{terminalgroup.getdefval(para.parameterID)}" />
+                                            
+                                                        </h:selectOneMenu> 
+                                                                      
+                                                                    </f:facet>
                                                                 </p:cellEditor>
                                                             </p:column>
-
 
                                                             <p:column style="width:32px">
                                                                 <p:rowEditor />

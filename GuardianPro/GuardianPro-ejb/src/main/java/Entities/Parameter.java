@@ -81,6 +81,10 @@ public class Parameter implements Serializable {
     @Size(max = 500)
     @Column(name = "Note", length = 500)
     private String note;
+    @Size(max = 500)
+    @Column(name = "default_value", length = 500)
+    private String defaultvalue;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "create_date", nullable = false)
@@ -185,6 +189,16 @@ public class Parameter implements Serializable {
     public void setInputtypeID(InputType inputtypeID) {
         this.inputtypeID = inputtypeID;
     }
+
+    public String getDefaultvalue() {
+        return defaultvalue;
+    }
+
+    public void setDefaultvalue(String defaultvalue) {
+        this.defaultvalue = defaultvalue;
+    }
+    
+    
 
   
 

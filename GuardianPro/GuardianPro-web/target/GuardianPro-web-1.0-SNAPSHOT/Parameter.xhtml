@@ -178,17 +178,14 @@
                                                           <p:cellEditor>
                                                               <f:facet name="output">
                                                                   <h:panelGroup rendered="#{para.paramtertypeID.id eq 1}">
-                                                                      <h:outputText  value="#{parameter.ret_defaultT(para)}" />
+                                                                      <h:outputText  value="#{para.defaultvalue}" />
                                                                   </h:panelGroup>
                                                                   <h:panelGroup rendered="#{para.paramtertypeID.id eq 2}">  
-                                                                      <p:selectBooleanCheckbox value="#{parameter.ret_defaultC(para)}" disabled="true" />
+                                                                      <p:selectBooleanCheckbox value="#{para.defaultvalue}" disabled="true" />
                                                              </h:panelGroup>
                                                                   <h:panelGroup rendered="#{para.paramtertypeID.id eq 3}">
-                                                                     
-                                                        <h:selectOneMenu converter="#{CparamterDefault}"  class="form-control select2" >
-                                                                <f:selectItem itemLabel="Select One" itemValue="" />
-                                                                <f:selectItems value="#{parameter.return_default(para)}" var="c" itemValue="#{c}" itemLabel="#{c.pvalues}" />
-                                                            </h:selectOneMenu> 
+                                                                    <h:outputText  value="#{para.defaultvalue}" />  
+                                                    
                                                                   </h:panelGroup>
                                                               </f:facet>
                                                               <f:facet name="input">
@@ -326,7 +323,7 @@
                             <div class="box">
 
                                   <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(47)}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(127)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 
@@ -335,7 +332,7 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="formva1" rendered="#{login.isViewed('paramter_select')}">
+                                    <h:form id="formva1" rendered="#{login.isViewed('Default_value_ADD')}">
                                         <p:messages id="messagesv1" showDetail="true" closable="true"/>
                                         <div class="form-group">
                                             
@@ -353,16 +350,16 @@
                                             <br/>
                                                     
                                                        
-                                            <p:inputText  id="pvalues"  rendered="#{parameter.parmeter.paramtertypeID.id eq 1}" class="form-control"  value="#{parameter.defvalue}"  />
+                                            <p:inputText  id="pvalues" maxlength="#{parameter.parmeter.inputLength}" rendered="#{parameter.parmeter.paramtertypeID.id eq 1}" class="form-control"  value="#{parameter.defvalue}"  />
                                             <p:selectBooleanCheckbox id="pvalues2"  rendered="#{parameter.parmeter.paramtertypeID.id eq 2}" value="#{parameter.defvalue1}" />
-                                    <p:inputText id="pvalues1"   rendered="#{parameter.parmeter.paramtertypeID.id eq 3}" class="form-control" value="#{parameter.defvalue}" />
+                                            <p:inputText id="pvalues1"  maxlength="#{parameter.parmeter.inputLength}"  rendered="#{parameter.parmeter.paramtertypeID.id eq 3}" class="form-control" value="#{parameter.defvalue}" />
                                       
                                            
                                            
                                                 <br/>
                                             <br/>
-                                                <p:commandButton  class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :formva1:messagesv1 :form:cars1" action="#{parameter.Adefault(actionEvent)}"
-                                                             disabled="#{login.isEdit('paramter_add')}"
+                                            <p:commandButton  class="btn btn-primary" value="ADD" type="submit" ajax="true" update=":formd1:carsd1 :formva1:messagesv1 :form:cars1" actionListener="#{parameter.accdefault(actionEvent)}"
+                                                             disabled="#{login.isEdit('Default_value_ADD')}"
                                                              />  
                                             
                                              
@@ -392,7 +389,7 @@
                             <div class="box">
 
                                   <div class="box-header with-border">
-      <h3 class="box-title">#{ComponentValue.getValueById(47)}</h3>
+      <h3 class="box-title">#{ComponentValue.getValueById(128)}</h3>
                                 <ui:include src="Actionbar.xhtml" />
   </div>
 
@@ -401,7 +398,7 @@
 
 
                                 <div class="box-body">
-                                    <h:form id="formv1" rendered="#{login.isViewed('paramter_select')}">
+                                    <h:form id="formv1" rendered="#{login.isViewed('Default_value_DELETE')}">
                                         <p:messages id="messagesv1" showDetail="true" closable="true"/>
                                         <div class="form-group">
                                             
@@ -425,7 +422,7 @@
                                                         </h:selectOneMenu> 
                                 <p:message for="CparamterDefault" display="text" />
                                    <br/>
-                                   <p:commandButton  class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":formd1:carsd1 :formv1:messagesv1 :form:cars1" action="#{parameter.Rdefault(actionEvent)}" disabled="#{login.isEdit('paramter_add')}"
+                                   <p:commandButton  class="btn btn-primary" value="Remove" type="submit" ajax="true" update=":formd1:carsd1 :formv1 :form:cars1" action="#{parameter.Rdefault(actionEvent)}" disabled="#{login.isEdit('Default_value_DELETE')}"
                                                              />  
                                  
                                                   

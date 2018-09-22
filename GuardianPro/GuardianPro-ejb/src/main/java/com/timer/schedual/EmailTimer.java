@@ -97,7 +97,7 @@ public class EmailTimer {
 
 //    @Schedule(hour = "*", minute = "*/2", second = "*", persistent = false)
 
-    @Schedule(hour = "*", minute = "*/10", persistent = false)
+  //  @Schedule(hour = "*", minute = "*/10", persistent = false)
 
     public void execute(Timer timer) {
 
@@ -248,17 +248,22 @@ public class EmailTimer {
                    }else{
                    props.put("mail.smtp.starttls.enable", "true"); //enable START TLS
                    }
+                   
+                   
+         
 		   
-		   Session session = Session.getInstance(props,  
+		  
+		  
+		   //Compose the message  
+		    try {  
+                        
+                         Session session = Session.getInstance(props,  
 		    new javax.mail.Authenticator() {  
                       @Override
 		      protected PasswordAuthentication getPasswordAuthentication() {  
 		    return new PasswordAuthentication(smtp_from,smtp_password);  
 		      }  
 		    });  
-		  
-		   //Compose the message  
-		    try {  
 		     MimeMessage message = new MimeMessage(session);  
 		     message.setFrom(new InternetAddress(smtp_from));  
 		     message.addRecipient(Message.RecipientType.TO,new InternetAddress(email));  
