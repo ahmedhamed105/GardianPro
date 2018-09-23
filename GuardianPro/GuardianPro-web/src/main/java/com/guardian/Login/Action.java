@@ -12,8 +12,11 @@ import Entities.FtpMessages;
 import Entities.LogScreen;
 import Facades.ActionBarFacadeLocal;
 import Facades.EmailLogFacade;
+import Facades.EmailLogFacadeLocal;
 import Facades.FtpMessagesFacade;
+import Facades.FtpMessagesFacadeLocal;
 import Facades.LogScreenFacade;
+import Facades.LogScreenFacadeLocal;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,13 +40,13 @@ public class Action {
     private ActionBarFacadeLocal actionBarFacade;
     
      @EJB
-    private EmailLogFacade EmailLogfacade;
+    private EmailLogFacadeLocal EmailLogfacade;
      
      @EJB
-    private FtpMessagesFacade FtpMessagesfacade;
+    private FtpMessagesFacadeLocal FtpMessagesfacade;
      
           @EJB
-    private LogScreenFacade LogScreenfacade;
+    private LogScreenFacadeLocal LogScreenfacade;
     
     
     
