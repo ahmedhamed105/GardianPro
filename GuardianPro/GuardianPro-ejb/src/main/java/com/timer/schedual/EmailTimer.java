@@ -97,7 +97,7 @@ public class EmailTimer {
 
 //    @Schedule(hour = "*", minute = "*/2", second = "*", persistent = false)
 
-  //  @Schedule(hour = "*", minute = "*/10", persistent = false)
+  @Schedule(hour = "*", minute = "*/10", persistent = false)
 
     public void execute(Timer timer) {
 

@@ -3,10 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.guardian.Login;import javax.servlet.http.HttpSession;
+package com.guardian.Login;import Email.FTPLog;
+import javax.servlet.http.HttpSession;
 
 import Entities.ActionBar;
+import Entities.EmailLog;
+import Entities.FtpMessages;
+import Entities.LogScreen;
 import Facades.ActionBarFacadeLocal;
+import Facades.EmailLogFacade;
+import Facades.FtpMessagesFacade;
+import Facades.LogScreenFacade;
 import Facades.UserFacadeLocal;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,9 +36,20 @@ public class Action {
     @EJB
     private ActionBarFacadeLocal actionBarFacade;
     
+     @EJB
+    private EmailLogFacade EmailLogfacade;
+     
+     @EJB
+    private FtpMessagesFacade FtpMessagesfacade;
+     
+          @EJB
+    private LogScreenFacade LogScreenfacade;
+    
     
     
         List<Entities.ActionBar> ActionBar =new ArrayList<>();
+        
+           List<String> Log =new ArrayList<>();
 
     /**
      * Creates a new instance of Action
@@ -46,6 +64,17 @@ public class Action {
     public void setActionBar(List<ActionBar> ActionBar) {
         this.ActionBar = ActionBar;
     }
+
+    public List<String> getLog() {
+        return Log;
+    }
+
+    public void setLog(List<String> Log) {
+        this.Log = Log;
+    }
+
+ 
+    
     
     
     
@@ -72,6 +101,23 @@ if(session==null){
 
         }else{
          ActionBar  = actionBarFacade.findAll();
+         List<EmailLog> a=EmailLogfacade.findAll();
+         List<FtpMessages> b=FtpMessagesfacade.findAll();
+        List<LogScreen> c= LogScreenfacade.findAll();
+         
+        if(a != null){
+        Log.add(a.get(a.size()-1).getEtext());
+        }
+        
+           if(b != null){
+        Log.add(b.get(b.size()-1).getFmessages());
+        }
+           
+             if(c != null){
+        Log.add(c.get(c.size()-1).getTRXdesc());
+        }
+         
+         
         
         }
         

@@ -52,6 +52,7 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.ejb.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -72,10 +73,12 @@ import org.w3c.dom.Element;
  *
  * @author martin
  */
-//@Startup
-@Singleton
-@LocalBean
-public class BusinessTimer {
+
+//@Singleton
+//@LocalBean
+
+  @Stateless
+public class BusinessTimer implements business{
      @EJB
     private PgchildFacadeLocal pgchildFacade;
 
@@ -167,7 +170,10 @@ public class BusinessTimer {
 
 
 // @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
-    public void execute(Timer timer) {
+   
+ 
+     @Override
+    public void execute(TgroupHasTerminal d) {
 
         System.out.println("XML Executing ...");
         
@@ -294,13 +300,11 @@ public class BusinessTimer {
             email("FTP ERROR","username or password is Wrong");
        }
                 }
-         groupHasTerminal=tgroupHasTerminalFacade.findAll();
+     //    groupHasTerminal=tgroupHasTerminalFacade.findAll();
        //  System.out.println("groupHasTerminal "+groupHasTerminal);
-                    if (groupHasTerminal !=null) {
+                    if (d !=null) {
                         
-                 
-       
-            for(TgroupHasTerminal d:groupHasTerminal){
+        
          
                if(d.getTerminalID().getTerminalstatusID().getId()== 1) {
                    
@@ -317,13 +321,13 @@ public class BusinessTimer {
 //  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
          //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
-        if(f.getXMLupdate()==1){
+      //  if(f.getXMLupdate()==1){
             xml_export=true;   
         update_gb.add(f);
-        }else{
-        XMLfilename = f.getFilename();
-        XMLlength=f.getFileLength();
-        }
+      //  }else{
+      //  XMLfilename = f.getFilename();
+      //  XMLlength=f.getFileLength();
+      //  }
        }
        
        if(xml_export){
@@ -358,14 +362,14 @@ public class BusinessTimer {
        if(XMLfilename !=null && DLLfilename !=null){
              List<TgroupHasSoftware> ss=tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
        for(TgroupHasSoftware f:ss){
-           if(f.getXMLupdate()==1){
+          // if(f.getXMLupdate()==1){
             saveapp(d);
             app_export=true;
             APPfilename= f.getAPPname();
-             break;
-           }else{
-           APPfilename=f.getAPPname();
-           }
+          //   break;
+         //  }else{
+         //  APPfilename=f.getAPPname();
+         //  }
        }
       
        }
@@ -382,7 +386,7 @@ public class BusinessTimer {
          tgroupHasTerminalFacade.edit(d);  
           xml_export=false;
           app_export=false;
-         break;
+       //  break;
            }else{
           DLLfilename=d.getDLLname();
            }
@@ -426,13 +430,13 @@ public class BusinessTimer {
 //  System.out.println("TgroupHasGparameter "+ gp);
        for(TgroupHasGparameter f:gp){
          //  System.out.println("f.getXMLupdate() "+ f.getXMLupdate());
-        if(f.getXMLupdate()==1){
+       // if(f.getXMLupdate()==1){
             xml_export=true;   
              update_gb.add(f);
-        }else{
-        XMLfilename = f.getFilename();
-        XMLlength=f.getFileLength();
-        }
+      //  }else{
+      //  XMLfilename = f.getFilename();
+     //   XMLlength=f.getFileLength();
+     //   }
        }
        
        if(xml_export){
@@ -460,7 +464,7 @@ public class BusinessTimer {
        }
        
        if(XMLfilename !=null ){
-           if(d.getXMLupdate()==1){
+         //  if(d.getXMLupdate()==1){
             DLLfilename = getdllfilename(d);
     String DLLcontent=getDLL(d, XMLfilename, XMLlength);
     File f1=new  File(FTP_LOCAL_DIR+DLLfilename);
@@ -469,10 +473,10 @@ public class BusinessTimer {
      d.setDLLname(DLLfilename);
          d.setXMLupdate(0);
          tgroupHasTerminalFacade.edit(d);  
-         break;
-           }else{
-          DLLfilename=d.getDLLname();
-           }
+         //break;
+       //    }else{
+        //  DLLfilename=d.getDLLname();
+        //   }
  
        
        
@@ -483,13 +487,13 @@ public class BusinessTimer {
        if(XMLfilename !=null && DLLfilename !=null){
              List<TgroupHasSoftware> ss=tgroupHasSoftwareFacade.find_term_groups(d.getTerminalGroupID());
        for(TgroupHasSoftware f:ss){
-           if(f.getXMLupdate()==1){
+         //  if(f.getXMLupdate()==1){
             saveapp(d);
             APPfilename= f.getAPPname();
-             break;
-           }else{
-           APPfilename=f.getAPPname();
-           }
+         //    break;
+        //   }else{
+        //   APPfilename=f.getAPPname();
+        //   }
        }
       
        }
@@ -518,7 +522,7 @@ public class BusinessTimer {
                
                }
                 
-                 }
+                 
                   
            
             }

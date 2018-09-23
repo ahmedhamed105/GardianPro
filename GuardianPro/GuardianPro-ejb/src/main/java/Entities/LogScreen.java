@@ -58,7 +58,7 @@ public class LogScreen implements Serializable {
     private String table1;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 500)
     @Column(name = "TRX_desc", nullable = false, length = 45)
     private String tRXdesc;
     @Size(max = 45)

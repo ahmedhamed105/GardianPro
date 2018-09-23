@@ -483,8 +483,7 @@
 
                                                     <h:panelGrid columns="4">
                                                         <p:tree id="tree1" value="#{terminalgroup.root1}" var="node" selectionMode="single" selection="#{terminalgroup.selectedNode1}" filterBy="#{node}"
-                                                                draggable="true" droppable="true" dragdropScope="demo">
-                                                            <p:ajax event="dragdrop" listener="#{terminalgroup.onDragDrop}" update=":formd1:carsd1 :form111:messages111 :form111:tree1 :form111:tree2" />
+                                                                draggable="true" droppable="false" dragdropScope="demo">
                                                             <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
                                                                 <h:outputText value="#{node.parameterGroup}" />   -   <h:outputText value="#{node.type}" />
                                                             </p:treeNode>
@@ -535,7 +534,7 @@
                                                                          <p:inputText  id="pvalues" rendered="#{para.parameterID.paramtertypeID.id eq 1}" maxlength="#{para.parameterID.inputLength}"   value="#{terminalgroup.defvalue}"  />
                                                                          <h:selectBooleanCheckbox   id="pvalues2" rendered="#{para.parameterID.paramtertypeID.id eq 2}"  value="#{terminalgroup.defvalue1}" />
                                                                        
-                                                                         <h:selectOneMenu id="pvalues1" class="select2" rendered="#{para.parameterID.paramtertypeID.id eq 3}"  value="#{terminalgroup.defvalue}">
+                                                                         <h:selectOneMenu id="pvalues1" class="form-control select2" rendered="#{para.parameterID.paramtertypeID.id eq 3}"  value="#{terminalgroup.defvalue}">
                                             <f:selectItem itemLabel="Select One" itemValue="" />
                                             <f:selectItems value="#{terminalgroup.getdefval(para.parameterID)}" />
                                             

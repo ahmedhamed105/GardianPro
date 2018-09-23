@@ -49,6 +49,7 @@ import Facades.TgroupHasGparameterFacadeLocal;
 import Facades.TgroupHasSoftwareFacadeLocal;
 import Facades.TgroupHasTerminalFacadeLocal;
 import Facades.UserFacadeLocal;
+import com.timer.schedual.business;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -89,6 +90,9 @@ import org.w3c.dom.Element;
  * @author ahmed.elemam
  */
 public class Terminalgroup {
+    
+    @EJB
+    private business businessfacade;
 
     @EJB
     private TerminalHasPartsFacadeLocal terminalHasPartsFacade;
@@ -161,6 +165,9 @@ public class Terminalgroup {
          
           @EJB
     private TerminalTemplateFacadeLocal terminalTemplateFacade;
+          
+          
+          
           
           String eportedxml;
           
@@ -1075,7 +1082,7 @@ public String onFlowProcess(FlowEvent event) {
         ParameterGroup b1=parameterGroupFacade.find(xb.getId());
         
         
-       //  System.out.println("onDragDrop() "+a1.getGroupname()+" "+a1.getParametertypeID().getType());
+         System.out.println("onDragDrop() "+a1.getGroupname()+" "+a1.getParametertypeID().getType());
      //     System.out.println("onDragDrop() "+b1.getGroupname()+" "+b1.getParametertypeID().getType());
         
     if(xb.getId() == 0  && (a1.getParametertypeID().getId() == 1 || a1.getParametertypeID().getId() > 4) ){
@@ -1332,7 +1339,7 @@ public String onFlowProcess(FlowEvent event) {
          List<String> defval=new ArrayList<>();
          
               List<ParamterDefault>  def= ParamterDefaultFacade.get_default(para);
-                System.out.println("com.guardian.Login.Terminalgroup.onNodeSelect() "+def.size());
+              //  System.out.println("com.guardian.Login.Terminalgroup.onNodeSelect() "+def.size());
                 for(ParamterDefault f:def){
                     defval.add(f.getPvalues());
                 } 
@@ -1356,12 +1363,14 @@ public String onFlowProcess(FlowEvent event) {
        
        
         public void removenode(ActionEvent actionEvent){
+            
+             System.out.println("onNodeRemove");
+             System.out.println("onNodeRemove "+selectxa);
             if(selectxa !=null){
                 
                  
                  if(!childs.isEmpty()){
-                         Messages.addInfoMessage("please remove Child First",2,15);
-  
+                         Messages.addInfoMessage("please remove Child First",2,15); 
                     }else{
                      
               
@@ -1437,10 +1446,13 @@ public String onFlowProcess(FlowEvent event) {
            Messages.addInfoMessage("Please select Terminal Group ",2,15);
            eportedxml="NO XML";
         }else{
+            
+           
         StringBuffer m=new StringBuffer();
-            groupHasTerminal=tgroupHasTerminalFacade.findAll();
+            groupHasTerminal=tgroupHasTerminalFacade.findAll();   
             for(TgroupHasTerminal d:groupHasTerminal){
                 try {
+                       businessfacade.execute(d);
                     m.append(getXML(d));
                       m.append("\n");
                 } catch (Exception e) {

@@ -57,7 +57,7 @@ public class ParserTimer {
     private FTPClient ftpclien;
     private User login ;
 
-   // @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
+   @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
     public void execute(Timer timer) {
 
         System.out.println("Executing ...");

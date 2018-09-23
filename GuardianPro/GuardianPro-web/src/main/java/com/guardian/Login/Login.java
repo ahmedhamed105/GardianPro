@@ -160,7 +160,7 @@ if(session==null){
     return "index.xhtml";
     }
 
-    public String Login_submit(ActionEvent actionEvent) {
+    public void Login_submit(ActionEvent actionEvent) {
 
           login = null;
         try {
@@ -294,31 +294,30 @@ if(session==null){
                         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                         ec.redirect(ec.getRequestContextPath()
                                 + "/faces/Main.xhtml");
-                        return "Login";
+                        
                     case 2:
                         login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User Closed !!", 2, 5);
-                        /*end mohammed.ayad*/
-                        return "Error";
+                        /*end mohammed.ayad*/             
                     case 3:
                           login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User Locked !!", 2, 5);
                         /*end mohammed.ayad*/
-                        return "Error";
+                       
                     case 4:
                           login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error User not Have Email Activation !!", 2, 5);
                         /*end mohammed.ayad*/
-                        return "Error";
+                      
                     default:
                           login = null;
                         /*start mohammed.ayad*/
                         Messages.addInfoMessage("Login Error Check status !!", 2, 5);
                         /*end mohammed.ayad*/
-                        return "Error";
+                    
                 }
 
             } else {
@@ -326,15 +325,15 @@ if(session==null){
                 /*start mohammed.ayad*/
                 Messages.addInfoMessage("Login Error Wrong password!!", 2, 5);
                 /*end mohammed.ayad*/
-                return "Error";
+               
             }
         } catch (Exception e) {
               login = null;
-           // e.printStackTrace();
+            e.printStackTrace();
             /*start mohammed.ayad*/
-            Messages.addInfoMessage("Login Error!! " + e.getMessage(), 3, 5);
+            Messages.addInfoMessage("Login Error!! User Not Exist", 3, 5);
             /*end mohammed.ayad*/
-            return "Error";
+     
         }
 
     }

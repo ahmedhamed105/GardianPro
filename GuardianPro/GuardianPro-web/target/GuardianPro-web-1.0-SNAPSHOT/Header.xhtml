@@ -44,9 +44,12 @@
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
                   <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 1 new members joined today
-                    </a>
+                  
+                      <ui:repeat value="#{action.log}" var="car2">
+                          <a href="#">     <i class="fa fa-users text-aqua"></i> #{car2}
+                        </a>
+                        </ui:repeat>
+           
                   </li>
                   <!-- end notification -->
                 </ul>
