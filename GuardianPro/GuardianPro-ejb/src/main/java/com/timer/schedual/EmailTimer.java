@@ -74,9 +74,9 @@ public class EmailTimer {
         
     
        static String smtp_host="smtp.gmail.com"; //SMTP Server
-		 String smtp_from="ahmed2000105@gmail.com";//from account
-		 String smtp_password="P@ssw0rd0109045227";     //password from account
-		 String smtp_to="ahmed.hamed0@me.com";//recipient account
+		 String smtp_from="spectra.test.v1@gmail.com";//from account
+		 String smtp_password="P@ssw0rdspectra";     //password from account
+		 String smtp_to="spectra.test.v1@gmail.com";//recipient account
                  String smtp_port="587";//recipient account
                  int smtp_TLS=1;//recipient account
                  String FTP_server = "localhost";
@@ -95,9 +95,9 @@ public class EmailTimer {
 
 
 
-//    @Schedule(hour = "*", minute = "*/2", second = "*", persistent = false)
+   @Schedule(hour = "*", minute = "*/10", second = "*", persistent = false)
 
-  @Schedule(hour = "*", minute = "*/10", persistent = false)
+ // @Schedule(hour = "*", minute = "*/10", persistent = false)
 
     public void execute(Timer timer) {
 
@@ -105,7 +105,8 @@ public class EmailTimer {
 
         System.out.println("Execution Time : " + new Date());
         
-         smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
+        try {
+            smtp_host=configParmeterFacade.getparameter("smtp_host").getPValue(); //SMTP Server
               if(configParmeterFacade.getparameter("smtp_host").getEncryption()==1){
                 smtp_host=Encryption.decrypt(configParmeterFacade.getparameter("smtp_host").getPValue());
                 }
@@ -222,6 +223,9 @@ public class EmailTimer {
         }
         
         }
+      } catch (Exception e) {
+      }
+       
 
     }
 

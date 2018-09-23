@@ -57,13 +57,14 @@ public class ParserTimer {
     private FTPClient ftpclien;
     private User login ;
 
-   @Schedule(hour = "*", minute = "*", second = "*/10", persistent = false)
+   @Schedule(hour = "*", minute = "*/10", second = "*", persistent = false)
     public void execute(Timer timer) {
-
-        System.out.println("Executing ...");
+         System.out.println("ParserTimer Executing ...");
 
         System.out.println("Execution Time : " + new Date());
-        ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");
+        
+        try {
+             ConfigParmeter configParmeter = terminalLogFile.loadTimerParserParametes("parameter", "TIMER_PARSER_FLAG");
         terminalLogFile.refresh(configParmeter);
         if (configParmeter.getPValue() != null) {
             boolean timerParserFlag = Boolean.parseBoolean(configParmeter.getPValue().trim());
@@ -77,6 +78,11 @@ public class ParserTimer {
 
             }
         }
+            
+        } catch (Exception e) {
+        }
+
+      
         System.out.println("____________________________________________");
 
     }

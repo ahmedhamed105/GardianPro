@@ -17,6 +17,7 @@ import Entities.TgroupHasGparameter;
 import Entities.TgroupHasSoftware;
 import Entities.TgroupHasTerminal;
 import Entities.User;
+import Facades.AbstractFacade;
 import Facades.AccessoryGroupFacadeLocal;
 import Facades.AccessoryHasGroupFacadeLocal;
 import Facades.ApplicationGroupFacadeLocal;
@@ -49,11 +50,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
-import javax.ejb.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -78,7 +75,7 @@ import org.w3c.dom.Element;
 //@LocalBean
 
   @Stateless
-public class BusinessTimer implements business{
+public class BusinessTimer  implements business{
      @EJB
     private PgchildFacadeLocal pgchildFacade;
 

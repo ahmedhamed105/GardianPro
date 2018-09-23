@@ -28,7 +28,7 @@
 				
 					<div class="login-agileits-top"> 	
                                             <h:form id="form_login"> 
-                                                <p:growl id="growl" life="2000" />
+                                                <p:growl id="growl" life="2000"  />
 							<p>User Name </p>
                                                         <p:inputText class="name" id="user_name" value="#{login.username}" required="true" requiredMessage="please Enter Username"/>
 							<p>Password</p>
@@ -37,7 +37,7 @@
                                                             <p:selectBooleanCheckbox  value="#{login.remeber}"/>
 								<span> Remember me ?</span> 
 							</div>   
-                                                        <p:commandButton class="submit_bt" value="Login" type="submit" ajax="true" update="growl" actionListener="#{login.Login_submit(actionEvent)}"/>  
+                                                        <p:commandButton class="submit_bt" value="Login" type="submit" ajax="false"  action="#{login.Login_submit(actionEvent)}"/>  
 						</h:form> 	
 					</div> 
 					<div class="login-agileits-bottom"> 

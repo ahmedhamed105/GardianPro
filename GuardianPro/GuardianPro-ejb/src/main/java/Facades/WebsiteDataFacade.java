@@ -19,6 +19,7 @@ public class WebsiteDataFacade extends AbstractFacade<WebsiteData> implements We
 
     @PersistenceContext(unitName = "com.guardianpro_GuardianPro-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
+    
 
     @Override
     protected EntityManager getEntityManager() {

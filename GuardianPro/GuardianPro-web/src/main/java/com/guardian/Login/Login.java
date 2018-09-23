@@ -13,6 +13,7 @@ import Entities.Role;
 import Entities.RoleHasComponent;
 import Entities.RoleHasGroups;
 import Entities.User;
+import Entities.UserStatus;
 import Facades.ComponentFacadeLocal;
 import Facades.ConfigParmeterFacadeLocal;
 import Facades.GroupsFacadeLocal;
@@ -85,14 +86,14 @@ public class Login {
     static User login = null;
 
     static String smtp_host = "smtp.gmail.com"; //SMTP Server
-    static String smtp_from = "ahmed2000105@gmail.com";//from account
-    static String smtp_password = "P@ssw0rd0109045227";     //password from account
-    static String smtp_to = "ahmed.hamed0@me.com";//recipient account
+    static String smtp_from = "spectra.test.v1@gmail.com";//from account
+    static String smtp_password = "P@ssw0rdspectra";     //password from account
+    static String smtp_to = "spectra.test.v1@gmail.com";//recipient account
     static String smtp_port = "587";//recipient account
     static int smtp_TLS = 1;//recipient account
     static String FTP_server = "localhost";
     static String FTP_port = "21";
-    static String FTP_user = "ahmed";
+    static String FTP_user = "spectra";
     static String FTP_pass = "123456";
     static String FTP_APP_DIR = "\\APPLICATION\\";
 
@@ -160,7 +161,7 @@ if(session==null){
     return "index.xhtml";
     }
 
-    public void Login_submit(ActionEvent actionEvent) {
+    public String Login_submit(ActionEvent actionEvent) {
 
           login = null;
         try {
@@ -168,7 +169,12 @@ if(session==null){
 
             String decrypted = Encryption.encrypt(password);
             if (u1.getUserPasswordID().getPassword().equals(decrypted)) {
-                switch (userFacade.user_status(u1)) {
+                
+                int a=userFacade.user_status(u1);
+                
+                System.out.println("com.guardian.Login.Login.Login_submit() "+a);
+                
+                switch (a) {
                     case 1:
                         
                           login = u1;
@@ -294,7 +300,7 @@ if(session==null){
                         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
                         ec.redirect(ec.getRequestContextPath()
                                 + "/faces/Main.xhtml");
-                        
+                       return "login";
                     case 2:
                         login = null;
                         /*start mohammed.ayad*/
@@ -335,6 +341,14 @@ if(session==null){
             /*end mohammed.ayad*/
      
         }
+        
+            ExternalContext ec1 = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec1.redirect(ec1.getRequestContextPath()+ "/faces/index.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                       return "login";
 
     }
 
